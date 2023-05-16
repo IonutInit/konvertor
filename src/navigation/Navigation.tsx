@@ -2,9 +2,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Navigation = createBottomTabNavigator()
 
-import Home from "./Home.screen";
-import Favourites from "./Favourites.screen";
-import Settings from "./Settings.screen";
+import Home from "../screens/Home.screen";
+import Favourites from "../screens/Favourites.screen";
+import Settings from "../screens/Settings.screen";
 
 const NavigationTabs = () => {
     return(
