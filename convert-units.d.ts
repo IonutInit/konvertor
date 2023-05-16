@@ -1,1 +1,1 @@
-declare module 'convert-units';
+declare module "convert-units";

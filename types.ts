@@ -1,7 +1,7 @@
 export type AppStateType = {
-    screen: number;
-}
+  screen: number;
+};
 
 export type ActionType = {
-    type: "one"
-}
+  type: "one";
+};

@@ -1,5 +1,5 @@
 const appState = {
-    screen: 0
-}
+  screen: 0,
+};
 
 export default appState;
