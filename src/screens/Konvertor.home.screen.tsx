@@ -1,9 +1,24 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 
-const Konvertor = () => {
+import useAppContext from "../context/useAppContext";
+
+const Konvertor = () => {  
+  const {state, dispatch} = useAppContext()
+
+  const handlePress = () => {
+    dispatch({
+      type: "toggle_konvertor"
+    })
+  }
+
+  const measure = state.measureType
+
   return (
     <View>
-      <Text>Hello Konvertor</Text>
+      <Pressable onPress={handlePress}>
+        <Text>Back</Text>
+      </Pressable>
+      <Text>{measure}</Text>
     </View>
   );
 };

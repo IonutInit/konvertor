@@ -1,22 +1,30 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 
-const unitTypes = [
-  "Length",
-  "Area",
-  "Mass",
-  "Volume",
-  "Temperature",
-  "Time",
-  "Frequency",
-  "Speed",
-  "Digital",
-  "Angle",
-];
+import useAppContext from "../context/useAppContext";
+
+import unitList from "../data/unitList";
 
 const Options = () => {
+  const {state: {extendedList}, dispatch} = useAppContext()
+
+  const handlePress = (measure: string) => {
+    dispatch({
+      type: "toggle_konvertor"
+    })
+    dispatch({
+      type: "change_measure",
+      payload: measure,
+    })
+  }
+
   return (
     <View>
-      <Text>Hello Options</Text>
+      {unitList.map(unit => (
+        <Pressable onPress={() => handlePress(unit.measure)}>
+          <Text key={unit.measure}>{extendedList || unit.primary ? unit.measure : null}</Text>
+        </Pressable>
+        
+      ))}
     </View>
   );
 };

@@ -1,7 +1,7 @@
 export type AppStateType = {
-  screen: number;
+  konvertor: boolean;
+  extendedList: boolean;
+  measureType: string;
 };
 
-export type ActionType = {
-  type: "one";
-};
+export type ActionType = {type: "toggle_konvertor"} | {type: "change_measure", payload: string};

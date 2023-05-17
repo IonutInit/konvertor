@@ -5,30 +5,18 @@ import { View, Text } from "react-native";
 import Options from "./Options.home.screens";
 import Konvertor from "./Konvertor.home.screen";
 
-const unitTypes = [
-  "Length",
-  "Area",
-  "Mass",
-  "Volume",
-  "Temperature",
-  "Time",
-  "Frequency",
-  "Speed",
-  "Digital",
-  "Angle",
-];
-
 const Home = () => {
   const {
-    state: { screen },
+    state: { konvertor },
   } = useAppContext();
 
   return (
-    <View>
-      {screen === 0 && <Options />}
-      {screen === 1 && <Konvertor />}
-      {/* <Text>Hello Home</Text> */}
-    </View>
+
+    konvertor ? <Konvertor /> : <Options />
+    // <View>
+    //   {!konvertor && <Options />}
+    //   {konvertor && <Konvertor />}
+    // </View>
   );
 };
 

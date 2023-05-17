@@ -1,5 +1,7 @@
 const appState = {
-  screen: 0,
+  konvertor: false,
+  extendedList: false,
+  measureType: "",
 };
 
 export default appState;
