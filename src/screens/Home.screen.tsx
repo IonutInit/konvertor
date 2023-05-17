@@ -10,14 +10,7 @@ const Home = () => {
     state: { konvertor },
   } = useAppContext();
 
-  return (
-
-    konvertor ? <Konvertor /> : <Options />
-    // <View>
-    //   {!konvertor && <Options />}
-    //   {konvertor && <Konvertor />}
-    // </View>
-  );
+  return konvertor ? <Konvertor /> : <Options />;
 };
 
 export default Home;
