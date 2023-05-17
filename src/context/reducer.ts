@@ -9,7 +9,9 @@ const reducer = (state: AppStateType, action: ActionType) => {
     case "change_FROM_unit":
       return { ...state, fromUnit: action.payload };
     case "change_TO_unit":
-      return {...state, toUnit: action.payload}
+      return { ...state, toUnit: action.payload };
+    case "change_options_state":
+      return { ...state, optionsState: action.payload };
     default:
       return state;
   }

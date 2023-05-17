@@ -1,11 +1,14 @@
+import { OptionsStateType } from "../../types";
+
 const appState = {
-  konvertor: false,
+  konvertor: true,
   extendedList: false,
   measureType: "",
   metric: true,
-  fromUnit: "",
-  toUnit: "",
-  decimals: 1,
+  fromUnit: "m",
+  toUnit: "ft",
+  decimals: 2,
+  optionsState: "" as OptionsStateType,
 };
 
 export default appState;

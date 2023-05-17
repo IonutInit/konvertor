@@ -13,12 +13,8 @@ const Options = () => {
   } = useAppContext();
 
   const handlePress = (measure: string) => {
-    const defaultFrom = state.metric ? 0 : 1;
-    const defaultTo = state.metric ? 1 : 0;
+    const [defaultFrom, defaultTo] = state.metric ? [0, 1] : [1, 0];
     const targetUnit = unitList.find((unit) => unit.measure === measure)!;
-
-    console.log(defaultFrom)
-    console.log(defaultTo)
 
     dispatch({
       type: "toggle_konvertor",
@@ -35,10 +31,9 @@ const Options = () => {
 
     dispatch({
       type: "change_TO_unit",
-      payload: targetUnit.default[defaultTo]
-    })
+      payload: targetUnit.default[defaultTo],
+    });
   };
-
 
   return (
     <View>
