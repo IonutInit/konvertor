@@ -5,63 +5,51 @@ import convert from "convert-units";
 
 import useAppContext from "../context/useAppContext";
 
+import BackFromKonverter from "../components/BackFromKonvertor";
 import OptionsList from "../components/OptionsList";
 
-import { OptionsStateType } from "../../types";
+import Input from "../components/Input";
+import FromComponent from "../components/FromComponent";
+import ToComponent from "../components/ToComponent";
 
 const Konvertor = () => {
   const { state, dispatch } = useAppContext();
   const [number, setNumber] = useState(1);
-  const [activateOptions, setActivateOptions] = useState(false);
 
-  const handleInputChange = (input: string) => {
-    // Remove any non-numeric characters
-    //const cleanedText = text.replace(/[^0-9]/g, '').replace(/^0+/, '');
-    const cleanedText = input.replace(/^0+/, "");
-    setNumber(Number(cleanedText));
-  };
+  // const handleInputChange = (input: string) => {
+  //   const cleanedText = input.replace(/^0+/, "");
+  //   setNumber(Number(cleanedText));
+  // };
 
-  const handleBack = () => {
+  const addFrom = () => {
     dispatch({
-      type: "toggle_konvertor",
+      type: "add_FROM_unit",
+      payload: state.fromUnit[0],
     });
   };
 
-  const handleOptionsList = (optionType: OptionsStateType) => {
-    dispatch({
-      type: "change_options_state",
-      payload: optionType,
-    });
-  };
-
-  const measure = state.measureType;
-  const result = convert(number)
-    .from(`${state.fromUnit}`)
-    .to(`${state.toUnit}`);
+  // const measure = state.measureType;
+  // const result = convert(number)
+  //   .from(`${state.fromUnit}`)
+  //   .to(`${state.toUnit}`);
 
   return (
     <View>
-      <Pressable onPress={handleBack}>
-        <Text>Back</Text>
-      </Pressable>
-      <Text>{measure}</Text>
+      <BackFromKonverter />
 
-      <Pressable onPress={() => handleOptionsList("from")}>
-        <Text>FROM: {state.fromUnit}</Text>
-      </Pressable>
+      <Text>{state.measureType}</Text>
 
-      <Pressable>
-        <Text onPress={() => handleOptionsList("to")}>TO: {state.toUnit}</Text>
-      </Pressable>
+      <FromComponent />
 
-      <Text>{result.toFixed(state.decimals)}</Text>
+      <Pressable onPress={addFrom}>ADD</Pressable>
 
-      <TextInput
-        keyboardType="numeric"
-        //value={number}
-        onChangeText={handleInputChange}
-      />
-      {state.optionsState !== "" && <OptionsList />}
+      <ToComponent />
+
+      {/* <Text>{result.toFixed(state.decimals)}</Text> */}
+
+      {/* <Input handleInputChange={handleInputChange} /> */}
+
+      {/* {state.optionsState !== "" && <OptionsList />} */}
     </View>
   );
 };

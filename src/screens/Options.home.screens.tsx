@@ -25,7 +25,7 @@ const Options = () => {
     });
 
     dispatch({
-      type: "change_FROM_unit",
+      type: "add_FROM_unit",
       payload: targetUnit.default[defaultFrom],
     });
 

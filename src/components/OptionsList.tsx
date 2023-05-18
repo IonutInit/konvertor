@@ -13,7 +13,7 @@ const OptionsList = () => {
     state[`${state.optionsState}Unit`]
   );
 
-  const options = convert().from(`${state.fromUnit}`).possibilities();
+  const options = convert().from(`${state.fromUnit}[0]`).possibilities();
   const type =
     state.optionsState === "from" ? "change_FROM_unit" : "change_TO_unit";
 
