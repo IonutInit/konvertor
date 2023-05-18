@@ -5,7 +5,7 @@ import useAppContext from "../context/useAppContext";
 
 import PickerComponent from "./Picker";
 
-import handleToUnitChange from "../lib/handleToUnitChange";
+import handleToUnitChange from "../hooks/handleToUnitChange";
 
 import convert from "convert-units";
 //import converter from "../lib/converter";
@@ -29,7 +29,6 @@ const ToComponent = () => {
         />
 
         {/* <Text>{result[i]}</Text> */}
-
       </React.Fragment>
     );
   });

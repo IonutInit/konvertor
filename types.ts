@@ -17,7 +17,7 @@ export type ActionType =
   | { type: "change_measure"; payload: string }
   // | { type: "add_FROM_unit"; payload: string }
   // | { type: "add_TO_unit"; payload: string }
-  | {type: `add_${string}_unit`; payload: string}
+  | { type: `add_${string}_unit`; payload: string }
   | { type: "change_options_state"; payload: OptionsStateType }
   | {
       type: "change_FROM_value";
@@ -33,7 +33,7 @@ export type ActionType =
         iterator: number;
       };
     }
-    | {
+  | {
       type: "change_TO_unit";
       payload: {
         value: string;

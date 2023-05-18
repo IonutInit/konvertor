@@ -1,4 +1,4 @@
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, View } from "react-native";
 import React from "react";
 
 import useAppContext from "../context/useAppContext";
@@ -6,8 +6,8 @@ import useAppContext from "../context/useAppContext";
 import Input from "./Input";
 import PickerComponent from "./Picker";
 
-import handleInputChange from "../lib/handleInputChange";
-import handleFromUnitChange from "../lib/handleFromUnitChange";
+import handleInputChange from "../hooks/handleInputChange";
+import handleFromUnitChange from "../hooks/handleFromUnitChange";
 
 import convert from "convert-units";
 
@@ -19,20 +19,24 @@ const FromComponent = () => {
 
     return (
       <React.Fragment key={i}>
-        <Text>FROM: </Text>
+        {/* <Text>FROM: </Text> */}
+        <View style={styles.container}>
 
-        <PickerComponent
-          onChange={handleFromUnitChange}
-          options={options}
-          unit={unit}
-          i={i}
-        />
+          <Input
+            handleInputChange={(input: string) =>
+              handleInputChange(dispatch, input, i)
+            }
+          />
 
-        <Input
-          handleInputChange={(input: string) =>
-            handleInputChange(dispatch, input, i)
-          }
-        />
+<PickerComponent
+            onChange={handleFromUnitChange}
+            options={options}
+            unit={unit}
+            i={i}
+          />
+
+          <Text>X</Text>
+        </View>
 
       </React.Fragment>
     );
@@ -42,12 +46,14 @@ const FromComponent = () => {
 };
 
 const styles = StyleSheet.create({
-  component: {
-    borderWidth: 2,
-    borderColor: "black",
-    borderRadius: 5,
-    padding: 10,
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
+  close: {
+    width: "10%",
+  }
 });
 
 export default FromComponent;

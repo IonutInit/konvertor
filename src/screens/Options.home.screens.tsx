@@ -1,50 +1,77 @@
-import { View, Text, Pressable } from "react-native";
-import { useEffect } from "react";
+import {
+  View,
+  ScrollView,
+  Text,
+  Pressable,
+  Image,
+  StyleSheet,
+} from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
+import handleMeasurementPress from "../hooks/handleMeasurementPress";
+
 import unitList from "../data/unitList";
 
+import sampleIcon from "../assets/sample_icon.png";
+
 const Options = () => {
-  const {
-    state: { extendedList },
-    state,
-    dispatch,
-  } = useAppContext();
+  const { state, dispatch } = useAppContext();
 
-  const handlePress = (measure: string) => {
-    const [defaultFrom, defaultTo] = state.metric ? [0, 1] : [1, 0];
-    const targetUnit = unitList.find((unit) => unit.measure === measure)!;
-
-    dispatch({
-      type: "toggle_konvertor",
-    });
-
-    dispatch({
-      type: "change_measure",
-      payload: measure,
-    });
-
-    dispatch({
-      type: "add_FROM_unit",
-      payload: targetUnit.default[defaultFrom],
-    });
-
-    dispatch({
-      type: "add_TO_unit",
-      payload: targetUnit.default[defaultTo],
-    });
-  };
+  const filteredUnitList = unitList.filter(
+    (unit) => state.extendedList || unit.primary
+  );
 
   return (
-    <View>
-      {unitList.map((unit) => (
-        <Pressable key={unit.measure} onPress={() => handlePress(unit.measure)}>
-          <Text>{extendedList || unit.primary ? unit.measure : null}</Text>
+    <ScrollView contentContainerStyle={styles.outerContainer}>
+      {filteredUnitList.map((unit) => (
+        <Pressable
+          key={unit.measure}
+          onPress={() => handleMeasurementPress(dispatch, state, unit.measure)}
+          style={styles.pressable}>
+          <View style={styles.innerContainer}>
+            <Image source={sampleIcon} style={styles.icon} />
+            <Text style={styles.text}>{unit.measure}</Text>
+          </View>
         </Pressable>
       ))}
-    </View>
+    </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  outerContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    paddingHorizontal: 15,
+  },
+  pressable: {
+    width: 90,
+    height: 90,
+    backgroundColor: "#F3F3F3",
+    margin: 3,
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 10,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+    elevation: 3, // for Android shadow
+  },
+  innerContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 14,
+  },
+  icon: {
+    width: 45,
+    height: 45,
+  },
+});
 
 export default Options;

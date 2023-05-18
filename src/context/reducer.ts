@@ -6,7 +6,12 @@ const reducer = (state: AppStateType, action: ActionType) => {
       return { ...state, konvertor: !state.konvertor };
 
     case "change_measure":
-      return { ...state, measureType: action.payload, fromUnit: [], toUnit: [] };
+      return {
+        ...state,
+        measureType: action.payload,
+        fromUnit: [],
+        toUnit: [],
+      };
 
     case "add_FROM_unit":
       let value = !state.fromValue.length ? 1 : 0;
@@ -18,22 +23,18 @@ const reducer = (state: AppStateType, action: ActionType) => {
 
     case "add_TO_unit":
       return { ...state, toUnit: [...state.toUnit, action.payload] };
-    
-      case "change_TO_unit":
-        const updatedFromUnit2 = state.toUnit.map((unit, index) =>
-          index === action.payload.iterator ? action.payload.value : unit
-        );
-        return { ...state, toUnit: updatedFromUnit2 };
 
-
-
+    case "change_TO_unit":
+      const updatedFromUnit2 = state.toUnit.map((unit, index) =>
+        index === action.payload.iterator ? action.payload.value : unit
+      );
+      return { ...state, toUnit: updatedFromUnit2 };
 
     case "change_FROM_unit":
       const updatedFromUnit = state.fromUnit.map((unit, index) =>
         index === action.payload.iterator ? action.payload.value : unit
       );
       return { ...state, fromUnit: updatedFromUnit };
-
 
     case "change_FROM_value":
       const newValue = action.payload.value;
@@ -44,13 +45,11 @@ const reducer = (state: AppStateType, action: ActionType) => {
     case "change_options_state":
       return { ...state, optionsState: action.payload };
 
-
-
-      // case "just_add_it":
-      //   return {...state, 
-      //     fromUnit: [...state.fromUnit, "m"],
-      //     fromValue: [...state.fromValue, 0]
-      //   }
+    // case "just_add_it":
+    //   return {...state,
+    //     fromUnit: [...state.fromUnit, "m"],
+    //     fromValue: [...state.fromValue, 0]
+    //   }
 
     default:
       return state;
