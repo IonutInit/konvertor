@@ -10,12 +10,14 @@ import ToComponent from "../components/ToComponent";
 const Konvertor = () => {
   const { state, dispatch } = useAppContext();
 
-  const addFrom = () => {
+  const addUnit = (type: "to" | "from") => {
     dispatch({
-      type: "add_FROM_unit",
-      payload: state.fromUnit[0],
+      type: `add_${type.toUpperCase()}_unit` as const,
+      payload: state.toUnit[0],
     });
   };
+  
+  console.log(state)
 
   return (
     <View>
@@ -25,13 +27,20 @@ const Konvertor = () => {
 
       <FromComponent />
 
-      <Pressable onPress={addFrom}>
+      <Pressable onPress={() => addUnit("from")}>
         <Text>ADD</Text>
       </Pressable>
 
-      <ToComponent />
+      <Text>--------------</Text>
+      <Text>--------------</Text>
+      <Text>--------------</Text>
+      <Text>--------------</Text>
 
-      {/* <Text>{result.toFixed(state.decimals)}</Text> */}
+      <ToComponent />
+      <Pressable onPress={() => addUnit("to")}>
+        <Text>ADD</Text>
+      </Pressable>
+
     </View>
   );
 };

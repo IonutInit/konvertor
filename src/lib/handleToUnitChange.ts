@@ -7,7 +7,7 @@ const handleToUnitChange = (
   iterator: number
 ) => {
   dispatch({
-    type: "change_FROM_unit",
+    type: "change_TO_unit",
     payload: { value: option, iterator },
   });
 };

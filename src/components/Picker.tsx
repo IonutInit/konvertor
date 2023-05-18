@@ -6,7 +6,7 @@ import useAppContext from "../context/useAppContext";
 import { ActionType } from "../../types";
 
 type PickerComponentProps = {
-  handleToUnitChange: (
+  onChange: (
     dispatch: Dispatch<ActionType>,
     option: string,
     iterator: number
@@ -17,17 +17,21 @@ type PickerComponentProps = {
 };
 
 const PickerComponent = ({
-  handleToUnitChange,
+  onChange,
   options,
   unit,
   i,
 }: PickerComponentProps) => {
   const { dispatch } = useAppContext();
 
+  const handleValueChange = (option: string) => {
+    onChange(dispatch, option, i);
+  };
+
   return (
     <Picker
       selectedValue={unit}
-      onValueChange={(option) => handleToUnitChange(dispatch, option, i)}>
+      onValueChange={handleValueChange}>
       {options.map((option: string) => (
         <Picker.Item key={option} label={option} value={option} />
       ))}

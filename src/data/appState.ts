@@ -7,7 +7,7 @@ const appState = {
   metric: true,
   fromUnit: [],
   fromValue: [],
-  toUnit: "ft",
+  toUnit: [],
   decimals: 2,
   optionsState: "" as OptionsStateType,
 };

@@ -19,6 +19,7 @@ const Options = () => {
     dispatch({
       type: "toggle_konvertor",
     });
+
     dispatch({
       type: "change_measure",
       payload: measure,
@@ -30,7 +31,7 @@ const Options = () => {
     });
 
     dispatch({
-      type: "change_TO_unit",
+      type: "add_TO_unit",
       payload: targetUnit.default[defaultTo],
     });
   };
