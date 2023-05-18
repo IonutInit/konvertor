@@ -38,10 +38,8 @@ const Options = () => {
   return (
     <View>
       {unitList.map((unit) => (
-        <Pressable onPress={() => handlePress(unit.measure)}>
-          <Text key={unit.measure}>
-            {extendedList || unit.primary ? unit.measure : null}
-          </Text>
+        <Pressable key={unit.measure} onPress={() => handlePress(unit.measure)}>
+          <Text>{extendedList || unit.primary ? unit.measure : null}</Text>
         </Pressable>
       ))}
     </View>

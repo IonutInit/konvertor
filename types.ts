@@ -6,9 +6,8 @@ export type AppStateType = {
   measureType: string;
   metric: boolean;
   fromUnit: string[];
-  fromValue: number[];
+  fromValue: (number | string)[];
   toUnit: string;
-  Unit?: string; //when the options picker is inactive
   decimals: number;
   optionsState: OptionsStateType;
 };
@@ -19,8 +18,17 @@ export type ActionType =
   | { type: "add_FROM_unit"; payload: string }
   | { type: "change_TO_unit"; payload: string }
   | { type: "change_options_state"; payload: OptionsStateType }
-  | { type: "change_FROM_value"; payload: {
-    value: string;
-    iterator: number;
-}}
-
+  | {
+      type: "change_FROM_value";
+      payload: {
+        value: string;
+        iterator: number;
+      };
+    }
+  | {
+      type: "change_FROM_unit";
+      payload: {
+        value: string;
+        iterator: number;
+      };
+    };

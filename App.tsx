@@ -1,12 +1,11 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { useReducer } from "react";
+import { useReducer, Reducer } from "react";
 
 import { AppContextProvider } from "./src/context/AppContext";
 
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 
-import convert from "convert-units";
 import NavigationTabs from "./src/navigation/Navigation";
 
 import reducer from "./src/context/reducer";

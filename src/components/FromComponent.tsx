@@ -1,37 +1,54 @@
-import { Text, Pressable, StyleSheet } from "react-native";
-import {useState} from "react";
+import { Text, StyleSheet } from "react-native";
+import React from "react";
+import { Picker } from "@react-native-picker/picker";
 
 import useAppContext from "../context/useAppContext";
 
 import Input from "./Input";
+import PickerComponent from "./Picker";
 
-import handleOptionsList from "../lib/handleOptionsList";
 import handleInputChange from "../lib/handleInputChange";
+import handleToUnitChange from "../lib/handleToUnitChange";
+
+import convert from "convert-units";
 
 const FromComponent = () => {
   const { state, dispatch } = useAppContext();
- 
-  const numberOfElements = state.fromUnit.length;
 
+  console.log(state);
 
-  const elements = Array.from({ length: numberOfElements }, (_, i) => (
-    <>
-      <Pressable
-        key={i}
-        onPress={() => handleOptionsList(dispatch, "from")}
-        style={styles.component}>
-        <Text>FROM: {state.fromUnit[i]}</Text>
-      </Pressable>
+  const elements = state.fromUnit.map((unit: string, i: number) => {
+    const options = convert().from(unit).possibilities();
 
-      <Input handleInputChange={(input: string) => handleInputChange(dispatch, input, i)}/>
-      
-      <Text>{state.fromValue[i]}</Text>
-    </>
-  ));
+    return (
+      <React.Fragment key={i}>
+        <Text>FROM: </Text>
+        {/* <Picker selectedValue={unit} onValueChange={(option) => handleToUnitChange(dispatch, option, i)}>
+          {options.map((option: string) => (
+            <Picker.Item key={option} label={option} value={option} />
+          ))}
+        </Picker> */}
+
+        <PickerComponent
+          handleToUnitChange={handleToUnitChange}
+          options={options}
+          unit={unit}
+          i={i}
+        />
+
+        <Input
+          handleInputChange={(input: string) =>
+            handleInputChange(dispatch, input, i)
+          }
+        />
+
+        <Text>{state.fromValue[i]}</Text>
+      </React.Fragment>
+    );
+  });
 
   return <>{elements}</>;
 };
-
 
 const styles = StyleSheet.create({
   component: {
