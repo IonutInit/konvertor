@@ -14,6 +14,7 @@ const appState = {
     metric: true,
     decimals: 2,
   },
+  favourites: []
 };
 
 export default appState;

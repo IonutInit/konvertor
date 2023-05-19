@@ -5,12 +5,16 @@ import { StyleSheet, View, Text } from "react-native";
 import useAppContext from "../context/useAppContext";
 
 type SliderComponentPropType = {
-  settingType: string,
-  title: string,
-  description: string,
-}
+  settingType: string;
+  title: string;
+  description: string;
+};
 
-const SliderComponent = ({ settingType, title, description }: SliderComponentPropType) => {
+const SliderComponent = ({
+  settingType,
+  title,
+  description,
+}: SliderComponentPropType) => {
   const {
     state: { settings },
     dispatch,

@@ -9,8 +9,8 @@ import Settings from "../screens/Settings.screen";
 const NavigationTabs = () => {
   return (
     <Navigation.Navigator>
-      <Navigation.Screen name="Settings" component={Settings} />
       <Navigation.Screen name="Home" component={Home} />
+      <Navigation.Screen name="Settings" component={Settings} />
       <Navigation.Screen name="Favourites" component={Favourites} />
     </Navigation.Navigator>
   );

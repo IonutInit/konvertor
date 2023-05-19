@@ -1,9 +1,19 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
+
+import useAppContext from "../context/useAppContext";
 
 const Favourites = () => {
+  const {state: {favourites}, dispatch} = useAppContext() 
+
+  console.log(favourites)
+
   return (
     <View>
-      <Text>Hello Favourites</Text>
+      {favourites.map((fav) => (
+        <Pressable>
+          <Text>{fav.from[0]} TO { fav.to[0] } </Text>
+        </Pressable>
+      ))}
     </View>
   );
 };

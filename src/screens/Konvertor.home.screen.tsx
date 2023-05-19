@@ -7,11 +7,12 @@ import BackFromKonverter from "../components/BackFromKonvertor";
 import FromComponent from "../components/FromComponent";
 import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
+import AddToFavourites from "../components/AddToFavourites";
 
 const Konvertor = () => {
   const { state, dispatch } = useAppContext();
 
-  //console.log(state);
+  console.log(state);
 
   return (
     <ScrollView>
@@ -30,13 +31,18 @@ const Konvertor = () => {
         <AddUnit type="from" />
       </View>
 
-      <Text style={styles.title}>{state.measureType}</Text>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{state.measureType}</Text>
+            <AddToFavourites />
+          </View>
+      
 
       <FromComponent />
 
       <ToComponent />
 
       <AddUnit type="to" />
+
     </ScrollView>
   );
 };
@@ -46,6 +52,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 15,
+  },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   title: {
     fontSize: 24,

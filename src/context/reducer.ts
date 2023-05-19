@@ -85,6 +85,12 @@ const reducer = (state: AppStateType, action: ActionType) => {
         },
       };
 
+      case "add_to_favourites":
+        return {
+          ...state,
+          favourites: [...state.favourites, action.payload]
+        }
+
     default:
       return state;
   }

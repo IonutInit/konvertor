@@ -1,5 +1,10 @@
 export type OptionsStateType = "to" | "from" | "";
 
+export type Favourite = {
+  from: string[];
+  to: string[];
+}
+
 export type AppStateType = {
   konvertor: boolean;
   measureType: string;
@@ -14,6 +19,7 @@ export type AppStateType = {
     metric: number;
     decimals: number;
   };
+  favourites: Favourite[];
 };
 
 export type ActionType =
@@ -47,9 +53,13 @@ export type ActionType =
       };
     }
   | {
-    type: "change_settings";
-    payload: {
-      settingType: string;
-      settingValue: boolean | number;
-    };
+      type: "change_settings";
+      payload: {
+        settingType: string;
+        settingValue: boolean | number;
+      };
+    }
+  | {
+    type: "add_to_favourites",
+    payload: {}
   }

@@ -18,10 +18,12 @@ const Settings = () => {
       {settingOptions.map((setting, index) => {
         const localState = settingState[index];
 
-          return (
+        return (
           <View style={styles.sliderRow}>
             <View style={styles.textContainer}>
-              {!localState && <Text style={styles.text}>{setting.leftText}</Text>}
+              {!localState && (
+                <Text style={styles.text}>{setting.leftText}</Text>
+              )}
             </View>
 
             <SliderComponent
@@ -32,7 +34,9 @@ const Settings = () => {
             />
 
             <View>
-              {localState && <Text style={styles.text}>{setting.rightText}</Text>}
+              {localState && (
+                <Text style={styles.text}>{setting.rightText}</Text>
+              )}
             </View>
           </View>
         );
