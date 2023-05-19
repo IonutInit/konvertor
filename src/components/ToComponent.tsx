@@ -4,6 +4,7 @@ import { Text } from "react-native";
 import useAppContext from "../context/useAppContext";
 
 import PickerComponent from "./Picker";
+import RemoveUnit from "./RemoveUnit";
 
 import handleToUnitChange from "../hooks/handleToUnitChange";
 
@@ -28,6 +29,7 @@ const ToComponent = () => {
           i={i}
         />
 
+        <RemoveUnit i={i} type={"to"} />
         {/* <Text>{result[i]}</Text> */}
       </React.Fragment>
     );

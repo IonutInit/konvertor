@@ -29,34 +29,31 @@ const PickerComponent = ({
     onChange(dispatch, option, i);
   };
 
-  return ( 
-
-
-            <Picker 
-    style={styles.picker}
-    selectedValue={unit} onValueChange={handleValueChange}
-    
-    itemStyle={styles.pickerItem}>
+  return (
+    <Picker
+      style={styles.picker}
+      selectedValue={unit}
+      onValueChange={handleValueChange}
+      itemStyle={styles.pickerItem}>
       {options.map((option: string) => (
         <Picker.Item key={option} label={option} value={option} />
       ))}
     </Picker>
-
   );
 };
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
   picker: {
     width: 100,
     height: 150,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: "#e0e0e0",
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
   },
   pickerItem: {
     fontSize: 12,
   },
-})
+});
 
 export default PickerComponent;

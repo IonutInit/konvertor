@@ -33,6 +33,7 @@ export type ActionType =
         iterator: number;
       };
     }
+  | { type: `remove_${string}_value`; payload: number }
   | {
       type: "change_TO_unit";
       payload: {

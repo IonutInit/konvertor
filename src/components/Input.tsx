@@ -7,7 +7,7 @@ type InputProps = {
 const Input = ({ handleInputChange }: InputProps) => {
   return (
     <TextInput
-    style={styles.input}
+      style={styles.input}
       onChangeText={(input) => handleInputChange(input)}
       keyboardType="numeric"
     />
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     marginLeft: 24,
     borderBottomWidth: 1,
     borderBottomColor: "black",
-  }
-})
+  },
+});
 
 export default Input;

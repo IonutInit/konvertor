@@ -42,14 +42,35 @@ const reducer = (state: AppStateType, action: ActionType) => {
         index === action.payload.iterator ? newValue : value
       );
       return { ...state, fromValue: updatedFromValue };
+
+    case "remove_FROM_value":
+      const updatedFromUnit3 = state.fromUnit.filter(
+        (unit, index) => index !== action.payload
+      );
+      const updatedFromValue3 = state.fromValue.filter(
+        (value, index) => index !== action.payload
+      );
+      return {
+        ...state,
+        fromUnit: updatedFromUnit3,
+        fromValue: updatedFromValue3,
+      };
+
+    case "remove_TO_value":
+      const updatedFromUnit4 = state.toUnit.filter(
+        (unit, index) => index !== action.payload
+      );
+      // const updatedFromValue4 = state.toValue.filter((value, index) =>
+      //   index !== action.payload
+      // );
+      return {
+        ...state,
+        toUnit: updatedFromUnit4,
+        // fromValue: updatedFromValue4
+      };
+
     case "change_options_state":
       return { ...state, optionsState: action.payload };
-
-    // case "just_add_it":
-    //   return {...state,
-    //     fromUnit: [...state.fromUnit, "m"],
-    //     fromValue: [...state.fromValue, 0]
-    //   }
 
     default:
       return state;

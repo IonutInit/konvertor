@@ -1,11 +1,4 @@
-import {
-  View,
-  ScrollView,
-  Text,
-  Pressable,
-  StyleSheet,
-  Image,
-} from "react-native";
+import { View, ScrollView, Text, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -13,18 +6,10 @@ import BackFromKonverter from "../components/BackFromKonvertor";
 
 import FromComponent from "../components/FromComponent";
 import ToComponent from "../components/ToComponent";
-
-import add from "../assets/add.png";
+import AddUnit from "../components/AddUnit";
 
 const Konvertor = () => {
   const { state, dispatch } = useAppContext();
-
-  const addUnit = (type: "to" | "from") => {
-    dispatch({
-      type: `add_${type.toUpperCase()}_unit` as const,
-      payload: state.toUnit[0],
-    });
-  };
 
   console.log(state);
 
@@ -32,9 +17,8 @@ const Konvertor = () => {
     <ScrollView>
       <View style={styles.header}>
         <BackFromKonverter />
-        <Pressable onPress={() => addUnit("from")}>
-          <Image source={add} style={styles.icon} resizeMode="contain" />
-        </Pressable>
+
+        <AddUnit type="from" />
       </View>
 
       <Text style={styles.title}>{state.measureType}</Text>
@@ -42,7 +26,8 @@ const Konvertor = () => {
       <FromComponent />
 
       <ToComponent />
-      <Pressable onPress={() => addUnit("to")}></Pressable>
+
+      <AddUnit type="to" />
     </ScrollView>
   );
 };

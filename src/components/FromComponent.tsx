@@ -1,10 +1,11 @@
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, Pressable } from "react-native";
 import React from "react";
 
 import useAppContext from "../context/useAppContext";
 
 import Input from "./Input";
 import PickerComponent from "./Picker";
+import RemoveUnit from "./RemoveUnit";
 
 import handleInputChange from "../hooks/handleInputChange";
 import handleFromUnitChange from "../hooks/handleFromUnitChange";
@@ -21,23 +22,21 @@ const FromComponent = () => {
       <React.Fragment key={i}>
         {/* <Text>FROM: </Text> */}
         <View style={styles.container}>
-
           <Input
             handleInputChange={(input: string) =>
               handleInputChange(dispatch, input, i)
             }
           />
 
-<PickerComponent
+          <PickerComponent
             onChange={handleFromUnitChange}
             options={options}
             unit={unit}
             i={i}
           />
 
-          <Text>X</Text>
+          <RemoveUnit i={i} type={"from"} />
         </View>
-
       </React.Fragment>
     );
   });
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
   },
   close: {
     width: "10%",
-  }
+  },
 });
 
 export default FromComponent;
