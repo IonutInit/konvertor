@@ -26,28 +26,26 @@ const Options = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.outerPressableContainer}>
-      {filteredUnitList.map((unit) => (
-        <Pressable
-          key={unit.measure}
-          onPress={() => handleMeasurementPress(dispatch, state, unit.measure)}
-          style={styles.pressableMeasure}>
-          <View style={styles.innerPressableContainer}>
-            <Image source={sampleIcon} style={styles.icon} />
-            <Text style={styles.text}>{unit.measure}</Text>
-          </View>
-        </Pressable>
-      ))}
+      <View style={styles.outerPressableContainer}>
+        {filteredUnitList.map((unit) => (
+          <Pressable
+            key={unit.measure}
+            onPress={() =>
+              handleMeasurementPress(dispatch, state, unit.measure)
+            }
+            style={styles.pressableMeasure}>
+            <View style={styles.innerPressableContainer}>
+              <Image source={sampleIcon} style={styles.icon} />
+              <Text style={styles.text}>{unit.measure}</Text>
+            </View>
+          </Pressable>
+        ))}
 
-      <View style={styles.toggleContainer}>
-        <ToggleExtendedList />
+        <View style={styles.toggleContainer}>
+          <ToggleExtendedList />
+        </View>
       </View>
-
-  
-
-    </View>
     </ScrollView>
-  
   );
 };
 

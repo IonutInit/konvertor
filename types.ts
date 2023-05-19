@@ -3,7 +3,7 @@ export type UniversalPickerOptions = "to" | "from" | "";
 export type Favourite = {
   from: string[];
   to: string[];
-}
+};
 
 export type AppStateType = {
   konvertor: boolean;
@@ -14,8 +14,8 @@ export type AppStateType = {
   toUnit: string[];
   decimals: number;
   universalPicker: {
-    type: UniversalPickerOptions,
-    index: number,
+    type: UniversalPickerOptions;
+    index: number;
   };
   settings: {
     extendedList: boolean;
@@ -27,7 +27,7 @@ export type AppStateType = {
 
 export type ActionType =
   | { type: "toggle_konvertor" }
-  | { type: "toggle_extendedList"}
+  | { type: "toggle_extendedList" }
   | { type: "toggle_addition" }
   | { type: "change_measure"; payload: string }
   // | { type: "add_FROM_unit"; payload: string }
@@ -64,22 +64,21 @@ export type ActionType =
       };
     }
   | {
-    type: "add_to_favourites",
-    payload: {}
-  }
-  | {
-    type: "launch_favourite",
-    payload: {
-      fromUnit: string[],
-      toUnit: string[],
+      type: "add_to_favourites";
+      payload: {};
     }
-  }
-//------------
-
   | {
-    type: "work_picker",
-    payload: {
-      type: UniversalPickerOptions,
-      index?: number,
-    },
-  }
+      type: "launch_favourite";
+      payload: {
+        fromUnit: string[];
+        toUnit: string[];
+      };
+    }
+  //------------
+  | {
+      type: "work_universal_picker";
+      payload: {
+        type: UniversalPickerOptions;
+        index?: number;
+      };
+    };

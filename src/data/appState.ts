@@ -8,13 +8,16 @@ const appState = {
   fromValue: [],
   toUnit: ["cm"],
   decimals: 2,
-  universalPicker: "" as UniversalPickerOptions,
+  universalPicker: {
+    type: "",
+    index: -1,
+  },
   settings: {
     extendedList: false,
     metric: true,
     decimals: 2,
   },
-  favourites: []
+  favourites: [],
 };
 
 export default appState;

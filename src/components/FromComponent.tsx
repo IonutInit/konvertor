@@ -22,13 +22,13 @@ const FromComponent = () => {
 
     const workPicker = () => {
       dispatch({
-        type: "work_picker",
+        type: "work_universal_picker",
         payload: {
           type: "from",
           index: i,
-        }
-      })
-    }
+        },
+      });
+    };
 
     return (
       <React.Fragment key={i}>
@@ -39,16 +39,20 @@ const FromComponent = () => {
             }
           />
 
-          { platform === "android" && <PickerComponent
-            onChange={handleFromUnitChange}
-            options={options}
-            unit={unit}
-            i={i}
-          />}
+          {platform === "android" && (
+            <PickerComponent
+              onChange={handleFromUnitChange}
+              options={options}
+              unit={unit}
+              i={i}
+            />
+          )}
 
-          {platform === "ios" && <Pressable onPress={() => workPicker()}>
-            <Text>{unit}</Text>
-            </Pressable>}
+          {platform === "ios" && (
+            <Pressable onPress={() => workPicker()}>
+              <Text>{unit}</Text>
+            </Pressable>
+          )}
 
           {state.fromUnit.length > 1 && <RemoveUnit i={i} type={"from"} />}
         </View>

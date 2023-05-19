@@ -30,16 +30,20 @@ const ToComponent = () => {
       <React.Fragment key={i}>
         <Text>{result[i].toFixed(state.settings.decimals)}</Text>
 
-       {platform === "android" && <PickerComponent
-          onChange={handleToUnitChange}
-          options={options}
-          unit={unit}
-          i={i}
-        />}
+        {platform === "android" && (
+          <PickerComponent
+            onChange={handleToUnitChange}
+            options={options}
+            unit={unit}
+            i={i}
+          />
+        )}
 
-{platform === "ios" && <Pressable>
-              <Text>{unit}</Text>
-            </Pressable>}
+        {platform === "ios" && (
+          <Pressable>
+            <Text>{unit}</Text>
+          </Pressable>
+        )}
 
         {state.toUnit.length > 1 && <RemoveUnit i={i} type={"to"} />}
         {/* <Text>{result[i]}</Text> */}

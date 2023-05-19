@@ -1,5 +1,5 @@
-type PlatformType = "android" | "ios"
+type PlatformType = "android" | "ios";
 
-const platform: PlatformType = "ios"
+const platform: PlatformType = "ios";
 
 export default platform;

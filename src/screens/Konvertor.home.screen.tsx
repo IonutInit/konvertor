@@ -34,11 +34,10 @@ const Konvertor = () => {
         <AddUnit type="from" />
       </View>
 
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>{state.measureType}</Text>
-            <AddToFavourites />
-          </View>
-      
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{state.measureType}</Text>
+        <AddToFavourites />
+      </View>
 
       <FromComponent />
 
@@ -46,8 +45,9 @@ const Konvertor = () => {
 
       <AddUnit type="to" />
 
-      {platform === "ios" && state.universalPicker.type !== "" && <UniversalPicker />}
-
+      {platform === "ios" && state.universalPicker.type !== "" && (
+        <UniversalPicker />
+      )}
     </ScrollView>
   );
 };

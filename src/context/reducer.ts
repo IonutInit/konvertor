@@ -6,11 +6,12 @@ const reducer = (state: AppStateType, action: ActionType) => {
       return { ...state, konvertor: !state.konvertor };
 
     case "toggle_extendedList":
-      return {...state, 
+      return {
+        ...state,
         settings: {
-          extendedList: !state.settings.extendedList
-        }
-        }
+          extendedList: !state.settings.extendedList,
+        },
+      };
 
     case "toggle_addition":
       return { ...state, addition: !state.addition };
@@ -23,34 +24,19 @@ const reducer = (state: AppStateType, action: ActionType) => {
         toUnit: [],
       };
 
+    //-------------------------------
+    //-------------------------------
+    //-------------------------------
 
-      //-------------------------------
-      //-------------------------------
-      //-------------------------------
+    case "work_universal_picker":
+      return {
+        ...state,
+        universalPicker: action.payload,
+      };
 
-case "work_picker":
-  return {
-    ...state, universalPicker: action.payload
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-      //-------------------------------
-      //-------------------------------
-      //-------------------------------
-
-
-
+    //-------------------------------
+    //-------------------------------
+    //-------------------------------
 
     case "add_FROM_unit":
       let value = !state.fromValue.length ? 1 : 0;
@@ -118,18 +104,18 @@ case "work_picker":
         },
       };
 
-      case "add_to_favourites":
-        return {
-          ...state,
-          favourites: [...state.favourites, action.payload]
-        }
+    case "add_to_favourites":
+      return {
+        ...state,
+        favourites: [...state.favourites, action.payload],
+      };
 
     case "launch_favourite":
       return {
         ...state,
         fromUnit: action.payload.fromUnit,
-        toUnit: action.payload.toUnit
-      }
+        toUnit: action.payload.toUnit,
+      };
 
     default:
       return state;
