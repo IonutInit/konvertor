@@ -1,11 +1,11 @@
 const settingOptions = [
-  {
-    settingType: "extendedList",
-    title: "Extended List",
-    description: "How many measurement types available",
-    leftText: "basic",
-    rightText: "extended",
-  },
+  // {
+  //   settingType: "extendedList",
+  //   title: "Extended List",
+  //   description: "How many measurement types available",
+  //   leftText: "basic",
+  //   rightText: "extended",
+  // },
   {
     settingType: "metric",
     title: "Default",

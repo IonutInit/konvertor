@@ -45,7 +45,7 @@ const PickerComponent = ({
 const styles = StyleSheet.create({
   picker: {
     width: 100,
-    height: 150,
+    // height: 100,
     backgroundColor: "#e0e0e0",
     borderRadius: 8,
     borderWidth: 1,

@@ -24,6 +24,7 @@ export type AppStateType = {
 
 export type ActionType =
   | { type: "toggle_konvertor" }
+  | { type: "toggle_extendedList"}
   | { type: "toggle_addition" }
   | { type: "change_measure"; payload: string }
   // | { type: "add_FROM_unit"; payload: string }
@@ -62,4 +63,11 @@ export type ActionType =
   | {
     type: "add_to_favourites",
     payload: {}
+  }
+  | {
+    type: "launch_favourite",
+    payload: {
+      fromUnit: string[],
+      toUnit: string[],
+    }
   }

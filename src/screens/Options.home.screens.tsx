@@ -11,6 +11,8 @@ import useAppContext from "../context/useAppContext";
 
 import handleMeasurementPress from "../hooks/handleMeasurementPress";
 
+import ToggleExtendedList from "../components/ToggleExtendedList";
+
 import unitList from "../data/unitList";
 
 import sampleIcon from "../assets/sample_icon.png";
@@ -23,30 +25,43 @@ const Options = () => {
   );
 
   return (
-    <ScrollView contentContainerStyle={styles.outerContainer}>
+    <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.outerPressableContainer}>
       {filteredUnitList.map((unit) => (
         <Pressable
           key={unit.measure}
           onPress={() => handleMeasurementPress(dispatch, state, unit.measure)}
-          style={styles.pressable}>
-          <View style={styles.innerContainer}>
+          style={styles.pressableMeasure}>
+          <View style={styles.innerPressableContainer}>
             <Image source={sampleIcon} style={styles.icon} />
             <Text style={styles.text}>{unit.measure}</Text>
           </View>
         </Pressable>
       ))}
+
+      <View style={styles.toggleContainer}>
+        <ToggleExtendedList />
+      </View>
+
+  
+
+    </View>
     </ScrollView>
+  
   );
 };
 
 const styles = StyleSheet.create({
-  outerContainer: {
+  container: {
+    // flex: 1,
+  },
+  outerPressableContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
     paddingHorizontal: 15,
   },
-  pressable: {
+  pressableMeasure: {
     width: 90,
     height: 90,
     backgroundColor: "#F3F3F3",
@@ -60,7 +75,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 3, // for Android shadow
   },
-  innerContainer: {
+  innerPressableContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -71,6 +86,12 @@ const styles = StyleSheet.create({
   icon: {
     width: 45,
     height: 45,
+  },
+  toggleContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
   },
 });
 

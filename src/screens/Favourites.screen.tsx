@@ -5,12 +5,20 @@ import useAppContext from "../context/useAppContext";
 const Favourites = () => {
   const {state: {favourites}, dispatch} = useAppContext() 
 
-  console.log(favourites)
+  const handleLaunchFavourite = (fromUnit: string[], toUnit: string[]) => {
+    dispatch({
+      type: "launch_favourite",
+      payload: {
+        fromUnit,
+        toUnit,
+      }
+    })
+  }
 
   return (
     <View>
-      {favourites.map((fav) => (
-        <Pressable>
+      {favourites.map((fav, index) => (
+        <Pressable key={index} onPress={() => handleLaunchFavourite(fav.from, fav.to)}>
           <Text>{fav.from[0]} TO { fav.to[0] } </Text>
         </Pressable>
       ))}

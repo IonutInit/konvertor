@@ -19,7 +19,7 @@ const Settings = () => {
         const localState = settingState[index];
 
         return (
-          <View style={styles.sliderRow}>
+          <View key={index} style={styles.sliderRow}>
             <View style={styles.textContainer}>
               {!localState && (
                 <Text style={styles.text}>{setting.leftText}</Text>

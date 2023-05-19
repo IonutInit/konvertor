@@ -5,6 +5,13 @@ const reducer = (state: AppStateType, action: ActionType) => {
     case "toggle_konvertor":
       return { ...state, konvertor: !state.konvertor };
 
+    case "toggle_extendedList":
+      return {...state, 
+        settings: {
+          extendedList: !state.settings.extendedList
+        }
+        }
+
     case "toggle_addition":
       return { ...state, addition: !state.addition };
 
@@ -90,6 +97,13 @@ const reducer = (state: AppStateType, action: ActionType) => {
           ...state,
           favourites: [...state.favourites, action.payload]
         }
+
+    case "launch_favourite":
+      return {
+        ...state,
+        fromUnit: action.payload.fromUnit,
+        toUnit: action.payload.toUnit
+      }
 
     default:
       return state;
