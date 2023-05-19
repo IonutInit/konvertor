@@ -1,4 +1,4 @@
-export type OptionsStateType = "to" | "from" | "";
+export type UniversalPickerOptions = "to" | "from" | "";
 
 export type Favourite = {
   from: string[];
@@ -13,7 +13,10 @@ export type AppStateType = {
   fromValue: (number | string)[];
   toUnit: string[];
   decimals: number;
-  optionsState: OptionsStateType;
+  universalPicker: {
+    type: UniversalPickerOptions,
+    index: number,
+  };
   settings: {
     extendedList: boolean;
     metric: number;
@@ -30,7 +33,7 @@ export type ActionType =
   // | { type: "add_FROM_unit"; payload: string }
   // | { type: "add_TO_unit"; payload: string }
   | { type: `add_${string}_unit`; payload: string }
-  | { type: "change_options_state"; payload: OptionsStateType }
+  | { type: "change_options_state"; payload: UniversalPickerOptions }
   | {
       type: "change_FROM_value";
       payload: {
@@ -70,4 +73,13 @@ export type ActionType =
       fromUnit: string[],
       toUnit: string[],
     }
+  }
+//------------
+
+  | {
+    type: "work_picker",
+    payload: {
+      type: UniversalPickerOptions,
+      index?: number,
+    },
   }

@@ -1,4 +1,5 @@
 import { Text, StyleSheet, View, Pressable } from "react-native";
+import { Picker } from "@react-native-picker/picker";
 import React from "react";
 
 import useAppContext from "../context/useAppContext";
@@ -11,12 +12,23 @@ import handleInputChange from "../hooks/handleInputChange";
 import handleFromUnitChange from "../hooks/handleFromUnitChange";
 
 import convert from "convert-units";
+import platform from "../data/platform";
 
 const FromComponent = () => {
   const { state, dispatch } = useAppContext();
 
   const elements = state.fromUnit.map((unit: string, i: number) => {
     const options = convert().from(unit).possibilities();
+
+    const workPicker = () => {
+      dispatch({
+        type: "work_picker",
+        payload: {
+          type: "from",
+          index: i,
+        }
+      })
+    }
 
     return (
       <React.Fragment key={i}>
@@ -27,12 +39,16 @@ const FromComponent = () => {
             }
           />
 
-          <PickerComponent
+          { platform === "android" && <PickerComponent
             onChange={handleFromUnitChange}
             options={options}
             unit={unit}
             i={i}
-          />
+          />}
+
+          {platform === "ios" && <Pressable onPress={() => workPicker()}>
+            <Text>{unit}</Text>
+            </Pressable>}
 
           {state.fromUnit.length > 1 && <RemoveUnit i={i} type={"from"} />}
         </View>

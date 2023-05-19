@@ -34,7 +34,8 @@ const PickerComponent = ({
       style={styles.picker}
       selectedValue={unit}
       onValueChange={handleValueChange}
-      itemStyle={styles.pickerItem}>
+      itemStyle={styles.pickerItem}
+      >
       {options.map((option: string) => (
         <Picker.Item key={option} label={option} value={option} />
       ))}

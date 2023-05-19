@@ -9,6 +9,9 @@ import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
 import AddToFavourites from "../components/AddToFavourites";
 
+import platform from "../data/platform";
+import UniversalPicker from "../components/UniversalPicker";
+
 const Konvertor = () => {
   const { state, dispatch } = useAppContext();
 
@@ -42,6 +45,8 @@ const Konvertor = () => {
       <ToComponent />
 
       <AddUnit type="to" />
+
+      {platform === "ios" && state.universalPicker.type !== "" && <UniversalPicker />}
 
     </ScrollView>
   );

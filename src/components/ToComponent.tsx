@@ -1,5 +1,5 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, Pressable } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -7,6 +7,8 @@ import PickerComponent from "./Picker";
 import RemoveUnit from "./RemoveUnit";
 
 import handleToUnitChange from "../hooks/handleToUnitChange";
+
+import platform from "../data/platform";
 
 import convert from "convert-units";
 import converter from "../lib/converter";
@@ -28,12 +30,16 @@ const ToComponent = () => {
       <React.Fragment key={i}>
         <Text>{result[i].toFixed(state.settings.decimals)}</Text>
 
-        <PickerComponent
+       {platform === "android" && <PickerComponent
           onChange={handleToUnitChange}
           options={options}
           unit={unit}
           i={i}
-        />
+        />}
+
+{platform === "ios" && <Pressable>
+              <Text>{unit}</Text>
+            </Pressable>}
 
         {state.toUnit.length > 1 && <RemoveUnit i={i} type={"to"} />}
         {/* <Text>{result[i]}</Text> */}

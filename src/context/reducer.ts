@@ -23,6 +23,35 @@ const reducer = (state: AppStateType, action: ActionType) => {
         toUnit: [],
       };
 
+
+      //-------------------------------
+      //-------------------------------
+      //-------------------------------
+
+case "work_picker":
+  return {
+    ...state, universalPicker: action.payload
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //-------------------------------
+      //-------------------------------
+      //-------------------------------
+
+
+
+
     case "add_FROM_unit":
       let value = !state.fromValue.length ? 1 : 0;
       return {
@@ -78,9 +107,6 @@ const reducer = (state: AppStateType, action: ActionType) => {
         toUnit: updatedFromUnit4,
         // fromValue: updatedFromValue4
       };
-
-    case "change_options_state":
-      return { ...state, optionsState: action.payload };
 
     case "change_settings":
       const { settingType, settingValue } = action.payload;

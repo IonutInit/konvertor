@@ -1,14 +1,14 @@
-import { OptionsStateType } from "../../types";
+import { UniversalPickerOptions } from "../../types";
 
 const appState = {
-  konvertor: false,
+  konvertor: true,
   measureType: "",
   addition: true,
-  fromUnit: [],
+  fromUnit: ["m", "cm"],
   fromValue: [],
-  toUnit: [],
+  toUnit: ["cm"],
   decimals: 2,
-  optionsState: "" as OptionsStateType,
+  universalPicker: "" as UniversalPickerOptions,
   settings: {
     extendedList: false,
     metric: true,

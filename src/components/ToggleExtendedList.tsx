@@ -15,7 +15,7 @@ const ToggleExtendedList = () => {
         <View style={styles.container}>
             <Pressable style={styles.pressable} onPress={handleToggleExtendedList}>
             <Text style={styles.text}>
-Show {settings.extendedList ? "more" : "less"}
+Show {settings.extendedList ? "less" : "more"}
             </Text>
         </Pressable> 
         </View>
