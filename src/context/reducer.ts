@@ -6,7 +6,7 @@ const reducer = (state: AppStateType, action: ActionType) => {
       return { ...state, konvertor: !state.konvertor };
 
     case "toggle_addition":
-      return {...state, addition: !state.addition}
+      return { ...state, addition: !state.addition };
 
     case "change_measure":
       return {
@@ -74,6 +74,16 @@ const reducer = (state: AppStateType, action: ActionType) => {
 
     case "change_options_state":
       return { ...state, optionsState: action.payload };
+
+    case "change_settings":
+      const { settingType, settingValue } = action.payload;
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          [settingType]: settingValue,
+        },
+      };
 
     default:
       return state;

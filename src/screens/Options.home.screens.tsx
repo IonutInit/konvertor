@@ -19,7 +19,7 @@ const Options = () => {
   const { state, dispatch } = useAppContext();
 
   const filteredUnitList = unitList.filter(
-    (unit) => state.extendedList || unit.primary
+    (unit) => state.settings.extendedList || unit.primary
   );
 
   return (

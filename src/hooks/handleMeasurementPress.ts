@@ -9,7 +9,7 @@ const handleMeasurementPress = (
   state: AppStateType,
   measure: string
 ) => {
-  const [defaultFrom, defaultTo] = state.metric ? [0, 1] : [1, 0];
+  const [defaultFrom, defaultTo] = state.settings.metric ? [0, 1] : [1, 0];
   const targetUnit = unitList.find((unit) => unit.measure === measure)!;
 
   dispatch({

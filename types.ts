@@ -2,20 +2,23 @@ export type OptionsStateType = "to" | "from" | "";
 
 export type AppStateType = {
   konvertor: boolean;
-  extendedList: boolean;
   measureType: string;
-  metric: boolean;
   addition: boolean;
   fromUnit: string[];
   fromValue: (number | string)[];
   toUnit: string[];
   decimals: number;
   optionsState: OptionsStateType;
+  settings: {
+    extendedList: boolean;
+    metric: number;
+    decimals: number;
+  };
 };
 
 export type ActionType =
   | { type: "toggle_konvertor" }
-  | {type: "toggle_addition"}
+  | { type: "toggle_addition" }
   | { type: "change_measure"; payload: string }
   // | { type: "add_FROM_unit"; payload: string }
   // | { type: "add_TO_unit"; payload: string }
@@ -42,4 +45,11 @@ export type ActionType =
         value: string;
         iterator: number;
       };
+    }
+  | {
+    type: "change_settings";
+    payload: {
+      settingType: string;
+      settingValue: boolean | number;
     };
+  }

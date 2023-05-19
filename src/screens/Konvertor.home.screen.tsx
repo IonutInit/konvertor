@@ -18,12 +18,14 @@ const Konvertor = () => {
       <View style={styles.header}>
         <BackFromKonverter />
 
-      <Pressable onPress={() => dispatch({
-        type: "toggle_addition"
-      })}>
-        <Text>{state.addition ? "+" : "-"}</Text>
-      </Pressable>
-        
+        <Pressable
+          onPress={() =>
+            dispatch({
+              type: "toggle_addition",
+            })
+          }>
+          <Text>{state.addition ? "+" : "-"}</Text>
+        </Pressable>
 
         <AddUnit type="from" />
       </View>

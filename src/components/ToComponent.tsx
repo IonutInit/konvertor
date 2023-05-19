@@ -26,7 +26,7 @@ const ToComponent = () => {
 
     return (
       <React.Fragment key={i}>
-        <Text>{result[i]}</Text>
+        <Text>{result[i].toFixed(state.settings.decimals)}</Text>
 
         <PickerComponent
           onChange={handleToUnitChange}
