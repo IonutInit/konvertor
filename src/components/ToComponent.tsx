@@ -17,6 +17,7 @@ const ToComponent = () => {
   const elements = state.toUnit.map((unit: string, i: number) => {
     const options = convert().from(unit).possibilities();
     const result = converter(
+      state.addition,
       state.fromValue,
       state.fromUnit,
       state.fromUnit[0],

@@ -5,6 +5,7 @@ const appState = {
   extendedList: false,
   measureType: "",
   metric: true,
+  addition: true,
   fromUnit: [],
   fromValue: [],
   toUnit: [],

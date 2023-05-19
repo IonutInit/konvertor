@@ -1,4 +1,4 @@
-import { View, ScrollView, Text, StyleSheet } from "react-native";
+import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -9,14 +9,21 @@ import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
 
 const Konvertor = () => {
-  const { state } = useAppContext();
+  const { state, dispatch } = useAppContext();
 
-  console.log(state);
+  //console.log(state);
 
   return (
     <ScrollView>
       <View style={styles.header}>
         <BackFromKonverter />
+
+      <Pressable onPress={() => dispatch({
+        type: "toggle_addition"
+      })}>
+        <Text>{state.addition ? "+" : "-"}</Text>
+      </Pressable>
+        
 
         <AddUnit type="from" />
       </View>

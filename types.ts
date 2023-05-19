@@ -5,6 +5,7 @@ export type AppStateType = {
   extendedList: boolean;
   measureType: string;
   metric: boolean;
+  addition: boolean;
   fromUnit: string[];
   fromValue: (number | string)[];
   toUnit: string[];
@@ -14,6 +15,7 @@ export type AppStateType = {
 
 export type ActionType =
   | { type: "toggle_konvertor" }
+  | {type: "toggle_addition"}
   | { type: "change_measure"; payload: string }
   // | { type: "add_FROM_unit"; payload: string }
   // | { type: "add_TO_unit"; payload: string }

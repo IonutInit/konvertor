@@ -5,6 +5,9 @@ const reducer = (state: AppStateType, action: ActionType) => {
     case "toggle_konvertor":
       return { ...state, konvertor: !state.konvertor };
 
+    case "toggle_addition":
+      return {...state, addition: !state.addition}
+
     case "change_measure":
       return {
         ...state,
