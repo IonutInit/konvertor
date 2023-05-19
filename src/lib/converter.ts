@@ -1,20 +1,17 @@
 import convert from "convert-units";
 
-export const getFrom = (
-  value: (string | number)[],
-  from: string[],
-  to: string[]
-) => {
+const getFrom = (value: (string | number)[], from: string[]) => {
   let result = 0;
+  let toUnit = from[0];
 
   for (let i = 0; i < from.length; i++) {
-    result += convert(value[i]).from(from[i]).to(to[0]);
+    result += convert(Number(value[i])).from(from[i]).to(toUnit);
   }
 
   return result;
 };
 
-export const getTo = (value: number, from: string[], to: string[]) => {
+const getTo = (value: number, from: string, to: string[]) => {
   let result = [];
   let currentValue = value;
 
@@ -47,10 +44,11 @@ export const getTo = (value: number, from: string[], to: string[]) => {
 const converter = (
   value: (string | number)[],
   from: string[],
+  baseUnit: string,
   to: string[]
 ) => {
-  const fromValue = getFrom(value, from, to);
-  return getTo(fromValue, from, to);
+  const fromValue = getFrom(value, from);
+  return getTo(fromValue, baseUnit, to);
 };
 
-//export default converter;
+export default converter;

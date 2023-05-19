@@ -20,7 +20,6 @@ const FromComponent = () => {
 
     return (
       <React.Fragment key={i}>
-        {/* <Text>FROM: </Text> */}
         <View style={styles.container}>
           <Input
             handleInputChange={(input: string) =>
@@ -35,7 +34,7 @@ const FromComponent = () => {
             i={i}
           />
 
-          <RemoveUnit i={i} type={"from"} />
+          {state.fromUnit.length > 1 && <RemoveUnit i={i} type={"from"} />}
         </View>
       </React.Fragment>
     );

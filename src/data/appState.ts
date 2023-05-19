@@ -1,7 +1,7 @@
 import { OptionsStateType } from "../../types";
 
 const appState = {
-  konvertor: true,
+  konvertor: false,
   extendedList: false,
   measureType: "",
   metric: true,

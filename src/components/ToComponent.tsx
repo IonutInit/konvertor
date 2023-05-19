@@ -9,18 +9,23 @@ import RemoveUnit from "./RemoveUnit";
 import handleToUnitChange from "../hooks/handleToUnitChange";
 
 import convert from "convert-units";
-//import converter from "../lib/converter";
-import { getFrom, getTo } from "../lib/converter";
+import converter from "../lib/converter";
 
 const ToComponent = () => {
   const { state } = useAppContext();
-  //const result = converter(state.fromValue, state.fromUnit, state.toUnit)
 
   const elements = state.toUnit.map((unit: string, i: number) => {
     const options = convert().from(unit).possibilities();
+    const result = converter(
+      state.fromValue,
+      state.fromUnit,
+      state.fromUnit[0],
+      state.toUnit
+    );
+
     return (
       <React.Fragment key={i}>
-        <Text>TO</Text>
+        <Text>{result[i]}</Text>
 
         <PickerComponent
           onChange={handleToUnitChange}
@@ -29,7 +34,7 @@ const ToComponent = () => {
           i={i}
         />
 
-        <RemoveUnit i={i} type={"to"} />
+        {state.toUnit.length > 1 && <RemoveUnit i={i} type={"to"} />}
         {/* <Text>{result[i]}</Text> */}
       </React.Fragment>
     );

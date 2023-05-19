@@ -9,7 +9,7 @@ import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
 
 const Konvertor = () => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
 
   console.log(state);
 
@@ -37,10 +37,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 15,
-  },
-  icon: {
-    width: 32,
-    height: 32,
   },
   title: {
     fontSize: 24,
