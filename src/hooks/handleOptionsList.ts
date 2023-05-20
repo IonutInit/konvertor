@@ -1,10 +1,10 @@
 import { Dispatch } from "react";
 
-import { ActionType, OptionsStateType } from "../../types";
+import { ActionType, UniversalPickerOptions } from "../../types";
 
 const handleOptionsList = (
   dispatch: Dispatch<ActionType>,
-  optionType: OptionsStateType
+  optionType: UniversalPickerOptions
 ) => {
   dispatch({
     type: "change_options_state",

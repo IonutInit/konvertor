@@ -1,6 +1,6 @@
 export type UniversalPickerOptions = "to" | "from" | "";
 
-export type Favourite = {
+export type FavouriteType = {
   from: string[];
   to: string[];
 };
@@ -15,14 +15,14 @@ export type AppStateType = {
   decimals: number;
   universalPicker: {
     type: UniversalPickerOptions;
-    index: number;
+    index?: number;
   };
   settings: {
     extendedList: boolean;
     metric: number;
     decimals: number;
   };
-  favourites: Favourite[];
+  favourites: FavouriteType[];
 };
 
 export type ActionType =
@@ -72,7 +72,7 @@ export type ActionType =
     }
   | {
       type: "add_to_favourites";
-      payload: {};
+      payload: FavouriteType;
     }
   | {
       type: "launch_favourite";

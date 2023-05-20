@@ -1,10 +1,12 @@
-const appState = {
+import { AppStateType,  } from "../../types";
+
+const appState: AppStateType = {
   konvertor: false,
   measureType: "",
   addition: true,
-  fromUnit: ["m", "cm"],
+  fromUnit: [],
   fromValue: [],
-  toUnit: ["cm"],
+  toUnit: [],
   decimals: 2,
   universalPicker: {
     type: "",
@@ -12,7 +14,7 @@ const appState = {
   },
   settings: {
     extendedList: false,
-    metric: true,
+    metric: 2,
     decimals: 2,
   },
   favourites: [],

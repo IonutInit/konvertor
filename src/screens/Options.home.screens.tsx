@@ -20,7 +20,7 @@ import sampleIcon from "../assets/sample_icon.png";
 const Options = () => {
   const { state, dispatch } = useAppContext();
 
-  const filteredUnitList = unitList.filter(
+   const filteredUnitList = unitList.filter(
     (unit) => state.settings.extendedList || unit.primary
   );
 
@@ -31,7 +31,7 @@ const Options = () => {
           <Pressable
             key={unit.measure}
             onPress={() =>
-              handleMeasurementPress(dispatch, state, unit.measure)
+              !unit.extra  ? handleMeasurementPress(dispatch, state, unit.measure) : null 
             }
             style={styles.pressableMeasure}>
             <View style={styles.innerPressableContainer}>

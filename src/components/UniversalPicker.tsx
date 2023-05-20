@@ -17,7 +17,7 @@ const UniversalPicker = () => {
 
   const allOptions = convert().from(fromUnit[0]).possibilities();
   const nextOption = getNextUnit(
-    toUnit[universalPicker.index],
+    toUnit[universalPicker.index!],
     description[measureType.toLowerCase()]
   );
   const options = toUnit.length > 1 ? nextOption : allOptions;
@@ -27,7 +27,7 @@ const UniversalPicker = () => {
       type: `change_${type.toUpperCase()}_unit`,
       payload: {
         value: option,
-        iterator: universalPicker.index,
+        iterator: universalPicker.index!,
       },
     });
 
@@ -43,8 +43,8 @@ const UniversalPicker = () => {
     <Picker
       selectedValue={
         type === "from"
-          ? fromUnit[universalPicker.index]
-          : toUnit[universalPicker.index]
+          ? fromUnit[universalPicker.index!]
+          : toUnit[universalPicker.index!]
       }
       onValueChange={(option) => handleChange(option, type)}>
       {options.map((option: string) => (
