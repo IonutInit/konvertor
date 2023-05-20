@@ -35,7 +35,7 @@ const BMI = () => {
 
       {platform === "ios" && state.universalPicker.type !== "" && (
         <UniversalPicker />
-      )} 
+      )}
     </ScrollView>
   );
 };

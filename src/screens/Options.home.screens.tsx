@@ -11,8 +11,8 @@ import useAppContext from "../context/useAppContext";
 
 import handleMeasurementPress from "../hooks/handleMeasurementPress";
 
-import BMI from "./BMI";
-import WeightLoss from "./WeightLoss";
+import BMI from "./BMI.screen";
+import WeightLoss from "./WeightLoss.screen";
 
 import ToggleExtendedList from "../components/ToggleExtendedList";
 
@@ -48,7 +48,6 @@ const Options = () => {
           <ToggleExtendedList />
         </View>
       </View>
-      
     </ScrollView>
   );
 };
