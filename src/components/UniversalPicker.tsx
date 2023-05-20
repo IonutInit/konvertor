@@ -6,19 +6,23 @@ import convert from "convert-units";
 
 const UniversalPicker = () => {
   const {
-    state: { fromUnit, universalPicker },
+    state: { fromUnit, toUnit, universalPicker },
     dispatch,
   } = useAppContext();
+
+  const { type } = universalPicker;
+
   const options = convert().from(fromUnit[0]).possibilities();
 
-  const handleChange = (option: string) => {
+  const handleChange = (option: string, type: string) => {
     dispatch({
-      type: "change_FROM_unit",
+      type: `change_${type.toUpperCase()}_unit`,
       payload: {
         value: option,
         iterator: universalPicker.index,
       },
     });
+
     dispatch({
       type: "work_universal_picker",
       payload: {
@@ -29,8 +33,12 @@ const UniversalPicker = () => {
 
   return (
     <Picker
-      selectedValue={fromUnit[universalPicker.index]}
-      onValueChange={(option) => handleChange(option)}>
+      selectedValue={
+        type === "from"
+          ? fromUnit[universalPicker.index]
+          : toUnit[universalPicker.index]
+      }
+      onValueChange={(option) => handleChange(option, type)}>
       {options.map((option: string) => (
         <Picker.Item key={option} label={option} value={option} />
       ))}

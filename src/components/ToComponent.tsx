@@ -5,6 +5,7 @@ import useAppContext from "../context/useAppContext";
 
 import PickerComponent from "./Picker";
 import RemoveUnit from "./RemoveUnit";
+import UniversalPickerUnit from "./UniversalPickerUnit";
 
 import handleToUnitChange from "../hooks/handleToUnitChange";
 
@@ -14,7 +15,7 @@ import convert from "convert-units";
 import converter from "../lib/converter";
 
 const ToComponent = () => {
-  const { state } = useAppContext();
+  const { state, dispatch } = useAppContext();
 
   const elements = state.toUnit.map((unit: string, i: number) => {
     const options = convert().from(unit).possibilities();
@@ -40,9 +41,7 @@ const ToComponent = () => {
         )}
 
         {platform === "ios" && (
-          <Pressable>
-            <Text>{unit}</Text>
-          </Pressable>
+          <UniversalPickerUnit unit={unit} i={i} type="to" />
         )}
 
         {state.toUnit.length > 1 && <RemoveUnit i={i} type={"to"} />}

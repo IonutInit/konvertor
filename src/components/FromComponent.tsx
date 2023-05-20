@@ -7,6 +7,7 @@ import useAppContext from "../context/useAppContext";
 import Input from "./Input";
 import PickerComponent from "./Picker";
 import RemoveUnit from "./RemoveUnit";
+import UniversalPickerUnit from "./UniversalPickerUnit";
 
 import handleInputChange from "../hooks/handleInputChange";
 import handleFromUnitChange from "../hooks/handleFromUnitChange";
@@ -20,15 +21,15 @@ const FromComponent = () => {
   const elements = state.fromUnit.map((unit: string, i: number) => {
     const options = convert().from(unit).possibilities();
 
-    const workPicker = () => {
-      dispatch({
-        type: "work_universal_picker",
-        payload: {
-          type: "from",
-          index: i,
-        },
-      });
-    };
+    // const workUniversalPicker = () => {
+    //   dispatch({
+    //     type: "work_universal_picker",
+    //     payload: {
+    //       type: "from",
+    //       index: i,
+    //     },
+    //   });
+    // };
 
     return (
       <React.Fragment key={i}>
@@ -49,9 +50,7 @@ const FromComponent = () => {
           )}
 
           {platform === "ios" && (
-            <Pressable onPress={() => workPicker()}>
-              <Text>{unit}</Text>
-            </Pressable>
+            <UniversalPickerUnit unit={unit} i={i} type="from" />
           )}
 
           {state.fromUnit.length > 1 && <RemoveUnit i={i} type={"from"} />}

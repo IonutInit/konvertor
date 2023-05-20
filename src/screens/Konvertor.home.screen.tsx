@@ -8,6 +8,7 @@ import FromComponent from "../components/FromComponent";
 import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
 import AddToFavourites from "../components/AddToFavourites";
+import ArithmeticOperator from "../components/ArithmeticOperator";
 
 import platform from "../data/platform";
 import UniversalPicker from "../components/UniversalPicker";
@@ -21,16 +22,7 @@ const Konvertor = () => {
     <ScrollView>
       <View style={styles.header}>
         <BackFromKonverter />
-
-        <Pressable
-          onPress={() =>
-            dispatch({
-              type: "toggle_addition",
-            })
-          }>
-          <Text>{state.addition ? "+" : "-"}</Text>
-        </Pressable>
-
+        <ArithmeticOperator />
         <AddUnit type="from" />
       </View>
 
