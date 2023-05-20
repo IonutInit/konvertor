@@ -11,6 +11,9 @@ import useAppContext from "../context/useAppContext";
 
 import handleMeasurementPress from "../hooks/handleMeasurementPress";
 
+import BMI from "./BMI";
+import WeightLoss from "./WeightLoss";
+
 import ToggleExtendedList from "../components/ToggleExtendedList";
 
 import unitList from "../data/unitList";
@@ -20,7 +23,7 @@ import sampleIcon from "../assets/sample_icon.png";
 const Options = () => {
   const { state, dispatch } = useAppContext();
 
-   const filteredUnitList = unitList.filter(
+  const filteredUnitList = unitList.filter(
     (unit) => state.settings.extendedList || unit.primary
   );
 
@@ -31,7 +34,7 @@ const Options = () => {
           <Pressable
             key={unit.measure}
             onPress={() =>
-              !unit.extra  ? handleMeasurementPress(dispatch, state, unit.measure) : null 
+              handleMeasurementPress(dispatch, state, unit.measure)
             }
             style={styles.pressableMeasure}>
             <View style={styles.innerPressableContainer}>
@@ -45,6 +48,7 @@ const Options = () => {
           <ToggleExtendedList />
         </View>
       </View>
+      
     </ScrollView>
   );
 };

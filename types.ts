@@ -12,7 +12,6 @@ export type AppStateType = {
   fromUnit: string[];
   fromValue: (number | string)[];
   toUnit: string[];
-  decimals: number;
   universalPicker: {
     type: UniversalPickerOptions;
     index?: number;

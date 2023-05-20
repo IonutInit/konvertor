@@ -112,15 +112,17 @@ const unitList = [
   {
     measure: "BMI",
     extra: true,
+    defaultMeasure: "Mass",
     default: ["kg", "lb"],
     primary: true,
   },
   {
     measure: "Weight loss",
     extra: true,
+    defaultMeasure: "Mass",
     default: ["kg", "lb"],
     primary: true,
-  }
+  },
 ];
 
 export default unitList;

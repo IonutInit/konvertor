@@ -1,9 +1,7 @@
-import {Text} from "react-native"
+import { Text } from "react-native";
 
 const WeightLoss = () => {
-    return(
-        <Text>Hello WeightLoss</Text>
-    )
-}
+  return <Text>Hello WeightLoss</Text>;
+};
 
 export default WeightLoss;

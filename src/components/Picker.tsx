@@ -16,7 +16,7 @@ type PickerComponentProps = {
   ) => void;
   options: string[];
   unit: string;
-  i: number;
+  i?: number;
 };
 
 const PickerComponent = ({ onChange, unit, i }: PickerComponentProps) => {
@@ -25,7 +25,7 @@ const PickerComponent = ({ onChange, unit, i }: PickerComponentProps) => {
   const options = convert().from(state.toUnit[0]).possibilities();
 
   const handleValueChange = (option: string) => {
-    onChange(dispatch, option, i);
+    onChange(dispatch, option, i!);
   };
 
   return (

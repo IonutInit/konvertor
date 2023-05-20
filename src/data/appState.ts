@@ -1,4 +1,4 @@
-import { AppStateType,  } from "../../types";
+import { AppStateType } from "../../types";
 
 const appState: AppStateType = {
   konvertor: false,
@@ -7,7 +7,6 @@ const appState: AppStateType = {
   fromUnit: [],
   fromValue: [],
   toUnit: [],
-  decimals: 2,
   universalPicker: {
     type: "",
     index: -1,
