@@ -6,8 +6,6 @@ import useAppContext from "../context/useAppContext";
 
 import { ActionType } from "../../types";
 
-import convert from "convert-units";
-
 type PickerComponentProps = {
   onChange: (
     dispatch: Dispatch<ActionType>,
@@ -19,10 +17,8 @@ type PickerComponentProps = {
   i: number;
 };
 
-const PickerComponent = ({ onChange, unit, i }: PickerComponentProps) => {
-  const { state, dispatch } = useAppContext();
-
-  const options = convert().from(state.toUnit[0]).possibilities();
+const ToPicker = ({ onChange, options, unit, i }: PickerComponentProps) => {
+  const { dispatch } = useAppContext();
 
   const handleValueChange = (option: string) => {
     onChange(dispatch, option, i);
@@ -55,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PickerComponent;
+export default ToPicker;

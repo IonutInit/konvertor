@@ -4,15 +4,23 @@ import useAppContext from "../context/useAppContext";
 
 import convert from "convert-units";
 
+import getNextUnit from "../lib/getNextUnit";
+import description from "../data/description";
+
 const UniversalPicker = () => {
   const {
-    state: { fromUnit, toUnit, universalPicker },
+    state: { fromUnit, toUnit, universalPicker, measureType },
     dispatch,
   } = useAppContext();
 
   const { type } = universalPicker;
 
-  const options = convert().from(fromUnit[0]).possibilities();
+  const allOptions = convert().from(fromUnit[0]).possibilities();
+  const nextOption = getNextUnit(
+    toUnit[universalPicker.index],
+    description[measureType.toLowerCase()]
+  );
+  const options = toUnit.length > 1 ? nextOption : allOptions;
 
   const handleChange = (option: string, type: string) => {
     dispatch({

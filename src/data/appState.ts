@@ -1,7 +1,5 @@
-import { UniversalPickerOptions } from "../../types";
-
 const appState = {
-  konvertor: true,
+  konvertor: false,
   measureType: "",
   addition: true,
   fromUnit: ["m", "cm"],

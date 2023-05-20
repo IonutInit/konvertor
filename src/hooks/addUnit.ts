@@ -7,9 +7,13 @@ const addUnit = (
   state: AppStateType,
   type: "to" | "from"
 ) => {
+  const payload =
+    type === "from"
+      ? state.fromUnit[state.fromUnit.length - 1]
+      : state.toUnit[state.toUnit.length - 1];
   dispatch({
     type: `add_${type.toUpperCase()}_unit` as const,
-    payload: state.toUnit[0],
+    payload,
   });
 };
 

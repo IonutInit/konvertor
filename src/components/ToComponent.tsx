@@ -3,7 +3,7 @@ import { Text, Pressable } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
-import PickerComponent from "./Picker";
+import ToPicker from "./ToPicker";
 import RemoveUnit from "./RemoveUnit";
 import UniversalPickerUnit from "./UniversalPickerUnit";
 
@@ -14,11 +14,23 @@ import platform from "../data/platform";
 import convert from "convert-units";
 import converter from "../lib/converter";
 
+import getNextUnit from "../lib/getNextUnit";
+import description from "../data/description";
+
 const ToComponent = () => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
 
   const elements = state.toUnit.map((unit: string, i: number) => {
-    const options = convert().from(unit).possibilities();
+    const allOptions = convert()
+      .from(state.toUnit[state.toUnit.length - 1])
+      .possibilities();
+    const nextOption = getNextUnit(
+      state.toUnit[state.toUnit.length - 1],
+      description[state.measureType.toLowerCase()]
+    );
+
+    const options = state.toUnit.length > 1 ? nextOption : allOptions;
+
     const result = converter(
       state.addition,
       state.fromValue,
@@ -32,7 +44,7 @@ const ToComponent = () => {
         <Text>{result[i].toFixed(state.settings.decimals)}</Text>
 
         {platform === "android" && (
-          <PickerComponent
+          <ToPicker
             onChange={handleToUnitChange}
             options={options}
             unit={unit}
