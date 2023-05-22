@@ -9,10 +9,7 @@ import {
 
 import useAppContext from "../context/useAppContext";
 
-import handleMeasurementPress from "../hooks/handleMeasurementPress";
-
-import BMI from "./BMI.screen";
-import WeightLoss from "./WeightLoss.screen";
+import handleOptionPress from "../hooks/handleOptionPress";
 
 import ToggleExtendedList from "../components/ToggleExtendedList";
 
@@ -33,9 +30,7 @@ const Options = () => {
         {filteredUnitList.map((unit) => (
           <Pressable
             key={unit.measure}
-            onPress={() =>
-              handleMeasurementPress(dispatch, state, unit.measure)
-            }
+            onPress={() => handleOptionPress(dispatch, state, unit.measure)}
             style={styles.pressableMeasure}>
             <View style={styles.innerPressableContainer}>
               <Image source={sampleIcon} style={styles.icon} />

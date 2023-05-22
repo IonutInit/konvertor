@@ -2,7 +2,7 @@ import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
-import BackFromKonverter from "../components/BackFromKonvertor";
+import BackFromKonverter from "../components/BackToOptions";
 
 import unitList from "../data/unitList";
 

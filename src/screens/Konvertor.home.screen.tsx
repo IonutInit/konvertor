@@ -2,7 +2,7 @@ import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
-import BackFromKonverter from "../components/BackFromKonvertor";
+import BackToOptions from "../components/BackToOptions";
 
 import FromComponent from "../components/FromComponent";
 import ToComponent from "../components/ToComponent";
@@ -21,7 +21,7 @@ const Konvertor = () => {
   return (
     <ScrollView>
       <View style={styles.header}>
-        <BackFromKonverter />
+        <BackToOptions />
         <ArithmeticOperator />
         <AddUnit type="from" />
       </View>

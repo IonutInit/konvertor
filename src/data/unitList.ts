@@ -117,7 +117,7 @@ const unitList = [
     primary: true,
   },
   {
-    measure: "Weight loss",
+    measure: "Weight Loss",
     extra: true,
     defaultMeasure: "Mass",
     default: ["kg", "lb"],

@@ -4,7 +4,7 @@ import unitList from "../data/unitList";
 
 import { ActionType, AppStateType } from "../../types";
 
-const handleMeasurementPress = (
+const handleOptionPress = (
   dispatch: Dispatch<ActionType>,
   state: AppStateType,
   measure: string
@@ -12,8 +12,14 @@ const handleMeasurementPress = (
   const [defaultFrom, defaultTo] = state.settings.metric ? [0, 1] : [1, 0];
   const targetUnit = unitList.find((unit) => unit.measure === measure)!;
 
+  const payload =
+    targetUnit.extra === undefined ? "konvertor" : targetUnit.measure;
+
+  console.log(state);
+
   dispatch({
-    type: "toggle_konvertor",
+    type: "change_konvertor",
+    payload,
   });
 
   dispatch({
@@ -32,4 +38,4 @@ const handleMeasurementPress = (
   });
 };
 
-export default handleMeasurementPress;
+export default handleOptionPress;

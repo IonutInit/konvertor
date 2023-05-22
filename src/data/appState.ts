@@ -1,7 +1,7 @@
 import { AppStateType } from "../../types";
 
 const appState: AppStateType = {
-  konvertor: false,
+  konvertor: "",
   measureType: "",
   addition: true,
   fromUnit: [],

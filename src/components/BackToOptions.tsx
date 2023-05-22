@@ -4,12 +4,13 @@ import useAppContext from "../context/useAppContext";
 
 import back from "../assets/back.png";
 
-const BackFromKonverter = () => {
+const BackToOptions = () => {
   const { dispatch } = useAppContext();
 
   const handleBack = () => {
     dispatch({
-      type: "toggle_konvertor",
+      type: "change_konvertor",
+      payload: "",
     });
   };
 
@@ -29,4 +30,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BackFromKonverter;
+export default BackToOptions;
