@@ -16,10 +16,10 @@ const Input = ({ handleInputChange }: InputProps) => {
 
 const styles = StyleSheet.create({
   input: {
-    width: 90,
-    height: 50,
-    fontSize: 24,
-    marginLeft: 24,
+    width: "55%",
+    // height: 50,
+    fontSize: 18,
+    marginLeft: 14,
     borderBottomWidth: 1,
     borderBottomColor: "black",
   },

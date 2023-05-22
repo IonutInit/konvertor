@@ -1,4 +1,4 @@
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -12,9 +12,15 @@ const ArithmeticOperator = () => {
           type: "toggle_addition",
         })
       }>
-      <Text>{state.addition ? "+" : "-"}</Text>
+      <Text style={styles.text}>{state.addition ? "+" : "-"}</Text>
     </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 32,
+  }
+})
 
 export default ArithmeticOperator;

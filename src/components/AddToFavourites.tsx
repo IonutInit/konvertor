@@ -1,4 +1,4 @@
-import { Pressable, Image, StyleSheet } from "react-native";
+import { View, Pressable, Image, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -25,17 +25,23 @@ const AddToFavourites = () => {
   };
 
   return (
-    <Pressable onPress={handleAddToFavourites} disabled={isFavourited}>
+    <View style={styles.iconContainer}>
+          <Pressable onPress={handleAddToFavourites} disabled={isFavourited}>
       <Image
         source={isFavourited ? favourited : favourites}
         style={styles.icon}
         resizeMode="contain"
       />
     </Pressable>
+    </View>
+
   );
 };
 
 const styles = StyleSheet.create({
+  iconContainer: {
+    marginLeft: 20,
+  },
   icon: {
     width: 32,
     height: 32,

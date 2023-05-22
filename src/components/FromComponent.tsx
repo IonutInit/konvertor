@@ -14,8 +14,6 @@ import handleInputChange from "../hooks/handleInputChange";
 import handleFromUnitChange from "../hooks/handleFromUnitChange";
 
 import convert from "convert-units";
-import getNextUnit from "../lib/getNextUnit";
-import description from "../data/description";
 import platform from "../data/platform";
 
 const FromComponent = ({measureType}: {measureType: string}) => {
@@ -25,9 +23,7 @@ const FromComponent = ({measureType}: {measureType: string}) => {
   } = useAppContext();
 
   const elements = fromUnit.map((unit: string, i: number) => {
-    //const options = convert().from(unit).possibilities();
     const options = convert().possibilities(measureType.toLowerCase())
-    console.log(measureType)
 
     return (
       <React.Fragment key={i}>
@@ -60,7 +56,7 @@ const FromComponent = ({measureType}: {measureType: string}) => {
             <UniversalPickerUnit unit={unit} i={i} type="from" />
           )}
 
-          {fromUnit.length > 1 && <RemoveUnit i={i} type={"from"} />}
+          <RemoveUnit i={i} type={"from"} />
         </View>
       </React.Fragment>
     );
@@ -74,9 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-  },
-  close: {
-    width: "10%",
+    marginVertical: 5,
   },
 });
 

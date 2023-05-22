@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Pressable } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -30,6 +30,7 @@ const ToComponent = () => {
     );
 
     const options = state.toUnit.length > 1 ? nextOption : allOptions;
+   
 
     const result = converter(
       state.addition,
@@ -39,9 +40,11 @@ const ToComponent = () => {
       state.toUnit
     );
 
+    const decimals = i === result.length - 1 ? state.settings.decimals : 0
+
     return (
-      <React.Fragment key={i}>
-        <Text>{result[i].toFixed(state.settings.decimals)}</Text>
+            <View key={i} style={styles.container}>
+        <Text style={styles.result}>{result[i].toFixed(decimals)}</Text>
 
         {platform === "android" && (
           <ToPicker
@@ -56,13 +59,23 @@ const ToComponent = () => {
           <UniversalPickerUnit unit={unit} i={i} type="to" />
         )}
 
-        {state.toUnit.length > 1 && <RemoveUnit i={i} type={"to"} />}
-        {/* <Text>{result[i]}</Text> */}
-      </React.Fragment>
+        <RemoveUnit i={i} type={"to"} />
+
+      </View>
     );
   });
 
   return <>{elements}</>;
 };
+
+const styles = StyleSheet.create({
+  container: {
+padding: 5,
+alignItems: "center",
+  },
+  result: {
+    fontSize: 24,
+  }
+})
 
 export default ToComponent;

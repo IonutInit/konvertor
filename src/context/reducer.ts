@@ -3,7 +3,7 @@ import { AppStateType, ActionType } from "../../types";
 const reducer = (state: AppStateType, action: ActionType): AppStateType => {
   switch (action.type) {
     case "change_konvertor":
-      return { ...state, konvertor: action.payload };
+      return { ...state, konvertor: action.payload, fromValue: [] };
 
     case "toggle_extendedList":
       return {

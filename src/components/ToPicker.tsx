@@ -17,19 +17,19 @@ type PickerComponentProps = {
   i: number;
 };
 
-const ToPicker = ({ onChange, options, unit, i }: PickerComponentProps) => {
-  const { dispatch } = useAppContext();
+// const pickerWidth = []
 
-  const handleValueChange = (option: string) => {
-    onChange(dispatch, option, i);
-  };
+const ToPicker = ({ onChange, options, unit, i }: PickerComponentProps) => {
+  const { state: {toUnit}, dispatch } = useAppContext();
+
 
   return (
     <Picker
-      style={styles.picker}
+      style={[styles.picker]}
       selectedValue={unit}
-      onValueChange={handleValueChange}
-      itemStyle={styles.pickerItem}>
+      onValueChange={(option) => onChange(dispatch, option, i)}
+      itemStyle={styles.pickerItem}
+    >
       {options.map((option: string) => (
         <Picker.Item key={option} label={option} value={option} />
       ))}
@@ -39,15 +39,14 @@ const ToPicker = ({ onChange, options, unit, i }: PickerComponentProps) => {
 
 const styles = StyleSheet.create({
   picker: {
-    width: 100,
-    // height: 100,
+    width: 150,
     backgroundColor: "#e0e0e0",
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#ccc",
   },
   pickerItem: {
-    fontSize: 12,
+    fontSize: 8,
   },
 });
 
