@@ -1,6 +1,7 @@
 export type UniversalPickerOptions = "to" | "from" | "";
 
 export type FavouriteType = {
+  measureType: string;
   from: string[];
   to: string[];
 };
@@ -76,6 +77,7 @@ export type ActionType =
   | {
       type: "launch_favourite";
       payload: {
+        measureType: string;
         fromUnit: string[];
         toUnit: string[];
       };
@@ -87,4 +89,8 @@ export type ActionType =
         type: UniversalPickerOptions;
         index?: number;
       };
+    }
+  | {
+      type: "remove_favourite";
+      payload: number;
     };

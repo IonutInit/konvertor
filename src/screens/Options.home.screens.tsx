@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   pressableMeasure: {
-    width: 110,
+    width: 90,
     height: 90,
     backgroundColor: "#F3F3F3",
     margin: 5,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 14,
+    fontSize: 12,
     marginTop: 3,
   },
   icon: {

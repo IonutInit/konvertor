@@ -18,6 +18,7 @@ const AddToFavourites = () => {
     dispatch({
       type: "add_to_favourites",
       payload: {
+        measureType: state.measureType,
         from: state.fromUnit,
         to: state.toUnit,
       },

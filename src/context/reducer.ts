@@ -95,6 +95,15 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         // fromValue: updatedFromValue4
       };
 
+    case "remove_favourite":
+      const updatedFavourites = state.favourites.filter(
+        (fav, i) => i !== action.payload
+      );
+      return {
+        ...state,
+        favourites: updatedFavourites,
+      };
+
     case "change_settings":
       const { settingType, settingValue } = action.payload;
       return {
@@ -114,7 +123,9 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     case "launch_favourite":
       return {
         ...state,
+        measureType: action.payload.measureType,
         fromUnit: action.payload.fromUnit,
+        fromValue: Array(action.payload.fromUnit.length).fill(0),
         toUnit: action.payload.toUnit,
       };
 

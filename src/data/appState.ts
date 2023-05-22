@@ -16,7 +16,18 @@ const appState: AppStateType = {
     metric: 2,
     decimals: 2,
   },
-  favourites: [],
+  favourites: [
+    {
+      measureType: "Area",
+      from: ["m2"],
+      to: ["ft2"],
+    },
+    {
+      measureType: "Length",
+      from: ["m", "cm"],
+      to: ["ft"],
+    },
+  ],
 };
 
 export default appState;
