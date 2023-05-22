@@ -21,52 +21,52 @@ const unitList = [
   },
   {
     measure: "Volume Flow Rate",
-    default: ["m", "ft"],
+    default: ["l/s", "gal/min"],
     primary: false,
   },
   {
     measure: "Temperature",
-    default: ["m", "ft"],
+    default: ["C", "F"],
     primary: true,
   },
   {
     measure: "Time",
-    default: ["m", "ft"],
+    default: ["min", "h"],
     primary: true,
   },
   {
     measure: "Frequency",
-    default: ["m", "ft"],
+    default: ["Hz", "rad/s"],
     primary: true,
   },
   {
     measure: "Speed",
-    default: ["m", "ft"],
+    default: ["km/h", "m/h"],
     primary: true,
   },
   {
     measure: "Pace",
-    default: ["m", "ft"],
+    default: ["s/m", "s/ft"],
     primary: false,
   },
   {
     measure: "Pressure",
-    default: ["m", "ft"],
+    default: ["Pa", "psi"],
     primary: false,
   },
   {
     measure: "Digital",
-    default: ["m", "ft"],
+    default: ["b", "B"],
     primary: true,
   },
   {
     measure: "Illuminance",
-    default: ["m", "ft"],
+    default: ["lx", "ft-cd"],
     primary: false,
   },
   {
     measure: "Parts-Per",
-    default: ["m", "ft"],
+    default: ["ppm", "ppb"],
     primary: false,
   },
   {
@@ -76,37 +76,37 @@ const unitList = [
   },
   {
     measure: "Current",
-    default: ["m", "ft"],
+    default: ["V", "mV"],
     primary: false,
   },
   {
     measure: "Power",
-    default: ["m", "ft"],
+    default: ["A", "mA"],
     primary: false,
   },
   {
     measure: "Apparent Power",
-    default: ["m", "ft"],
+    default: ["VA", "mVA"],
     primary: false,
   },
   {
     measure: "Reactive Power",
-    default: ["m", "ft"],
+    default: ["VAR", "mVAR"],
     primary: false,
   },
   {
     measure: "Energy",
-    default: ["m", "ft"],
+    default: ["Wh", "J"],
     primary: false,
   },
   {
     measure: "Reactive Energy",
-    default: ["m", "ft"],
+    default: ["VARh", "mVARh"],
     primary: false,
   },
   {
     measure: "Angle",
-    default: ["m", "ft"],
+    default: ["deg", "grad"],
     primary: true,
   },
   {
