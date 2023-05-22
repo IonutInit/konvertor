@@ -19,7 +19,12 @@ type PickerComponentProps = {
   i?: number;
 };
 
-const PickerComponent = ({ onChange, options, unit, i }: PickerComponentProps) => {
+const PickerComponent = ({
+  onChange,
+  options,
+  unit,
+  i,
+}: PickerComponentProps) => {
   const { state, dispatch } = useAppContext();
 
   //const options = convert().from(state.toUnit[0]).possibilities();

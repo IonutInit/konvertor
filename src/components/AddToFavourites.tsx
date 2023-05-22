@@ -26,15 +26,14 @@ const AddToFavourites = () => {
 
   return (
     <View style={styles.iconContainer}>
-          <Pressable onPress={handleAddToFavourites} disabled={isFavourited}>
-      <Image
-        source={isFavourited ? favourited : favourites}
-        style={styles.icon}
-        resizeMode="contain"
-      />
-    </Pressable>
+      <Pressable onPress={handleAddToFavourites} disabled={isFavourited}>
+        <Image
+          source={isFavourited ? favourited : favourites}
+          style={styles.icon}
+          resizeMode="contain"
+        />
+      </Pressable>
     </View>
-
   );
 };
 

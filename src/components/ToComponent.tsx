@@ -30,7 +30,6 @@ const ToComponent = () => {
     );
 
     const options = state.toUnit.length > 1 ? nextOption : allOptions;
-   
 
     const result = converter(
       state.addition,
@@ -40,10 +39,10 @@ const ToComponent = () => {
       state.toUnit
     );
 
-    const decimals = i === result.length - 1 ? state.settings.decimals : 0
+    const decimals = i === result.length - 1 ? state.settings.decimals : 0;
 
     return (
-            <View key={i} style={styles.container}>
+      <View key={i} style={styles.container}>
         <Text style={styles.result}>{result[i].toFixed(decimals)}</Text>
 
         {platform === "android" && (
@@ -60,7 +59,6 @@ const ToComponent = () => {
         )}
 
         <RemoveUnit i={i} type={"to"} />
-
       </View>
     );
   });
@@ -70,12 +68,12 @@ const ToComponent = () => {
 
 const styles = StyleSheet.create({
   container: {
-padding: 5,
-alignItems: "center",
+    padding: 5,
+    alignItems: "center",
   },
   result: {
     fontSize: 24,
-  }
-})
+  },
+});
 
 export default ToComponent;

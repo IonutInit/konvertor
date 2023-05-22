@@ -20,16 +20,17 @@ type PickerComponentProps = {
 // const pickerWidth = []
 
 const ToPicker = ({ onChange, options, unit, i }: PickerComponentProps) => {
-  const { state: {toUnit}, dispatch } = useAppContext();
-
+  const {
+    state: { toUnit },
+    dispatch,
+  } = useAppContext();
 
   return (
     <Picker
       style={[styles.picker]}
       selectedValue={unit}
       onValueChange={(option) => onChange(dispatch, option, i)}
-      itemStyle={styles.pickerItem}
-    >
+      itemStyle={styles.pickerItem}>
       {options.map((option: string) => (
         <Picker.Item key={option} label={option} value={option} />
       ))}

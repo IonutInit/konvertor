@@ -31,9 +31,9 @@ const BMI = () => {
         <Text style={styles.title}>{state.measureType}</Text>
       </View>
 
-      <FromComponent measureType="mass"/>
+      <FromComponent measureType="mass" />
 
-      <FromComponent measureType="length"/>
+      <FromComponent measureType="length" />
 
       {platform === "ios" && state.universalPicker.type !== "" && (
         <UniversalPicker />

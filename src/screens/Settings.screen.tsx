@@ -1,63 +1,72 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, ScrollView, Text, StyleSheet } from "react-native";
 
 import SliderComponent from "../components/Slider";
+import Credentials from "../components/Credentials";
 
 import useAppContext from "../context/useAppContext";
-
-import settingOptions from "../data/settingOptions";
 
 const Settings = () => {
   const {
     state: { settings },
   } = useAppContext();
 
-  const settingState = Object.values(settings);
-
   return (
-    <View style={styles.container}>
-      {settingOptions.map((setting, index) => {
-        const localState = settingState[index];
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.settingsContainer}>
+        <View style={{ paddingBottom: 20 }}>
+          <Text>Decimals: {settings.decimals}</Text>
+        </View>
 
-        return (
-          <View key={index} style={styles.sliderRow}>
-            <View style={styles.textContainer}>
-              {!localState && (
-                <Text style={styles.text}>{setting.leftText}</Text>
-              )}
-            </View>
+        <SliderComponent settingType="decimals" />
+        <View style={{ paddingTop: 20 }}>
+          <Text style={styles.title}>Accuracy</Text>
+        </View>
 
-            <SliderComponent
-              key={index}
-              settingType={setting.settingType}
-              title={setting.title}
-              description={setting.description}
-            />
+        <View style={styles.divider}></View>
+        <View style={styles.divider}></View>
+      </View>
 
-            <View>
-              {localState && (
-                <Text style={styles.text}>{setting.rightText}</Text>
-              )}
-            </View>
-          </View>
-        );
-      })}
-    </View>
+      <View style={styles.settingsContainer}>
+        <View style={{ paddingBottom: 20 }}>
+          <Text>
+            From: {settings.metric ? "metric" : "imperial"} to{" "}
+            {!settings.metric ? "metric" : "imperial"}
+          </Text>
+        </View>
+
+        <SliderComponent settingType="metric" />
+
+        <View style={{ paddingTop: 20 }}>
+          <Text style={styles.title}>Preferred conversion type</Text>
+        </View>
+
+        <View style={styles.divider}></View>
+        <View style={styles.divider}></View>
+      </View>
+
+      <Credentials />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  sliderRow: {
-    flexDirection: "row",
     alignItems: "center",
   },
-  textContainer: {
-    width: 50,
+  settingsContainer: {
+    width: "80%",
+    alignItems: "center",
+    paddingTop: 30,
   },
-  text: {
-    marginRight: 10,
+  title: {
+    fontSize: 18,
+  },
+  divider: {
+    height: 1,
+    width: "80%",
+    backgroundColor: "grey",
+    marginTop: 5,
   },
 });
 

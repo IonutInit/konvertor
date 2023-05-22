@@ -1,4 +1,11 @@
-import { View, ScrollView, Text, Pressable, StyleSheet, KeyboardAvoidingView } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  Pressable,
+  StyleSheet,
+  KeyboardAvoidingView,
+} from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -29,17 +36,15 @@ const Konvertor = () => {
 
         <Title title={state.measureType} />
 
-        <FromComponent measureType={state.measureType}/>
+        <FromComponent measureType={state.measureType} />
 
-        <ScrollView>
-          {/* Other content goes here */}
-        </ScrollView>
+        <ScrollView>{/* Other content goes here */}</ScrollView>
 
         <View style={styles.toContainer}>
           <View style={styles.toPickerContainer}>
-                <ToComponent />
+            <ToComponent />
           </View>
-      
+
           <View style={styles.addTo}>
             {state.toUnit.length < 2 && <AddUnit type="to" />}
           </View>
@@ -75,7 +80,7 @@ const styles = StyleSheet.create({
   },
   addTo: {
     marginLeft: "auto",
-  }
+  },
 });
 
 export default Konvertor;

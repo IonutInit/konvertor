@@ -1,3 +1,4 @@
+import React from "react";
 import {
   View,
   ScrollView,
@@ -8,13 +9,9 @@ import {
 } from "react-native";
 
 import useAppContext from "../context/useAppContext";
-
 import handleOptionPress from "../hooks/handleOptionPress";
-
 import ToggleExtendedList from "../components/ToggleExtendedList";
-
 import unitList from "../data/unitList";
-
 import sampleIcon from "../assets/sample_icon.png";
 
 const Options = () => {
@@ -25,7 +22,7 @@ const Options = () => {
   );
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView>
       <View style={styles.outerPressableContainer}>
         {filteredUnitList.map((unit) => (
           <Pressable
@@ -38,30 +35,27 @@ const Options = () => {
             </View>
           </Pressable>
         ))}
+      </View>
 
-        <View style={styles.toggleContainer}>
-          <ToggleExtendedList />
-        </View>
+      <View style={styles.toggleContainer}>
+        <ToggleExtendedList />
       </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-  },
   outerPressableContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between",
     paddingHorizontal: 15,
+    paddingTop: 30,
   },
   pressableMeasure: {
-    width: 90,
+    width: 110,
     height: 90,
     backgroundColor: "#F3F3F3",
-    margin: 3,
+    margin: 5,
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 10,
@@ -78,6 +72,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
+    marginTop: 3,
   },
   icon: {
     width: 45,
@@ -87,7 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 20,
+    marginTop: 30,
   },
 });
 

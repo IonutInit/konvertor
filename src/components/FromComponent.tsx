@@ -16,14 +16,14 @@ import handleFromUnitChange from "../hooks/handleFromUnitChange";
 import convert from "convert-units";
 import platform from "../data/platform";
 
-const FromComponent = ({measureType}: {measureType: string}) => {
+const FromComponent = ({ measureType }: { measureType: string }) => {
   const {
     state: { fromUnit },
     dispatch,
   } = useAppContext();
 
   const elements = fromUnit.map((unit: string, i: number) => {
-    const options = convert().possibilities(measureType.toLowerCase())
+    const options = convert().possibilities(measureType.toLowerCase());
 
     return (
       <React.Fragment key={i}>

@@ -20,7 +20,7 @@ const ArithmeticOperator = () => {
 const styles = StyleSheet.create({
   text: {
     fontSize: 32,
-  }
-})
+  },
+});
 
 export default ArithmeticOperator;

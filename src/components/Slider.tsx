@@ -6,15 +6,13 @@ import useAppContext from "../context/useAppContext";
 
 type SliderComponentPropType = {
   settingType: string;
-  title: string;
-  description: string;
 };
 
 const SliderComponent = ({
   settingType,
-  title,
-  description,
-}: SliderComponentPropType) => {
+}: // title,
+// description,
+SliderComponentPropType) => {
   const {
     state: { settings },
     dispatch,
@@ -39,22 +37,20 @@ const SliderComponent = ({
 
   return (
     <View style={styles.container}>
-      <Text>{title}</Text>
+      {/* <Text>{title}</Text> */}
       <Slider
         maximumValue={49}
         value={value}
         onValueChange={handleValueChange}
       />
-      <Text>{description}</Text>
-      <Text>-----------------</Text>
-      <Text>-----------------</Text>
-      <Text>-----------------</Text>
+      {/* <Text>{description}</Text> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    width: "80%",
     maxWidth: 300,
     flex: 1,
     marginLeft: 10,
