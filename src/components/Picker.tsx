@@ -19,10 +19,10 @@ type PickerComponentProps = {
   i?: number;
 };
 
-const PickerComponent = ({ onChange, unit, i }: PickerComponentProps) => {
+const PickerComponent = ({ onChange, options, unit, i }: PickerComponentProps) => {
   const { state, dispatch } = useAppContext();
 
-  const options = convert().from(state.toUnit[0]).possibilities();
+  //const options = convert().from(state.toUnit[0]).possibilities();
 
   const handleValueChange = (option: string) => {
     onChange(dispatch, option, i!);

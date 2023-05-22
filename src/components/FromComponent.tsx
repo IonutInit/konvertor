@@ -18,14 +18,16 @@ import getNextUnit from "../lib/getNextUnit";
 import description from "../data/description";
 import platform from "../data/platform";
 
-const FromComponent = () => {
+const FromComponent = ({measureType}: {measureType: string}) => {
   const {
-    state: { fromUnit, measureType },
+    state: { fromUnit },
     dispatch,
   } = useAppContext();
 
   const elements = fromUnit.map((unit: string, i: number) => {
-    const options = convert().from(unit).possibilities();
+    //const options = convert().from(unit).possibilities();
+    const options = convert().possibilities(measureType.toLowerCase())
+    console.log(measureType)
 
     return (
       <React.Fragment key={i}>

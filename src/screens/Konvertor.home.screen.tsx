@@ -14,7 +14,7 @@ import platform from "../data/platform";
 import UniversalPicker from "../components/UniversalPicker";
 
 const Konvertor = () => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
 
   console.log(state);
 
@@ -31,7 +31,7 @@ const Konvertor = () => {
         <AddToFavourites />
       </View>
 
-      <FromComponent />
+      <FromComponent measureType={state.measureType}/>
 
       <ToComponent />
 

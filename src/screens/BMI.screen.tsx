@@ -11,14 +11,14 @@ import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
 import AddToFavourites from "../components/AddToFavourites";
 
+import PickerComponent from "../components/Picker";
+
 import platform from "../data/platform";
 import UniversalPicker from "../components/UniversalPicker";
 import description from "../data/description";
 
 const BMI = () => {
   const { state, dispatch } = useAppContext();
-
-  console.log(state, unitList[3]);
 
   return (
     <ScrollView>
@@ -31,7 +31,9 @@ const BMI = () => {
         <Text style={styles.title}>{state.measureType}</Text>
       </View>
 
-      {/* <FromComponent /> */}
+      <FromComponent measureType="mass"/>
+
+      <FromComponent measureType="length"/>
 
       {platform === "ios" && state.universalPicker.type !== "" && (
         <UniversalPicker />
