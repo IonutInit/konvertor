@@ -1,4 +1,4 @@
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -23,9 +23,15 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
 
   return (
     <Pressable onPress={() => workUniversalPicker()}>
-      <Text>{unit}</Text>
+      <Text style={styles.text}>{unit}</Text>
     </Pressable>
   );
 };
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 24,
+  }
+})
 
 export default UniversalPickerUnit;

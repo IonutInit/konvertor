@@ -1,3 +1,5 @@
+import { View, StyleSheet } from "react-native";
+
 import { Picker } from "@react-native-picker/picker";
 
 import useAppContext from "../context/useAppContext";
@@ -40,7 +42,7 @@ const UniversalPicker = () => {
   };
 
   return (
-    <Picker
+          <Picker style={styles.picker}
       selectedValue={
         type === "from"
           ? fromUnit[universalPicker.index!]
@@ -53,5 +55,17 @@ const UniversalPicker = () => {
     </Picker>
   );
 };
+
+const styles = StyleSheet.create({
+  picker: {
+    position: "absolute",
+    height: 300,
+    top: 100,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "grey"
+  }
+})
 
 export default UniversalPicker;

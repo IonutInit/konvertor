@@ -31,7 +31,9 @@ const Options = () => {
             style={styles.pressableMeasure}>
             <View style={styles.innerPressableContainer}>
               <Image source={sampleIcon} style={styles.icon} />
-              <Text style={styles.text}>{unit.measure}</Text>
+
+                <Text style={styles.text}>{unit.measure}</Text>
+             
             </View>
           </Pressable>
         ))}
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
   },
   pressableMeasure: {
-    width: 90,
+    width: 85,
     height: 90,
     backgroundColor: "#F3F3F3",
     margin: 5,
