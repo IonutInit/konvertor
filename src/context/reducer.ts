@@ -142,7 +142,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     case "add_to_favourites":
       const updatedFavourites2 = {
         ...state,
-        favourites: [...state.favourites, action.payload],
+        favourites: [action.payload, ...state.favourites],
       };
 
       try {

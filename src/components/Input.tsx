@@ -10,6 +10,7 @@ const Input = ({ handleInputChange }: InputProps) => {
       style={styles.input}
       onChangeText={(input) => handleInputChange(input)}
       keyboardType="numeric"
+      value={"1"}
     />
   );
 };

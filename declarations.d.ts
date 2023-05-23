@@ -1,6 +1,8 @@
+type ImageSource = number | { uri: string };
+
 declare module "convert-units";
 
 declare module "*.png" {
-  const value: any;
+  const value: ImageSource
   export default value;
 }

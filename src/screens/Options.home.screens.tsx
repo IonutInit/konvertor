@@ -11,7 +11,9 @@ import {
 import useAppContext from "../context/useAppContext";
 import handleOptionPress from "../hooks/handleOptionPress";
 import ToggleExtendedList from "../components/ToggleExtendedList";
+
 import unitList from "../data/unitList";
+import iconMap from "../assets/iconMap";
 import sampleIcon from "../assets/sample_icon.png";
 
 import theme from "../theme";
@@ -23,6 +25,8 @@ const Options = () => {
     (unit) => state.settings.extendedList || unit.primary
   );
 
+
+
   return (
     <ScrollView>
       <View style={styles.outerPressableContainer}>
@@ -31,10 +35,14 @@ const Options = () => {
             key={unit.measure}
             onPress={() => handleOptionPress(dispatch, state, unit.measure)}
             style={styles.pressableMeasure}>
-            <View style={styles.innerPressableContainer}>
-              <Image source={sampleIcon} style={styles.icon} />
 
-              <Text style={styles.text}>{unit.measure}</Text>
+            <View style={styles.innerPressableContainer}>
+              <Image source={iconMap[unit.name]} style={styles.icon} />
+
+              <View style={styles.textContainer}>
+                <Text style={styles.text}>{unit.measure}</Text>
+              </View>
+              
             </View>
           </Pressable>
         ))}
@@ -73,8 +81,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  textContainer: {
+    marginTop: 3,
+  },
   text: {
-    fontSize: 12,
+    textAlign: "center",
+    fontSize: 14,
     marginTop: 3,
   },
   icon: {
@@ -85,7 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 30,
+    marginVertical: 30,
   },
 });
 
