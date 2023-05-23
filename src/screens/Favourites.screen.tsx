@@ -18,19 +18,23 @@ import RemoveFavourite from "../components/RemoveFavourite";
 
 import handleFavouriteText from "../lib/handleFavouriteText";
 
+import Divider from "../components/Divider";
+import favouritesIcon from "../assets/favourited.png";
+import NoFavourites from "../components/NoFavourites";
+
 import sampleIcon from "../assets/sample_icon.png";
 
 import { FavouriteType } from "../../types";
 
 const Favourites = ({ navigation }: any) => {
-  const [favourites, setFavourites] = useState<FavouriteType[]>([]);
+  const [favouritesFromStorage, setFavouritesFromStorage] = useState<FavouriteType[]>([]);
 
   const {
-    // state: { favourites },
+    state: { favourites, init },
     dispatch,
   } = useAppContext();
 
-  const getData = async (): Promise<FavouriteType | null> => {
+  const getData = async (): Promise<FavouriteType[] | null> => {
     try {
       const favouritesJSON = await AsyncStorage.getItem(storageKey);
       if (favouritesJSON) {
@@ -45,11 +49,13 @@ const Favourites = ({ navigation }: any) => {
     const fetchFavourites = async() => {
       const data = await getData();
       if (data) {
-        setFavourites(data);
+        setFavouritesFromStorage(data);
       }
     };
     fetchFavourites();
   }, []);
+
+  const whatToMap = init === 0 ? favouritesFromStorage : favourites
 
   const handleLaunchFavourite = (
     measureType: string,
@@ -71,10 +77,23 @@ const Favourites = ({ navigation }: any) => {
     navigation.jumpTo("Home");
   };
 
+  if(whatToMap.length === 0) {
+    return(
+      <View style={styles.noFavouritesContainer}>
+        <Text style={styles.noFavouritesTitle}>No favourites yet</Text>
+        <Divider />
+        <Text style={styles.noFavouritesText}>Use the heart symbol at the top of any configuration you chose to save them for fast future use.</Text>
+      <Image source={favouritesIcon}  style={styles.icon}
+          resizeMode="contain"/>
+      </View>
+      
+    )
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View>
-        {favourites.map((fav, index) => (
+        {whatToMap.map((fav, index) => (
           <View style={styles.favourite} key={index}>
             <Pressable
               onPress={() =>
@@ -83,10 +102,8 @@ const Favourites = ({ navigation }: any) => {
               style={styles.favouriteInnerContainer}>
               <Image source={sampleIcon} style={styles.icon} />
               <View>
-                <Text>{fav.from}</Text>
-                <Text>{fav.to}</Text>
-                {/* <Text>{handleFavouriteText(fav.from)} -&gt;</Text>
-                <Text>{handleFavouriteText(fav.to)}</Text> */}
+                <Text>{handleFavouriteText(fav.from)} -&gt;</Text>
+                <Text>{handleFavouriteText(fav.to)}</Text>
               </View>
             </Pressable>
 
@@ -122,6 +139,17 @@ const styles = StyleSheet.create({
     height: 45,
     marginRight: 10,
   },
+  noFavouritesContainer: {
+    alignItems: "center",
+    paddingTop: 30,
+  },
+  noFavouritesTitle :{
+    fontSize: 24,
+  },
+  noFavouritesText: {
+    marginVertical: 10,
+    paddingHorizontal: 40,
+  }, 
 });
 
 export default Favourites;

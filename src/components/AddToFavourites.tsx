@@ -8,7 +8,6 @@ import useAppContext from "../context/useAppContext";
 
 import favourites from "../assets/favourites.png";
 import favourited from "../assets/favourited.png";
-import { FavouriteType } from "../../types";
 
 const AddToFavourites = () => {
   const { state, dispatch } = useAppContext();
@@ -22,8 +21,8 @@ const AddToFavourites = () => {
   useEffect(() => {
     const retrieveData = async() => {
       try {
-        const jsonValue = await AsyncStorage.getItem(storageKey) as (string | null);
-        const storedFavourites = JSON.parse(jsonValue);
+        const jsonValue = await AsyncStorage.getItem(storageKey);
+        const storedFavourites = JSON.parse(jsonValue!);
 
         if (storedFavourites) {
           dispatch({

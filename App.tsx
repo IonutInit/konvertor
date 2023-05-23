@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { useReducer } from "react";
+import { useReducer, useState, useEffect } from "react";
 
 import { AppContextProvider } from "./src/context/AppContext";
 

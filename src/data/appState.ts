@@ -18,6 +18,7 @@ const appState: AppStateType = {
     decimals: 2,
   },
   favourites: [],
+  init: 0,
 };
 
 export default appState;

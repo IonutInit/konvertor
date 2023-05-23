@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import storageKey from "../data/storageKey";
 
-import { AppStateType, ActionType } from "../../types";
+import { AppStateType, ActionType, FavouriteType } from "../../types";
 
 const reducer = (state: AppStateType, action: ActionType): AppStateType => {
   switch (action.type) {
@@ -115,10 +115,19 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       const updatedFavourites = state.favourites.filter(
         (fav, i) => i !== action.payload
       );
+
+      try {
+        const jsonValue = JSON.stringify(updatedFavourites);
+        AsyncStorage.setItem(storageKey, jsonValue);
+      } catch (e) {}
+
       return {
         ...state,
         favourites: updatedFavourites,
+        init: 1,
       };
+
+
 
     case "change_settings":
       const { settingType, settingValue } = action.payload;
@@ -160,7 +169,8 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     case "initialise_favourites":
       return {
         ...state,
-        favourites: action.payload,
+        favourites: action.payload as FavouriteType[],
+        init: 1,
       };
 
     default:

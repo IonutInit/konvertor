@@ -24,6 +24,7 @@ export type AppStateType = {
     decimals: number;
   };
   favourites: FavouriteType[];
+  init: 0 | 1, //used to switch between useEffect and state when handling favourites; could find no other way to subscribe to changes
 };
 
 export type ActionType =
@@ -98,5 +99,5 @@ export type ActionType =
     }
   | {
       type: "initialise_favourites";
-      payload: FavouriteType;
+      payload: FavouriteType[];
     };
