@@ -1,4 +1,11 @@
-import { View, ScrollView, Text, Pressable, StyleSheet, KeyboardAvoidingView } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  Pressable,
+  StyleSheet,
+  KeyboardAvoidingView,
+} from "react-native";
 import useAppContext from "../context/useAppContext";
 import BackToOptions from "../components/BackToOptions";
 import FromComponent from "../components/FromComponent";
@@ -33,7 +40,7 @@ const Konvertor = () => {
               <View style={styles.toPickerContainer}>
                 <ToComponent />
               </View>
-             
+
               <View style={styles.addTo}>
                 {state.toUnit.length < 2 && <AddUnit type="to" />}
               </View>
@@ -42,9 +49,8 @@ const Konvertor = () => {
         </View>
 
         {platform === "ios" && state.universalPicker.type !== "" && (
-              <UniversalPicker />        
+          <UniversalPicker />
         )}
-
       </ScrollView>
     </View>
   );

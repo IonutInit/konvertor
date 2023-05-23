@@ -32,7 +32,16 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     case "work_universal_picker":
       return {
         ...state,
-        universalPicker: action.payload,
+        universalPicker: {
+          type: action.payload.type,
+          index: action.payload.index,
+          position: state.universalPicker.position.map(
+            (existingValues, index) =>
+              index === action.payload.index
+                ? (action.payload.position as [number, number])
+                : existingValues
+          ),
+        },
       };
 
     //-------------------------------
@@ -45,6 +54,10 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         ...state,
         fromUnit: [...state.fromUnit, action.payload],
         fromValue: [...state.fromValue, value],
+        universalPicker: {
+          ...state.universalPicker,
+          position: [...state.universalPicker.position!, [0, 0]],
+        },
       };
 
     case "add_TO_unit":

@@ -15,7 +15,8 @@ export type AppStateType = {
   toUnit: string[];
   universalPicker: {
     type: UniversalPickerOptions;
-    index?: number;
+    index: number;
+    position: [number, number][];
   };
   settings: {
     extendedList: boolean;
@@ -87,7 +88,8 @@ export type ActionType =
       type: "work_universal_picker";
       payload: {
         type: UniversalPickerOptions;
-        index?: number;
+        index: number;
+        position?: number[];
       };
     }
   | {

@@ -32,8 +32,7 @@ const Options = () => {
             <View style={styles.innerPressableContainer}>
               <Image source={sampleIcon} style={styles.icon} />
 
-                <Text style={styles.text}>{unit.measure}</Text>
-             
+              <Text style={styles.text}>{unit.measure}</Text>
             </View>
           </Pressable>
         ))}

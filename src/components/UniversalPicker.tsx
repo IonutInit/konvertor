@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { Picker } from "@react-native-picker/picker";
 
@@ -15,7 +15,7 @@ const UniversalPicker = () => {
     dispatch,
   } = useAppContext();
 
-  const { type } = universalPicker;
+  const { type, position, index } = universalPicker;
 
   const allOptions = convert().from(fromUnit[0]).possibilities();
   const nextOption = getNextUnit(
@@ -37,12 +37,15 @@ const UniversalPicker = () => {
       type: "work_universal_picker",
       payload: {
         type: "",
+        index: -1,
+        position: [],
       },
     });
   };
 
   return (
-          <Picker style={styles.picker}
+    <Picker
+      style={[styles.picker, { top: 15 }, { left: 170 }]}
       selectedValue={
         type === "from"
           ? fromUnit[universalPicker.index!]
@@ -60,12 +63,10 @@ const styles = StyleSheet.create({
   picker: {
     position: "absolute",
     height: 300,
-    top: 100,
-    left: 0,
+    left: 200,
     right: 0,
     bottom: 0,
-    backgroundColor: "grey"
-  }
-})
+  },
+});
 
 export default UniversalPicker;

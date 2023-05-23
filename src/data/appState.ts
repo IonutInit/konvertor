@@ -10,6 +10,7 @@ const appState: AppStateType = {
   universalPicker: {
     type: "",
     index: -1,
+    position: [],
   },
   settings: {
     extendedList: false,
