@@ -1,20 +1,42 @@
 import { View, Pressable, Image, StyleSheet } from "react-native";
+import { useEffect } from "react";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import storageKey from "../data/storageKey";
 
 import useAppContext from "../context/useAppContext";
 
 import favourites from "../assets/favourites.png";
 import favourited from "../assets/favourited.png";
+import { FavouriteType } from "../../types";
 
 const AddToFavourites = () => {
   const { state, dispatch } = useAppContext();
 
   const isFavourited = state.favourites.some(
-    //use of some fixes the diabled type complications below
+    //the use of some fixes the diabled type complications below
     (favorite) =>
       favorite.from === state.fromUnit && favorite.to === state.toUnit
   );
 
-  const handleAddToFavourites = () => {
+  useEffect(() => {
+    const retrieveData = async() => {
+      try {
+        const jsonValue = await AsyncStorage.getItem(storageKey) as (string | null);
+        const storedFavourites = JSON.parse(jsonValue);
+
+        if (storedFavourites) {
+          dispatch({
+            type: "initialise_favourites",
+            payload: storedFavourites,
+          });
+        }
+      } catch (e) {}
+    };
+    retrieveData();
+  }, []);
+
+  const handleAddToFavourites = async () => {
     dispatch({
       type: "add_to_favourites",
       payload: {

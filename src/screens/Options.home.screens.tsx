@@ -14,6 +14,8 @@ import ToggleExtendedList from "../components/ToggleExtendedList";
 import unitList from "../data/unitList";
 import sampleIcon from "../assets/sample_icon.png";
 
+import theme from "../theme";
+
 const Options = () => {
   const { state, dispatch } = useAppContext();
 
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
   pressableMeasure: {
     width: 85,
     height: 90,
-    backgroundColor: "#F3F3F3",
+    backgroundColor: theme.gray1,
     margin: 5,
     borderWidth: 1,
     borderColor: "gray",

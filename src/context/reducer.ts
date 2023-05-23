@@ -1,3 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import storageKey from "../data/storageKey";
+
 import { AppStateType, ActionType } from "../../types";
 
 const reducer = (state: AppStateType, action: ActionType): AppStateType => {
@@ -128,10 +131,22 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       };
 
     case "add_to_favourites":
-      return {
+      const updatedFavourites2 = {
         ...state,
         favourites: [...state.favourites, action.payload],
       };
+
+      try {
+        const jsonValue = JSON.stringify(updatedFavourites2.favourites);
+        AsyncStorage.setItem(storageKey, jsonValue);
+      } catch (e) {}
+
+      return updatedFavourites2;
+
+    // return {
+    //   ...state,
+    //   favourites: [...state.favourites, action.payload],
+    // };
 
     case "launch_favourite":
       return {
@@ -140,6 +155,12 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         fromUnit: action.payload.fromUnit,
         fromValue: Array(action.payload.fromUnit.length).fill(0),
         toUnit: action.payload.toUnit,
+      };
+
+    case "initialise_favourites":
+      return {
+        ...state,
+        favourites: action.payload,
       };
 
     default:

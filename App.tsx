@@ -1,10 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { useReducer, Reducer } from "react";
+import { useReducer } from "react";
 
 import { AppContextProvider } from "./src/context/AppContext";
 
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
 
 import NavigationTabs from "./src/navigation/Navigation";
 
@@ -22,12 +21,3 @@ export default function App() {
     </AppContextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

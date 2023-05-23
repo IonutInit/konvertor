@@ -95,4 +95,8 @@ export type ActionType =
   | {
       type: "remove_favourite";
       payload: number;
+    }
+  | {
+      type: "initialise_favourites";
+      payload: FavouriteType;
     };

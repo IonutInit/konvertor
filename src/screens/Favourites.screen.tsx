@@ -7,6 +7,11 @@ import {
   StyleSheet,
 } from "react-native";
 
+import { useState, useEffect } from "react";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import storageKey from "../data/storageKey";
+
 import useAppContext from "../context/useAppContext";
 
 import RemoveFavourite from "../components/RemoveFavourite";
@@ -15,11 +20,36 @@ import handleFavouriteText from "../lib/handleFavouriteText";
 
 import sampleIcon from "../assets/sample_icon.png";
 
+import { FavouriteType } from "../../types";
+
 const Favourites = ({ navigation }: any) => {
+  const [favourites, setFavourites] = useState<FavouriteType[]>([]);
+
   const {
-    state: { favourites },
+    // state: { favourites },
     dispatch,
   } = useAppContext();
+
+  const getData = async (): Promise<FavouriteType | null> => {
+    try {
+      const favouritesJSON = await AsyncStorage.getItem(storageKey);
+      if (favouritesJSON) {
+        return JSON.parse(favouritesJSON);
+      }
+    } catch {}
+
+    return null;
+  };
+
+  useEffect(() => {
+    const fetchFavourites = async() => {
+      const data = await getData();
+      if (data) {
+        setFavourites(data);
+      }
+    };
+    fetchFavourites();
+  }, []);
 
   const handleLaunchFavourite = (
     measureType: string,
@@ -53,8 +83,10 @@ const Favourites = ({ navigation }: any) => {
               style={styles.favouriteInnerContainer}>
               <Image source={sampleIcon} style={styles.icon} />
               <View>
-                <Text>{handleFavouriteText(fav.from)} -&gt;</Text>
-                <Text>{handleFavouriteText(fav.to)}</Text>
+                <Text>{fav.from}</Text>
+                <Text>{fav.to}</Text>
+                {/* <Text>{handleFavouriteText(fav.from)} -&gt;</Text>
+                <Text>{handleFavouriteText(fav.to)}</Text> */}
               </View>
             </Pressable>
 
