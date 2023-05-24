@@ -49,14 +49,14 @@ const PickerComponent = ({
 const styles = StyleSheet.create({
   picker: {
     width: "30%",
-    // height: 100,
     backgroundColor: "#e0e0e0",
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#ccc",
+    marginLeft: 20,
   },
   pickerItem: {
-    fontSize: 12,
+    fontSize: 24,
   },
 });
 

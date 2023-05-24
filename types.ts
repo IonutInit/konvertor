@@ -1,3 +1,9 @@
+import { ImageSourcePropType } from "react-native";
+
+export type IconMapType = {
+  [key: string]: ImageSourcePropType;
+};
+
 export type UniversalPickerOptions = "to" | "from" | "";
 
 export type FavouriteType = {
@@ -24,7 +30,7 @@ export type AppStateType = {
     decimals: number;
   };
   favourites: FavouriteType[];
-  init: 0 | 1, //used to switch between useEffect and state when handling favourites; could find no other way to subscribe to changes
+  init: 0 | 1; //used to switch between useEffect and state when handling favourites; could find no other way to subscribe to changes
 };
 
 export type ActionType =

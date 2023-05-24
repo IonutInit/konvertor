@@ -10,7 +10,7 @@ const handleFavouriteText = (favourite: string[]) => {
   }
 
   if (favourite.length > 3) {
-    return `${favourite[0]}, ${favourite[1]}, ${favourite[1]} and more...`;
+    return `${favourite[0]}, ${favourite[1]}, ${favourite[2]} and more...`;
   }
 };
 

@@ -2,25 +2,26 @@ import { TextInput, StyleSheet } from "react-native";
 
 type InputProps = {
   handleInputChange: (input: string) => void;
+  value: string;
 };
 
-const Input = ({ handleInputChange }: InputProps) => {
+const Input = ({ handleInputChange, value }: InputProps) => {
   return (
     <TextInput
       style={styles.input}
       onChangeText={(input) => handleInputChange(input)}
       keyboardType="numeric"
-      value={"1"}
+      placeholder={value}
     />
   );
 };
 
 const styles = StyleSheet.create({
   input: {
-    width: "55%",
+    width: "30%",
     // height: 50,
-    fontSize: 18,
-    marginLeft: 14,
+    fontSize: 24,
+    marginLeft: 25,
     borderBottomWidth: 1,
     borderBottomColor: "black",
   },

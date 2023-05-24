@@ -20,7 +20,7 @@ const UniversalPicker = () => {
   const allOptions = convert().from(fromUnit[0]).possibilities();
   const nextOption = getNextUnit(
     toUnit[universalPicker.index!],
-    description[measureType.toLowerCase()]
+    description[measureType]
   );
   const options = toUnit.length > 1 ? nextOption : allOptions;
 

@@ -10,10 +10,10 @@ const handleOptionPress = (
   measure: string
 ) => {
   const [defaultFrom, defaultTo] = state.settings.metric ? [0, 1] : [1, 0];
-  const targetUnit = unitList.find((unit) => unit.measure === measure)!;
+  const targetUnit = unitList.find((unit) => unit.name === measure)!;
 
   const payload =
-    targetUnit.extra === undefined ? "konvertor" : targetUnit.measure;
+    targetUnit.extra === undefined ? "konvertor" : targetUnit.name;
 
   dispatch({
     type: "change_konvertor",

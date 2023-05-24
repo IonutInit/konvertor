@@ -19,7 +19,7 @@ const AddToFavourites = () => {
   );
 
   useEffect(() => {
-    const retrieveData = async() => {
+    const retrieveData = async () => {
       try {
         const jsonValue = await AsyncStorage.getItem(storageKey);
         const storedFavourites = JSON.parse(jsonValue!);

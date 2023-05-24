@@ -13,7 +13,7 @@ import handleOptionPress from "../hooks/handleOptionPress";
 import ToggleExtendedList from "../components/ToggleExtendedList";
 
 import unitList from "../data/unitList";
-import iconMap from "../assets/iconMap";
+import iconMap from "../iconMaps/iconMap";
 import sampleIcon from "../assets/sample_icon.png";
 
 import theme from "../theme";
@@ -25,24 +25,20 @@ const Options = () => {
     (unit) => state.settings.extendedList || unit.primary
   );
 
-
-
   return (
     <ScrollView>
       <View style={styles.outerPressableContainer}>
         {filteredUnitList.map((unit) => (
           <Pressable
-            key={unit.measure}
-            onPress={() => handleOptionPress(dispatch, state, unit.measure)}
+            key={unit.name}
+            onPress={() => handleOptionPress(dispatch, state, unit.name)}
             style={styles.pressableMeasure}>
-
             <View style={styles.innerPressableContainer}>
               <Image source={iconMap[unit.name]} style={styles.icon} />
 
               <View style={styles.textContainer}>
-                <Text style={styles.text}>{unit.measure}</Text>
+                <Text style={styles.text}>{unit.name}</Text>
               </View>
-              
             </View>
           </Pressable>
         ))}

@@ -1,5 +1,7 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import useAppContext from "../context/useAppContext";
+
+import otherIcons from "../iconMaps/otherIcons";
 
 type RemoveUnitProps = {
   type: "to" | "from";
@@ -18,7 +20,9 @@ const RemoveUnit = ({ type, i }: RemoveUnitProps) => {
           dispatch({ type: `remove_${type.toUpperCase()}_value`, payload: i })
         }
         disabled={!arrayLength}>
-        <Text style={styles.text}>{!arrayLength ? "" : "X"}</Text>
+        {arrayLength && (
+          <Image source={otherIcons.removeButton} style={styles.icon} />
+        )}
       </Pressable>
     </View>
   );
@@ -26,11 +30,16 @@ const RemoveUnit = ({ type, i }: RemoveUnitProps) => {
 
 const styles = StyleSheet.create({
   removeContainer: {
-    width: 20,
+    width: 40,
     alignItems: "center",
+    marginRight: 10,
   },
   text: {
     // fontSize: 18,
+  },
+  icon: {
+    width: 30,
+    height: 30,
   },
 });
 

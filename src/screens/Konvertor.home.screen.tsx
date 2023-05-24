@@ -7,14 +7,18 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 import useAppContext from "../context/useAppContext";
+
+import platform from "../data/platform";
+
 import BackToOptions from "../components/BackToOptions";
 import FromComponent from "../components/FromComponent";
 import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
 import ArithmeticOperator from "../components/ArithmeticOperator";
 import Title from "../components/Title";
-import platform from "../data/platform";
 import UniversalPicker from "../components/UniversalPicker";
+import Description from "../components/Description";
+import Divider from "../components/Divider";
 
 const Konvertor = () => {
   const { state } = useAppContext();
@@ -31,6 +35,8 @@ const Konvertor = () => {
         </View>
 
         <Title title={state.measureType} />
+
+        <Description />
 
         <FromComponent measureType={state.measureType} />
 

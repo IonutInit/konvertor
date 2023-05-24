@@ -23,7 +23,7 @@ const FromComponent = ({ measureType }: { measureType: string }) => {
   } = useAppContext();
 
   const elements = fromUnit.map((unit: string, i: number) => {
-    const options = convert().possibilities(measureType.toLowerCase());
+    const options = convert().possibilities(measureType);
 
     return (
       <React.Fragment key={i}>
@@ -32,6 +32,7 @@ const FromComponent = ({ measureType }: { measureType: string }) => {
             handleInputChange={(input: string) =>
               handleInputChange(dispatch, input, i)
             }
+            value={i === 0 ? "1" : "0"}
           />
 
           {/* {platform === "android" && (
@@ -65,12 +66,14 @@ const FromComponent = ({ measureType }: { measureType: string }) => {
   return <>{elements}</>;
 };
 
+const marginVertical = platform === "android" ? 5 : 13;
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginVertical: 5,
+    marginVertical: marginVertical,
   },
 });
 

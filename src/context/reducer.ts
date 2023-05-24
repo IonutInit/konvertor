@@ -127,8 +127,6 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         init: 1,
       };
 
-
-
     case "change_settings":
       const { settingType, settingValue } = action.payload;
       return {

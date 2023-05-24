@@ -22,12 +22,16 @@ import Divider from "../components/Divider";
 import favouritesIcon from "../assets/favourited.png";
 import NoFavourites from "../components/NoFavourites";
 
-import sampleIcon from "../assets/sample_icon.png";
+import iconMap from "../iconMaps/iconMap";
+
+import theme from "../theme";
 
 import { FavouriteType } from "../../types";
 
 const Favourites = ({ navigation }: any) => {
-  const [favouritesFromStorage, setFavouritesFromStorage] = useState<FavouriteType[]>([]);
+  const [favouritesFromStorage, setFavouritesFromStorage] = useState<
+    FavouriteType[]
+  >([]);
 
   const {
     state: { favourites, init },
@@ -46,7 +50,7 @@ const Favourites = ({ navigation }: any) => {
   };
 
   useEffect(() => {
-    const fetchFavourites = async() => {
+    const fetchFavourites = async () => {
       const data = await getData();
       if (data) {
         setFavouritesFromStorage(data);
@@ -55,7 +59,7 @@ const Favourites = ({ navigation }: any) => {
     fetchFavourites();
   }, []);
 
-  const whatToMap = init === 0 ? favouritesFromStorage : favourites
+  const whatToMap = init === 0 ? favouritesFromStorage : favourites;
 
   const handleLaunchFavourite = (
     measureType: string,
@@ -77,17 +81,22 @@ const Favourites = ({ navigation }: any) => {
     navigation.jumpTo("Home");
   };
 
-  if(whatToMap.length === 0) {
-    return(
+  if (whatToMap.length === 0) {
+    return (
       <View style={styles.noFavouritesContainer}>
         <Text style={styles.noFavouritesTitle}>No favourites yet</Text>
         <Divider />
-        <Text style={styles.noFavouritesText}>Use the heart symbol at the top of any configuration you chose to save them for fast future use.</Text>
-      <Image source={favouritesIcon}  style={styles.icon}
-          resizeMode="contain"/>
+        <Text style={styles.noFavouritesText}>
+          Use the heart symbol at the top of any configuration you chose to save
+          them for fast future use.
+        </Text>
+        <Image
+          source={favouritesIcon}
+          style={styles.icon}
+          resizeMode="contain"
+        />
       </View>
-      
-    )
+    );
   }
 
   return (
@@ -100,9 +109,9 @@ const Favourites = ({ navigation }: any) => {
                 handleLaunchFavourite(fav.measureType, fav.from, fav.to)
               }
               style={styles.favouriteInnerContainer}>
-              <Image source={sampleIcon} style={styles.icon} />
+              <Image source={iconMap[fav.measureType]} style={styles.icon} />
               <View>
-                <Text>{handleFavouriteText(fav.from)} -&gt;</Text>
+                <Text>{handleFavouriteText(fav.from)}</Text>
                 <Text>{handleFavouriteText(fav.to)}</Text>
               </View>
             </Pressable>
@@ -127,7 +136,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: "grey",
+    borderColor: theme.mainColour,
     justifyContent: "center",
   },
   favouriteInnerContainer: {
@@ -143,13 +152,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 30,
   },
-  noFavouritesTitle :{
+  noFavouritesTitle: {
     fontSize: 24,
   },
   noFavouritesText: {
     marginVertical: 10,
     paddingHorizontal: 40,
-  }, 
+  },
 });
 
 export default Favourites;

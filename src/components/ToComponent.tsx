@@ -26,7 +26,7 @@ const ToComponent = () => {
       .possibilities();
     const nextOption = getNextUnit(
       state.toUnit[state.toUnit.length - 1],
-      description[state.measureType.toLowerCase()]
+      description[state.measureType]
     );
 
     const options = state.toUnit.length > 1 ? nextOption : allOptions;
