@@ -1,6 +1,8 @@
-import { View, Pressable, Text, StyleSheet } from "react-native";
+import { View, Pressable, Text, Image, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
+
+import functionalIcons from "../iconMaps/functionalIconsMap";
 
 import theme from "../theme";
 
@@ -19,9 +21,11 @@ const ToggleExtendedList = () => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.pressable} onPress={handleToggleExtendedList}>
-        <Text style={styles.text}>
+        <Image source={settings.extendedList ? functionalIcons.lessButton : functionalIcons.moreButton} style={styles.icon}/>
+    
+        {/* <Text style={styles.text}>
           Show {settings.extendedList ? "less" : "more"}
-        </Text>
+        </Text> */}
       </Pressable>
     </View>
   );
@@ -39,9 +43,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  text: {
-    fontSize: 18,
-    color: theme.gray1,
+  icon: {
+    width: 130,
+    height: 50,
   },
 });
 

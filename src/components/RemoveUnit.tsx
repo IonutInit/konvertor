@@ -1,7 +1,7 @@
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import useAppContext from "../context/useAppContext";
 
-import otherIcons from "../iconMaps/otherIcons";
+import otherIcons from "../iconMaps/functionalIconsMap";
 
 type RemoveUnitProps = {
   type: "to" | "from";

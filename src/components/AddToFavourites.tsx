@@ -6,8 +6,9 @@ import storageKey from "../data/storageKey";
 
 import useAppContext from "../context/useAppContext";
 
-import favourites from "../assets/favourites.png";
-import favourited from "../assets/favourited.png";
+import handleAddToFavourites from "../hooks/handleAddToFavourites";
+
+import functionalIcons from "../iconMaps/functionalIconsMap";
 
 const AddToFavourites = () => {
   const { state, dispatch } = useAppContext();
@@ -35,22 +36,11 @@ const AddToFavourites = () => {
     retrieveData();
   }, []);
 
-  const handleAddToFavourites = async () => {
-    dispatch({
-      type: "add_to_favourites",
-      payload: {
-        measureType: state.measureType,
-        from: state.fromUnit,
-        to: state.toUnit,
-      },
-    });
-  };
-
   return (
     <View style={styles.iconContainer}>
-      <Pressable onPress={handleAddToFavourites} disabled={isFavourited}>
+      <Pressable onPress={() => handleAddToFavourites(dispatch, state)} disabled={isFavourited}>
         <Image
-          source={isFavourited ? favourited : favourites}
+          source={isFavourited ? functionalIcons.isFavouriteButton : functionalIcons.favouriteButton}
           style={styles.icon}
           resizeMode="contain"
         />

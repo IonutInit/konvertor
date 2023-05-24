@@ -13,8 +13,7 @@ import handleOptionPress from "../hooks/handleOptionPress";
 import ToggleExtendedList from "../components/ToggleExtendedList";
 
 import unitList from "../data/unitList";
-import iconMap from "../iconMaps/iconMap";
-import sampleIcon from "../assets/sample_icon.png";
+import iconMap from "../iconMaps/measurementIconsMap";
 
 import theme from "../theme";
 
@@ -39,7 +38,7 @@ const Options = () => {
               <Image source={iconMap[unit.name]} style={styles.icon} />
 
               <View style={styles.textContainer}>
-                <Text style={styles.text}>{unit.name}</Text>
+                <Text style={styles.text}>{unit.displayName}</Text>
               </View>
             </View>
           </Pressable>

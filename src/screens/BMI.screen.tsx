@@ -15,7 +15,7 @@ import PickerComponent from "../components/Picker";
 
 import platform from "../data/platform";
 import UniversalPicker from "../components/UniversalPicker";
-import description from "../data/description";
+import description from "../data/unitDescription";
 
 const BMI = () => {
   const { state, dispatch } = useAppContext();

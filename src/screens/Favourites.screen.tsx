@@ -22,7 +22,7 @@ import Divider from "../components/Divider";
 import favouritesIcon from "../assets/favourited.png";
 import NoFavourites from "../components/NoFavourites";
 
-import iconMap from "../iconMaps/iconMap";
+import favouritesIconMap from "../iconMaps/favouritesIconsMap";
 
 import theme from "../theme";
 
@@ -83,19 +83,7 @@ const Favourites = ({ navigation }: any) => {
 
   if (whatToMap.length === 0) {
     return (
-      <View style={styles.noFavouritesContainer}>
-        <Text style={styles.noFavouritesTitle}>No favourites yet</Text>
-        <Divider />
-        <Text style={styles.noFavouritesText}>
-          Use the heart symbol at the top of any configuration you chose to save
-          them for fast future use.
-        </Text>
-        <Image
-          source={favouritesIcon}
-          style={styles.icon}
-          resizeMode="contain"
-        />
-      </View>
+      <NoFavourites />
     );
   }
 
@@ -109,10 +97,10 @@ const Favourites = ({ navigation }: any) => {
                 handleLaunchFavourite(fav.measureType, fav.from, fav.to)
               }
               style={styles.favouriteInnerContainer}>
-              <Image source={iconMap[fav.measureType]} style={styles.icon} />
+              <Image source={favouritesIconMap[fav.measureType]} style={styles.icon} />
               <View>
-                <Text>{handleFavouriteText(fav.from)}</Text>
-                <Text>{handleFavouriteText(fav.to)}</Text>
+                <Text style={styles.favouriteText}>{handleFavouriteText(fav.from)}</Text>
+                <Text style={styles.favouriteText}>{handleFavouriteText(fav.to)}</Text>
               </View>
             </Pressable>
 
@@ -132,32 +120,31 @@ const styles = StyleSheet.create({
   favourite: {
     width: 250,
     height: 80,
-    marginVertical: 3,
+    backgroundColor: theme.mainColour,
+    marginVertical: 5,
     padding: 10,
     borderRadius: 10,
     borderWidth: 2,
     borderColor: theme.mainColour,
     justifyContent: "center",
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+    elevation: 3, // for Android shadow
   },
   favouriteInnerContainer: {
     flexDirection: "row",
     alignItems: "center",
   },
+  favouriteText: {
+    color: theme.gray1,
+    fontWeight: "bold",
+  },
   icon: {
     width: 45,
     height: 45,
     marginRight: 10,
-  },
-  noFavouritesContainer: {
-    alignItems: "center",
-    paddingTop: 30,
-  },
-  noFavouritesTitle: {
-    fontSize: 24,
-  },
-  noFavouritesText: {
-    marginVertical: 10,
-    paddingHorizontal: 40,
   },
 });
 

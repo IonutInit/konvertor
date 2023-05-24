@@ -1,8 +1,8 @@
-import { Text, Pressable, Image, StyleSheet } from "react-native";
+import { Pressable, Image, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
-import otherIcons from "../iconMaps/otherIcons";
+import functionalIcons from "../iconMaps/functionalIconsMap";
 
 type RemoveFavouriteType = {
   i: number;
@@ -27,7 +27,7 @@ const RemoveFavourite = ({ i }: RemoveFavouriteType) => {
       onPress={() => handleRemoveFavourite(i)}
       //avoiding the bug that if favourites in state is empty, all get favourites from storage get removed at once -- see reducer
       disabled={favourites.length === 0}>
-      <Image source={otherIcons.removeButton} style={styles.icon} />
+      <Image source={functionalIcons.removeButton1} style={styles.icon} />
     </Pressable>
   );
 };
@@ -35,12 +35,12 @@ const RemoveFavourite = ({ i }: RemoveFavouriteType) => {
 const styles = StyleSheet.create({
   closeButton: {
     position: "absolute",
-    top: 5,
-    right: 5,
+    top: 7,
+    right: 7,
   },
   icon: {
-    width: 30,
-    height: 30,
+    width: 28,
+    height: 28,
   },
 });
 

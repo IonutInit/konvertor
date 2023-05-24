@@ -7,7 +7,7 @@ import useAppContext from "../context/useAppContext";
 import convert from "convert-units";
 
 import getNextUnit from "../lib/getNextUnit";
-import description from "../data/description";
+import description from "../data/unitDescription";
 
 const UniversalPicker = () => {
   const {
