@@ -27,7 +27,7 @@ const RemoveFavourite = ({ i }: RemoveFavouriteType) => {
       onPress={() => handleRemoveFavourite(i)}
       //avoiding the bug that if favourites in state is empty, all get favourites from storage get removed at once -- see reducer
       disabled={favourites.length === 0}>
-        <Image source={otherIcons.removeButton} style={styles.icon}/>
+      <Image source={otherIcons.removeButton} style={styles.icon} />
     </Pressable>
   );
 };
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     width: 30,
-    height: 30
-  }
+    height: 30,
+  },
 });
 
 export default RemoveFavourite;

@@ -31,6 +31,7 @@ const RemoveUnit = ({ type, i }: RemoveUnitProps) => {
 const styles = StyleSheet.create({
   removeContainer: {
     width: 40,
+    heigth: 40,
     alignItems: "center",
     marginRight: 10,
   },

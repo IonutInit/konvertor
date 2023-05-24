@@ -27,7 +27,7 @@ const ToPicker = ({ onChange, options, unit, i }: PickerComponentProps) => {
 
   return (
     <Picker
-      style={[styles.picker]}
+      style={styles.picker}
       selectedValue={unit}
       onValueChange={(option) => onChange(dispatch, option, i)}
       itemStyle={styles.pickerItem}>
@@ -40,11 +40,12 @@ const ToPicker = ({ onChange, options, unit, i }: PickerComponentProps) => {
 
 const styles = StyleSheet.create({
   picker: {
-    width: 150,
+    width: 130,
     backgroundColor: "#e0e0e0",
     borderRadius: 8,
     borderWidth: 1,
     borderColor: "#ccc",
+    marginHorizontal: 10,
   },
   pickerItem: {
     fontSize: 8,

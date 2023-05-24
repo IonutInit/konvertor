@@ -8,7 +8,7 @@ const handleOptionPress = (
   dispatch: Dispatch<ActionType>,
   state: AppStateType,
   measure: string,
-  name: string,
+  name: string
 ) => {
   const [defaultFrom, defaultTo] = state.settings.metric ? [0, 1] : [1, 0];
   const targetUnit = unitList.find((unit) => unit.name === measure)!;

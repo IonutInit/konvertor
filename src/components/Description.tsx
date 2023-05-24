@@ -1,21 +1,27 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
+
+import addUnit from "../hooks/addUnit";
 
 import theme from "../theme";
 import handleDescriptionText from "../lib/handleDescriptionText";
 
 const Description = () => {
-  const {
-    state: { fromUnit, toUnit },
-  } = useAppContext();
+  const { state, dispatch } = useAppContext();
+
+  const { fromUnit, toUnit } = state;
 
   return (
     <View style={styles.outerContainer}>
-      <View style={styles.innerContainer}>
+      <Pressable
+        style={styles.innerContainer}
+        onPress={() => addUnit(dispatch, state, "from")}>
         <Text style={styles.text}>{handleDescriptionText(fromUnit, true)}</Text>
-        <Text style={styles.text}>TO {handleDescriptionText(toUnit, false)}</Text>
-      </View>
+        <Text style={styles.text}>
+          TO {handleDescriptionText(toUnit, false)}
+        </Text>
+      </Pressable>
     </View>
   );
 };
@@ -33,12 +39,19 @@ const styles = StyleSheet.create({
     backgroundColor: theme.gray3,
     alignContent: "center",
     justifyContent: "center",
+    // borderColor: theme.mainColour,
+    // borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 10,
+    // shadowColor: theme.mainColour,
+    // shadowOffset: { width: -1, height: -2 },
+    // shadowOpacity: 0.4,
+    // shadowRadius: 2,
+    // marginBottom: 5,
   },
   text: {
-    color: theme.gray1
-  }
+    color: theme.gray1,
+  },
 });
 
 export default Description;
