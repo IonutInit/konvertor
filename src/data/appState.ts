@@ -3,6 +3,7 @@ import { AppStateType } from "../../types";
 const appState: AppStateType = {
   konvertor: "",
   measureType: "",
+  measureName: "",
   addition: true,
   fromUnit: [],
   fromValue: [],

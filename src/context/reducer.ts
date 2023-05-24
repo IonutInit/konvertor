@@ -23,7 +23,8 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     case "change_measure":
       return {
         ...state,
-        measureType: action.payload,
+        measureType: action.payload.measure,
+        measureName: action.payload.name,
         fromUnit: [],
         toUnit: [],
       };

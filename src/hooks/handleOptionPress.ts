@@ -7,7 +7,8 @@ import { ActionType, AppStateType } from "../../types";
 const handleOptionPress = (
   dispatch: Dispatch<ActionType>,
   state: AppStateType,
-  measure: string
+  measure: string,
+  name: string,
 ) => {
   const [defaultFrom, defaultTo] = state.settings.metric ? [0, 1] : [1, 0];
   const targetUnit = unitList.find((unit) => unit.name === measure)!;
@@ -22,7 +23,10 @@ const handleOptionPress = (
 
   dispatch({
     type: "change_measure",
-    payload: measure,
+    payload: {
+      measure,
+      name,
+    },
   });
 
   dispatch({

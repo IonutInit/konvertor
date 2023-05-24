@@ -14,6 +14,7 @@ export type FavouriteType = {
 
 export type AppStateType = {
   konvertor: string;
+  measureName: string;
   measureType: string;
   addition: boolean;
   fromUnit: string[];
@@ -37,7 +38,10 @@ export type ActionType =
   | { type: "change_konvertor"; payload: string }
   | { type: "toggle_extendedList" }
   | { type: "toggle_addition" }
-  | { type: "change_measure"; payload: string }
+  | { type: "change_measure"; payload: {
+    measure: string,
+    name: string,
+  } }
   // | { type: "add_FROM_unit"; payload: string }
   // | { type: "add_TO_unit"; payload: string }
   | { type: `add_${string}_unit`; payload: string }

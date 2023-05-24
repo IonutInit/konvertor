@@ -31,7 +31,7 @@ const Options = () => {
         {filteredUnitList.map((unit) => (
           <Pressable
             key={unit.name}
-            onPress={() => handleOptionPress(dispatch, state, unit.name)}
+            onPress={() => handleOptionPress(dispatch, state, unit.name, unit.displayName)}
             style={styles.pressableMeasure}>
             <View style={styles.innerPressableContainer}>
               <Image source={iconMap[unit.name]} style={styles.icon} />

@@ -18,7 +18,7 @@ import ArithmeticOperator from "../components/ArithmeticOperator";
 import Title from "../components/Title";
 import UniversalPicker from "../components/UniversalPicker";
 import Description from "../components/Description";
-import Divider from "../components/Divider";
+
 
 const Konvertor = () => {
   const { state } = useAppContext();
@@ -34,7 +34,7 @@ const Konvertor = () => {
           <AddUnit type="from" />
         </View>
 
-        <Title title={state.measureType} />
+        <Title title={state.measureName} />
 
         <Description />
 

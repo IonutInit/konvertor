@@ -1,6 +1,6 @@
 const unitList = [
   {
-    displayName: "Length",
+    displayName: "Length / Height",
     name: "length",
     default: ["m", "ft"],
     primary: true,
