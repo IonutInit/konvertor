@@ -1,6 +1,8 @@
-import { Pressable, Text, StyleSheet } from "react-native";
+import { Pressable, Image } from "react-native";
 
 import useAppContext from "../context/useAppContext";
+
+import functionalIcons from "../iconMaps/functionalIconsMap";
 
 const ArithmeticOperator = () => {
   const { state, dispatch } = useAppContext();
@@ -12,15 +14,9 @@ const ArithmeticOperator = () => {
           type: "toggle_addition",
         })
       }>
-      <Text style={styles.text}>{state.addition ? "+" : "-"}</Text>
+      <Image source={state.addition ? functionalIcons.additionButton : functionalIcons.subtractionButton}/>
     </Pressable>
   );
 };
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 32,
-  },
-});
 
 export default ArithmeticOperator;

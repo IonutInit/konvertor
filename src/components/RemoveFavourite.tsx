@@ -2,6 +2,8 @@ import { Pressable, Image, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
+import handleRemoveFavourite from "../hooks/handleRemoveFavourite";
+
 import functionalIcons from "../iconMaps/functionalIconsMap";
 
 type RemoveFavouriteType = {
@@ -14,17 +16,10 @@ const RemoveFavourite = ({ i }: RemoveFavouriteType) => {
     state: { favourites },
   } = useAppContext();
 
-  const handleRemoveFavourite = (i: number) => {
-    dispatch({
-      type: "remove_favourite",
-      payload: i,
-    });
-  };
-
   return (
     <Pressable
       style={styles.closeButton}
-      onPress={() => handleRemoveFavourite(i)}
+      onPress={() => handleRemoveFavourite(dispatch, i)}
       //avoiding the bug that if favourites in state is empty, all get favourites from storage get removed at once -- see reducer
       disabled={favourites.length === 0}>
       <Image source={functionalIcons.removeButton1} style={styles.icon} />

@@ -45,7 +45,7 @@ const UniversalPicker = () => {
 
   return (
     <Picker
-      style={[styles.picker, { top: 15 }, { left: 170 }]}
+      style={[styles.picker, { top: 200 }, { left: 0 }]}
       selectedValue={
         type === "from"
           ? fromUnit[universalPicker.index!]

@@ -4,7 +4,7 @@ import useAppContext from "../context/useAppContext";
 
 import addUnit from "../hooks/addUnit";
 
-import add from "../assets/add.png";
+import functionalIcons from "../iconMaps/functionalIconsMap";
 
 type AddUnitProps = {
   type: "to" | "from";
@@ -15,7 +15,7 @@ const AddUnit = ({ type }: AddUnitProps) => {
 
   return (
     <Pressable onPress={() => addUnit(dispatch, state, type)}>
-      <Image source={add} style={styles.icon} resizeMode="contain" />
+      <Image source={functionalIcons.addUnitButton} style={styles.icon} resizeMode="contain" />
     </Pressable>
   );
 };

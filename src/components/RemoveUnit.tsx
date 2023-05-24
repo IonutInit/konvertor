@@ -1,7 +1,7 @@
 import { View, Text, Pressable, Image, StyleSheet } from "react-native";
 import useAppContext from "../context/useAppContext";
 
-import otherIcons from "../iconMaps/functionalIconsMap";
+import functionalIcons from "../iconMaps/functionalIconsMap";
 
 type RemoveUnitProps = {
   type: "to" | "from";
@@ -21,7 +21,7 @@ const RemoveUnit = ({ type, i }: RemoveUnitProps) => {
         }
         disabled={!arrayLength}>
         {arrayLength && (
-          <Image source={otherIcons.removeButton} style={styles.icon} />
+          <Image source={functionalIcons.removeButton2} style={styles.icon} />
         )}
       </Pressable>
     </View>

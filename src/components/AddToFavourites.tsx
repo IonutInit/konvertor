@@ -1,5 +1,5 @@
 import { View, Pressable, Image, StyleSheet } from "react-native";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import storageKey from "../data/storageKey";
@@ -7,17 +7,24 @@ import storageKey from "../data/storageKey";
 import useAppContext from "../context/useAppContext";
 
 import handleAddToFavourites from "../hooks/handleAddToFavourites";
+import handleRemoveFavourite from "../hooks/handleRemoveFavourite";
 
 import functionalIcons from "../iconMaps/functionalIconsMap";
 
 const AddToFavourites = () => {
   const { state, dispatch } = useAppContext();
 
-  const isFavourited = state.favourites.some(
-    //the use of some fixes the diabled type complications below
-    (favorite) =>
-      favorite.from === state.fromUnit && favorite.to === state.toUnit
-  );
+  const favoriteIndex = state.favourites.findIndex(        (favorite) =>
+  favorite.from.toString() === state.fromUnit.toString() &&
+  favorite.to.toString() === state.toUnit.toString()
+);
+
+// to prevent addition of duplicates
+const handleOnPress = (i: number) => {
+  if (i === -1) {
+    handleAddToFavourites(dispatch, state)
+  }
+}
 
   useEffect(() => {
     const retrieveData = async () => {
@@ -32,15 +39,21 @@ const AddToFavourites = () => {
           });
         }
       } catch (e) {}
+
     };
     retrieveData();
   }, []);
 
+
   return (
     <View style={styles.iconContainer}>
-      <Pressable onPress={() => handleAddToFavourites(dispatch, state)} disabled={isFavourited}>
+      <Pressable 
+        onPress={() => handleOnPress(favoriteIndex)} 
+        onLongPress={() => handleRemoveFavourite(dispatch, favoriteIndex)}
+        // disabled={favoriteIndex !== -1}
+        >
         <Image
-          source={isFavourited ? functionalIcons.isFavouriteButton : functionalIcons.favouriteButton}
+          source={favoriteIndex !== -1 ? functionalIcons.isFavouriteButton : functionalIcons.favouriteButton}
           style={styles.icon}
           resizeMode="contain"
         />

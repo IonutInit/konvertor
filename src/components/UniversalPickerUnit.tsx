@@ -9,6 +9,8 @@ import { useRef, useState, useEffect } from "react";
 
 import useAppContext from "../context/useAppContext";
 
+import functionalIcons from "../iconMaps/functionalIconsMap";
+
 import theme from "../theme";
 
 type UniversalPickerUnitProps = {
@@ -66,6 +68,7 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
           ? styles.containerNormalSize
           : styles.containerLargeSize,
       ]}>
+
       <Pressable
         onPress={() => workUniversalPicker()}
         onLongPress={() =>
@@ -73,6 +76,7 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
         }
         onPressIn={handlePresIn}
         onPressOut={handlePressOut}>
+
         <Text
           style={
             universalPicker.type === "" ? styles.text : styles.overlaidText
@@ -108,11 +112,13 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
+    color: theme.mainColour,
     textAlign: "center",
   },
   overlaidText: {
     fontSize: 24,
-    color: "#F2F2F2",
+    color: theme.gray1,
+    textAlign: "center"
   },
 });
 
