@@ -16,6 +16,14 @@ const NavigationTabs = () => {
     <Navigation.Navigator
       screenOptions={{
         tabBarShowLabel: false,
+        headerStyle: {
+          backgroundColor: theme.mainColour,
+        },
+        tabBarStyle: {
+backgroundColor: theme.mainColour,
+        },
+        headerTintColor: theme.gray1,
+        //tabBarActiveBackgroundColor: theme.gray1Darker
       }}>
       <Navigation.Screen
         name="Home"

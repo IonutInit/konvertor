@@ -21,6 +21,8 @@ import Title from "../components/Title";
 import UniversalPicker from "../components/UniversalPicker";
 import Description from "../components/Description";
 
+import theme from "../theme";
+
 const Konvertor = () => {
   const { state } = useAppContext();
 
@@ -43,19 +45,18 @@ const Konvertor = () => {
 
         <FromComponent measureType={state.measureType} />
 
- 
-          <View style={styles.flexContainer}>
-            <View style={styles.toContainer}>
-              <View style={styles.toPickerContainer}>
-                <ToComponent />
-              </View>
+        <View style={styles.toOuterContainer}>
+          <View style={styles.toContainer}>
+            <View style={styles.toPickerContainer}>
+              <ToComponent />
+            </View>
 
-              <View style={styles.addTo}>
-                {state.toUnit.length < toUnitadditions && <AddUnit type="to" />}
-              </View>
+            <View style={styles.addTo}>
+              {state.toUnit.length < toUnitadditions && <AddUnit type="to" />}
             </View>
           </View>
- 
+        </View>
+
         {platform === "ios" && state.universalPicker.type !== "" && (
           <View style={styles.universalPickerContainer}>
             <UniversalPicker />
@@ -72,30 +73,36 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    // justifyContent: "space-between",
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 15,
   },
-  flexContainer: {
+  toOuterContainer: {
     flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center"
   },
   toContainer: {
     flexDirection: "row",
     paddingHorizontal: 10,
     alignItems: "center",
-    paddingBottom: 10,
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
+    marginBottom: 5,
+    width: "95%",
+    paddingTop: 15,
+    borderWidth: 1,
+    borderColor: theme.gray1,
+    borderRadius: 10,
+    shadowColor: theme.gray3,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.6,
+    shadowRadius: 2,
   },
   toPickerContainer: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "center",   
   },
   universalPickerContainer: {
     alignItems: "center",

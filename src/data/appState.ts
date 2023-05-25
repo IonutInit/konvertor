@@ -1,13 +1,13 @@
 import { AppStateType } from "../../types";
 
 const appState: AppStateType = {
-  konvertor: "konvertor",
-  measureType: "length",
-  measureName: "Length",
+  konvertor: "",
+  measureType: "",
+  measureName: "",
   addition: true,
-  fromUnit: ["m", "km"],
-  fromValue: [1, 0],
-  toUnit: ["ft"],
+  fromUnit: [],
+  fromValue: [],
+  toUnit: [],
   universalPicker: {
     type: "",
     index: -1,
