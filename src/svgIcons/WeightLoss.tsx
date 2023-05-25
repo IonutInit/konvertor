@@ -1,6 +1,11 @@
-import theme from "../theme"
+import theme from "../theme";
 
-const WeightLoss = ({ width = "50px", height = "50px", mainColour = theme.mainColour, secondaryColor = theme.orange1 }) => (
+const WeightLoss = ({
+  width = "50px",
+  height = "50px",
+  mainColour = theme.mainColour,
+  secondaryColor = theme.orange1,
+}) => (
   <svg
     xmlSpace="preserve"
     style={{
@@ -12,8 +17,7 @@ const WeightLoss = ({ width = "50px", height = "50px", mainColour = theme.mainCo
       width,
       height,
     }}
-    viewBox="0 0 50 50"
-  >
+    viewBox="0 0 50 50">
     <circle
       cx={6.827}
       cy={22.765}
@@ -78,5 +82,5 @@ const WeightLoss = ({ width = "50px", height = "50px", mainColour = theme.mainCo
       transform="translate(.838 1.18) scale(.7651)"
     />
   </svg>
-)
-export default WeightLoss
+);
+export default WeightLoss;

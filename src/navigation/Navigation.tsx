@@ -17,8 +17,7 @@ const NavigationTabs = () => {
       screenOptions={{
         tabBarShowLabel: false,
       }}>
-
-<Navigation.Screen
+      <Navigation.Screen
         name="Home"
         component={Home}
         options={{
@@ -31,33 +30,26 @@ const NavigationTabs = () => {
           ),
         }}
       />
-      
 
-<Navigation.Screen
+      <Navigation.Screen
         name="Favourites"
         component={Favourites}
         options={{
           tabBarIcon: ({ color, size }) => {
             return (
-                <View>
-              {/* <Text>
+              <View>
+                {/* <Text>
                 Hello
               </Text> */}
-               <Image
-              source={functionalIcons.favouritesIcon}
-              style={{ width: 30, height: 30 }}
-            />
-            </View>
-            )         
-           
-            },
+                <Image
+                  source={functionalIcons.favouritesIcon}
+                  style={{ width: 30, height: 30 }}
+                />
+              </View>
+            );
+          },
         }}
       />
-
-
-
-
-
 
       <Navigation.Screen
         name="Settings"

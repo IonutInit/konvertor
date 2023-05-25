@@ -1,7 +1,11 @@
-import theme from "../theme"
+import theme from "../theme";
 
-
-const SvgComponent = ({ width = "50px", height = "50px", mainColour = theme.mainColour, secondaryColor = theme.orange1 }) => (
+const SvgComponent = ({
+  width = "50px",
+  height = "50px",
+  mainColour = theme.mainColour,
+  secondaryColor = theme.orange1,
+}) => (
   <svg
     xmlSpace="preserve"
     style={{
@@ -13,8 +17,7 @@ const SvgComponent = ({ width = "50px", height = "50px", mainColour = theme.main
       width,
       height,
     }}
-    viewBox="0 0 50 50"
-   >
+    viewBox="0 0 50 50">
     <circle
       cx={6.827}
       cy={22.765}
@@ -43,5 +46,5 @@ const SvgComponent = ({ width = "50px", height = "50px", mainColour = theme.main
       transform="rotate(-45 21.604 37.526) scale(1.3648)"
     />
   </svg>
-)
-export default SvgComponent
+);
+export default SvgComponent;

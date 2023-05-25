@@ -88,7 +88,7 @@ const Favourites = ({ navigation }: any) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* <MySVGIcon /> */}
-        <View>
+      <View>
         {whatToMap.map((fav, index) => (
           <View style={styles.favourite} key={index}>
             <Pressable
@@ -110,7 +110,7 @@ const Favourites = ({ navigation }: any) => {
               </View>
             </Pressable>
 
-             {/* avoiding the bug that if favourites in state is empty, all get favourites from storage get removed at once -- see reducer */}
+            {/* avoiding the bug that if favourites in state is empty, all get favourites from storage get removed at once -- see reducer */}
             {favourites.length !== 0 && <RemoveFavourite i={index} />}
           </View>
         ))}

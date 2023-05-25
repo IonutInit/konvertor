@@ -17,7 +17,11 @@ const BackToOptions = () => {
   return (
     <View>
       <Pressable onPress={handleBack}>
-        <Image source={functionalIcons.backButton} style={styles.icon} resizeMode="contain" />
+        <Image
+          source={functionalIcons.backButton}
+          style={styles.icon}
+          resizeMode="contain"
+        />
       </Pressable>
     </View>
   );

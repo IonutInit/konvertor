@@ -43,7 +43,7 @@ const Konvertor = () => {
 
         <FromComponent measureType={state.measureType} />
 
-        <View style={styles.content}>
+ 
           <View style={styles.flexContainer}>
             <View style={styles.toContainer}>
               <View style={styles.toPickerContainer}>
@@ -55,8 +55,7 @@ const Konvertor = () => {
               </View>
             </View>
           </View>
-        </View>
-
+ 
         {platform === "ios" && state.universalPicker.type !== "" && (
           <View style={styles.universalPickerContainer}>
             <UniversalPicker />
@@ -73,16 +72,12 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 15,
-  },
-  content: {
-    flex: 1,
-    position: "relative",
   },
   flexContainer: {
     flex: 1,
