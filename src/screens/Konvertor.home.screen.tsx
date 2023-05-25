@@ -10,6 +10,8 @@ import useAppContext from "../context/useAppContext";
 
 import platform from "../data/platform";
 
+import convert from "convert-units"
+
 import BackToOptions from "../components/BackToOptions";
 import FromComponent from "../components/FromComponent";
 import ToComponent from "../components/ToComponent";
@@ -23,6 +25,37 @@ const Konvertor = () => {
   const { state } = useAppContext();
 
   console.log(state);
+
+
+  const goodFunc = (value: number, from: string, to: string[])=> {
+    const result = Array(to.length)
+
+    const initialConversion = (convert(value).from(from).to(to[0]))
+    result[0] = Math.floor(initialConversion)
+
+  if(to.length > 1) {
+    let residual = initialConversion - result[0]
+     
+    for(let i = 1; i < to.length; i++) {
+      const upperLimit = i  > to.length ? to.length : i 
+
+      const conversion =   convert(residual).from(to[i - 1 ]).to(to[upperLimit]) 
+
+      if(i === to.length - 1) {
+        result[i] = conversion
+      } else {
+        result[i] = Math.floor(conversion)
+      }
+
+      residual = conversion - result[i]
+    }
+  }
+
+  return result
+}
+
+
+  console.log(goodFunc(1000, "mi", ["km", "m", "cm"]))
 
   return (
     <View style={styles.container}>

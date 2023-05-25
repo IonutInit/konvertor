@@ -23,33 +23,31 @@ const getFrom_Subtraction = (value: (string | number)[], from: string[]) => {
 };
 
 const getTo = (value: number, from: string, to: string[]) => {
-  let result = [];
-  let currentValue = value;
+  const result = Array(to.length)
 
-  for (let i = 0; i < to.length; i++) {
-    let conversionFactor = convert(1).from(from).to(to[i]);
-    let convertedValue = currentValue * conversionFactor;
+  const initialConversion = (convert(value).from(from).to(to[0]))
+  result[0] = initialConversion
 
-    let wholeValue = Math.floor(convertedValue);
-    result.push(wholeValue);
+if(to.length > 1) {
+  result[0] = Math.floor(initialConversion)
+  let residual = initialConversion - result[0]
+   
+  for(let i = 1; i < to.length; i++) {
+    const upperLimit = i  > to.length ? to.length : i 
 
-    currentValue = convertedValue - wholeValue;
+    const conversion =   convert(residual).from(to[i - 1 ]).to(to[upperLimit]) 
+
+    if(i === to.length - 1) {
+      result[i] = conversion
+    } else {
+      result[i] = Math.floor(conversion)
+    }
+
+    residual = conversion - result[i]
   }
+}
 
-  result.push(currentValue);
-
-  const lastElement = result[result.length - 1];
-
-  if (lastElement === 0) {
-    result.pop();
-    return result;
-  } else {
-    result[result.length - 2] =
-      Number(result[result.length - 2]) + Number(lastElement);
-    result.pop();
-  }
-
-  return result;
+return result
 };
 
 const converter = (
