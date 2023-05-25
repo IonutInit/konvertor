@@ -54,7 +54,9 @@ const Konvertor = () => {
         </View>
 
         {platform === "ios" && state.universalPicker.type !== "" && (
-          <UniversalPicker />
+          <View style={styles.universalPickerContainer}>
+             <UniversalPicker />
+          </View>         
         )}
       </ScrollView>
     </View>
@@ -95,6 +97,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
+  },
+  universalPickerContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 250,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: [{ translateX: -125 }, { translateY: -200 }],
+    zIndex: 1,
   },
   addTo: {
     marginLeft: "auto",
