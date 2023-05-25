@@ -19,9 +19,7 @@ const RemoveFavourite = ({ i }: RemoveFavouriteType) => {
   return (
     <Pressable
       style={styles.closeButton}
-      onPress={() => handleRemoveFavourite(dispatch, i)}
-      //avoiding the bug that if favourites in state is empty, all get favourites from storage get removed at once -- see reducer
-      disabled={favourites.length === 0}>
+      onPress={() => handleRemoveFavourite(dispatch, i)}>
       <Image source={functionalIcons.removeButton1} style={styles.icon} />
     </Pressable>
   );

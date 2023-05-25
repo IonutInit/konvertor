@@ -63,7 +63,7 @@ const UniversalPicker = () => {
 
 const styles = StyleSheet.create({
   picker: {
-        width: "80%",
+    width: "80%",
 
     backgroundColor: theme.gray1,
     borderWidth: 1,

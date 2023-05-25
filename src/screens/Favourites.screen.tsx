@@ -82,9 +82,7 @@ const Favourites = ({ navigation }: any) => {
   };
 
   if (whatToMap.length === 0) {
-    return (
-      <NoFavourites />
-    );
+    return <NoFavourites />;
   }
 
   return (
@@ -97,14 +95,22 @@ const Favourites = ({ navigation }: any) => {
                 handleLaunchFavourite(fav.measureType, fav.from, fav.to)
               }
               style={styles.favouriteInnerContainer}>
-              <Image source={favouritesIconMap[fav.measureType]} style={styles.icon} />
+              <Image
+                source={favouritesIconMap[fav.measureType]}
+                style={styles.icon}
+              />
               <View>
-                <Text style={styles.favouriteText}>{handleFavouriteText(fav.from)}</Text>
-                <Text style={styles.favouriteText}>{handleFavouriteText(fav.to)}</Text>
+                <Text style={styles.favouriteText}>
+                  {handleFavouriteText(fav.from)}
+                </Text>
+                <Text style={styles.favouriteText}>
+                  {handleFavouriteText(fav.to)}
+                </Text>
               </View>
             </Pressable>
 
-            <RemoveFavourite i={index} />
+            {/* avoiding the bug that if favourites in state is empty, all get favourites from storage get removed at once -- see reducer */}
+            {favourites.length !== 0 && <RemoveFavourite i={index} />}
           </View>
         ))}
       </View>

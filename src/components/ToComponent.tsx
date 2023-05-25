@@ -30,7 +30,13 @@ const ToComponent = () => {
       description[state.measureType]
     );
 
-    const options = state.toUnit.length > 1 ? allOptions : allOptions; //bug at the first allOptions (shold be nextOption)
+    let options = state.toUnit.length > 1 ? nextOption : allOptions; //bug at the first allOptions (shold be nextOption)
+
+    const describe = (input: string[]) => {
+      return input.map((x) => convert().describe(x).plural);
+    };
+
+    state.settings.verbose ? (options = describe(options)) : options;
 
     const result = converter(
       state.addition,

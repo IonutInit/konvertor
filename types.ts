@@ -29,6 +29,7 @@ export type AppStateType = {
     extendedList: boolean;
     metric: number;
     decimals: number;
+    verbose: boolean;
   };
   favourites: FavouriteType[];
   init: 0 | 1; //used to switch between useEffect and state when handling favourites; could find no other way to subscribe to changes

@@ -15,7 +15,7 @@ const Title = ({ title, addToFavourites = true }: TitleProps) => {
     <View style={styles.outerContainer}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{title}</Text>
-          {addToFavourites && <AddToFavourites />}
+        {addToFavourites && <AddToFavourites />}
       </View>
       <Divider />
     </View>

@@ -14,7 +14,13 @@ const ArithmeticOperator = () => {
           type: "toggle_addition",
         })
       }>
-      <Image source={state.addition ? functionalIcons.additionButton : functionalIcons.subtractionButton}/>
+      <Image
+        source={
+          state.addition
+            ? functionalIcons.additionButton
+            : functionalIcons.subtractionButton
+        }
+      />
     </Pressable>
   );
 };

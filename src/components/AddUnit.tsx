@@ -15,7 +15,11 @@ const AddUnit = ({ type }: AddUnitProps) => {
 
   return (
     <Pressable onPress={() => addUnit(dispatch, state, type)}>
-      <Image source={functionalIcons.addUnitButton} style={styles.icon} resizeMode="contain" />
+      <Image
+        source={functionalIcons.addUnitButton}
+        style={styles.icon}
+        resizeMode="contain"
+      />
     </Pressable>
   );
 };

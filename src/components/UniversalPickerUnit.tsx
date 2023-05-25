@@ -21,7 +21,7 @@ type UniversalPickerUnitProps = {
 
 const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
   const {
-    state: { universalPicker },
+    state: { universalPicker, fromUnit },
     dispatch,
   } = useAppContext();
 
@@ -60,6 +60,12 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
     });
   };
 
+  const handleLongPress = () => {
+    if (fromUnit.length > 1) {
+      dispatch({ type: `remove_${type.toUpperCase()}_value`, payload: i });
+    }
+  };
+
   return (
     <View
       style={[
@@ -68,15 +74,11 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
           ? styles.containerNormalSize
           : styles.containerLargeSize,
       ]}>
-
       <Pressable
         onPress={() => workUniversalPicker()}
-        onLongPress={() =>
-          dispatch({ type: `remove_${type.toUpperCase()}_value`, payload: i })
-        }
+        onLongPress={handleLongPress}
         onPressIn={handlePresIn}
         onPressOut={handlePressOut}>
-
         <Text
           style={
             universalPicker.type === "" ? styles.text : styles.overlaidText
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
   overlaidText: {
     fontSize: 24,
     color: theme.gray1,
-    textAlign: "center"
+    textAlign: "center",
   },
 });
 

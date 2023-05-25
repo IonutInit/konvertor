@@ -17,13 +17,8 @@ type PickerComponentProps = {
   i: number;
 };
 
-// const pickerWidth = []
-
 const ToPicker = ({ onChange, options, unit, i }: PickerComponentProps) => {
-  const {
-    state: { toUnit },
-    dispatch,
-  } = useAppContext();
+  const { dispatch } = useAppContext();
 
   return (
     <Picker

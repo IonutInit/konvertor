@@ -4,6 +4,6 @@ type PlatformType = "android" | "ios";
 
 // const platform = Platform.OS;
 
-const platform: PlatformType = "ios";
+const platform: PlatformType = "android";
 
 export default platform;

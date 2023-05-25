@@ -18,11 +18,6 @@ const NavigationTabs = () => {
         tabBarActiveTintColor: theme.mainColour,
         tabBarActiveBackgroundColor: theme.gray2,
       }}>
-
-
-
-
-      
       <Navigation.Screen
         name="Home"
         component={Home}
@@ -36,7 +31,7 @@ const NavigationTabs = () => {
         }}
       />
 
-<Navigation.Screen
+      <Navigation.Screen
         name="Favourites"
         component={Favourites}
         options={{

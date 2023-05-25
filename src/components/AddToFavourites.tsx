@@ -14,17 +14,18 @@ import functionalIcons from "../iconMaps/functionalIconsMap";
 const AddToFavourites = () => {
   const { state, dispatch } = useAppContext();
 
-  const favoriteIndex = state.favourites.findIndex(        (favorite) =>
-  favorite.from.toString() === state.fromUnit.toString() &&
-  favorite.to.toString() === state.toUnit.toString()
-);
+  const favoriteIndex = state.favourites.findIndex(
+    (favorite) =>
+      favorite.from.toString() === state.fromUnit.toString() &&
+      favorite.to.toString() === state.toUnit.toString()
+  );
 
-// to prevent addition of duplicates
-const handleOnPress = (i: number) => {
-  if (i === -1) {
-    handleAddToFavourites(dispatch, state)
-  }
-}
+  // to prevent addition of duplicates
+  const handleOnPress = (i: number) => {
+    if (i === -1) {
+      handleAddToFavourites(dispatch, state);
+    }
+  };
 
   useEffect(() => {
     const retrieveData = async () => {
@@ -39,21 +40,23 @@ const handleOnPress = (i: number) => {
           });
         }
       } catch (e) {}
-
     };
     retrieveData();
   }, []);
 
-
   return (
     <View style={styles.iconContainer}>
-      <Pressable 
-        onPress={() => handleOnPress(favoriteIndex)} 
+      <Pressable
+        onPress={() => handleOnPress(favoriteIndex)}
         onLongPress={() => handleRemoveFavourite(dispatch, favoriteIndex)}
         // disabled={favoriteIndex !== -1}
-        >
+      >
         <Image
-          source={favoriteIndex !== -1 ? functionalIcons.isFavouriteButton : functionalIcons.favouriteButton}
+          source={
+            favoriteIndex !== -1
+              ? functionalIcons.isFavouriteButton
+              : functionalIcons.favouriteButton
+          }
           style={styles.icon}
           resizeMode="contain"
         />

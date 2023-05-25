@@ -6,19 +6,19 @@ import functionalIcons from "../iconMaps/functionalIconsMap";
 
 const NoFavourites = () => {
   return (
-      <View style={styles.noFavouritesContainer}>
-        <Text style={styles.noFavouritesTitle}>No favourites here!</Text>
-        <Divider />
-        <Text style={styles.noFavouritesText}>
-          Use the heart symbol at the top of any configuration you chose to save
-          them for fast future use.
-        </Text>
-        <Image
-          source={functionalIcons.otherFavourite}
-          style={styles.icon}
-          resizeMode="contain"
-        />
-      </View>
+    <View style={styles.noFavouritesContainer}>
+      <Text style={styles.noFavouritesTitle}>No favourites here!</Text>
+      <Divider />
+      <Text style={styles.noFavouritesText}>
+        Use the heart symbol at the top of any configuration you chose to save
+        them for fast future use.
+      </Text>
+      <Image
+        source={functionalIcons.otherFavourite}
+        style={styles.icon}
+        resizeMode="contain"
+      />
+    </View>
   );
 };
 

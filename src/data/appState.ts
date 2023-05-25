@@ -17,6 +17,7 @@ const appState: AppStateType = {
     extendedList: false,
     metric: 2,
     decimals: 2,
+    verbose: false,
   },
   favourites: [],
   init: 0,
