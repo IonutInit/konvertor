@@ -2,7 +2,7 @@ import { View, Pressable, Image, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
-import back from "../assets/back.png";
+import functionalIcons from "../iconMaps/functionalIconsMap";
 
 const BackToOptions = () => {
   const { dispatch } = useAppContext();
@@ -17,7 +17,7 @@ const BackToOptions = () => {
   return (
     <View>
       <Pressable onPress={handleBack}>
-        <Image source={back} style={styles.icon} resizeMode="contain" />
+        <Image source={functionalIcons.backButton} style={styles.icon} resizeMode="contain" />
       </Pressable>
     </View>
   );

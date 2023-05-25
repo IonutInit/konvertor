@@ -18,11 +18,11 @@ import RemoveFavourite from "../components/RemoveFavourite";
 
 import handleFavouriteText from "../lib/handleFavouriteText";
 
-import Divider from "../components/Divider";
-import favouritesIcon from "../assets/favourited.png";
 import NoFavourites from "../components/NoFavourites";
 
 import favouritesIconMap from "../iconMaps/favouritesIconsMap";
+
+// import MySVGIcon from "../icons/Icons";
 
 import theme from "../theme";
 
@@ -87,7 +87,8 @@ const Favourites = ({ navigation }: any) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View>
+      {/* <MySVGIcon /> */}
+        <View>
         {whatToMap.map((fav, index) => (
           <View style={styles.favourite} key={index}>
             <Pressable
@@ -109,7 +110,7 @@ const Favourites = ({ navigation }: any) => {
               </View>
             </Pressable>
 
-            {/* avoiding the bug that if favourites in state is empty, all get favourites from storage get removed at once -- see reducer */}
+             {/* avoiding the bug that if favourites in state is empty, all get favourites from storage get removed at once -- see reducer */}
             {favourites.length !== 0 && <RemoveFavourite i={index} />}
           </View>
         ))}

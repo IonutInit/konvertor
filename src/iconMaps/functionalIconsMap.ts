@@ -10,6 +10,11 @@ import otherFavourite from "../assets/functionalIcons/otherFavourite.png";
 import addUnitButton from "../assets/functionalIcons/addButton.png";
 import additionButton from "../assets/functionalIcons/additionButton.png";
 import subtractionButton from "../assets/functionalIcons/subtractionButton.png";
+import backButton from "../assets/functionalIcons/backButton.png"
+
+import homeIcon from "../assets/functionalIcons/homeIcon.png"
+import favouritesIcon from "../assets/functionalIcons/favouritesIcon.png"
+import settingsIcon from "../assets/functionalIcons/settingsIcon.png"
 
 const functionalIcons: IconMapType = {
   moreButton,
@@ -22,6 +27,11 @@ const functionalIcons: IconMapType = {
   addUnitButton,
   additionButton,
   subtractionButton,
+  backButton,
+
+  homeIcon,
+  favouritesIcon,
+  settingsIcon,
 };
 
 export default functionalIcons;

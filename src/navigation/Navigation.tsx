@@ -1,4 +1,4 @@
-import { Image } from "react-native";
+import { View, Image, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 const Navigation = createBottomTabNavigator();
@@ -7,7 +7,7 @@ import Home from "../screens/Home.screen";
 import Favourites from "../screens/Favourites.screen";
 import Settings from "../screens/Settings.screen";
 
-import sampleIcon from "../assets/sample_icon.png";
+import functionalIcons from "../iconMaps/functionalIconsMap";
 
 import theme from "../theme";
 
@@ -15,34 +15,49 @@ const NavigationTabs = () => {
   return (
     <Navigation.Navigator
       screenOptions={{
-        tabBarActiveTintColor: theme.mainColour,
-        tabBarActiveBackgroundColor: theme.gray2,
+        tabBarShowLabel: false,
       }}>
-      <Navigation.Screen
+
+<Navigation.Screen
         name="Home"
         component={Home}
         options={{
+          title: "Konvertor",
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={sampleIcon}
-              style={{ tintColor: theme.mainColour, width: 30, height: 30 }}
+              source={functionalIcons.homeIcon}
+              style={{ width: 30, height: 30 }}
             />
           ),
         }}
       />
+      
 
-      <Navigation.Screen
+<Navigation.Screen
         name="Favourites"
         component={Favourites}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Image
-              source={sampleIcon}
-              style={{ tintColor: theme.mainColour, width: 30, height: 30 }}
+          tabBarIcon: ({ color, size }) => {
+            return (
+                <View>
+              {/* <Text>
+                Hello
+              </Text> */}
+               <Image
+              source={functionalIcons.favouritesIcon}
+              style={{ width: 30, height: 30 }}
             />
-          ),
+            </View>
+            )         
+           
+            },
         }}
       />
+
+
+
+
+
 
       <Navigation.Screen
         name="Settings"
@@ -50,8 +65,8 @@ const NavigationTabs = () => {
         options={{
           tabBarIcon: ({ color, size }) => (
             <Image
-              source={sampleIcon}
-              style={{ tintColor: theme.mainColour, width: 30, height: 30 }}
+              source={functionalIcons.settingsIcon}
+              style={{ width: 30, height: 30 }}
             />
           ),
         }}
