@@ -24,6 +24,8 @@ const getFrom_Subtraction = (value: (string | number)[], from: string[]) => {
 
 const getTo = (value: number, from: string, to: string[]) => {
   const result = Array(to.length);
+  const plusMinus = value > 0 ? 1 : -1;
+  value = Math.abs(value);
 
   const initialConversion = convert(value).from(from).to(to[0]);
   result[0] = initialConversion;
@@ -49,7 +51,7 @@ const getTo = (value: number, from: string, to: string[]) => {
     }
   }
 
-  return result;
+  return result.map((r) => r * plusMinus);
 };
 
 const converter = (

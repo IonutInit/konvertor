@@ -29,6 +29,7 @@ const Konvertor = () => {
   const toUnitadditions = platform === "android" ? 2 : 3;
 
   console.log(state);
+  console.log(Math.abs(-234));
 
   return (
     <View style={styles.container}>
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   toOuterContainer: {
     flex: 1,
     justifyContent: "flex-end",
-    alignItems: "center"
+    alignItems: "center",
   },
   toContainer: {
     flexDirection: "row",
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
   toPickerContainer: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "center",   
+    justifyContent: "center",
   },
   universalPickerContainer: {
     alignItems: "center",

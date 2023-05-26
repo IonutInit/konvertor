@@ -12,7 +12,7 @@ const Settings = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.settingsContainer}>
+      {/* <View style={styles.settingsContainer}>
         <View style={{ paddingBottom: 20 }}>
           <Text>Decimals: {settings.decimals}</Text>
         </View>
@@ -42,7 +42,7 @@ const Settings = () => {
 
         <View style={styles.divider}></View>
         <View style={styles.divider}></View>
-      </View>
+      </View> */}
 
       <Credentials />
     </ScrollView>

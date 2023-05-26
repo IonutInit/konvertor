@@ -25,7 +25,7 @@ const Options = () => {
   );
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.scrollViewContainer}>
       <View style={styles.outerPressableContainer}>
         {filteredUnitList.map((unit) => (
           <Pressable
@@ -53,6 +53,10 @@ const Options = () => {
 };
 
 const styles = StyleSheet.create({
+  scrollViewContainer: {
+    flex: 1,
+
+  },
   outerPressableContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
