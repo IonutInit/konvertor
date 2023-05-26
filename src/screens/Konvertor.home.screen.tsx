@@ -29,7 +29,6 @@ const Konvertor = () => {
   const toUnitadditions = platform === "android" ? 2 : 3;
 
   console.log(state);
-  console.log(Math.abs(-234));
 
   return (
     <View style={styles.container}>

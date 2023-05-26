@@ -1,6 +1,6 @@
 import { View, ScrollView, Text, StyleSheet } from "react-native";
 
-import SliderComponent from "../components/Slider";
+// import SliderComponent from "../components/SliderOld";
 import Credentials from "../components/Credentials";
 
 import useAppContext from "../context/useAppContext";

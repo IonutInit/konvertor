@@ -44,7 +44,7 @@ const FromComponent = ({ measureType }: { measureType: string }) => {
               />
           )} */}
 
-          {platform === "android" && (
+          {platform !== "ios" && (
             <PickerComponent
               onChange={handleFromUnitChange}
               options={options}

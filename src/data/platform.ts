@@ -2,7 +2,7 @@ import { Platform } from "react-native";
 
 type PlatformType = "android" | "ios";
 
-const platform = Platform.OS === "android" || "web" ? "android" : Platform.OS;
+const platform = Platform.OS 
 
 // const platform: PlatformType = "android";
 

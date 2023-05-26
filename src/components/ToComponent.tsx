@@ -14,6 +14,7 @@ import platform from "../data/platform";
 
 import convert from "convert-units";
 import converter from "../lib/converter";
+import { describe, revertDescription } from "../lib/verboseDescription";
 
 import getNextUnit from "../lib/getNextUnit";
 import description from "../data/unitDescription";
@@ -32,11 +33,18 @@ const ToComponent = () => {
 
     let options = state.toUnit.length > 1 ? nextOption : allOptions; //bug at the first allOptions (shold be nextOption)
 
-    const describe = (input: string[]) => {
-      return input.map((x) => convert().describe(x).plural);
-    };
+    //   const describe = (input: string[]) => {
+    //     return [input.map((x) => convert().describe(x).plural), input];
+    //   };
 
-    state.settings.verbose ? (options = describe(options)) : options;
+    //   const revertDescription = (unit: string, revertFrom: string[], revertTo: string[]) => {
+    //     const index = revertFrom.indexOf(unit);
+    // return revertTo[index];
+    //   }
+
+    const [extendedOptions, _] = describe(options);
+
+    state.settings.verbose ? (options = extendedOptions) : options;
 
     const result = converter(
       state.addition,
@@ -57,7 +65,7 @@ const ToComponent = () => {
         <View style={styles.pickerContainer}>
           <Text style={styles.result}>{result[i].toFixed(decimals)}</Text>
 
-          {platform === "android" && (
+          {platform !== "ios" && (
             <ToPicker
               onChange={handleToUnitChange}
               options={options}

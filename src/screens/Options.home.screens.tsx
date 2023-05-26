@@ -55,7 +55,6 @@ const Options = () => {
 const styles = StyleSheet.create({
   scrollViewContainer: {
     flex: 1,
-
   },
   outerPressableContainer: {
     flexDirection: "row",
