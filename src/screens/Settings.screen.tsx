@@ -1,6 +1,7 @@
 import { View, ScrollView, Text, StyleSheet } from "react-native";
 
 import SliderComponent from "../components/SliderComponent";
+import ToggleButton from "../components/ToggleButton";
 import Credentials from "../components/Credentials";
 
 import useAppContext from "../context/useAppContext";
@@ -12,8 +13,14 @@ const Settings = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.toogleButtonsOuterContainer}>
+        <View style={styles.ToggleButtonInnerContainer}>
+          <ToggleButton text={"System"} />
+          <ToggleButton text={"Verbosity"} />
+        </View>
+      </View>
 
-      <View style={styles.settingsContainer}>
+      <View style={styles.sliderContainer}>
         <View style={{ paddingBottom: 20 }}>
           <Text>Decimals: {settings.decimals}</Text>
         </View>
@@ -27,7 +34,7 @@ const Settings = () => {
         <View style={styles.divider}></View>
       </View>
 
-      <View style={styles.settingsContainer}>
+      <View style={styles.sliderContainer}>
         <View style={{ paddingBottom: 20 }}>
           <Text>
             From: {settings.metric ? "metric" : "imperial"} to{" "}
@@ -55,7 +62,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
-  settingsContainer: {
+  toogleButtonsOuterContainer: {
+    paddingTop: 30,
+    width: "80%",
+  },
+  ToggleButtonInnerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  sliderContainer: {
     width: "80%",
     alignItems: "center",
     paddingTop: 30,

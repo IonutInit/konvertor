@@ -16,6 +16,9 @@ import homeIcon from "../assets/functionalIcons/homeIcon.png";
 import favouritesIcon from "../assets/functionalIcons/favouritesIcon.png";
 import settingsIcon from "../assets/functionalIcons/settingsIcon.png";
 
+import metricSystem from "../assets/functionalIcons/metricSystem.png";
+import imperialSystem from "../assets/functionalIcons/imperialSystem.png";
+
 const functionalIcons: IconMapType = {
   moreButton,
   lessButton,
@@ -32,6 +35,9 @@ const functionalIcons: IconMapType = {
   homeIcon,
   favouritesIcon,
   settingsIcon,
+
+  metricSystem,
+  imperialSystem,
 };
 
 export default functionalIcons;

@@ -25,9 +25,7 @@ const NavigationTabs = () => {
         headerTintColor: theme.gray1,
         //tabBarActiveBackgroundColor: theme.gray1Darker
       }}>
-
-
-<Navigation.Screen
+      <Navigation.Screen
         name="Settings"
         component={Settings}
         options={{
@@ -39,8 +37,6 @@ const NavigationTabs = () => {
           ),
         }}
       />
-
-
 
       <Navigation.Screen
         name="Home"
@@ -75,8 +71,6 @@ const NavigationTabs = () => {
           },
         }}
       />
-
-
     </Navigation.Navigator>
   );
 };

@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import Slider from "@react-native-community/slider";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Image } from "react-native";
 
 import useAppContext from "../context/useAppContext";
+
+import sliderThumbs from "../iconMaps/sliderThumbMaps";
 
 import theme from "../theme";
 
 type SliderComponentPropType = {
   settingType: string;
 };
+
+console.log(sliderThumbs);
 
 const SliderComponent = ({
   settingType,
@@ -22,7 +26,6 @@ SliderComponentPropType) => {
   const [value, setValue] = useState(settings.decimals * 10);
 
   const handleValueChange = (newValue: number) => {
-    
     setValue(Math.floor(newValue));
 
     const settingValue =
@@ -44,9 +47,10 @@ SliderComponentPropType) => {
         maximumValue={49}
         value={value}
         onValueChange={handleValueChange}
-        minimumTrackTintColor= {theme.gray3}
-        maximumTrackTintColor= {theme.gray3}
+        minimumTrackTintColor={theme.gray3}
+        maximumTrackTintColor={theme.gray3}
         thumbTintColor={theme.mainColour}
+        //thumbImage={require("../assets/sliderThumbs/zero.png")}
       />
       {/* <Text>{description}</Text> */}
     </View>
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
   slider: {
     width: 200,
     height: 30,
-  }
+  },
 });
 
 export default SliderComponent;

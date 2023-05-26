@@ -26,12 +26,16 @@ const ToComponent = () => {
     const allOptions = convert()
       .from(state.toUnit[state.toUnit.length - 1])
       .possibilities();
-    const nextOption = getNextUnit(
+    let nextOption = getNextUnit(
       state.toUnit[state.toUnit.length - 1],
       description[state.measureType]
     );
 
-    let options = state.toUnit.length > 1 ? nextOption : allOptions; //bug at the first allOptions (shold be nextOption)
+    platform === "android" ? nextOption = allOptions : nextOption
+    //doesn't work on android???
+    //bug at the first allOptions (shold be nextOption)
+
+    let options = state.toUnit.length > 1 ? nextOption : allOptions; 
 
     //   const describe = (input: string[]) => {
     //     return [input.map((x) => convert().describe(x).plural), input];
