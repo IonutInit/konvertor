@@ -17,9 +17,11 @@ const Description = () => {
       <Pressable
         style={styles.innerContainer}
         onPress={() => addUnit(dispatch, state, "from")}>
-        <Text style={styles.text}>{handleDescriptionText(fromUnit, true)}</Text>
         <Text style={styles.text}>
-          TO {handleDescriptionText(toUnit, false)}
+          {handleDescriptionText(fromUnit, true, true)}
+        </Text>
+        <Text style={styles.text}>
+          TO {handleDescriptionText(toUnit, true, false)}
         </Text>
       </Pressable>
     </View>
@@ -28,7 +30,7 @@ const Description = () => {
 
 const styles = StyleSheet.create({
   outerContainer: {
-    width: "100%",
+    width: "95%",
     alignItems: "center",
     paddingHorizontal: 20,
     marginVertical: 15,

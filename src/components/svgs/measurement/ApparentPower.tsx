@@ -1,4 +1,4 @@
-import {Svg, Path } from "react-native-svg"
+import { Svg, Path } from "react-native-svg";
 
 import { SvgProps } from "../MeasurementIcons";
 
@@ -8,8 +8,7 @@ const ApparentPower = ({ size, mainColour, secondaryColour }: SvgProps) => (
       width: size,
       height: size,
     }}
-    viewBox="0 0 50 50"
-  >
+    viewBox="0 0 50 50">
     <Path
       d="M301.951 128.8h-91.953c-6.184 0-11.199 5.02-11.199 11.199v280c0 6.184 5.02 11.199 11.199 11.199h280c6.184 0 11.199-5.019 11.199-11.199v-280c0-6.184-5.019-11.199-11.199-11.199h-91.953v220.41h-96.094V128.8Z"
       fill={mainColour}
@@ -23,5 +22,5 @@ const ApparentPower = ({ size, mainColour, secondaryColour }: SvgProps) => (
       transform="matrix(.09682 0 0 .09682 -8.886 -2.11)"
     />
   </Svg>
-)
-export default ApparentPower
+);
+export default ApparentPower;

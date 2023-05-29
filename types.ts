@@ -115,4 +115,11 @@ export type ActionType =
   | {
       type: "initialise_favourites";
       payload: FavouriteType[];
+    }
+  | {
+      type: "switch";
+      payload: {
+        sourceFromUnit: string[];
+        sourceToUnit: string[];
+      };
     };

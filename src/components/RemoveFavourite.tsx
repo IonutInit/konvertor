@@ -1,26 +1,28 @@
-import { Pressable, Image, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
 import handleRemoveFavourite from "../hooks/handleRemoveFavourite";
 
-import functionalIcons from "../iconMaps/functionalIconsMap";
+import RemoveIcon from "./svgs/RemoveIcon";
+import theme from "../theme";
 
 type RemoveFavouriteType = {
   i: number;
 };
 
 const RemoveFavourite = ({ i }: RemoveFavouriteType) => {
-  const {
-    dispatch,
-    state: { favourites },
-  } = useAppContext();
+  const { dispatch } = useAppContext();
 
   return (
     <Pressable
       style={styles.closeButton}
       onPress={() => handleRemoveFavourite(dispatch, i)}>
-      <Image source={functionalIcons.removeButton1} style={styles.icon} />
+      <RemoveIcon
+        size={28}
+        background={theme.secondaryColour}
+        symbolColour={theme.mainColour}
+      />
     </Pressable>
   );
 };
@@ -30,10 +32,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 7,
     right: 7,
-  },
-  icon: {
-    width: 28,
-    height: 28,
   },
 });
 

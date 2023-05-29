@@ -34,41 +34,49 @@ export type SvgProps = {
 
 type Props = {
   type: string;
+  mainColour?: string;
+  secondaryColour?: string;
 };
 
-const MeasurementIcons = ({ type }: Props) => {
+const MeasurementIcons = ({
+  type,
+  mainColour = theme.mainColour,
+  secondaryColour = theme.secondaryColour,
+}: Props) => {
   const props = {
     size: 50,
-    mainColour: theme.mainColour,
-    secondaryColour: theme.secondaryColour,
+    mainColour,
+    secondaryColour,
   };
 
-  return <>
-  {type === "length" && <Length {...props} />}
-  {type === "area" && <Area {...props} />}
-  {type === "mass" && <Mass {...props} />}
-  {type === "volume" && <Volume {...props} />}
-  {type === "temperature" && <Temperature {...props} />}
-  {type === "time" && <Time {...props} />}
-  {type === "frequency" && <Frequency {...props} />}
-  {type === "speed" && <Speed {...props} />}
-  {type === "digital" && <Digital {...props} />}
-  {type === "angle" && <Angle {...props} />}
-  {type === "volumeFlowRate" && <VolumeFlowRate {...props} />}
-  {type === "pace" && <Pace {...props} />}
-  {type === "pressure" && <Pressure {...props} />}
-  {type === "illuminance" && <Illuminance {...props} />}
-  {type === "partsPer" && <PartsPer {...props} />}
-  {type === "voltage" && <Voltage {...props} />}
-  {type === "current" && <Current {...props} />}
-  {type === "power" && <Power {...props} />}
-  {type === "apparentPower" && <ApparentPower {...props} />}
-  {type === "reactivePower" && <ReactivePower {...props} />}
-  {type === "energy" && <Energy {...props} />}
-  {type === "reactiveEnergy" && <ReactiveEvergy {...props} />}
-  {type === "bmi" && <Bmi {...props} />}
-  {type === "weightLoss" && <WeightLoss {...props} />}
-  </>;
+  return (
+    <>
+      {type === "length" && <Length {...props} />}
+      {type === "area" && <Area {...props} />}
+      {type === "mass" && <Mass {...props} />}
+      {type === "volume" && <Volume {...props} />}
+      {type === "temperature" && <Temperature {...props} />}
+      {type === "time" && <Time {...props} />}
+      {type === "frequency" && <Frequency {...props} />}
+      {type === "speed" && <Speed {...props} />}
+      {type === "digital" && <Digital {...props} />}
+      {type === "angle" && <Angle {...props} />}
+      {type === "volumeFlowRate" && <VolumeFlowRate {...props} />}
+      {type === "pace" && <Pace {...props} />}
+      {type === "pressure" && <Pressure {...props} />}
+      {type === "illuminance" && <Illuminance {...props} />}
+      {type === "partsPer" && <PartsPer {...props} />}
+      {type === "voltage" && <Voltage {...props} />}
+      {type === "current" && <Current {...props} />}
+      {type === "power" && <Power {...props} />}
+      {type === "apparentPower" && <ApparentPower {...props} />}
+      {type === "reactivePower" && <ReactivePower {...props} />}
+      {type === "energy" && <Energy {...props} />}
+      {type === "reactiveEnergy" && <ReactiveEvergy {...props} />}
+      {type === "bmi" && <Bmi {...props} />}
+      {type === "weightLoss" && <WeightLoss {...props} />}
+    </>
+  );
 };
 
 export default MeasurementIcons;

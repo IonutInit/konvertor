@@ -1,4 +1,4 @@
-import {Svg, Path } from "react-native-svg"
+import { Svg, Path } from "react-native-svg";
 
 import { SvgProps } from "../MeasurementIcons";
 
@@ -8,8 +8,7 @@ const ReactivePower = ({ size, mainColour, secondaryColour }: SvgProps) => (
       width: size,
       height: size,
     }}
-    viewBox="0 0 50 50"
-  >
+    viewBox="0 0 50 50">
     <Path
       d="M480.37 167.05a178.023 178.023 0 0 0-18.871-21.055c-23.969-64.289-64.961-106.79-111.5-106.79s-87.527 42.504-111.66 106.96a178.023 178.023 0 0 0-18.871 21.055c-66.25 23.746-110.27 65.41-110.27 112.79 0 47.38 44.016 89.039 110.43 112.95a178.023 178.023 0 0 0 18.871 21.055c23.969 64.289 64.961 106.79 111.5 106.79s87.527-42.504 111.66-106.96a178.023 178.023 0 0 0 18.871-21.055C546.78 369.044 590.8 327.38 590.8 280c0-47.38-44.016-89.039-110.43-112.95ZM350 448c-86.465 0-156.8-75.375-156.8-168S263.536 112 350 112c86.464 0 156.8 75.375 156.8 168S436.464 448 350 448Z"
       fill={mainColour}
@@ -29,5 +28,5 @@ const ReactivePower = ({ size, mainColour, secondaryColour }: SvgProps) => (
       transform="matrix(-.02999 0 0 -.02999 35.496 33.892)"
     />
   </Svg>
-)
-export default ReactivePower
+);
+export default ReactivePower;

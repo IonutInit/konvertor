@@ -1,5 +1,4 @@
-
-import {Svg, Path } from "react-native-svg"
+import { Svg, Path } from "react-native-svg";
 
 import { SvgProps } from "../MeasurementIcons";
 
@@ -9,8 +8,7 @@ const Bmi = ({ size, mainColour, secondaryColour }: SvgProps) => (
       width: size,
       height: size,
     }}
-    viewBox="0 0 50 50"
-  >
+    viewBox="0 0 50 50">
     <Path
       d="M209.44 199.36c-8.961-.559-17.359-1.121-25.762-1.121-40.32 0-68.32 9.519-69.441 23.52-1.68 17.359 37.52 34.719 89.602 39.199 8.961.558 17.359 1.121 25.762 1.121 40.32 0 68.32-9.519 69.441-23.52 1.676-16.797-38.082-34.16-89.602-39.199Z"
       fill={mainColour}
@@ -42,5 +40,5 @@ const Bmi = ({ size, mainColour, secondaryColour }: SvgProps) => (
       transform="matrix(.03826 0 0 .03826 -4.512 1.454)"
     />
   </Svg>
-)
-export default Bmi
+);
+export default Bmi;

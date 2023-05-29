@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    color: theme.gray1
-  }
+    color: theme.gray1,
+  },
 });
 
 export default ToggleExtendedList;

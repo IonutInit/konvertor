@@ -1,7 +1,8 @@
-import { View, Text, Pressable, Image, StyleSheet } from "react-native";
+import { View, Pressable, StyleSheet } from "react-native";
 import useAppContext from "../context/useAppContext";
 
-import functionalIcons from "../iconMaps/functionalIconsMap";
+import RemoveIcon from "./svgs/RemoveIcon";
+import theme from "../theme";
 
 type RemoveUnitProps = {
   type: "to" | "from";
@@ -21,7 +22,12 @@ const RemoveUnit = ({ type, i }: RemoveUnitProps) => {
         }
         disabled={!arrayLength}>
         {arrayLength && (
-          <Image source={functionalIcons.removeButton2} style={styles.icon} />
+          <RemoveIcon
+            size={30}
+            background={theme.gray2}
+            symbolColour={theme.mainColour}
+          />
+          // <RemoveIcon size={30} background={theme.gray2} symbolColour={theme.gray1}/>
         )}
       </Pressable>
     </View>
@@ -34,13 +40,6 @@ const styles = StyleSheet.create({
     heigth: 40,
     alignItems: "center",
     marginRight: 10,
-  },
-  text: {
-    // fontSize: 18,
-  },
-  icon: {
-    width: 30,
-    height: 30,
   },
 });
 

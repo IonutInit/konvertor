@@ -1,6 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import storageKey from "../data/storageKey";
 
+import converter from "../lib/converter";
+
 import { AppStateType, ActionType, FavouriteType } from "../../types";
 
 const reducer = (state: AppStateType, action: ActionType): AppStateType => {
@@ -110,6 +112,21 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         ...state,
         toUnit: updatedFromUnit4,
         // fromValue: updatedFromValue4
+      };
+
+    case "switch":
+      const result = converter(
+        state.addition,
+        state.fromValue,
+        state.fromUnit,
+        state.fromUnit[0],
+        state.toUnit
+      );
+      return {
+        ...state,
+        fromUnit: action.payload.sourceToUnit,
+        fromValue: result,
+        toUnit: action.payload.sourceFromUnit,
       };
 
     case "remove_favourite":

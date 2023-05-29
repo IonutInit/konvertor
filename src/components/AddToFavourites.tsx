@@ -11,6 +11,8 @@ import handleRemoveFavourite from "../hooks/handleRemoveFavourite";
 
 import functionalIcons from "../iconMaps/functionalIconsMap";
 
+import FavouritesIcon from "./svgs/FavouriteIcon";
+
 const AddToFavourites = () => {
   const { state, dispatch } = useAppContext();
 
@@ -51,15 +53,7 @@ const AddToFavourites = () => {
         onLongPress={() => handleRemoveFavourite(dispatch, favoriteIndex)}
         // disabled={favoriteIndex !== -1}
       >
-        <Image
-          source={
-            favoriteIndex !== -1
-              ? functionalIcons.isFavouriteButton
-              : functionalIcons.favouriteButton
-          }
-          style={styles.icon}
-          resizeMode="contain"
-        />
+        <FavouritesIcon isFavourite={favoriteIndex !== -1} />
       </Pressable>
     </View>
   );

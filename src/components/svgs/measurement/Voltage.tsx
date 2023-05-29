@@ -1,4 +1,4 @@
-import {Svg, Path } from "react-native-svg"
+import { Svg, Path } from "react-native-svg";
 
 import { SvgProps } from "../MeasurementIcons";
 
@@ -8,8 +8,7 @@ const Voltage = ({ size, mainColour, secondaryColour }: SvgProps) => (
       width: size,
       height: size,
     }}
-    viewBox="0 0 50 50"
-  >
+    viewBox="0 0 50 50">
     <Path
       d="M268.84 458.07H114.1a18.96 18.96 0 0 1-16.422-9.48 18.956 18.956 0 0 1 .004-18.953c48.027-83.172 187.88-325.34 235.9-408.5a18.944 18.944 0 0 1 16.414-9.481 18.936 18.936 0 0 1 16.414 9.481c48.027 83.152 187.88 325.32 235.9 408.5a18.937 18.937 0 0 1 .004 18.953 18.968 18.968 0 0 1-16.422 9.48h-213.27l110.99-107.21a30.13 30.13 0 0 0 7.004-32.965 30.135 30.135 0 0 0-27.941-18.848h-94.168l41.906-78.668a30.13 30.13 0 0 0-.758-29.68 30.127 30.127 0 0 0-25.836-14.625h-38.688a55.408 55.408 0 0 0-46.055 24.594c-24.605 36.766-83.055 124.12-109.3 163.34a30.136 30.136 0 0 0 25.047 46.895h78.906l-24.91 47.164.021.003Z"
       fill={mainColour}
@@ -23,5 +22,5 @@ const Voltage = ({ size, mainColour, secondaryColour }: SvgProps) => (
       transform="matrix(.08944 0 0 .08944 -6.304 -.043)"
     />
   </Svg>
-)
-export default Voltage
+);
+export default Voltage;

@@ -28,8 +28,8 @@ SliderComponentPropType) => {
   const handleValueChange = (newValue: number) => {
     setValue(Math.floor(newValue));
 
-    const settingValue =
-      settingType === "decimals" ? Math.floor(newValue / 10) : newValue > 23;
+    const settingValue = Math.floor(newValue / 10);
+    //settingType === "decimals" ? Math.floor(newValue / 10) : newValue > 23;
 
     dispatch({
       type: "change_settings",

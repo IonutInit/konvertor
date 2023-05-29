@@ -1,11 +1,4 @@
-import {
-  View,
-  ScrollView,
-  Text,
-  Pressable,
-  Image,
-  StyleSheet,
-} from "react-native";
+import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
 
 import { useState, useEffect } from "react";
 
@@ -14,15 +7,14 @@ import storageKey from "../data/storageKey";
 
 import useAppContext from "../context/useAppContext";
 
+import BackButton from "../components/svgs/BackButton";
 import RemoveFavourite from "../components/RemoveFavourite";
 
 import handleFavouriteText from "../lib/handleFavouriteText";
 
 import NoFavourites from "../components/NoFavourites";
 
-import favouritesIconMap from "../iconMaps/favouritesIconsMap";
-
-// import MySVGIcon from "../icons/Icons";
+import MeasurementIcons from "../components/svgs/MeasurementIcons";
 
 import theme from "../theme";
 
@@ -87,7 +79,12 @@ const Favourites = ({ navigation }: any) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* <MySVGIcon /> */}
+      <View style={styles.header}>
+        <Pressable onPress={() => navigation.jumpTo("Home")}>
+          <BackButton />
+        </Pressable>
+      </View>
+
       <View>
         {whatToMap.map((fav, index) => (
           <View style={styles.favourite} key={index}>
@@ -96,16 +93,17 @@ const Favourites = ({ navigation }: any) => {
                 handleLaunchFavourite(fav.measureType, fav.from, fav.to)
               }
               style={styles.favouriteInnerContainer}>
-              <Image
-                source={favouritesIconMap[fav.measureType]}
-                style={styles.icon}
+              <MeasurementIcons
+                type={fav.measureType}
+                mainColour={theme.gray1}
+                secondaryColour={theme.gray1}
               />
               <View>
                 <Text style={styles.favouriteText}>
-                  {handleFavouriteText(fav.from)}
+                  {handleFavouriteText(fav.from, [fav.from, fav.to])}
                 </Text>
                 <Text style={styles.favouriteText}>
-                  {handleFavouriteText(fav.to)}
+                  {handleFavouriteText(fav.to, [fav.from, fav.to])}
                 </Text>
               </View>
             </Pressable>
@@ -122,7 +120,11 @@ const Favourites = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    paddingTop: 30,
+  },
+  header: {
+    width: "100%",
+    alignContent: "flex-start",
+    padding: 15,
   },
   favourite: {
     width: 250,
@@ -147,11 +149,7 @@ const styles = StyleSheet.create({
   favouriteText: {
     color: theme.gray1,
     fontWeight: "bold",
-  },
-  icon: {
-    width: 45,
-    height: 45,
-    marginRight: 10,
+    marginLeft: 10,
   },
 });
 

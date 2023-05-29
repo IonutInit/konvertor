@@ -54,8 +54,7 @@ const Options = () => {
 };
 
 const styles = StyleSheet.create({
-  scrollViewContainer: {
-  },
+  scrollViewContainer: {},
   outerPressableContainer: {
     flexDirection: "row",
     flexWrap: "wrap",

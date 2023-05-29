@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet } from "react-native";
 
 import Divider from "./Divider";
 
-import functionalIcons from "../iconMaps/functionalIconsMap";
+import FavouritesIcon from "./svgs/FavouriteIcon";
 
 const NoFavourites = () => {
   return (
@@ -13,11 +13,7 @@ const NoFavourites = () => {
         Use the heart symbol at the top of any configuration you chose to save
         them for fast future use.
       </Text>
-      <Image
-        source={functionalIcons.otherFavourite}
-        style={styles.icon}
-        resizeMode="contain"
-      />
+      <FavouritesIcon isFavourite />
     </View>
   );
 };

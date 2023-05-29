@@ -1,4 +1,4 @@
-import {Svg, Path } from "react-native-svg"
+import { Svg, Path } from "react-native-svg";
 
 import { SvgProps } from "../MeasurementIcons";
 
@@ -8,8 +8,7 @@ const Angle = ({ size, mainColour, secondaryColour }: SvgProps) => (
       width: size,
       height: size,
     }}
-    viewBox="0 0 50 50"
-  >
+    viewBox="0 0 50 50">
     <Path
       d="M304.04 286.78h59.449v59.426H304.04zM304.04 202.87c77.797 2.91 140.43 65.531 143.34 143.34h164.63a270.35 270.35 0 0 0 8.199-66.203c0-149.22-120.98-270.2-270.2-270.2-15.68 0-31.023 1.41-45.965 3.977l-.004 189.086Z"
       fill={mainColour}
@@ -29,5 +28,5 @@ const Angle = ({ size, mainColour, secondaryColour }: SvgProps) => (
       transform="translate(-6.088 .13) scale(.08882)"
     />
   </Svg>
-)
-export default Angle
+);
+export default Angle;

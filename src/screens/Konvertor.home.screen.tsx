@@ -10,23 +10,27 @@ import useAppContext from "../context/useAppContext";
 
 import platform from "../data/platform";
 
-import convert from "convert-units";
-
 import BackToOptions from "../components/BackToOptions";
 import FromComponent from "../components/FromComponent";
 import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
 import ArithmeticOperator from "../components/ArithmeticOperator";
+import Switch from "../components/Switch";
 import Title from "../components/Title";
 import UniversalPicker from "../components/UniversalPicker";
 import Description from "../components/Description";
 
-import theme from "../theme";
+//import theme from "../theme";
+
+import getTheme from "../theme";
 
 const Konvertor = () => {
   const { state } = useAppContext();
 
   const toUnitadditions = platform === "android" ? 2 : 3;
+
+  const theme = getTheme();
+  // const theme = state.settings.theme
 
   console.log(state);
 
@@ -36,17 +40,24 @@ const Konvertor = () => {
         <View style={styles.header}>
           <BackToOptions />
           <ArithmeticOperator />
-          <AddUnit type="from" />
+          <Switch />
         </View>
 
         <Title title={state.measureName} />
 
-        <Description />
+        <View style={styles.descriptionContainer}>
+          <Description />
+          <AddUnit type="from" />
+        </View>
 
         <FromComponent measureType={state.measureType} />
 
         <View style={styles.toOuterContainer}>
-          <View style={styles.toContainer}>
+          <View
+            style={[
+              styles.toContainer,
+              { borderColor: theme.gray1, shadowColor: theme.gray1 },
+            ]}>
             <View style={styles.toPickerContainer}>
               <ToComponent />
             </View>
@@ -79,6 +90,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 15,
   },
+  descriptionContainer: {
+    width: "90%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginVertical: 13,
+  },
   toOuterContainer: {
     flex: 1,
     justifyContent: "flex-end",
@@ -92,9 +110,9 @@ const styles = StyleSheet.create({
     width: "95%",
     paddingTop: 15,
     borderWidth: 1,
-    borderColor: theme.gray1,
+    // borderColor: theme.gray1,
     borderRadius: 10,
-    shadowColor: theme.gray3,
+    // shadowColor: theme.gray3,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.6,
     shadowRadius: 2,

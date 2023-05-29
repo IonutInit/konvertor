@@ -1,18 +1,26 @@
-import { View, ScrollView, Text, StyleSheet } from "react-native";
+import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
 
 import SliderComponent from "../components/SliderComponent";
 import ToggleButton from "../components/ToggleButton";
 import Credentials from "../components/Credentials";
 
+import BackButton from "../components/svgs/BackButton";
+
 import useAppContext from "../context/useAppContext";
 
-const Settings = () => {
+const Settings = ({ navigation }: any) => {
   const {
     state: { settings },
   } = useAppContext();
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.header}>
+        <Pressable onPress={() => navigation.jumpTo("Home")}>
+          <BackButton />
+        </Pressable>
+      </View>
+
       <View style={styles.toogleButtonsOuterContainer}>
         <View style={styles.ToggleButtonInnerContainer}>
           <ToggleButton text={"System"} />
@@ -37,15 +45,17 @@ const Settings = () => {
       <View style={styles.sliderContainer}>
         <View style={{ paddingBottom: 20 }}>
           <Text>
-            From: {settings.metric ? "metric" : "imperial"} to{" "}
-            {!settings.metric ? "metric" : "imperial"}
+            Theme name
+            {/* From: {settings.metric ? "metric" : "imperial"} to{" "}
+            {!settings.metric ? "metric" : "imperial"} */}
           </Text>
         </View>
 
-        <SliderComponent settingType="metric" />
+        <SliderComponent settingType="theme" />
 
         <View style={{ paddingTop: 20 }}>
-          <Text style={styles.title}>Preferred conversion type</Text>
+          <Text style={styles.title}>Theme</Text>
+          {/* <Text style={styles.title}>Preferred conversion type</Text> */}
         </View>
 
         <View style={styles.divider}></View>
@@ -61,6 +71,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+  },
+  header: {
+    width: "100%",
+    alignContent: "flex-start",
+    padding: 15,
   },
   toogleButtonsOuterContainer: {
     paddingTop: 30,

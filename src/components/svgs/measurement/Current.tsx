@@ -1,4 +1,4 @@
-import {Svg, Path } from "react-native-svg"
+import { Svg, Path } from "react-native-svg";
 
 import { SvgProps } from "../MeasurementIcons";
 
@@ -8,8 +8,7 @@ const Current = ({ size, mainColour, secondaryColour }: SvgProps) => (
       width: size,
       height: size,
     }}
-    viewBox="0 0 50 50"
-  >
+    viewBox="0 0 50 50">
     <Path
       d="m353.36 157.36-86.801 129.36c-8.398 12.32 1.121 28.559 15.68 28l33.039-1.68c3.922 0 6.719 2.801 6.16 6.719l-7.281 71.68c-1.68 18.48 22.398 27.441 32.48 11.762l86.801-129.36c8.398-12.32-1.121-28.559-15.68-28l-33.039 1.68c-3.922 0-6.719-2.801-6.16-6.719l7.281-71.68c1.68-18.48-22.398-27.441-32.48-11.762Z"
       fill={mainColour}
@@ -23,5 +22,5 @@ const Current = ({ size, mainColour, secondaryColour }: SvgProps) => (
       transform="matrix(.09024 0 0 .09024 -6.586 -.266)"
     />
   </Svg>
-)
-export default Current
+);
+export default Current;

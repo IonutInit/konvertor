@@ -1,17 +1,23 @@
 import convert from "convert-units";
 
-const handleDescriptionText = (input: string[], isCapitalized: boolean) => {
+const handleDescriptionText = (
+  input: string[],
+  described: boolean,
+  isCapitalized: boolean
+) => {
   const inputSet = new Set(input);
   const uniqueArray = [...inputSet];
 
-  let convertedArray = [];
+  let describedArray = [];
 
   for (let i = 0; i < uniqueArray.length; i++) {
-    convertedArray.push(convert().describe(uniqueArray[i]).plural);
+    describedArray.push(convert().describe(uniqueArray[i]).plural);
   }
 
-  const lastTwoElements = convertedArray.slice(-2).join(" and ");
-  const remainingElements = convertedArray.slice(0, -2);
+  const workingArray = described ? describedArray : uniqueArray;
+
+  const lastTwoElements = workingArray.slice(-2).join(" and ");
+  const remainingElements = workingArray.slice(0, -2);
   const result = [...remainingElements, lastTwoElements]
     .join(", ")
     .toLowerCase();
