@@ -1,10 +1,4 @@
-type SvgProps = {
-    width: number,
-    height: number,
-  primaryColor: string,
-  secondaryColor: string,
-};
-
+import { SvgProps } from "../ToggleButtonIcons";
 // const ImperialIcon = ({ width, height, primaryColor, secondaryColor }: SvgProps) => (
 //   <svg
 //     xmlSpace="preserve"
@@ -35,9 +29,13 @@ type SvgProps = {
 // );
 // export default ImperialIcon;
 
-
-import * as React from "react"
-const ImperialIcon = ({ width, height, primaryColor, secondaryColor }: SvgProps) => (
+import * as React from "react";
+const ImperialIcon = ({
+  width,
+  height,
+  primaryColor,
+  secondaryColor,
+}: SvgProps) => (
   <svg
     xmlSpace="preserve"
     style={{
@@ -48,8 +46,7 @@ const ImperialIcon = ({ width, height, primaryColor, secondaryColor }: SvgProps)
       width,
       height,
     }}
-    viewBox="0 0 50 30"
-  >
+    viewBox="0 0 50 30">
     <path
       d="M0 9.448h50v30.829H0z"
       style={{
@@ -65,6 +62,5 @@ const ImperialIcon = ({ width, height, primaryColor, secondaryColor }: SvgProps)
       transform="matrix(.04896 0 0 .04835 7.864 .997)"
     />
   </svg>
-)
-export default ImperialIcon
-
+);
+export default ImperialIcon;

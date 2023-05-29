@@ -1,11 +1,11 @@
-type SvgProps = {
-    width: number,
-    height: number,
-  primaryColor: string,
-  secondaryColor: string,
-};
+import { SvgProps } from "../ToggleButtonIcons";
 
-const MetricIcon = ({ width, height, primaryColor, secondaryColor }: SvgProps) => (
+const MetricIcon = ({
+  width,
+  height,
+  primaryColor,
+  secondaryColor,
+}: SvgProps) => (
   <svg
     xmlSpace="preserve"
     style={{

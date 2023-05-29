@@ -31,11 +31,11 @@ const ToComponent = () => {
       description[state.measureType]
     );
 
-    platform === "android" ? nextOption = allOptions : nextOption
+    platform === "android" ? (nextOption = allOptions) : nextOption;
     //doesn't work on android???
     //bug at the first allOptions (shold be nextOption)
 
-    let options = state.toUnit.length > 1 ? nextOption : allOptions; 
+    let options = state.toUnit.length > 1 ? nextOption : allOptions;
 
     //   const describe = (input: string[]) => {
     //     return [input.map((x) => convert().describe(x).plural), input];

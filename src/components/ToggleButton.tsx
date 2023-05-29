@@ -4,8 +4,8 @@ import Toggle from "react-native-toggle-element";
 
 // import ToggleButtonIcons from "./svgs/ToggleButtonIcons";
 
-import metric from "../assets/functionalIcons/metricSystem.png"
-import imperial from "../assets/functionalIcons/imperialSystem.png"
+import metric from "../assets/functionalIcons/metricSystem.png";
+import imperial from "../assets/functionalIcons/imperialSystem.png";
 
 import theme from "../theme";
 
@@ -21,8 +21,16 @@ const ToggleButton = ({ text }: ToggleButtonPropsType) => {
       <Toggle
         value={toggleValue}
         onPress={() => setToggleValue(!toggleValue)}
-        leftComponent={ toggleValue && <Image source={metric} style={{height: 20, width: 17}}/>}
-        rightComponent={!toggleValue && <Image source={imperial} style={{height: 20, width: 17}}/>}
+        leftComponent={
+          toggleValue && (
+            <Image source={metric} style={{ height: 20, width: 17 }} />
+          )
+        }
+        rightComponent={
+          !toggleValue && (
+            <Image source={imperial} style={{ height: 20, width: 17 }} />
+          )
+        }
         // leftComponent={toggleValue && <ToggleButtonIcons type="metric" /> }
         // rightComponent={!toggleValue && <ToggleButtonIcons type="imperial" />}
         leftTitle=""

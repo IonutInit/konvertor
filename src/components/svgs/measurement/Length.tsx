@@ -1,21 +1,15 @@
-import theme from "../theme";
+import { SvgProps } from "../MeasurementIcons";
 
-const SvgComponent = ({
-  width = "50px",
-  height = "50px",
-  mainColour = theme.mainColour,
-  secondaryColor = theme.orange1,
-}) => (
+const Length = ({ size, mainColour, secondaryColor }: SvgProps) => (
   <svg
-    xmlSpace="preserve"
     style={{
       fillRule: "evenodd",
       clipRule: "evenodd",
       strokeLinecap: "round",
       strokeLinejoin: "round",
       strokeMiterlimit: 1.5,
-      width,
-      height,
+      width: size,
+      height: size,
     }}
     viewBox="0 0 50 50">
     <circle
@@ -47,4 +41,4 @@ const SvgComponent = ({
     />
   </svg>
 );
-export default SvgComponent;
+export default Length;
