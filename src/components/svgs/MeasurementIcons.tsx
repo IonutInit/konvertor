@@ -29,7 +29,7 @@ import theme from "../../theme";
 export type SvgProps = {
   size: number;
   mainColour: string;
-  secondaryColor: string;
+  secondaryColour: string;
 };
 
 type Props = {
@@ -40,7 +40,7 @@ const MeasurementIcons = ({ type }: Props) => {
   const props = {
     size: 50,
     mainColour: theme.mainColour,
-    secondaryColor: theme.secondaryColor,
+    secondaryColour: theme.secondaryColour,
   };
 
   return <>

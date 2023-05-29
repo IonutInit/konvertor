@@ -36,7 +36,6 @@ const Options = () => {
             }
             style={styles.pressableMeasure}>
             <View style={styles.innerPressableContainer}>
-              {/* <Image source={iconMap[unit.name]} style={styles.icon} /> */}
               <MeasurementIcons type={unit.name} />
 
               <View style={styles.textContainer}>
@@ -56,7 +55,6 @@ const Options = () => {
 
 const styles = StyleSheet.create({
   scrollViewContainer: {
-    flex: 1,
   },
   outerPressableContainer: {
     flexDirection: "row",

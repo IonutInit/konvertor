@@ -18,7 +18,7 @@ const theme = {
   gray1Darker: "#E6E6E6",
   gray2: "#C2C2C2",
   gray3: "#929292",
-  secondaryColor: secondaryColour[settings],
+  secondaryColour: secondaryColour[settings],
 };
 
 export default theme;
