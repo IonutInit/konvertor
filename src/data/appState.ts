@@ -5,9 +5,9 @@ const appState: AppStateType = {
   measureType: "length",
   measureName: "Length",
   addition: true,
-  fromUnit: ["m", "km"],
-  fromValue: [2, 3],
-  toUnit: ["mi", "ft"],
+  fromUnit: ["m"],
+  fromValue: [1],
+  toUnit: ["ft"],
   universalPicker: {
     type: "",
     index: -1,

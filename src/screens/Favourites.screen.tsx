@@ -101,7 +101,7 @@ const theme = getTheme()
                 secondaryColour={theme.gray1}
               />
               <View>
-                <Text style={styles.favouriteText}>
+                <Text style={[styles.favouriteText, {color: theme.gray1}]}>
                   {handleFavouriteText(fav.from, [fav.from, fav.to])}
                 </Text>
                 <Text style={[styles.favouriteText, {color: theme.gray1}]}>

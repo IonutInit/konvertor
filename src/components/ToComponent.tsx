@@ -17,6 +17,7 @@ import converter from "../lib/converter";
 import { describe, revertDescription } from "../lib/verboseDescription";
 
 import getNextUnit from "../lib/getNextUnit";
+import displaySwitchedValues from "../lib/displaySwitchedValues";
 import description from "../data/unitDescription";
 
 const ToComponent = () => {
@@ -67,7 +68,7 @@ const ToComponent = () => {
         <Divider />
 
         <View style={styles.pickerContainer}>
-          <Text style={styles.result}>{result[i].toFixed(decimals)}</Text>
+          <Text style={styles.result}>{displaySwitchedValues(result[i], state.settings.decimals)}</Text>
 
           {platform !== "ios" && (
             <ToPicker

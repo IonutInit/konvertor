@@ -20,8 +20,6 @@ import Title from "../components/Title";
 import UniversalPicker from "../components/UniversalPicker";
 import Description from "../components/Description";
 
-//import theme from "../theme";
-
 import getTheme from "../context/theme";
 
 const Konvertor = () => {
@@ -30,7 +28,6 @@ const Konvertor = () => {
   const toUnitadditions = platform === "android" ? 2 : 3;
 
   const theme = getTheme();
-  // const theme = state.settings.theme
 
   console.log(state);
 

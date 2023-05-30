@@ -3,15 +3,18 @@ import { TextInput, StyleSheet } from "react-native";
 type InputProps = {
   handleInputChange: (input: string) => void;
   value: string;
+  i: number;
 };
 
-const Input = ({ handleInputChange, value }: InputProps) => {
+const Input = ({ handleInputChange, value, i }: InputProps) => {
   return (
     <TextInput
       style={styles.input}
       onChangeText={(input) => handleInputChange(input)}
       keyboardType="numeric"
-      placeholder={value}
+      key={i}
+      value={value}
+     editable
     />
   );
 };
