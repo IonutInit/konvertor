@@ -10,7 +10,7 @@ const ToggleExtendedList = () => {
     dispatch,
   } = useAppContext();
 
-  const theme = getTheme()
+  const theme = getTheme();
 
   const handleToggleExtendedList = () => {
     dispatch({
@@ -20,8 +20,10 @@ const ToggleExtendedList = () => {
 
   return (
     <View style={styles.container}>
-      <Pressable style={[styles.pressable, {backgroundColor: theme.mainColour}]} onPress={handleToggleExtendedList}>
-        <Text style={{color: theme.gray1}}>
+      <Pressable
+        style={[styles.pressable, { backgroundColor: theme.mainColour }]}
+        onPress={handleToggleExtendedList}>
+        <Text style={{ color: theme.gray1 }}>
           Show {settings.extendedList ? "less" : "more"}
         </Text>
       </Pressable>

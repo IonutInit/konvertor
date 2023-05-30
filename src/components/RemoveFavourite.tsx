@@ -13,7 +13,7 @@ type RemoveFavouriteType = {
 
 const RemoveFavourite = ({ i }: RemoveFavouriteType) => {
   const { dispatch } = useAppContext();
-  const theme = getTheme()
+  const theme = getTheme();
 
   return (
     <Pressable

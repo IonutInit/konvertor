@@ -12,17 +12,17 @@ const Description = () => {
 
   const { fromUnit, toUnit } = state;
 
-  const theme = getTheme()
+  const theme = getTheme();
 
   return (
     <View style={styles.outerContainer}>
       <Pressable
-        style={[styles.innerContainer, {backgroundColor: theme.mainColour}]}
+        style={[styles.innerContainer, { backgroundColor: theme.mainColour }]}
         onPress={() => addUnit(dispatch, state, "from")}>
-        <Text style={{color: theme.gray1}}>
+        <Text style={{ color: theme.gray1 }}>
           {handleDescriptionText(fromUnit, true, true)}
         </Text>
-        <Text style={{color: theme.gray1}}>
+        <Text style={{ color: theme.gray1 }}>
           TO {handleDescriptionText(toUnit, true, false)}
         </Text>
       </Pressable>

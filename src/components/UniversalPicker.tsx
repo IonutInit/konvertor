@@ -17,7 +17,7 @@ const UniversalPicker = () => {
     dispatch,
   } = useAppContext();
 
-  const theme = getTheme()
+  const theme = getTheme();
 
   const { type, position, index } = universalPicker;
 
@@ -49,7 +49,12 @@ const UniversalPicker = () => {
 
   return (
     <Picker
-      style={[styles.picker, { top: 150 }, { left: 0 }, {backgroundColor: theme.gray1, shadowColor: theme.gray3}]}
+      style={[
+        styles.picker,
+        { top: 150 },
+        { left: 0 },
+        { backgroundColor: theme.gray1, shadowColor: theme.gray3 },
+      ]}
       selectedValue={
         type === "from"
           ? fromUnit[universalPicker.index!]

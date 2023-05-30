@@ -18,8 +18,8 @@ const name: Record<number, string> = {
   1: "Blue",
   2: "Second theme",
   3: "Third theme",
-  4: "Fourth theme"
-}
+  4: "Fourth theme",
+};
 
 const getTheme = () => {
   const {
@@ -34,7 +34,7 @@ const getTheme = () => {
     gray2: "#C2C2C2",
     gray3: "#929292",
     secondaryColour: secondaryColour[theme],
-    name: name[theme]
+    name: name[theme],
   };
 };
 

@@ -1,6 +1,6 @@
 import { Text, StyleSheet, View, Pressable } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import useAppContext from "../context/useAppContext";
 
@@ -34,9 +34,12 @@ const FromComponent = ({ measureType }: { measureType: string }) => {
             handleInputChange={(input: string) =>
               handleInputChange(dispatch, input, i)
             }
-            i = {i}
+            i={i}
             // value={i === 0 ? "1" : "0"}
-            value={displaySwitchedValues((fromValue[i] as number), settings.decimals).toString()}
+            value={displaySwitchedValues(
+              fromValue[i] as number,
+              settings.decimals
+            ).toString()}
           />
 
           {/* {platform === "android" && (

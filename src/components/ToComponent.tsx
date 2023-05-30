@@ -36,9 +36,9 @@ const ToComponent = () => {
     //doesn't work on android???
     //bug at the first allOptions (shold be nextOption)
 
-       let options = state.toUnit.length > 1 ? nextOption : allOptions;
+    let options = state.toUnit.length > 1 ? nextOption : allOptions;
 
-       console.log(options)
+    console.log(options);
 
     //   const describe = (input: string[]) => {
     //     return [input.map((x) => convert().describe(x).plural), input];
@@ -68,7 +68,9 @@ const ToComponent = () => {
         <Divider />
 
         <View style={styles.pickerContainer}>
-          <Text style={styles.result}>{displaySwitchedValues(result[i], state.settings.decimals)}</Text>
+          <Text style={styles.result}>
+            {displaySwitchedValues(result[i], state.settings.decimals)}
+          </Text>
 
           {platform !== "ios" && (
             <ToPicker

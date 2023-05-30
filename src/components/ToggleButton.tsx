@@ -4,6 +4,9 @@ import Toggle from "react-native-toggle-element";
 
 import useAppContext from "../context/useAppContext";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { settingsKey } from "../data/storageKeys";
+
 // import ToggleButtonIcons from "./svgs/ToggleButtonIcons";
 
 import metric from "../assets/functionalIcons/metricSystem.png";
@@ -12,47 +15,50 @@ import imperial from "../assets/functionalIcons/imperialSystem.png";
 import getTheme from "../context/theme";
 
 type ToggleButtonPropsType = {
-  title: string,
+  title: string;
   text: string[];
-  settingType: string,
+  settingType: string;
+  settingValue: boolean;
 };
 
-const ToggleButton = ({ title, text, settingType }: ToggleButtonPropsType) => {
-  const {dispatch, state: {settings}} = useAppContext()
+const ToggleButton = ({
+  title,
+  text,
+  settingType,
+  settingValue,
+}: ToggleButtonPropsType) => {
+  const { dispatch } = useAppContext();
 
-  const [settingValue, setSettingValue] = useState(settings[settingType]);
-
-  const theme = getTheme()
+  const theme = getTheme();
 
   const handlePress = (settingType: string) => {
-    setSettingValue(!settingValue)
     dispatch({
       type: "change_settings",
       payload: {
         settingType,
-        settingValue,
-      }
-    })
-  }
+        settingValue: !settingValue,
+      },
+    });
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Toggle
-        value={!!settingValue}
+        value={settingValue}
         onPress={() => handlePress(settingType)}
-        leftComponent={
-          settingValue && (
-            <Image source={imperial} style={{ height: 20, width: 17 }} />
-          )
-        }
-        rightComponent={
-          !settingValue && (
-            <Image source={metric} style={{ height: 20, width: 17 }} />
-          )
-        }
-        // leftComponent={toggleValue && <ToggleButtonIcons type="metric" /> }
-        // rightComponent={!toggleValue && <ToggleButtonIcons type="imperial" />}
+        // leftComponent={
+        //   settingValue && (
+        //     <Image source={imperial} style={{ height: 20, width: 17 }} />
+        //   )
+        // }
+        // rightComponent={
+        //   !settingValue && (
+        //     <Image source={metric} style={{ height: 20, width: 17 }} />
+        //   )
+        // }
+        // leftComponent={ <ToggleButtonIcons type="metric" /> }
+        // rightComponent={ <ToggleButtonIcons type="imperial" />}
         leftTitle=""
         rightTitle=""
         trackBar={{
@@ -63,8 +69,7 @@ const ToggleButton = ({ title, text, settingType }: ToggleButtonPropsType) => {
         thumbButton={{
           ...styles.thumbButton,
           activeBackgroundColor: theme.secondaryColour,
-          inActiveBackgroundColor: theme.secondaryColour
-          //inActiveColor: theme.secondaryColour,
+          inActiveBackgroundColor: theme.secondaryColour,
         }}
       />
       <Text style={styles.text}>{settingValue ? text[0] : text[1]}</Text>

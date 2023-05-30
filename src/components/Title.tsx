@@ -11,12 +11,12 @@ type TitleProps = {
 };
 
 const Title = ({ title, addToFavourites = true }: TitleProps) => {
-  const theme = getTheme()
+  const theme = getTheme();
 
   return (
     <View style={styles.outerContainer}>
       <View style={styles.titleContainer}>
-        <Text style={[styles.title, {color: theme.mainColour}]}>{title}</Text>
+        <Text style={[styles.title, { color: theme.mainColour }]}>{title}</Text>
         {addToFavourites && <AddToFavourites />}
       </View>
       <Divider />

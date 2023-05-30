@@ -14,7 +14,7 @@ const Input = ({ handleInputChange, value, i }: InputProps) => {
       keyboardType="numeric"
       key={i}
       value={value}
-     editable
+      editable
     />
   );
 };

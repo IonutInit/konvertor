@@ -23,7 +23,7 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
     dispatch,
   } = useAppContext();
 
-  const theme = getTheme()
+  const theme = getTheme();
 
   const pickerUnitRef = useRef<Text>(null);
   const [position, setPosition] = useState<[number, number]>([0, 0]);
@@ -70,7 +70,7 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
     <View
       style={[
         styles.container,
-        {backgroundColor: theme.gray2, shadowColor: theme.gray3},
+        { backgroundColor: theme.gray2, shadowColor: theme.gray3 },
         !largeContainer
           ? styles.containerNormalSize
           : styles.containerLargeSize,
@@ -82,7 +82,9 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
         onPressOut={handlePressOut}>
         <Text
           style={
-            universalPicker.type === "" ? [styles.text, {color: theme.mainColour}] : [styles.overlaidText, {color: theme.gray1}]
+            universalPicker.type === ""
+              ? [styles.text, { color: theme.mainColour }]
+              : [styles.overlaidText, { color: theme.gray1 }]
           }
           ref={pickerUnitRef}>
           {unit}

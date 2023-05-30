@@ -2,7 +2,7 @@ import { View, Pressable, Image, StyleSheet } from "react-native";
 import { useEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import storageKey from "../data/storageKey";
+import { favouritesKey } from "../data/storageKeys";
 
 import useAppContext from "../context/useAppContext";
 
@@ -32,7 +32,7 @@ const AddToFavourites = () => {
   useEffect(() => {
     const retrieveData = async () => {
       try {
-        const jsonValue = await AsyncStorage.getItem(storageKey);
+        const jsonValue = await AsyncStorage.getItem(favouritesKey);
         const storedFavourites = JSON.parse(jsonValue!);
 
         if (storedFavourites) {

@@ -1,4 +1,9 @@
 import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
+import { useState, useEffect } from "react";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import getLocalData from "../lib/getLocalData";
+import { settingsKey } from "../data/storageKeys";
 
 import SliderComponent from "../components/SliderComponent";
 import ToggleButton from "../components/ToggleButton";
@@ -10,14 +15,46 @@ import useAppContext from "../context/useAppContext";
 
 import getTheme from "../context/theme";
 
+import { SettingsType } from "../../types";
+
 const Settings = ({ navigation }: any) => {
   const {
-    state: { settings }, state
+    state: { settings },
+    state,
+    dispatch,
   } = useAppContext();
 
-  const theme = getTheme()
+  const [storedSettings, setStoredSettings] = useState<SettingsType>(settings);
 
-  console.log(state)
+  const theme = getTheme();
+
+  console.log(state);
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      const data = await getLocalData(settingsKey);
+      if (!data) {
+        setStoredSettings(settings);
+      } else {
+        setStoredSettings(data as SettingsType);
+      }
+    };
+    fetchSettings();
+  }, []);
+
+  useEffect(() => {
+    const saveSettings = async () => {
+      try {
+        const jsonValue = JSON.stringify(storedSettings);
+        await AsyncStorage.setItem(settingsKey, jsonValue);
+        dispatch({
+          type: "initialise_settings",
+          payload: storedSettings,
+        });
+      } catch (e) {}
+    };
+    saveSettings();
+  }, [storedSettings, dispatch]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -29,8 +66,18 @@ const Settings = ({ navigation }: any) => {
 
       <View style={styles.toogleButtonsOuterContainer}>
         <View style={styles.ToggleButtonInnerContainer}>
-          <ToggleButton title={"Default System"} text={["metric", "imperial"]} settingType="metric"/>
-          <ToggleButton title={"Verbosity"} text={["short", "long"]} settingType="verbose"/>
+          <ToggleButton
+            title={"Default System"}
+            text={["metric", "imperial"]}
+            settingType="metric"
+            settingValue={settings.metric}
+          />
+          <ToggleButton
+            title={"Verbosity"}
+            text={["short", "long"]}
+            settingType="verbose"
+            settingValue={settings.verbose}
+          />
         </View>
       </View>
 
@@ -39,7 +86,10 @@ const Settings = ({ navigation }: any) => {
           <Text>Decimals: {settings.decimals}</Text>
         </View>
 
-        <SliderComponent settingType="decimals" />
+        <SliderComponent
+          settingType="decimals"
+          settingValue={settings.decimals}
+        />
         <View style={{ paddingTop: 20 }}>
           <Text style={styles.title}>Accuracy</Text>
         </View>
@@ -57,7 +107,7 @@ const Settings = ({ navigation }: any) => {
           </Text>
         </View>
 
-        <SliderComponent settingType="theme" />
+        <SliderComponent settingType="theme" settingValue={settings.theme} />
 
         <View style={{ paddingTop: 20 }}>
           <Text style={styles.title}>Theme</Text>

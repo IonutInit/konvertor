@@ -12,6 +12,15 @@ export type FavouriteType = {
   to: string[];
 };
 
+export type SettingsType = {
+  [key: string]: boolean | number;
+  extendedList: boolean;
+  metric: boolean;
+  decimals: number;
+  verbose: boolean;
+  theme: number;
+};
+
 export type AppStateType = {
   konvertor: string;
   measureName: string;
@@ -25,14 +34,7 @@ export type AppStateType = {
     index: number;
     position: [number, number][];
   };
-  settings: {
-    [key: string]: boolean | number;
-    extendedList: boolean;
-    metric: boolean;
-    decimals: number;
-    verbose: boolean;
-    theme: number;
-  };
+  settings: SettingsType;
   favourites: FavouriteType[];
   init: 0 | 1; //used to switch between useEffect and state when handling favourites; could find no other way to subscribe to changes
 };
@@ -118,6 +120,10 @@ export type ActionType =
       payload: FavouriteType[];
     }
   | {
+      type: "initialise_settings";
+      payload: SettingsType;
+    }
+  | {
       type: "switch";
       payload: {
         sourceFromUnit: string[];
@@ -125,11 +131,11 @@ export type ActionType =
       };
     };
 
-    export type ThemeType = {
-      mainColour: string,
-      gray1: string,
-      gray1Darker: string,
-      gray2: string,
-      gray3: string,
-      secondaryColour: string,
-    }
+export type ThemeType = {
+  mainColour: string;
+  gray1: string;
+  gray1Darker: string;
+  gray2: string;
+  gray3: string;
+  secondaryColour: string;
+};

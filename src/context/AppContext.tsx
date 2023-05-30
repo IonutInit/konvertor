@@ -4,15 +4,14 @@ import { AppStateType, ActionType } from "../../types";
 
 type ProviderProps = {
   state: AppStateType;
-  dispatch:  Dispatch<ActionType>;
-  children: React.ReactNode
-}
+  dispatch: Dispatch<ActionType>;
+  children: React.ReactNode;
+};
 
 export const AppContext = createContext({
   state: {} as AppStateType,
   dispatch: (() => null) as Dispatch<ActionType>,
 });
-
 
 export const AppContextProvider = ({
   state,

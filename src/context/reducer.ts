@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import storageKey from "../data/storageKey";
+import { favouritesKey, settingsKey } from "../data/storageKeys";
 
 import converter from "../lib/converter";
 
@@ -136,7 +136,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
 
       try {
         const jsonValue = JSON.stringify(updatedFavourites);
-        AsyncStorage.setItem(storageKey, jsonValue);
+        AsyncStorage.setItem(favouritesKey, jsonValue);
       } catch (e) {}
 
       return {
@@ -147,12 +147,20 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
 
     case "change_settings":
       const { settingType, settingValue } = action.payload;
+
+      const updatedSettings = {
+        ...state.settings,
+        [settingType]: settingValue,
+      };
+
+      try {
+        const jsonValue = JSON.stringify(updatedSettings);
+        AsyncStorage.setItem(settingsKey, jsonValue);
+      } catch (e) {}
+
       return {
         ...state,
-        settings: {
-          ...state.settings,
-          [settingType]: settingValue,
-        },
+        settings: updatedSettings,
       };
 
     case "add_to_favourites":
@@ -163,15 +171,10 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
 
       try {
         const jsonValue = JSON.stringify(updatedFavourites2.favourites);
-        AsyncStorage.setItem(storageKey, jsonValue);
+        AsyncStorage.setItem(favouritesKey, jsonValue);
       } catch (e) {}
 
       return updatedFavourites2;
-
-    // return {
-    //   ...state,
-    //   favourites: [...state.favourites, action.payload],
-    // };
 
     case "launch_favourite":
       return {
@@ -187,6 +190,12 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         ...state,
         favourites: action.payload as FavouriteType[],
         init: 1,
+      };
+
+    case "initialise_settings":
+      return {
+        ...state,
+        settings: action.payload,
       };
 
     default:

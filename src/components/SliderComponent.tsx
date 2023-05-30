@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "@react-native-community/slider";
 import { StyleSheet, View, Image } from "react-native";
 
@@ -10,26 +10,24 @@ import getTheme from "../context/theme";
 
 type SliderComponentPropType = {
   settingType: string;
+  settingValue: number;
 };
 
 const SliderComponent = ({
   settingType,
-}: // title,
-// description,
-SliderComponentPropType) => {
-  const {
-    state: { settings },
-    dispatch,
-  } = useAppContext();
-  const [value, setValue] = useState(settings.decimals * 10);
-  const theme = getTheme()
+  settingValue,
+}: SliderComponentPropType) => {
+  const { dispatch } = useAppContext();
+
+  const theme = getTheme();
+
+  const [value, setValue] = useState(settingValue);
+
+  console.log(value);
 
   const handleValueChange = (newValue: number) => {
-    setValue(Math.floor(newValue));
-
     const settingValue = Math.floor(newValue / 10);
-    //settingType === "decimals" ? Math.floor(newValue / 10) : newValue > 23;
-
+    setValue(newValue);
     dispatch({
       type: "change_settings",
       payload: {
@@ -55,18 +53,6 @@ SliderComponentPropType) => {
     </View>
   );
 };
-
-// const SliderComponent = () => {
-//     return(
-//         <Slider
-//   style={styles.slider}
-//   minimumValue={0}
-//   maximumValue={1}
-//   minimumTrackTintColor="#FFFFFF"
-//   maximumTrackTintColor="#000000"
-// />
-//     )
-// }
 
 const styles = StyleSheet.create({
   container: {

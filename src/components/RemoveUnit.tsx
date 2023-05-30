@@ -11,7 +11,7 @@ type RemoveUnitProps = {
 
 const RemoveUnit = ({ type, i }: RemoveUnitProps) => {
   const { state, dispatch } = useAppContext();
-  const theme = getTheme()
+  const theme = getTheme();
 
   const arrayLength = state[`${type}Unit`].length > 1;
 

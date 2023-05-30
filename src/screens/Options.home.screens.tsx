@@ -19,7 +19,7 @@ import getTheme from "../context/theme";
 
 const Options = () => {
   const { state, dispatch } = useAppContext();
-  const theme = getTheme()
+  const theme = getTheme();
 
   const filteredUnitList = unitList.filter(
     (unit) => state.settings.extendedList || unit.primary
@@ -34,7 +34,7 @@ const Options = () => {
             onPress={() =>
               handleOptionPress(dispatch, state, unit.name, unit.displayName)
             }
-            style={[styles.pressableMeasure, {backgroundColor: theme.gray1}]}>
+            style={[styles.pressableMeasure, { backgroundColor: theme.gray1 }]}>
             <View style={styles.innerPressableContainer}>
               <MeasurementIcons type={unit.name} />
 

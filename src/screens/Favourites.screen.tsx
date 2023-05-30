@@ -3,7 +3,8 @@ import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
 import { useState, useEffect } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import storageKey from "../data/storageKey";
+import getLocalData from "../lib/getLocalData";
+import { favouritesKey } from "../data/storageKeys";
 
 import useAppContext from "../context/useAppContext";
 
@@ -21,31 +22,20 @@ import getTheme from "../context/theme";
 import { FavouriteType } from "../../types";
 
 const Favourites = ({ navigation }: any) => {
-  const [favouritesFromStorage, setFavouritesFromStorage] = useState<
-    FavouriteType[]
-  >([]);
-
   const {
     state: { favourites, init },
     dispatch,
   } = useAppContext();
 
-  const getData = async (): Promise<FavouriteType[] | null> => {
-    try {
-      const favouritesJSON = await AsyncStorage.getItem(storageKey);
-      if (favouritesJSON) {
-        return JSON.parse(favouritesJSON);
-      }
-    } catch {}
-
-    return null;
-  };
+  const [favouritesFromStorage, setFavouritesFromStorage] = useState<
+    FavouriteType[]
+  >([]);
 
   useEffect(() => {
     const fetchFavourites = async () => {
-      const data = await getData();
+      const data = await getLocalData(favouritesKey);
       if (data) {
-        setFavouritesFromStorage(data);
+        setFavouritesFromStorage(data as FavouriteType[]);
       }
     };
     fetchFavourites();
@@ -73,7 +63,7 @@ const Favourites = ({ navigation }: any) => {
     navigation.jumpTo("Home");
   };
 
-const theme = getTheme()
+  const theme = getTheme();
 
   if (whatToMap.length === 0) {
     return <NoFavourites />;
@@ -89,7 +79,15 @@ const theme = getTheme()
 
       <View>
         {whatToMap.map((fav, index) => (
-          <View style={[styles.favourite, {backgroundColor: theme.mainColour, borderColor: theme.mainColour}]} key={index}>
+          <View
+            style={[
+              styles.favourite,
+              {
+                backgroundColor: theme.mainColour,
+                borderColor: theme.mainColour,
+              },
+            ]}
+            key={index}>
             <Pressable
               onPress={() =>
                 handleLaunchFavourite(fav.measureType, fav.from, fav.to)
@@ -101,10 +99,10 @@ const theme = getTheme()
                 secondaryColour={theme.gray1}
               />
               <View>
-                <Text style={[styles.favouriteText, {color: theme.gray1}]}>
+                <Text style={[styles.favouriteText, { color: theme.gray1 }]}>
                   {handleFavouriteText(fav.from, [fav.from, fav.to])}
                 </Text>
-                <Text style={[styles.favouriteText, {color: theme.gray1}]}>
+                <Text style={[styles.favouriteText, { color: theme.gray1 }]}>
                   {handleFavouriteText(fav.to, [fav.from, fav.to])}
                 </Text>
               </View>
