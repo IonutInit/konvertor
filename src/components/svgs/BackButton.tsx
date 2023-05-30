@@ -1,9 +1,12 @@
 import { Svg, Path } from "react-native-svg";
 
-import theme from "../../theme";
+import getTheme from "../../context/theme";
 
-const BackButton = () => (
-  <Svg
+const BackButton = () => {
+  const theme = getTheme()
+  
+  return(
+      <Svg
     style={{
       width: 32,
       height: 32,
@@ -15,5 +18,6 @@ const BackButton = () => (
       transform="matrix(.10844 0 0 .10844 -12.34 -5.362)"
     />
   </Svg>
-);
+  )
+};
 export default BackButton;

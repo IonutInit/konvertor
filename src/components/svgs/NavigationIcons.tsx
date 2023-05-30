@@ -3,7 +3,7 @@ import HomeIcon from "./navigationIcons/Home.Nav.Icon";
 import SettingsIcon from "./navigationIcons/Settings.Nav.Icon";
 
 // import theme from "../../theme"
-import getTheme from "../../theme";
+import getTheme from "../../context/theme";
 
 type Props = {
   type: "home" | "favourites" | "settings";

@@ -1,9 +1,12 @@
 import { Svg, Path, Circle } from "react-native-svg";
 
-import theme from "../../theme";
+import getTheme from "../../context/theme";
 
-const AddButton = () => (
-  <Svg
+const AddButton = () => {
+  const theme = getTheme()
+
+  return(
+      <Svg
     style={{
       width: 32,
       height: 32,
@@ -24,6 +27,7 @@ const AddButton = () => (
       strokeWidth={3.25}
       transform="matrix(1.60972 0 0 1.5146 -26.326 -.172)"
     />
-  </Svg>
-);
+    </Svg>
+  )  
+};
 export default AddButton;

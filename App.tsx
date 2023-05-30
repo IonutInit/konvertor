@@ -6,6 +6,7 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
 import { AppContextProvider } from "./src/context/AppContext";
+import { ThemeContextProvider } from "./src/context/ThemeContext";
 
 import { StatusBar } from "expo-status-bar";
 
@@ -16,7 +17,7 @@ import appState from "./src/data/appState";
 
 import platform from "./src/data/platform";
 
-import theme from "./src/theme";
+import useThemeContext from "./src/context/useThemeContext";
 
 export default function App() {
   // const [fontsLoaded] = useFonts({
@@ -25,6 +26,8 @@ export default function App() {
   // })
 
   const [state, dispatch] = useReducer(reducer, appState);
+
+  const {theme} = useThemeContext()
 
   // useEffect(()=> {
   //   async function start() {

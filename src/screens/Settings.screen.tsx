@@ -8,10 +8,14 @@ import BackButton from "../components/svgs/BackButton";
 
 import useAppContext from "../context/useAppContext";
 
+import getTheme from "../context/theme";
+
 const Settings = ({ navigation }: any) => {
   const {
     state: { settings },
   } = useAppContext();
+
+  const theme = getTheme()
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -45,7 +49,7 @@ const Settings = ({ navigation }: any) => {
       <View style={styles.sliderContainer}>
         <View style={{ paddingBottom: 20 }}>
           <Text>
-            Theme name
+            {theme.name}
             {/* From: {settings.metric ? "metric" : "imperial"} to{" "}
             {!settings.metric ? "metric" : "imperial"} */}
           </Text>

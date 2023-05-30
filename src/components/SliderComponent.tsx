@@ -6,13 +6,11 @@ import useAppContext from "../context/useAppContext";
 
 import sliderThumbs from "../iconMaps/sliderThumbMaps";
 
-import theme from "../theme";
+import getTheme from "../context/theme";
 
 type SliderComponentPropType = {
   settingType: string;
 };
-
-console.log(sliderThumbs);
 
 const SliderComponent = ({
   settingType,
@@ -24,6 +22,7 @@ SliderComponentPropType) => {
     dispatch,
   } = useAppContext();
   const [value, setValue] = useState(settings.decimals * 10);
+  const theme = getTheme()
 
   const handleValueChange = (newValue: number) => {
     setValue(Math.floor(newValue));

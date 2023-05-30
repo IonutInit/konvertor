@@ -123,3 +123,12 @@ export type ActionType =
         sourceToUnit: string[];
       };
     };
+
+    export type ThemeType = {
+      mainColour: string,
+      gray1: string,
+      gray1Darker: string,
+      gray2: string,
+      gray3: string,
+      secondaryColour: string,
+    }

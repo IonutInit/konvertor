@@ -1,13 +1,16 @@
 import { Svg, Path } from "react-native-svg";
 
-import theme from "../../theme";
+import getTheme from "../../context/theme";
 
 type Props = {
   isFavourite: boolean;
 };
 
-const FavouritesIcon = ({ isFavourite }: Props) => (
-  <Svg
+const FavouritesIcon = ({ isFavourite }: Props) => {
+  const theme = getTheme()
+
+  return(
+      <Svg
     style={{
       width: 32,
       height: 32,
@@ -21,5 +24,7 @@ const FavouritesIcon = ({ isFavourite }: Props) => (
       transform="matrix(1 0 0 1.253 -5.994 -8.19)"
     />
   </Svg>
-);
+  )
+
+};
 export default FavouritesIcon;

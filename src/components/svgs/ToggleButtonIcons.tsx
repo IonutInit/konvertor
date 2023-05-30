@@ -1,7 +1,7 @@
 import MetricIcon from "./toggleButtonIcons/MetricIcon";
 import ImperialIcon from "./toggleButtonIcons/ImperialIcon";
 
-import theme from "../../theme";
+import getTheme from "../../context/theme";
 
 export type SvgProps = {
   width: number;
@@ -18,8 +18,8 @@ const ToggleButtonIcons = ({ type }: Props) => {
   const props = {
     width: 30,
     height: 30,
-    primaryColor: theme.mainColour,
-    secondaryColor: theme.gray1,
+    primaryColor: getTheme().mainColour,
+    secondaryColor: getTheme().gray1,
   };
 
   return (

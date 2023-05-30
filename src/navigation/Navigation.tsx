@@ -9,7 +9,7 @@ import Settings from "../screens/Settings.screen";
 
 import NavigationIcons from "../components/svgs/NavigationIcons";
 
-import getTheme from "../theme";
+import getTheme from "../context/theme";
 
 const NavigationTabs = () => {
   const theme = getTheme();

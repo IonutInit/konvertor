@@ -24,7 +24,7 @@ import ReactiveEvergy from "./measurement/ReactiveEnergy";
 import Bmi from "./measurement/Bmi";
 import WeightLoss from "./measurement/WeigthLoss";
 
-import theme from "../../theme";
+import getTheme from "../../context/theme";
 
 export type SvgProps = {
   size: number;
@@ -40,8 +40,8 @@ type Props = {
 
 const MeasurementIcons = ({
   type,
-  mainColour = theme.mainColour,
-  secondaryColour = theme.secondaryColour,
+  mainColour = getTheme().mainColour,
+  secondaryColour = getTheme().secondaryColour,
 }: Props) => {
   const props = {
     size: 50,

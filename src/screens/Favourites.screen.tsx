@@ -16,7 +16,7 @@ import NoFavourites from "../components/NoFavourites";
 
 import MeasurementIcons from "../components/svgs/MeasurementIcons";
 
-import theme from "../theme";
+import getTheme from "../context/theme";
 
 import { FavouriteType } from "../../types";
 
@@ -73,6 +73,8 @@ const Favourites = ({ navigation }: any) => {
     navigation.jumpTo("Home");
   };
 
+const theme = getTheme()
+
   if (whatToMap.length === 0) {
     return <NoFavourites />;
   }
@@ -87,7 +89,7 @@ const Favourites = ({ navigation }: any) => {
 
       <View>
         {whatToMap.map((fav, index) => (
-          <View style={styles.favourite} key={index}>
+          <View style={[styles.favourite, {backgroundColor: theme.mainColour, borderColor: theme.mainColour}]} key={index}>
             <Pressable
               onPress={() =>
                 handleLaunchFavourite(fav.measureType, fav.from, fav.to)
@@ -102,7 +104,7 @@ const Favourites = ({ navigation }: any) => {
                 <Text style={styles.favouriteText}>
                   {handleFavouriteText(fav.from, [fav.from, fav.to])}
                 </Text>
-                <Text style={styles.favouriteText}>
+                <Text style={[styles.favouriteText, {color: theme.gray1}]}>
                   {handleFavouriteText(fav.to, [fav.from, fav.to])}
                 </Text>
               </View>
@@ -129,12 +131,10 @@ const styles = StyleSheet.create({
   favourite: {
     width: 250,
     height: 80,
-    backgroundColor: theme.mainColour,
     marginVertical: 5,
     padding: 10,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: theme.mainColour,
     justifyContent: "center",
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
@@ -147,7 +147,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   favouriteText: {
-    color: theme.gray1,
     fontWeight: "bold",
     marginLeft: 10,
   },

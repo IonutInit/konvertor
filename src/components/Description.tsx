@@ -4,7 +4,7 @@ import useAppContext from "../context/useAppContext";
 
 import addUnit from "../hooks/addUnit";
 
-import theme from "../theme";
+import getTheme from "../context/theme";
 import handleDescriptionText from "../lib/handleDescriptionText";
 
 const Description = () => {
@@ -12,15 +12,17 @@ const Description = () => {
 
   const { fromUnit, toUnit } = state;
 
+  const theme = getTheme()
+
   return (
     <View style={styles.outerContainer}>
       <Pressable
-        style={styles.innerContainer}
+        style={[styles.innerContainer, {backgroundColor: theme.mainColour}]}
         onPress={() => addUnit(dispatch, state, "from")}>
-        <Text style={styles.text}>
+        <Text style={{color: theme.gray1}}>
           {handleDescriptionText(fromUnit, true, true)}
         </Text>
-        <Text style={styles.text}>
+        <Text style={{color: theme.gray1}}>
           TO {handleDescriptionText(toUnit, true, false)}
         </Text>
       </Pressable>
@@ -38,7 +40,6 @@ const styles = StyleSheet.create({
   innerContainer: {
     width: "100%",
     minHeight: 50,
-    backgroundColor: theme.mainColour,
     alignContent: "center",
     justifyContent: "center",
     // borderColor: theme.mainColour,
@@ -50,9 +51,6 @@ const styles = StyleSheet.create({
     // shadowOpacity: 0.4,
     // shadowRadius: 2,
     // marginBottom: 5,
-  },
-  text: {
-    color: theme.gray1,
   },
 });
 

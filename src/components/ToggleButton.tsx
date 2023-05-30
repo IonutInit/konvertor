@@ -7,7 +7,7 @@ import Toggle from "react-native-toggle-element";
 import metric from "../assets/functionalIcons/metricSystem.png";
 import imperial from "../assets/functionalIcons/imperialSystem.png";
 
-import theme from "../theme";
+import getTheme from "../context/theme";
 
 type ToggleButtonPropsType = {
   text: string;
@@ -15,6 +15,7 @@ type ToggleButtonPropsType = {
 
 const ToggleButton = ({ text }: ToggleButtonPropsType) => {
   const [toggleValue, setToggleValue] = useState(false);
+  const theme = getTheme()
 
   return (
     <View style={styles.container}>
@@ -42,7 +43,7 @@ const ToggleButton = ({ text }: ToggleButtonPropsType) => {
         }}
         thumbButton={{
           ...styles.thumbButton,
-          activeBackgroundColor: theme.orange1,
+          activeBackgroundColor: theme.secondaryColour,
           // inActiveColor: theme.orange1,
         }}
       />

@@ -1,9 +1,12 @@
 import { Svg, Path } from "react-native-svg";
 
-import theme from "../../theme";
+import getTheme from "../../context/theme";
 
-const SwitchButton = () => (
-  <Svg
+const SwitchButton = () => {
+  const theme = getTheme()
+  
+  return(
+      <Svg
     style={{
       width: 32,
       height: 32,
@@ -15,5 +18,6 @@ const SwitchButton = () => (
       transform="translate(-5.44 .646) scale(.08697)"
     />
   </Svg>
-);
+  )
+};
 export default SwitchButton;

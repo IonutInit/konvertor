@@ -14,12 +14,12 @@ import ToggleExtendedList from "../components/ToggleExtendedList";
 
 import unitList from "../data/unitList";
 import MeasurementIcons from "../components/svgs/MeasurementIcons";
-import iconMap from "../iconMaps/measurementIconsMap";
 
-import theme from "../theme";
+import getTheme from "../context/theme";
 
 const Options = () => {
   const { state, dispatch } = useAppContext();
+  const theme = getTheme()
 
   const filteredUnitList = unitList.filter(
     (unit) => state.settings.extendedList || unit.primary
@@ -34,7 +34,7 @@ const Options = () => {
             onPress={() =>
               handleOptionPress(dispatch, state, unit.name, unit.displayName)
             }
-            style={styles.pressableMeasure}>
+            style={[styles.pressableMeasure, {backgroundColor: theme.gray1}]}>
             <View style={styles.innerPressableContainer}>
               <MeasurementIcons type={unit.name} />
 
@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
   pressableMeasure: {
     width: 85,
     height: 90,
-    backgroundColor: theme.gray1,
     margin: 5,
     borderWidth: 1,
     borderColor: "gray",

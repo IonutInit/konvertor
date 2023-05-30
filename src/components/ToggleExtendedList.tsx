@@ -2,13 +2,15 @@ import { View, Pressable, Text, Image, StyleSheet } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
-import theme from "../theme";
+import getTheme from "../context/theme";
 
 const ToggleExtendedList = () => {
   const {
     state: { settings },
     dispatch,
   } = useAppContext();
+
+  const theme = getTheme()
 
   const handleToggleExtendedList = () => {
     dispatch({
@@ -18,8 +20,8 @@ const ToggleExtendedList = () => {
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.pressable} onPress={handleToggleExtendedList}>
-        <Text style={styles.text}>
+      <Pressable style={[styles.pressable, {backgroundColor: theme.mainColour}]} onPress={handleToggleExtendedList}>
+        <Text style={{color: theme.gray1}}>
           Show {settings.extendedList ? "less" : "more"}
         </Text>
       </Pressable>
@@ -34,13 +36,9 @@ const styles = StyleSheet.create({
   pressable: {
     width: 130,
     height: 40,
-    backgroundColor: theme.mainColour,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-  },
-  text: {
-    color: theme.gray1,
   },
 });
 

@@ -9,9 +9,7 @@ import { useRef, useState, useEffect } from "react";
 
 import useAppContext from "../context/useAppContext";
 
-import functionalIcons from "../iconMaps/functionalIconsMap";
-
-import theme from "../theme";
+import getTheme from "../context/theme";
 
 type UniversalPickerUnitProps = {
   unit: string;
@@ -24,6 +22,8 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
     state: { universalPicker, fromUnit },
     dispatch,
   } = useAppContext();
+
+  const theme = getTheme()
 
   const pickerUnitRef = useRef<Text>(null);
   const [position, setPosition] = useState<[number, number]>([0, 0]);
@@ -70,6 +70,7 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
     <View
       style={[
         styles.container,
+        {backgroundColor: theme.gray2, shadowColor: theme.gray3},
         !largeContainer
           ? styles.containerNormalSize
           : styles.containerLargeSize,
@@ -81,7 +82,7 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
         onPressOut={handlePressOut}>
         <Text
           style={
-            universalPicker.type === "" ? styles.text : styles.overlaidText
+            universalPicker.type === "" ? [styles.text, {color: theme.mainColour}] : [styles.overlaidText, {color: theme.gray1}]
           }
           ref={pickerUnitRef}>
           {unit}
@@ -101,12 +102,10 @@ const styles = StyleSheet.create({
     height: 45,
   },
   container: {
-    backgroundColor: theme.gray2,
     justifyContent: "center",
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 10,
-    shadowColor: theme.gray3,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.4,
     shadowRadius: 2,
@@ -114,12 +113,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    color: theme.mainColour,
     textAlign: "center",
   },
   overlaidText: {
     fontSize: 24,
-    color: theme.gray1,
     textAlign: "center",
   },
 });

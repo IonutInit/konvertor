@@ -9,13 +9,15 @@ import convert from "convert-units";
 import getNextUnit from "../lib/getNextUnit";
 import description from "../data/unitDescription";
 
-import theme from "../theme";
+import getTheme from "../context/theme";
 
 const UniversalPicker = () => {
   const {
     state: { fromUnit, toUnit, universalPicker, measureType },
     dispatch,
   } = useAppContext();
+
+  const theme = getTheme()
 
   const { type, position, index } = universalPicker;
 
@@ -47,7 +49,7 @@ const UniversalPicker = () => {
 
   return (
     <Picker
-      style={[styles.picker, { top: 150 }, { left: 0 }]}
+      style={[styles.picker, { top: 150 }, { left: 0 }, {backgroundColor: theme.gray1, shadowColor: theme.gray3}]}
       selectedValue={
         type === "from"
           ? fromUnit[universalPicker.index!]
@@ -64,12 +66,9 @@ const UniversalPicker = () => {
 const styles = StyleSheet.create({
   picker: {
     width: "80%",
-
-    backgroundColor: theme.gray1,
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 10,
-    shadowColor: theme.gray3,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.4,
     shadowRadius: 2,

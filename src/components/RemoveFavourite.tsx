@@ -5,7 +5,7 @@ import useAppContext from "../context/useAppContext";
 import handleRemoveFavourite from "../hooks/handleRemoveFavourite";
 
 import RemoveIcon from "./svgs/RemoveIcon";
-import theme from "../theme";
+import getTheme from "../context/theme";
 
 type RemoveFavouriteType = {
   i: number;
@@ -13,6 +13,7 @@ type RemoveFavouriteType = {
 
 const RemoveFavourite = ({ i }: RemoveFavouriteType) => {
   const { dispatch } = useAppContext();
+  const theme = getTheme()
 
   return (
     <Pressable

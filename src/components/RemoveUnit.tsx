@@ -2,7 +2,7 @@ import { View, Pressable, StyleSheet } from "react-native";
 import useAppContext from "../context/useAppContext";
 
 import RemoveIcon from "./svgs/RemoveIcon";
-import theme from "../theme";
+import getTheme from "../context/theme";
 
 type RemoveUnitProps = {
   type: "to" | "from";
@@ -11,6 +11,7 @@ type RemoveUnitProps = {
 
 const RemoveUnit = ({ type, i }: RemoveUnitProps) => {
   const { state, dispatch } = useAppContext();
+  const theme = getTheme()
 
   const arrayLength = state[`${type}Unit`].length > 1;
 

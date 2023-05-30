@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import AddToFavourites from "./AddToFavourites";
 import Divider from "./Divider";
 
-import theme from "../theme";
+import getTheme from "../context/theme";
 
 type TitleProps = {
   title: string;
@@ -11,10 +11,12 @@ type TitleProps = {
 };
 
 const Title = ({ title, addToFavourites = true }: TitleProps) => {
+  const theme = getTheme()
+
   return (
     <View style={styles.outerContainer}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={[styles.title, {color: theme.mainColour}]}>{title}</Text>
         {addToFavourites && <AddToFavourites />}
       </View>
       <Divider />
@@ -34,7 +36,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    color: theme.mainColour,
     fontWeight: "bold",
     textAlign: "center",
     letterSpacing: 1.5,

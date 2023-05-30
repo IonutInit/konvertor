@@ -22,7 +22,7 @@ import Description from "../components/Description";
 
 //import theme from "../theme";
 
-import getTheme from "../theme";
+import getTheme from "../context/theme";
 
 const Konvertor = () => {
   const { state } = useAppContext();
