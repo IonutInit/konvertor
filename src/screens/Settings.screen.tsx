@@ -12,10 +12,12 @@ import getTheme from "../context/theme";
 
 const Settings = ({ navigation }: any) => {
   const {
-    state: { settings },
+    state: { settings }, state
   } = useAppContext();
 
   const theme = getTheme()
+
+  console.log(state)
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -27,8 +29,8 @@ const Settings = ({ navigation }: any) => {
 
       <View style={styles.toogleButtonsOuterContainer}>
         <View style={styles.ToggleButtonInnerContainer}>
-          <ToggleButton text={"System"} />
-          <ToggleButton text={"Verbosity"} />
+          <ToggleButton title={"Default System"} text={["metric", "imperial"]} settingType="metric"/>
+          <ToggleButton title={"Verbosity"} text={["short", "long"]} settingType="verbose"/>
         </View>
       </View>
 
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
   },
   toogleButtonsOuterContainer: {
     paddingTop: 30,
-    width: "80%",
+    width: "90%",
   },
   ToggleButtonInnerContainer: {
     flexDirection: "row",

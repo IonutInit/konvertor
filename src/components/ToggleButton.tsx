@@ -2,6 +2,8 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { useState } from "react";
 import Toggle from "react-native-toggle-element";
 
+import useAppContext from "../context/useAppContext";
+
 // import ToggleButtonIcons from "./svgs/ToggleButtonIcons";
 
 import metric from "../assets/functionalIcons/metricSystem.png";
@@ -10,26 +12,43 @@ import imperial from "../assets/functionalIcons/imperialSystem.png";
 import getTheme from "../context/theme";
 
 type ToggleButtonPropsType = {
-  text: string;
+  title: string,
+  text: string[];
+  settingType: string,
 };
 
-const ToggleButton = ({ text }: ToggleButtonPropsType) => {
-  const [toggleValue, setToggleValue] = useState(false);
+const ToggleButton = ({ title, text, settingType }: ToggleButtonPropsType) => {
+  const {dispatch, state: {settings}} = useAppContext()
+
+  const [settingValue, setSettingValue] = useState(settings[settingType]);
+
   const theme = getTheme()
+
+  const handlePress = (settingType: string) => {
+    setSettingValue(!settingValue)
+    dispatch({
+      type: "change_settings",
+      payload: {
+        settingType,
+        settingValue,
+      }
+    })
+  }
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>{title}</Text>
       <Toggle
-        value={toggleValue}
-        onPress={() => setToggleValue(!toggleValue)}
+        value={!!settingValue}
+        onPress={() => handlePress(settingType)}
         leftComponent={
-          toggleValue && (
-            <Image source={metric} style={{ height: 20, width: 17 }} />
+          settingValue && (
+            <Image source={imperial} style={{ height: 20, width: 17 }} />
           )
         }
         rightComponent={
-          !toggleValue && (
-            <Image source={imperial} style={{ height: 20, width: 17 }} />
+          !settingValue && (
+            <Image source={metric} style={{ height: 20, width: 17 }} />
           )
         }
         // leftComponent={toggleValue && <ToggleButtonIcons type="metric" /> }
@@ -44,10 +63,11 @@ const ToggleButton = ({ text }: ToggleButtonPropsType) => {
         thumbButton={{
           ...styles.thumbButton,
           activeBackgroundColor: theme.secondaryColour,
-          // inActiveColor: theme.orange1,
+          inActiveBackgroundColor: theme.secondaryColour
+          //inActiveColor: theme.secondaryColour,
         }}
       />
-      <Text style={styles.text}>{text}</Text>
+      <Text style={styles.text}>{settingValue ? text[0] : text[1]}</Text>
     </View>
   );
 };
@@ -60,16 +80,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   trackBar: {
-    width: 120,
-    height: 40,
+    width: 100,
+    height: 30,
   },
   thumbButton: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     radius: 25,
   },
+  title: {
+    marginBottom: 15,
+    fontWeight: "bold",
+    letterSpacing: 0.5,
+  },
   text: {
-    paddingTop: 20,
+    paddingTop: 10,
   },
 });
 

@@ -15,7 +15,7 @@ const appState: AppStateType = {
   },
   settings: {
     extendedList: false,
-    metric: 2,
+    metric: true,
     decimals: 2,
     verbose: false,
     theme: 1,

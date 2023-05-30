@@ -26,8 +26,9 @@ export type AppStateType = {
     position: [number, number][];
   };
   settings: {
+    [key: string]: boolean | number;
     extendedList: boolean;
-    metric: number;
+    metric: boolean;
     decimals: number;
     verbose: boolean;
     theme: number;

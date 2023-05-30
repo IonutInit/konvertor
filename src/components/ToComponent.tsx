@@ -36,7 +36,9 @@ const ToComponent = () => {
     //doesn't work on android???
     //bug at the first allOptions (shold be nextOption)
 
-    let options = state.toUnit.length > 1 ? nextOption : allOptions;
+       let options = state.toUnit.length > 1 ? nextOption : allOptions;
+
+       console.log(options)
 
     //   const describe = (input: string[]) => {
     //     return [input.map((x) => convert().describe(x).plural), input];
@@ -47,9 +49,9 @@ const ToComponent = () => {
     // return revertTo[index];
     //   }
 
-    const [extendedOptions, _] = describe(options);
+    // const [extendedOptions, _] = describe(options);
 
-    state.settings.verbose ? (options = extendedOptions) : options;
+    // state.settings.verbose ? (options = extendedOptions) : options;
 
     const result = converter(
       state.addition,
@@ -58,8 +60,6 @@ const ToComponent = () => {
       state.fromUnit[0],
       state.toUnit
     );
-
-    const decimals = i === result.length - 1 ? state.settings.decimals : 0;
 
     return (
       <View
