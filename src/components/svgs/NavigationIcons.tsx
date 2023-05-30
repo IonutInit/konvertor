@@ -2,12 +2,12 @@ import FavouritesIcon from "./navigationIcons/Favourites.Nav.Icon";
 import HomeIcon from "./navigationIcons/Home.Nav.Icon";
 import SettingsIcon from "./navigationIcons/Settings.Nav.Icon";
 
-// import theme from "../../theme"
 import getTheme from "../../context/theme";
 
 type Props = {
   type: "home" | "favourites" | "settings";
   size?: number;
+  isActive: boolean,
 };
 
 export type SvgProps = {
@@ -16,13 +16,13 @@ export type SvgProps = {
   colour: string;
 };
 
-const NavigationIcons = ({ type, size = 45 }: Props) => {
+const NavigationIcons = ({ type, size = 45, isActive }: Props) => {
   const theme = getTheme();
 
   const props = {
     size,
     background: theme.mainColour,
-    colour: theme.gray1,
+    colour: (isActive ? theme.secondaryColour : theme.gray1)
   };
 
   return (

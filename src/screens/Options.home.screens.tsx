@@ -17,7 +17,7 @@ import MeasurementIcons from "../components/svgs/MeasurementIcons";
 
 import getTheme from "../context/theme";
 
-const Options = () => {
+const Options = ({navigation}: any) => {
   const { state, dispatch } = useAppContext();
   const theme = getTheme();
 

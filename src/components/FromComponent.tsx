@@ -80,7 +80,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginVertical: marginVertical,
+    marginVertical: 5,
+    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: "#ccc",
+    marginHorizontal: 10,
+    paddingVertical: 5,
   },
 });
 

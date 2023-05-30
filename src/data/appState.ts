@@ -22,6 +22,7 @@ const appState: AppStateType = {
   },
   favourites: [],
   init: 0,
+  activeTab: "Home"
 };
 
 export default appState;

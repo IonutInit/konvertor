@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     width: "95%",
     alignItems: "center",
     paddingHorizontal: 20,
-    marginVertical: 15,
+    marginVertical: 5,
   },
   innerContainer: {
     width: "100%",

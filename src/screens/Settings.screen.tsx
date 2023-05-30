@@ -1,5 +1,5 @@
 import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import getLocalData from "../lib/getLocalData";
@@ -28,9 +28,7 @@ const Settings = ({ navigation }: any) => {
 
   const theme = getTheme();
 
-  console.log(state);
-
-  useEffect(() => {
+   useEffect(() => {
     const fetchSettings = async () => {
       const data = await getLocalData(settingsKey);
       if (!data) {
@@ -55,6 +53,17 @@ const Settings = ({ navigation }: any) => {
     };
     saveSettings();
   }, [storedSettings, dispatch]);
+
+  useLayoutEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      dispatch({
+        type: "change_tab",
+        payload: "Settings",
+      });
+    });
+
+    return unsubscribe;
+  }, [dispatch, navigation]);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

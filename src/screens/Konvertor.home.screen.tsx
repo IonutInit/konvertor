@@ -6,6 +6,9 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
+
+import { useLayoutEffect } from "react";
+
 import useAppContext from "../context/useAppContext";
 
 import platform from "../data/platform";
@@ -21,15 +24,23 @@ import UniversalPicker from "../components/UniversalPicker";
 import Description from "../components/Description";
 
 import getTheme from "../context/theme";
+import { useEffect } from "react";
 
 const Konvertor = () => {
-  const { state } = useAppContext();
+  const { state, dispatch } = useAppContext();
 
   const toUnitadditions = platform === "android" ? 2 : 3;
 
   const theme = getTheme();
 
   console.log(state);
+
+  useEffect(() => {
+    dispatch({
+      type: "change_tab",
+      payload: "Home",
+    });
+  }, []);
 
   return (
     <View style={styles.container}>

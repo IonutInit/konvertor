@@ -1,6 +1,6 @@
 import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import getLocalData from "../lib/getLocalData";
@@ -40,6 +40,24 @@ const Favourites = ({ navigation }: any) => {
     };
     fetchFavourites();
   }, []);
+
+  // useEffect(() => {
+  //   dispatch({
+  //     type: "change_tab",
+  //     payload: "Favourites",
+  //   })
+  // },[])
+
+  useLayoutEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      dispatch({
+        type: "change_tab",
+        payload: "Favourites",
+      });
+    });
+
+    return unsubscribe;
+  }, [dispatch, navigation]);
 
   const whatToMap = init === 0 ? favouritesFromStorage : favourites;
 

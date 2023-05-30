@@ -1,6 +1,8 @@
 import { View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import useAppContext from "../context/useAppContext";
+
 const Navigation = createBottomTabNavigator();
 
 import Home from "../screens/Home.screen";
@@ -13,6 +15,8 @@ import getTheme from "../context/theme";
 
 const NavigationTabs = () => {
   const theme = getTheme();
+
+  const {state: {activeTab}} = useAppContext() 
 
   return (
     <Navigation.Navigator
@@ -29,19 +33,11 @@ const NavigationTabs = () => {
         //tabBarActiveBackgroundColor: theme.gray1Darker
       }}>
       <Navigation.Screen
-        name="Settings"
-        component={Settings}
-        options={{
-          tabBarIcon: ({ color, size }) => <NavigationIcons type="settings" />,
-        }}
-      />
-
-      <Navigation.Screen
         name="Home"
         component={Home}
         options={{
           title: "Konvertor",
-          tabBarIcon: ({ color, size }) => <NavigationIcons type="home" />,
+          tabBarIcon: ({ color, size }) => <NavigationIcons type="home" isActive={activeTab === "Home"}/>,
         }}
       />
 
@@ -52,10 +48,18 @@ const NavigationTabs = () => {
           tabBarIcon: ({ color, size }) => {
             return (
               <View style={{ paddingBottom: 20 }}>
-                <NavigationIcons type="favourites" size={55} />
+                <NavigationIcons type="favourites" size={55} isActive={activeTab === "Favourites"}/>
               </View>
             );
           },
+        }}
+      />
+
+      <Navigation.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          tabBarIcon: ({ color, size }) => <NavigationIcons type="settings" isActive={activeTab === "Settings"}/>,
         }}
       />
     </Navigation.Navigator>

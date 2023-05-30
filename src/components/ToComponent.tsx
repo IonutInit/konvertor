@@ -38,9 +38,7 @@ const ToComponent = () => {
 
     let options = state.toUnit.length > 1 ? nextOption : allOptions;
 
-    console.log(options);
-
-    //   const describe = (input: string[]) => {
+      //   const describe = (input: string[]) => {
     //     return [input.map((x) => convert().describe(x).plural), input];
     //   };
 

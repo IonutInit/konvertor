@@ -12,6 +12,10 @@ const BackToOptions = () => {
       type: "change_konvertor",
       payload: "",
     });
+    dispatch({
+      type: "change_tab",
+      payload: "Home",
+    })
   };
 
   return (
