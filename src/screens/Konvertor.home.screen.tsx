@@ -34,19 +34,7 @@ const Konvertor = () => {
 
   const theme = getTheme();
 
-  //console.log(state);
-
-  const handleVerbosity = (input: string[]) => {
-    const verbose = [];
-
-    for (let i = 0; i < input.length; i++) {
-      verbose.push(convert().describe(input[i]).plural.toLowerCase());
-    }
-
-    return verbose;
-  };
-
-  console.log(description.length.short);
+  console.log(state);
 
   return (
     <View style={styles.container}>
@@ -151,4 +139,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Konvertor;
+export default Konvertor

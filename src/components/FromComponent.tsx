@@ -16,7 +16,10 @@ import handleFromUnitChange from "../hooks/handleFromUnitChange";
 import convert from "convert-units";
 import platform from "../data/platform";
 
-import displaySwitchedValues from "../lib/displaySwitchedValues";
+import displaySwitchedValues from "../lib/displaySwitchedValues"
+
+import {handleVerbosity, revertVerbosity} from "../hooks/handleVerbosity";
+import getPickerUnit from "../hooks/getPickerUnit";
 
 const FromComponent = ({ measureType }: { measureType: string }) => {
   const {
@@ -24,8 +27,14 @@ const FromComponent = ({ measureType }: { measureType: string }) => {
     dispatch,
   } = useAppContext();
 
+
   const elements = fromUnit.map((unit: string, i: number) => {
+
     const options = convert().possibilities(measureType);
+
+    const optionsToDisplay = handleVerbosity(options, settings.verbose)
+
+
 
     return (
       <React.Fragment key={i}>
@@ -45,9 +54,11 @@ const FromComponent = ({ measureType }: { measureType: string }) => {
           {platform !== "ios" && (
             <PickerComponent
               onChange={handleFromUnitChange}
-              options={options}
-              unit={unit}
+              options={optionsToDisplay}
+              unit={getPickerUnit(fromUnit[0], measureType)}
               i={i}
+              measureType={measureType}
+              verbosity={settings.verbose}
             />
           )}
 

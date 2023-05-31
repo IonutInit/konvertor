@@ -4,29 +4,31 @@ import { Dispatch } from "react";
 
 import useAppContext from "../context/useAppContext";
 
-import { describe, revertDescription } from "../lib/verboseDescription";
-
 import { ActionType } from "../../types";
 
 type PickerComponentProps = {
   onChange: (
     dispatch: Dispatch<ActionType>,
     option: string,
-    iterator: number
+    iterator: number,
+    verbosity: boolean,
+    measureType: string,    
   ) => void;
   options: string[];
   unit: string;
   i: number;
+  measureType: string,
+  verbosity: boolean,
 };
 
-const ToPicker = ({ onChange, options, unit, i }: PickerComponentProps) => {
+const ToPicker = ({ onChange, options, unit, i, verbosity, measureType }: PickerComponentProps) => {
   const { dispatch } = useAppContext();
 
   return (
     <Picker
       style={styles.picker}
       selectedValue={unit}
-      onValueChange={(option) => onChange(dispatch, option, i)}
+      onValueChange={(option) => onChange(dispatch, option, i, verbosity, measureType)}
       itemStyle={styles.pickerItem}>
       {options.map((option: string) => (
         <Picker.Item key={option} label={option} value={option} />

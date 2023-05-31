@@ -8,12 +8,13 @@ import convert from "convert-units";
 
 import getNextUnit from "../lib/getNextUnit";
 import description from "../data/unitDescription";
+import { handleVerbosity, revertVerbosity } from "../hooks/handleVerbosity";
 
 import getTheme from "../context/theme";
 
 const UniversalPicker = () => {
   const {
-    state: { fromUnit, toUnit, universalPicker, measureType },
+    state: { fromUnit, toUnit, universalPicker, measureType, settings },
     dispatch,
   } = useAppContext();
 
@@ -27,6 +28,8 @@ const UniversalPicker = () => {
     description[measureType]
   );
   const options = toUnit.length > 1 ? nextOption : allOptions;
+
+const optionsToDisplay = handleVerbosity(options, settings.verbose)
 
   const handleChange = (option: string, type: string) => {
     dispatch({
@@ -61,8 +64,9 @@ const UniversalPicker = () => {
           : toUnit[universalPicker.index!]
       }
       onValueChange={(option) => handleChange(option, type)}>
-      {options.map((option: string) => (
-        <Picker.Item key={option} label={option} value={option} />
+        
+      {optionsToDisplay.map((option: string) => (
+        <Picker.Item key={option} label={option} value={revertVerbosity(option, settings.verbose, measureType)} />
       ))}
     </Picker>
   );

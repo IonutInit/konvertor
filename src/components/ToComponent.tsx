@@ -14,51 +14,42 @@ import platform from "../data/platform";
 
 import convert from "convert-units";
 import converter from "../lib/converter";
-import { describe, revertDescription } from "../lib/verboseDescription";
 
 import getNextUnit from "../lib/getNextUnit";
 import displaySwitchedValues from "../lib/displaySwitchedValues";
+import { handleVerbosity } from "../hooks/handleVerbosity";
+import getPickerUnit from "../hooks/getPickerUnit";
 import description from "../data/unitDescription";
 
 import { DescriptionType } from "../data/unitDescription";
 
 const ToComponent = () => {
-  const { state } = useAppContext();
+  const { state: {toUnit, fromUnit, fromValue, measureType, settings, addition} } = useAppContext();
 
-  const elements = state.toUnit.map((unit: string, i: number) => {
+  const elements = toUnit.map((unit: string, i: number) => {
     const allOptions = convert()
-      .from(state.toUnit[state.toUnit.length - 1])
+      .from(toUnit[toUnit.length - 1])
       .possibilities();
     let nextOption = getNextUnit(
-      state.toUnit[state.toUnit.length - 1],
-      (description as DescriptionType)[state.measureType]
+      toUnit[toUnit.length - 1],
+      (description as DescriptionType)[measureType]
     );
 
     platform === "android" ? (nextOption = allOptions) : nextOption;
     //doesn't work on android???
     //bug at the first allOptions (shold be nextOption)
 
-    let options = state.toUnit.length > 1 ? nextOption : allOptions;
+    let options = toUnit.length > 1 ? nextOption : allOptions;
 
-    //   const describe = (input: string[]) => {
-    //     return [input.map((x) => convert().describe(x).plural), input];
-    //   };
+    const optionsToDisplay = handleVerbosity(options, settings.verbose)
 
-    //   const revertDescription = (unit: string, revertFrom: string[], revertTo: string[]) => {
-    //     const index = revertFrom.indexOf(unit);
-    // return revertTo[index];
-    //   }
-
-    // const [extendedOptions, _] = describe(options);
-
-    // state.settings.verbose ? (options = extendedOptions) : options;
 
     const result = converter(
-      state.addition,
-      state.fromValue,
-      state.fromUnit,
-      state.fromUnit[0],
-      state.toUnit
+      addition,
+      fromValue,
+      fromUnit,
+      fromUnit[0],
+      toUnit
     );
 
     return (
@@ -69,15 +60,17 @@ const ToComponent = () => {
 
         <View style={styles.pickerContainer}>
           <Text style={styles.result}>
-            {displaySwitchedValues(result[i], state.settings.decimals)}
+            {displaySwitchedValues(result[i], settings.decimals)}
           </Text>
 
           {platform !== "ios" && (
             <ToPicker
               onChange={handleToUnitChange}
-              options={options}
-              unit={unit}
+              options={optionsToDisplay}
+              unit={getPickerUnit(toUnit[0], measureType)}
               i={i}
+              measureType={measureType}
+              verbosity={settings.verbose}
             />
           )}
 

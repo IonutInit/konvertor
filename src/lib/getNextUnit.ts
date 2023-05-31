@@ -1,4 +1,4 @@
-import { DescriptionType, UnitDescription } from "../data/unitDescription";
+import { UnitDescription } from "../data/unitDescription";
 
 function getNextUnit(unit: string, allUnits: UnitDescription) {
   const index = allUnits.short.indexOf(unit);
