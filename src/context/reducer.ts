@@ -198,11 +198,11 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         settings: action.payload,
       };
 
-      case "change_tab":
-        return {
-          ...state,
-          activeTab: action.payload
-        }
+    case "change_tab":
+      return {
+        ...state,
+        activeTab: action.payload,
+      };
 
     default:
       return state;

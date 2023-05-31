@@ -1,4 +1,3 @@
-import React from "react";
 import {
   View,
   ScrollView,
@@ -17,7 +16,7 @@ import MeasurementIcons from "../components/svgs/MeasurementIcons";
 
 import getTheme from "../context/theme";
 
-const Options = ({navigation}: any) => {
+const Options = () => {
   const { state, dispatch } = useAppContext();
   const theme = getTheme();
 

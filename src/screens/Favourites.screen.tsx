@@ -13,6 +13,8 @@ import RemoveFavourite from "../components/RemoveFavourite";
 
 import handleFavouriteText from "../lib/handleFavouriteText";
 
+import useGetInFocus from "../hooks/useGetInFocus";
+
 import NoFavourites from "../components/NoFavourites";
 
 import MeasurementIcons from "../components/svgs/MeasurementIcons";
@@ -41,23 +43,7 @@ const Favourites = ({ navigation }: any) => {
     fetchFavourites();
   }, []);
 
-  // useEffect(() => {
-  //   dispatch({
-  //     type: "change_tab",
-  //     payload: "Favourites",
-  //   })
-  // },[])
-
-  useLayoutEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
-      dispatch({
-        type: "change_tab",
-        payload: "Favourites",
-      });
-    });
-
-    return unsubscribe;
-  }, [dispatch, navigation]);
+  useGetInFocus(navigation, dispatch, "Favourites");
 
   const whatToMap = init === 0 ? favouritesFromStorage : favourites;
 

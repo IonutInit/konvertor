@@ -14,9 +14,17 @@ import NavigationTabs from "./src/navigation/Navigation";
 import reducer from "./src/context/reducer";
 import appState from "./src/data/appState";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import getLocalData from "./src/lib/getLocalData";
+import { settingsKey } from "./src/data/storageKeys";
+// import getLocalData from "../lib/getLocalData";
+// import { settingsKey } from "../data/storageKeys";
+
 import platform from "./src/data/platform";
 
 import useThemeContext from "./src/context/useThemeContext";
+
+import { SettingsType } from "./types";
 
 export default function App() {
   // const [fontsLoaded] = useFonts({
@@ -24,7 +32,16 @@ export default function App() {
   //   "Ape": require("./src/assets/fonts/ApeMount.otf")
   // })
 
+  const settings = {
+    extendedList: false,
+    metric: true,
+    decimals: 2,
+    verbose: false,
+    theme: 1,
+  };
+
   const [state, dispatch] = useReducer(reducer, appState);
+  const [storedSettings, setStoredSettings] = useState<SettingsType>(settings);
 
   const { theme } = useThemeContext();
 
@@ -40,6 +57,23 @@ export default function App() {
   // } else {
   //   SplashScreen.hideAsync()
   // }
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      const data = await getLocalData(settingsKey);
+      if (!data) {
+        setStoredSettings(settings);
+      }
+      if (data) {
+        dispatch({
+          type: "initialise_settings",
+          payload: data as SettingsType,
+        });
+      }
+    };
+
+    fetchSettings();
+  }, []);
 
   return (
     <AppContextProvider state={state} dispatch={dispatch}>

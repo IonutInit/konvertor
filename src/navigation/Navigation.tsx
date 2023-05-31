@@ -16,7 +16,9 @@ import getTheme from "../context/theme";
 const NavigationTabs = () => {
   const theme = getTheme();
 
-  const {state: {activeTab}} = useAppContext() 
+  const {
+    state: { activeTab },
+  } = useAppContext();
 
   return (
     <Navigation.Navigator
@@ -37,7 +39,9 @@ const NavigationTabs = () => {
         component={Home}
         options={{
           title: "Konvertor",
-          tabBarIcon: ({ color, size }) => <NavigationIcons type="home" isActive={activeTab === "Home"}/>,
+          tabBarIcon: ({ color, size }) => (
+            <NavigationIcons type="home" isActive={activeTab === "Home"} />
+          ),
         }}
       />
 
@@ -47,8 +51,14 @@ const NavigationTabs = () => {
         options={{
           tabBarIcon: ({ color, size }) => {
             return (
-              <View style={{ paddingBottom: 20 }}>
-                <NavigationIcons type="favourites" size={55} isActive={activeTab === "Favourites"}/>
+              <View
+              // style={{ paddingBottom: 20 }}
+              >
+                <NavigationIcons
+                  type="favourites"
+                  // size={55}
+                  isActive={activeTab === "Favourites"}
+                />
               </View>
             );
           },
@@ -59,7 +69,12 @@ const NavigationTabs = () => {
         name="Settings"
         component={Settings}
         options={{
-          tabBarIcon: ({ color, size }) => <NavigationIcons type="settings" isActive={activeTab === "Settings"}/>,
+          tabBarIcon: ({ color, size }) => (
+            <NavigationIcons
+              type="settings"
+              isActive={activeTab === "Settings"}
+            />
+          ),
         }}
       />
     </Navigation.Navigator>

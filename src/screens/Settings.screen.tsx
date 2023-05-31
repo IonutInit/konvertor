@@ -13,6 +13,8 @@ import BackButton from "../components/svgs/BackButton";
 
 import useAppContext from "../context/useAppContext";
 
+import useGetInFocus from "../hooks/useGetInFocus";
+
 import getTheme from "../context/theme";
 
 import { SettingsType } from "../../types";
@@ -28,42 +30,38 @@ const Settings = ({ navigation }: any) => {
 
   const theme = getTheme();
 
-   useEffect(() => {
-    const fetchSettings = async () => {
-      const data = await getLocalData(settingsKey);
-      if (!data) {
-        setStoredSettings(settings);
-      } else {
-        setStoredSettings(data as SettingsType);
-      }
-    };
-    fetchSettings();
-  }, []);
+  //  useEffect(() => {
+  //   const fetchSettings = async () => {
+  //     const data = await getLocalData(settingsKey);
+  //     if (!data) {
+  //       setStoredSettings(settings);
+  //     }
 
-  useEffect(() => {
-    const saveSettings = async () => {
-      try {
-        const jsonValue = JSON.stringify(storedSettings);
-        await AsyncStorage.setItem(settingsKey, jsonValue);
-        dispatch({
-          type: "initialise_settings",
-          payload: storedSettings,
-        });
-      } catch (e) {}
-    };
-    saveSettings();
-  }, [storedSettings, dispatch]);
+  //     if(data) {
+  //       dispatch({
+  //         type: "initialise_settings",
+  //         payload: data as SettingsType,
+  //       })
+  //     }
+  //   };
+  //   fetchSettings();
+  // }, []);
 
-  useLayoutEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
-      dispatch({
-        type: "change_tab",
-        payload: "Settings",
-      });
-    });
+  // useEffect(() => {
+  //   const saveSettings = async () => {
+  //     try {
+  //       const jsonValue = JSON.stringify(storedSettings);
+  //       await AsyncStorage.setItem(settingsKey, jsonValue);
+  //       dispatch({
+  //         type: "initialise_settings",
+  //         payload: storedSettings,
+  //       });
+  //     } catch (e) {}
+  //   };
+  //   saveSettings();
+  // }, [storedSettings, dispatch]);
 
-    return unsubscribe;
-  }, [dispatch, navigation]);
+  // useGetInFocus(navigation, dispatch, "Settings")
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -97,7 +95,7 @@ const Settings = ({ navigation }: any) => {
 
         <SliderComponent
           settingType="decimals"
-          settingValue={settings.decimals}
+          // settingValue={settings.decimals}
         />
         <View style={{ paddingTop: 20 }}>
           <Text style={styles.title}>Accuracy</Text>
@@ -109,18 +107,13 @@ const Settings = ({ navigation }: any) => {
 
       <View style={styles.sliderContainer}>
         <View style={{ paddingBottom: 20 }}>
-          <Text>
-            {theme.name}
-            {/* From: {settings.metric ? "metric" : "imperial"} to{" "}
-            {!settings.metric ? "metric" : "imperial"} */}
-          </Text>
+          <Text>{theme.name}</Text>
         </View>
 
         <SliderComponent settingType="theme" settingValue={settings.theme} />
 
         <View style={{ paddingTop: 20 }}>
           <Text style={styles.title}>Theme</Text>
-          {/* <Text style={styles.title}>Preferred conversion type</Text> */}
         </View>
 
         <View style={styles.divider}></View>

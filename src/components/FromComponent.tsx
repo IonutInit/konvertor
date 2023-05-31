@@ -42,15 +42,6 @@ const FromComponent = ({ measureType }: { measureType: string }) => {
             ).toString()}
           />
 
-          {/* {platform === "android" && (
-            <FromPicker 
-              onChange={handleFromUnitChange}
-              options={options}
-              unit={unit}
-              i={i}
-              />
-          )} */}
-
           {platform !== "ios" && (
             <PickerComponent
               onChange={handleFromUnitChange}

@@ -1,6 +1,8 @@
-function getNextUnit(unit: string, allUnits: string[]) {
-  const index = allUnits.indexOf(unit);
-  return allUnits.slice(0, index);
+import { DescriptionType, UnitDescription } from "../data/unitDescription";
+
+function getNextUnit(unit: string, allUnits: UnitDescription) {
+  const index = allUnits.short.indexOf(unit);
+  return allUnits.short.slice(0, index);
 }
 
 export default getNextUnit;

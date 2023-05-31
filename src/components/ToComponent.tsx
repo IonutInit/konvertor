@@ -20,6 +20,8 @@ import getNextUnit from "../lib/getNextUnit";
 import displaySwitchedValues from "../lib/displaySwitchedValues";
 import description from "../data/unitDescription";
 
+import { DescriptionType } from "../data/unitDescription";
+
 const ToComponent = () => {
   const { state } = useAppContext();
 
@@ -29,7 +31,7 @@ const ToComponent = () => {
       .possibilities();
     let nextOption = getNextUnit(
       state.toUnit[state.toUnit.length - 1],
-      description[state.measureType]
+      (description as DescriptionType)[state.measureType]
     );
 
     platform === "android" ? (nextOption = allOptions) : nextOption;
@@ -38,7 +40,7 @@ const ToComponent = () => {
 
     let options = state.toUnit.length > 1 ? nextOption : allOptions;
 
-      //   const describe = (input: string[]) => {
+    //   const describe = (input: string[]) => {
     //     return [input.map((x) => convert().describe(x).plural), input];
     //   };
 

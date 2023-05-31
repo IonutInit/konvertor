@@ -1,8 +1,10 @@
 import { ImageSourcePropType } from "react-native";
 
-export type IconMapType = {
-  [key: string]: ImageSourcePropType;
-};
+import { DescriptionType, UnitDescription } from "./src/data/unitDescription";
+
+// export type IconMapType = {
+//   [key: string]: ImageSourcePropType;
+// };
 
 export type UniversalPickerOptions = "to" | "from" | "";
 
@@ -37,7 +39,7 @@ export type AppStateType = {
   settings: SettingsType;
   favourites: FavouriteType[];
   init: 0 | 1; //used to switch between useEffect and state when handling favourites; could find no other way to subscribe to changes
-  activeTab: "Home" | "Favourites" | "Settings"
+  activeTab: "Home" | "Favourites" | "Settings";
 };
 
 export type ActionType =
@@ -131,10 +133,10 @@ export type ActionType =
         sourceToUnit: string[];
       };
     }
-  |{ 
-    type: "change_tab";
-    payload: "Home" | "Favourites" | "Settings";
-  }
+  | {
+      type: "change_tab";
+      payload: "Home" | "Favourites" | "Settings";
+    };
 
 export type ThemeType = {
   mainColour: string;

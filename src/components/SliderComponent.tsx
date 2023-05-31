@@ -10,24 +10,24 @@ import getTheme from "../context/theme";
 
 type SliderComponentPropType = {
   settingType: string;
-  settingValue: number;
+  settingValue?: number;
 };
 
 const SliderComponent = ({
   settingType,
   settingValue,
 }: SliderComponentPropType) => {
-  const { dispatch } = useAppContext();
+  const { dispatch, state } = useAppContext();
 
   const theme = getTheme();
 
-  const [value, setValue] = useState(settingValue);
+  // const [value, setValue] = useState(settingValue);
 
-  console.log(value);
+  // console.log(value);
 
   const handleValueChange = (newValue: number) => {
-    const settingValue = Math.floor(newValue / 10);
-    setValue(newValue);
+    const settingValue = Math.floor(newValue);
+    // setValue(settingValue);
     dispatch({
       type: "change_settings",
       payload: {
@@ -41,8 +41,8 @@ const SliderComponent = ({
     <View style={styles.container}>
       {/* <Text>{title}</Text> */}
       <Slider
-        maximumValue={49}
-        value={value}
+        maximumValue={4}
+        value={settingValue}
         onValueChange={handleValueChange}
         minimumTrackTintColor={theme.gray3}
         maximumTrackTintColor={theme.gray3}

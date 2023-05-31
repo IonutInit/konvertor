@@ -7,8 +7,6 @@ import {
   KeyboardAvoidingView,
 } from "react-native";
 
-import { useLayoutEffect } from "react";
-
 import useAppContext from "../context/useAppContext";
 
 import platform from "../data/platform";
@@ -24,23 +22,31 @@ import UniversalPicker from "../components/UniversalPicker";
 import Description from "../components/Description";
 
 import getTheme from "../context/theme";
-import { useEffect } from "react";
+
+import convert from "convert-units";
+
+import description from "../data/unitDescription";
 
 const Konvertor = () => {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
 
   const toUnitadditions = platform === "android" ? 2 : 3;
 
   const theme = getTheme();
 
-  console.log(state);
+  //console.log(state);
 
-  useEffect(() => {
-    dispatch({
-      type: "change_tab",
-      payload: "Home",
-    });
-  }, []);
+  const handleVerbosity = (input: string[]) => {
+    const verbose = [];
+
+    for (let i = 0; i < input.length; i++) {
+      verbose.push(convert().describe(input[i]).plural.toLowerCase());
+    }
+
+    return verbose;
+  };
+
+  console.log(description.length.short);
 
   return (
     <View style={styles.container}>

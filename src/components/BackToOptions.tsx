@@ -15,7 +15,7 @@ const BackToOptions = () => {
     dispatch({
       type: "change_tab",
       payload: "Home",
-    })
+    });
   };
 
   return (
