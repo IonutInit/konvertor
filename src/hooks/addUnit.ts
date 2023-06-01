@@ -5,7 +5,7 @@ import { ActionType, AppStateType } from "../../types";
 const addUnit = (
   dispatch: Dispatch<ActionType>,
   state: AppStateType,
-  type: "to" | "from",
+  type: "to" | "from"
 ) => {
   const payload =
     type === "from"

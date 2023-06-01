@@ -81,13 +81,14 @@ export type ActionType =
         iterator: number;
       };
     }
-  | { 
-    type: `remove_${string}_value`; 
-    payload: number[] }
+  | {
+      type: `remove_${string}_value`;
+      payload: number[];
+    }
   | {
       type: "change_TO_unit";
       payload: {
-        componentKey?: number,
+        componentKey?: number;
         value: string;
         iterator: number;
       };
@@ -98,6 +99,14 @@ export type ActionType =
         settingType: string;
         settingValue: boolean | number;
       };
+    }
+  | {
+      type: "change_decimals";
+      payload: "plus" | "minus";
+    }
+    | {
+      type: "change_theme",
+      payload: string,
     }
   | {
       type: "add_to_favourites";

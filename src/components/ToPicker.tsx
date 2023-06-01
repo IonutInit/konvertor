@@ -12,23 +12,32 @@ type PickerComponentProps = {
     option: string,
     iterator: number,
     verbosity: boolean,
-    measureType: string,    
+    measureType: string
   ) => void;
   options: string[];
   unit: string;
   i: number;
-  measureType: string,
-  verbosity: boolean,
+  measureType: string;
+  verbosity: boolean;
 };
 
-const ToPicker = ({ onChange, options, unit, i, verbosity, measureType }: PickerComponentProps) => {
+const ToPicker = ({
+  onChange,
+  options,
+  unit,
+  i,
+  verbosity,
+  measureType,
+}: PickerComponentProps) => {
   const { dispatch } = useAppContext();
 
   return (
     <Picker
       style={styles.picker}
       selectedValue={unit}
-      onValueChange={(option) => onChange(dispatch, option, i, verbosity, measureType)}
+      onValueChange={(option) =>
+        onChange(dispatch, option, i, verbosity, measureType)
+      }
       itemStyle={styles.pickerItem}>
       {options.map((option: string) => (
         <Picker.Item key={option} label={option} value={option} />

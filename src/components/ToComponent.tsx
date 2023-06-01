@@ -24,9 +24,11 @@ import description from "../data/unitDescription";
 import { DescriptionType } from "../data/unitDescription";
 
 const ToComponent = () => {
-  const { state: {toUnit, fromUnit, fromValue, measureType, settings, addition} } = useAppContext();
+  const {
+    state: { toUnit, fromUnit, fromValue, measureType, settings, addition },
+  } = useAppContext();
 
-  const workingMeasureType = measureType[0].toString() 
+  const workingMeasureType = measureType[0].toString();
 
   const elements = toUnit.map((unit: string, i: number) => {
     const allOptions = convert()
@@ -43,8 +45,7 @@ const ToComponent = () => {
 
     let options = toUnit.length > 1 ? nextOption : allOptions;
 
-    const optionsToDisplay = handleVerbosity(options, settings.verbose)
-
+    const optionsToDisplay = handleVerbosity(options, settings.verbose);
 
     const result = converter(
       addition,

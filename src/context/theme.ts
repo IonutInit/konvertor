@@ -35,6 +35,7 @@ const getTheme = () => {
     gray3: "#929292",
     secondaryColour: secondaryColour[theme],
     name: name[theme],
+    allThemes: name,
   };
 };
 

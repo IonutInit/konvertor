@@ -11,14 +11,14 @@ import platform from "../data/platform";
 import { revertVerbosity } from "../hooks/handleVerbosity";
 
 type PickerComponentProps = {
-  componentKey: number,
+  componentKey: number;
   onChange: (
     componentKey: number,
     dispatch: Dispatch<ActionType>,
     option: string,
     iterator: number,
     measureType: string,
-    verbosity: boolean,
+    verbosity: boolean
   ) => void;
   options: string[];
   unit?: string;
@@ -34,7 +34,7 @@ const PickerComponent = ({
   unit,
   i,
   measureType,
-  verbosity
+  verbosity,
 }: PickerComponentProps) => {
   const { state, dispatch } = useAppContext();
 
@@ -46,20 +46,24 @@ const PickerComponent = ({
 
   // to use for android once you get the android picker sorted label={label(option, measureType)}
   const label = (option: string, measureType: string) => {
-    if(platform === "android") {
-       return revertVerbosity(option, verbosity, measureType)
+    if (platform === "android") {
+      return revertVerbosity(option, verbosity, measureType);
     }
-    return option
-  }
+    return option;
+  };
 
-   return (
+  return (
     <Picker
       style={styles.picker}
       selectedValue={unit}
       onValueChange={handleValueChange}
       itemStyle={styles.pickerItem}>
       {options.map((option: string) => (
-        <Picker.Item key={option} label={label(option, measureType)} value={option} />
+        <Picker.Item
+          key={option}
+          label={label(option, measureType)}
+          value={option}
+        />
       ))}
     </Picker>
   );

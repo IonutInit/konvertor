@@ -7,9 +7,11 @@ import { settingsKey } from "../data/storageKeys";
 
 import SliderComponent from "../components/SliderComponent";
 import ToggleButton from "../components/ToggleButton";
+import { Picker } from "@react-native-picker/picker";
 import Credentials from "../components/Credentials";
 
 import BackButton from "../components/svgs/BackButton";
+import AddButton from "../components/svgs/AddButton";
 
 import useAppContext from "../context/useAppContext";
 
@@ -18,6 +20,7 @@ import useGetInFocus from "../hooks/useGetInFocus";
 import getTheme from "../context/theme";
 
 import { SettingsType } from "../../types";
+
 
 const Settings = ({ navigation }: any) => {
   const {
@@ -63,6 +66,10 @@ const Settings = ({ navigation }: any) => {
 
   // useGetInFocus(navigation, dispatch, "Settings")
 
+  const themes = Object.values(getTheme().allThemes)
+
+  console.log(themes)
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.header}>
@@ -88,7 +95,56 @@ const Settings = ({ navigation }: any) => {
         </View>
       </View>
 
-      <View style={styles.sliderContainer}>
+
+<View style={styles.decimalsOuterContainer}>
+   <Text style={styles.title}>Decimals</Text>
+      <View style={styles.decimalsContainer}>
+        <Pressable
+          onPress={() =>
+            dispatch({
+              type: "change_decimals",
+              payload: "minus",
+            })
+          }
+          disabled={settings.decimals === 0}>
+          <AddButton type="minus" disabled={settings.decimals === 0} />
+        </Pressable>
+
+        <Text style={styles.decimalsTextContainer}>{settings.decimals}</Text>
+
+        <Pressable
+          onPress={() =>
+            dispatch({
+              type: "change_decimals",
+              payload: "plus",
+            })
+          }
+          disabled={settings.decimals === 4}>
+          <AddButton disabled={settings.decimals === 4} />
+        </Pressable>
+      </View>
+</View>
+
+<View style={styles.themesContainer}>
+  <Text style={styles.title}>Theme</Text>
+  <Pressable>
+    <Text>{themes[settings.theme]}</Text>
+  </Pressable>
+  
+          {/* <Picker 
+            onValueChange={(value) => dispatch({
+              type: "change_theme",
+              payload: value as string,
+            })}
+          >
+          {themes.map((theme) => (
+            <Picker.Item label={theme} />
+          ))}
+          </Picker> */}
+</View>
+   
+
+      {/* <View style={styles.sliderContainer}>
         <View style={{ paddingBottom: 20 }}>
           <Text>Decimals: {settings.decimals}</Text>
         </View>
@@ -103,9 +159,9 @@ const Settings = ({ navigation }: any) => {
 
         <View style={styles.divider}></View>
         <View style={styles.divider}></View>
-      </View>
+      </View> */}
 
-      <View style={styles.sliderContainer}>
+      {/* <View style={styles.sliderContainer}>
         <View style={{ paddingBottom: 20 }}>
           <Text>{theme.name}</Text>
         </View>
@@ -118,7 +174,7 @@ const Settings = ({ navigation }: any) => {
 
         <View style={styles.divider}></View>
         <View style={styles.divider}></View>
-      </View>
+      </View> */}
 
       <Credentials />
     </ScrollView>
@@ -143,20 +199,43 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
   },
+  decimalsOuterContainer: {
+    width: "100%",
+    alignContent: "center",
+    alignItems: "center",
+    paddingTop: 15,
+  },
+  decimalsContainer: {
+    flexDirection: "row",
+    width: "60%",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 10,
+    // backgroundColor: "red",
+    // paddingVertical: 20,
+  },
+  decimalsTextContainer: {
+    paddingHorizontal: 30,
+    fontSize: 32,
+  },
   sliderContainer: {
     width: "80%",
     alignItems: "center",
     paddingTop: 30,
   },
   title: {
-    fontSize: 18,
+    fontWeight: "bold",
+    letterSpacing: 0.5,
   },
-  divider: {
-    height: 1,
-    width: "80%",
-    backgroundColor: "grey",
-    marginTop: 5,
+  themesContainer: {
+    paddingTop: 15,
   },
+  // divider: {
+  //   height: 1,
+  //   width: "80%",
+  //   backgroundColor: "grey",
+  //   marginTop: 5,
+  // },
 });
 
 export default Settings;

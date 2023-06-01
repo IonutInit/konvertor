@@ -16,15 +16,15 @@ import handleFromUnitChange from "../hooks/handleFromUnitChange";
 import convert from "convert-units";
 import platform from "../data/platform";
 
-import displaySwitchedValues from "../lib/displaySwitchedValues"
+import displaySwitchedValues from "../lib/displaySwitchedValues";
 
-import {handleVerbosity, revertVerbosity} from "../hooks/handleVerbosity";
+import { handleVerbosity, revertVerbosity } from "../hooks/handleVerbosity";
 import getPickerUnit from "../hooks/getPickerUnit";
 
 type FromComponentProps = {
-  measureType: string,
-  componentKey: number,
-}
+  measureType: string;
+  componentKey: number;
+};
 
 const FromComponent = ({ measureType, componentKey }: FromComponentProps) => {
   const {
@@ -32,20 +32,16 @@ const FromComponent = ({ measureType, componentKey }: FromComponentProps) => {
     dispatch,
   } = useAppContext();
 
-
   const elements = fromUnit[componentKey].map((unit: string, i: number) => {
-
     const options = convert().possibilities(measureType);
 
-    const optionsToDisplay = handleVerbosity(options, settings.verbose)
-
-
+    const optionsToDisplay = handleVerbosity(options, settings.verbose);
 
     return (
       <React.Fragment key={i}>
         <View style={styles.container}>
           <Input
-          componentKey={componentKey}
+            componentKey={componentKey}
             handleInputChange={(input: string) =>
               handleInputChange(componentKey, dispatch, input, i)
             }

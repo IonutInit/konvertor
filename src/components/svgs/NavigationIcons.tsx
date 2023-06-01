@@ -19,7 +19,7 @@ export type SvgProps = {
   colour: string;
 };
 
-const activePadding = platform === "ios" ? 10 : 20
+const activePadding = platform === "ios" ? 10 : 20;
 
 const NavigationIcons = ({ type, size = 45, isActive }: Props) => {
   const theme = getTheme();
@@ -31,7 +31,10 @@ const NavigationIcons = ({ type, size = 45, isActive }: Props) => {
   };
 
   return (
-    <View style={isActive ? { paddingBottom: activePadding } : { paddingBottom: 0 }}>
+    <View
+      style={
+        isActive ? { paddingBottom: activePadding } : { paddingBottom: 0 }
+      }>
       {type === "home" && <HomeIcon {...props} />}
       {type === "favourites" && <FavouritesIcon {...props} />}
       {type === "settings" && <SettingsIcon {...props} />}

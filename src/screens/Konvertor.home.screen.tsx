@@ -30,7 +30,7 @@ const Konvertor = () => {
 
   const theme = getTheme();
 
-  const defaultComponentKey = 0
+  const defaultComponentKey = 0;
 
   console.log(state);
 
@@ -50,9 +50,12 @@ const Konvertor = () => {
           <AddUnit type="from" />
         </View>
 
-        <FromComponent measureType={state.measureType[0].toString()} componentKey={defaultComponentKey}/>
+        <FromComponent
+          measureType={state.measureType[0].toString()}
+          componentKey={defaultComponentKey}
+        />
 
-         <View style={styles.toOuterContainer}>
+        <View style={styles.toOuterContainer}>
           <View
             style={[
               styles.toContainer,
@@ -70,7 +73,7 @@ const Konvertor = () => {
 
         {platform === "ios" && state.universalPicker.type !== "" && (
           <View style={styles.universalPickerContainer}>
-            <UniversalPicker componentKey={defaultComponentKey}/>
+            <UniversalPicker componentKey={defaultComponentKey} />
           </View>
         )}
       </ScrollView>
@@ -137,4 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Konvertor
+export default Konvertor;

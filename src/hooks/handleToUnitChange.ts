@@ -8,9 +8,9 @@ const handleToUnitChange = (
   option: string,
   iterator: number,
   verbosity: boolean,
-  measureType: string, 
+  measureType: string
 ) => {
-  const optionForDispatch = revertVerbosity(option, verbosity, measureType)
+  const optionForDispatch = revertVerbosity(option, verbosity, measureType);
   dispatch({
     type: "change_TO_unit",
     payload: { value: optionForDispatch, iterator },

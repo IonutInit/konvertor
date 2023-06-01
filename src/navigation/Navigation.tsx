@@ -35,6 +35,19 @@ const NavigationTabs = () => {
         //tabBarActiveBackgroundColor: theme.gray1Darker
       }}>
       <Navigation.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <NavigationIcons
+              type="settings"
+              isActive={activeTab === "Settings"}
+            />
+          ),
+        }}
+      />
+
+      <Navigation.Screen
         name="Home"
         component={Home}
         options={{
@@ -62,19 +75,6 @@ const NavigationTabs = () => {
               </View>
             );
           },
-        }}
-      />
-
-      <Navigation.Screen
-        name="Settings"
-        component={Settings}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <NavigationIcons
-              type="settings"
-              isActive={activeTab === "Settings"}
-            />
-          ),
         }}
       />
     </Navigation.Navigator>

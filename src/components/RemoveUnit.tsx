@@ -5,7 +5,7 @@ import RemoveIcon from "./svgs/RemoveIcon";
 import getTheme from "../context/theme";
 
 type RemoveUnitProps = {
-  componentKey?: number,
+  componentKey?: number;
   type: "to" | "from";
   i: number;
 };
@@ -20,8 +20,10 @@ const RemoveUnit = ({ componentKey, type, i }: RemoveUnitProps) => {
     <View style={styles.removeContainer}>
       <Pressable
         onPress={() =>
-          dispatch({ 
-            type: `remove_${type.toUpperCase()}_value`, payload: [componentKey!, i] })
+          dispatch({
+            type: `remove_${type.toUpperCase()}_value`,
+            payload: [componentKey!, i],
+          })
         }
         disabled={!arrayLength}>
         {arrayLength && (

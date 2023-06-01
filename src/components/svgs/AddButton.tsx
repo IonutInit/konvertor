@@ -2,8 +2,10 @@ import { Svg, Path, Circle } from "react-native-svg";
 
 import getTheme from "../../context/theme";
 
-const AddButton = () => {
+const AddButton = ({ type = "plus", disabled = false }) => {
   const theme = getTheme();
+
+  const fill = disabled ? theme.gray3 : theme.mainColour;
 
   return (
     <Svg
@@ -16,17 +18,29 @@ const AddButton = () => {
         cx={26.496}
         cy={26.007}
         r={16.129}
-        fill={theme.mainColour}
+        fill={fill}
         transform="translate(-11.963 -11.281) scale(1.39503)"
       />
-      <Path
-        d="M24.055 17.772h6.633v7.285h2.424v-7.285h6.603v-2.306h-6.603V8.182h-2.424v7.284h-6.633v2.306Z"
-        fill={theme.gray1}
-        fillRule="nonzero"
-        stroke={theme.gray1}
-        strokeWidth={3.25}
-        transform="matrix(1.60972 0 0 1.5146 -26.326 -.172)"
-      />
+      {type === "minus" && (
+        <Path
+          d="M24.055 15.466h15.661v2.306H24.055z"
+          fill={theme.gray1}
+          fillRule="nonzero"
+          stroke={theme.gray1}
+          strokeWidth={3.25}
+          transform="matrix(1.60972 0 0 1.5146 -26.326 -.172)"
+        />
+      )}
+      {type === "plus" && (
+        <Path
+          d="M24.055 17.772h6.633v7.285h2.424v-7.285h6.603v-2.306h-6.603V8.182h-2.424v7.284h-6.633v2.306Z"
+          fill={theme.gray1}
+          fillRule="nonzero"
+          stroke={theme.gray1}
+          strokeWidth={3.25}
+          transform="matrix(1.60972 0 0 1.5146 -26.326 -.172)"
+        />
+      )}
     </Svg>
   );
 };

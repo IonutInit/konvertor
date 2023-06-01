@@ -14,7 +14,7 @@ import getTheme from "../context/theme";
 
 import { ActionType } from "../../types";
 
-const UniversalPicker = ({componentKey} : {componentKey: number}) => {
+const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
   const {
     state: { fromUnit, toUnit, universalPicker, measureType, settings },
     dispatch,
@@ -31,11 +31,10 @@ const UniversalPicker = ({componentKey} : {componentKey: number}) => {
   );
   const options = toUnit.length > 1 ? nextOption : allOptions;
 
-const optionsToDisplay = handleVerbosity(options, settings.verbose)
+  const optionsToDisplay = handleVerbosity(options, settings.verbose);
 
   const handleChange = (option: string | string[], type: string) => {
-
-     dispatch({
+    dispatch({
       type: `change_${type.toUpperCase()}_unit`,
       payload: {
         componentKey,
@@ -68,9 +67,16 @@ const optionsToDisplay = handleVerbosity(options, settings.verbose)
           : toUnit[universalPicker.index!]
       }
       onValueChange={(option) => handleChange(option, type)}>
-        
       {optionsToDisplay.map((option: string) => (
-        <Picker.Item key={option} label={option} value={revertVerbosity(option, settings.verbose, measureType[0].toString())} />
+        <Picker.Item
+          key={option}
+          label={option}
+          value={revertVerbosity(
+            option,
+            settings.verbose,
+            measureType[0].toString()
+          )}
+        />
       ))}
     </Picker>
   );

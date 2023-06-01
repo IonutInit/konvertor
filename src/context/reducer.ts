@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { favouritesKey, settingsKey } from "../data/storageKeys";
 
 import converter from "../lib/converter";
+import getTheme from "./theme";
 
 import { AppStateType, ActionType, FavouriteType } from "../../types";
 
@@ -23,11 +24,11 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       return { ...state, addition: !state.addition };
 
     case "change_measure":
-let measureType = [...state.measureType];
- let measureName = [...state.measureName];
+      let measureType = [...state.measureType];
+      let measureName = [...state.measureName];
 
-measureType[0] = [action.payload.measure];
-measureName[0] = [action.payload.name];
+      measureType[0] = [action.payload.measure];
+      measureName[0] = [action.payload.name];
 
       return {
         ...state,
@@ -63,7 +64,7 @@ measureName[0] = [action.payload.name];
 
     case "add_FROM_unit":
       let value = !state.fromValue[0].length ? 1 : 0;
-       return {
+      return {
         ...state,
         fromUnit: state.fromUnit.map((unit, index) =>
           index === 0 ? [...unit, action.payload] : unit
@@ -78,8 +79,7 @@ measureName[0] = [action.payload.name];
       };
 
     case "add_TO_unit":
-      return { ...state, 
-        toUnit: [...state.toUnit, action.payload] };
+      return { ...state, toUnit: [...state.toUnit, action.payload] };
 
     case "change_TO_unit":
       const updatedFromUnit2 = state.toUnit.map((unit, index) =>
@@ -111,34 +111,31 @@ measureName[0] = [action.payload.name];
       });
       return { ...state, fromValue: updatedFromValue };
 
-
     case "remove_FROM_value":
-
       const fromUnitRemovedUnit = state.fromUnit.map((subArray, index) => {
         if (index === action.payload[0]) {
           const updatedSubArray = subArray.filter(
-           ( _, subIndex) => subIndex !== action.payload[1]
-          )
-          return updatedSubArray
+            (_, subIndex) => subIndex !== action.payload[1]
+          );
+          return updatedSubArray;
         }
-        return subArray
-      })
+        return subArray;
+      });
 
       const fromUnitRemovedValue = state.fromValue.map((subArray, index) => {
         if (index === action.payload[1]) {
           const updatedSubArray = subArray.filter(
-           ( _, subIndex) => subIndex !== action.payload[1]
-          )
-          return updatedSubArray
+            (_, subIndex) => subIndex !== action.payload[1]
+          );
+          return updatedSubArray;
         }
-        return subArray
-      })
+        return subArray;
+      });
       return {
         ...state,
         fromUnit: fromUnitRemovedUnit,
         fromValue: fromUnitRemovedValue,
       };
-
 
     case "remove_TO_value":
       const updatedFromUnit4 = state.toUnit.filter(
@@ -162,16 +159,16 @@ measureName[0] = [action.payload.name];
         state.toUnit
       );
 
-      const switchedFromUnit = [...state.fromUnit]; 
-      switchedFromUnit[0] = action.payload.sourceToUnit
+      const switchedFromUnit = [...state.fromUnit];
+      switchedFromUnit[0] = action.payload.sourceToUnit;
 
       const switchedFromValue = [...state.fromValue];
-      switchedFromValue[0] = result
+      switchedFromValue[0] = result;
 
       return {
         ...state,
         fromUnit: switchedFromUnit,
-        fromValue:switchedFromValue,
+        fromValue: switchedFromValue,
         toUnit: action.payload.sourceFromUnit,
       };
 
@@ -209,6 +206,28 @@ measureName[0] = [action.payload.name];
         settings: updatedSettings,
       };
 
+    case "change_decimals":
+      const i = action.payload === "plus" ? 1 : -1;
+      const decimals = state.settings.decimals + i;
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          decimals,
+        },
+      };
+
+    case "change_theme":
+      const themes = ['Blue', 'Second theme', 'Third theme', 'Fourth theme']
+      const themeValue = themes.indexOf(action.payload)
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          theme: themeValue,
+        }
+      }
+
     case "add_to_favourites":
       const updatedFavourites2 = {
         ...state,
@@ -223,10 +242,9 @@ measureName[0] = [action.payload.name];
       return updatedFavourites2;
 
     case "launch_favourite":
-
-    function createBlankArray(arr: string[][]) {
-      return arr.map(subArray => Array(subArray.length).fill(0))
-    }  
+      function createBlankArray(arr: string[][]) {
+        return arr.map((subArray) => Array(subArray.length).fill(0));
+      }
       return {
         ...state,
         measureType: [action.payload.measureType],
@@ -234,7 +252,6 @@ measureName[0] = [action.payload.name];
         fromValue: createBlankArray(action.payload.fromUnit),
         toUnit: [action.payload.toUnit],
       };
-      
 
     case "initialise_favourites":
       return {

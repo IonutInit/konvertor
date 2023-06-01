@@ -15,7 +15,7 @@ const handleOptionPress = (
 
   // const payload =
   //   targetUnit.extra === undefined ? "konvertor" : targetUnit.name;
-  const payload = "konvertor"
+  const payload = "konvertor";
 
   dispatch({
     type: "change_konvertor",

@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { ActionType } from "../../types";
 
-import {revertVerbosity} from "./handleVerbosity";
+import { revertVerbosity } from "./handleVerbosity";
 
 const handleFromUnitChange = (
   componentKey: number,
@@ -9,16 +9,17 @@ const handleFromUnitChange = (
   option: string,
   iterator: number,
   measureType: string,
-  verbosity: boolean,
+  verbosity: boolean
 ) => {
-  const optionForDispatch = revertVerbosity(option,verbosity, measureType)
+  const optionForDispatch = revertVerbosity(option, verbosity, measureType);
 
   dispatch({
     type: "change_FROM_unit",
-    payload: { 
+    payload: {
       componentKey,
-      value: optionForDispatch, 
-      iterator },
+      value: optionForDispatch,
+      iterator,
+    },
   });
 };
 

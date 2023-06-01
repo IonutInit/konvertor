@@ -1,7 +1,7 @@
 import { TextInput, StyleSheet } from "react-native";
 
 type InputProps = {
-  componentKey: number,
+  componentKey: number;
   handleInputChange: (input: string) => void;
   value: string;
   i: number;
