@@ -334,13 +334,14 @@ const description: DescriptionType = {
     short: ["mV", "V", "kV"],
     long: ["millivolts", "volts", "kilovolts"],
   },
+  //wrong!!!
   current: {
     short: ["mA", "A", "kA"],
     long: ["milliamperes", "amperes", "kiloamperes"],
   },
   power: {
-    short: ["mW", "W", "kW", "MW", "GW"],
-    long: ["milliwatts", "watts", "kilowatts", "megawatts", "gigawatts"],
+    short: ["mA", "A", "kA"],
+    long: ["milliamperes", "amperes", "kiloamperes"],
   },
   apparentPower: {
     short: ["mVA", "VA", "kVA", "MVA", "GVA"],

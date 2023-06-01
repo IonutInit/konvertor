@@ -88,7 +88,7 @@ export default function App() {
           style={{
             flex: 1,
             alignSelf: "center",
-            width: platform === "web" ? 600 : "100%",
+            width: platform === "web" ? 600 : "101%",
             borderWidth: 1,
             borderColor: theme.gray1,
             borderRadius: 10,

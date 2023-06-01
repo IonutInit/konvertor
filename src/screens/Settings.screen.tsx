@@ -81,7 +81,7 @@ const Settings = ({ navigation }: any) => {
           />
           <ToggleButton
             title={"Verbosity"}
-            text={["short", "long"]}
+            text={["long", "short"]}
             settingType="verbose"
             settingValue={settings.verbose}
           />
