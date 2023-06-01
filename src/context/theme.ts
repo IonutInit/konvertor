@@ -2,23 +2,32 @@ import useAppContext from "./useAppContext";
 
 const mainColour: Record<number, string> = {
   1: "#0D2B52",
-  2: "#19cc33",
-  3: "#ffbf6e",
-  4: "",
+  2: "#704E2E",
+  3: "#606C38",
+  4: "#0D2B52",
+  5: "#3D1054",
+  6: "",
+  7: "",
 };
 
 const secondaryColour: Record<number, string> = {
   1: "#FF8C01",
-  2: "#d50c42",
-  3: "#c9303e",
-  4: "",
+  2: "#FFDB58",
+  3: "#BC6C25",
+  4: "#FF8C01",
+  5: "#E16588",
+  6: "",
+  7: "",
 };
 
 const name: Record<number, string> = {
   1: "Blue",
-  2: "Second theme",
+  2: "Autumn",
   3: "Third theme",
-  4: "Fourth theme",
+  4: "Autumn",
+  5: "Spring",
+  6: "Summer",
+  7: "one more"
 };
 
 const getTheme = () => {

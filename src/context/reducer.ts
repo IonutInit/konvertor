@@ -218,7 +218,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       };
 
     case "change_theme":
-      const themes = ['Blue', 'Second theme', 'Third theme', 'Fourth theme']
+      const themes = ['Blue', 'Second theme', 'Third theme', 'Autumn', "Spring", "Summer", "one more"]
       const themeValue = themes.indexOf(action.payload)
       return {
         ...state,

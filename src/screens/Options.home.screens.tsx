@@ -16,9 +16,13 @@ import MeasurementIcons from "../components/svgs/MeasurementIcons";
 
 import getTheme from "../context/theme";
 
+import typing from "../lib/typing";
+
 const Options = () => {
   const { state, dispatch } = useAppContext();
   const theme = getTheme();
+
+  console.log(typing("gfgh 5 m 2 cm 5 in 3 zz inx 4"))
 
   const filteredUnitList = unitList.filter(
     (unit) => state.settings.extendedList || unit.primary
