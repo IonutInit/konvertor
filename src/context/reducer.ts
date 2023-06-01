@@ -23,11 +23,18 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       return { ...state, addition: !state.addition };
 
     case "change_measure":
+let measureType = [...state.measureType];
+ let measureName = [...state.measureName];
+
+measureType[0] = [action.payload.measure];
+measureName[0] = [action.payload.name];
+
       return {
         ...state,
-        measureType: action.payload.measure,
-        measureName: action.payload.name,
-        fromUnit: [],
+        measureType,
+        measureName,
+        fromUnit: [[], []],
+        fromValue: [[], []], ///why did I need to add it?
         toUnit: [],
       };
 
@@ -55,19 +62,24 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     //-------------------------------
 
     case "add_FROM_unit":
-      let value = !state.fromValue.length ? 1 : 0;
-      return {
+      let value = !state.fromValue[0].length ? 1 : 0;
+       return {
         ...state,
-        fromUnit: [...state.fromUnit, action.payload],
-        fromValue: [...state.fromValue, value],
-        universalPicker: {
-          ...state.universalPicker,
-          position: [...state.universalPicker.position!, [0, 0]],
-        },
+        fromUnit: state.fromUnit.map((unit, index) =>
+          index === 0 ? [...unit, action.payload] : unit
+        ),
+        fromValue: state.fromValue.map((val, index) =>
+          index === 0 ? [...val, value] : val
+        ),
+        // universalPicker: {
+        //   ...state.universalPicker,
+        //   position: [...state.universalPicker.position!, [0, 0]],
+        // },
       };
 
     case "add_TO_unit":
-      return { ...state, toUnit: [...state.toUnit, action.payload] };
+      return { ...state, 
+        toUnit: [...state.toUnit, action.payload] };
 
     case "change_TO_unit":
       const updatedFromUnit2 = state.toUnit.map((unit, index) =>
@@ -76,34 +88,61 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       return { ...state, toUnit: updatedFromUnit2 };
 
     case "change_FROM_unit":
-      const updatedFromUnit = state.fromUnit.map((unit, index) =>
-        index === action.payload.iterator ? action.payload.value : unit
-      );
+      const updatedFromUnit = state.fromUnit.map((subArray, index) => {
+        if (index === action.payload.componentKey) {
+          const updatedSubArray = subArray.map((unit, subIndex) =>
+            subIndex === action.payload.iterator ? action.payload.value : unit
+          );
+          return updatedSubArray;
+        }
+        return subArray;
+      });
       return { ...state, fromUnit: updatedFromUnit };
 
     case "change_FROM_value":
-      const newValue = action.payload.value;
-      const updatedFromValue = state.fromValue.map((value, index) =>
-        index === action.payload.iterator ? newValue : value
-      );
+      const updatedFromValue = state.fromValue.map((subArray, index) => {
+        if (index === action.payload.componentKey) {
+          const updatedSubArray = subArray.map((value, subIndex) =>
+            subIndex === action.payload.iterator ? action.payload.value : value
+          );
+          return updatedSubArray;
+        }
+        return subArray;
+      });
       return { ...state, fromValue: updatedFromValue };
 
+
     case "remove_FROM_value":
-      const updatedFromUnit3 = state.fromUnit.filter(
-        (unit, index) => index !== action.payload
-      );
-      const updatedFromValue3 = state.fromValue.filter(
-        (value, index) => index !== action.payload
-      );
+
+      const fromUnitRemovedUnit = state.fromUnit.map((subArray, index) => {
+        if (index === action.payload[0]) {
+          const updatedSubArray = subArray.filter(
+           ( _, subIndex) => subIndex !== action.payload[1]
+          )
+          return updatedSubArray
+        }
+        return subArray
+      })
+
+      const fromUnitRemovedValue = state.fromValue.map((subArray, index) => {
+        if (index === action.payload[1]) {
+          const updatedSubArray = subArray.filter(
+           ( _, subIndex) => subIndex !== action.payload[1]
+          )
+          return updatedSubArray
+        }
+        return subArray
+      })
       return {
         ...state,
-        fromUnit: updatedFromUnit3,
-        fromValue: updatedFromValue3,
+        fromUnit: fromUnitRemovedUnit,
+        fromValue: fromUnitRemovedValue,
       };
+
 
     case "remove_TO_value":
       const updatedFromUnit4 = state.toUnit.filter(
-        (unit, index) => index !== action.payload
+        (unit, index) => index !== action.payload[1]
       );
       // const updatedFromValue4 = state.toValue.filter((value, index) =>
       //   index !== action.payload
@@ -117,15 +156,22 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     case "switch":
       const result = converter(
         state.addition,
-        state.fromValue,
-        state.fromUnit,
+        state.fromValue[0],
         state.fromUnit[0],
+        state.fromUnit[0][0],
         state.toUnit
       );
+
+      const switchedFromUnit = [...state.fromUnit]; 
+      switchedFromUnit[0] = action.payload.sourceToUnit
+
+      const switchedFromValue = [...state.fromValue];
+      switchedFromValue[0] = result
+
       return {
         ...state,
-        fromUnit: action.payload.sourceToUnit,
-        fromValue: result,
+        fromUnit: switchedFromUnit,
+        fromValue:switchedFromValue,
         toUnit: action.payload.sourceFromUnit,
       };
 
@@ -177,13 +223,18 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       return updatedFavourites2;
 
     case "launch_favourite":
+
+    function createBlankArray(arr: string[][]) {
+      return arr.map(subArray => Array(subArray.length).fill(0))
+    }  
       return {
         ...state,
-        measureType: action.payload.measureType,
+        measureType: [action.payload.measureType],
         fromUnit: action.payload.fromUnit,
-        fromValue: Array(action.payload.fromUnit.length).fill(0),
-        toUnit: action.payload.toUnit,
+        fromValue: createBlankArray(action.payload.fromUnit),
+        toUnit: [action.payload.toUnit],
       };
+      
 
     case "initialise_favourites":
       return {

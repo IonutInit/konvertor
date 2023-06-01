@@ -9,7 +9,7 @@ const Switch = () => {
     dispatch({
       type: "switch",
       payload: {
-        sourceFromUnit: state.fromUnit,
+        sourceFromUnit: state.fromUnit[0],
         sourceToUnit: state.toUnit,
       },
     });

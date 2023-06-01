@@ -1,12 +1,13 @@
 import { TextInput, StyleSheet } from "react-native";
 
 type InputProps = {
+  componentKey: number,
   handleInputChange: (input: string) => void;
   value: string;
   i: number;
 };
 
-const Input = ({ handleInputChange, value, i }: InputProps) => {
+const Input = ({ componentKey, handleInputChange, value, i }: InputProps) => {
   return (
     <TextInput
       style={styles.input}

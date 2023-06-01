@@ -13,8 +13,9 @@ const handleOptionPress = (
   const [defaultFrom, defaultTo] = state.settings.metric ? [0, 1] : [1, 0];
   const targetUnit = unitList.find((unit) => unit.name === measure)!;
 
-  const payload =
-    targetUnit.extra === undefined ? "konvertor" : targetUnit.name;
+  // const payload =
+  //   targetUnit.extra === undefined ? "konvertor" : targetUnit.name;
+  const payload = "konvertor"
 
   dispatch({
     type: "change_konvertor",

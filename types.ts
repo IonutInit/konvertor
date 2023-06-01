@@ -9,8 +9,8 @@ import { DescriptionType, UnitDescription } from "./src/data/unitDescription";
 export type UniversalPickerOptions = "to" | "from" | "";
 
 export type FavouriteType = {
-  measureType: string;
-  from: string[];
+  measureType: string[][];
+  from: string[][];
   to: string[];
 };
 
@@ -25,11 +25,11 @@ export type SettingsType = {
 
 export type AppStateType = {
   konvertor: string;
-  measureName: string;
-  measureType: string;
+  measureName: string[][];
+  measureType: string[][];
   addition: boolean;
-  fromUnit: string[];
-  fromValue: (number | string)[];
+  fromUnit: string[][];
+  fromValue: (number | string)[][];
   toUnit: string[];
   universalPicker: {
     type: UniversalPickerOptions;
@@ -59,6 +59,7 @@ export type ActionType =
   | {
       type: `change_${string}_unit`;
       payload: {
+        componentKey?: number;
         value: string;
         iterator: number;
       };
@@ -67,6 +68,7 @@ export type ActionType =
   | {
       type: "change_FROM_value";
       payload: {
+        componentKey?: number;
         value: string;
         iterator: number;
       };
@@ -74,14 +76,18 @@ export type ActionType =
   | {
       type: "change_FROM_unit";
       payload: {
+        componentKey?: number;
         value: string;
         iterator: number;
       };
     }
-  | { type: `remove_${string}_value`; payload: number }
+  | { 
+    type: `remove_${string}_value`; 
+    payload: number[] }
   | {
       type: "change_TO_unit";
       payload: {
+        componentKey?: number,
         value: string;
         iterator: number;
       };
@@ -100,9 +106,9 @@ export type ActionType =
   | {
       type: "launch_favourite";
       payload: {
-        measureType: string;
-        fromUnit: string[];
-        toUnit: string[];
+        measureType: string[];
+        fromUnit: string[][];
+        toUnit: string;
       };
     }
   //------------

@@ -48,8 +48,8 @@ const Favourites = ({ navigation }: any) => {
   const whatToMap = init === 0 ? favouritesFromStorage : favourites;
 
   const handleLaunchFavourite = (
-    measureType: string,
-    fromUnit: string[],
+    measureType: string[],
+    fromUnit: string[][],
     toUnit: string[]
   ) => {
     dispatch({
@@ -94,20 +94,20 @@ const Favourites = ({ navigation }: any) => {
             key={index}>
             <Pressable
               onPress={() =>
-                handleLaunchFavourite(fav.measureType, fav.from, fav.to)
+                handleLaunchFavourite(fav.measureType[0], fav.from, fav.to)
               }
               style={styles.favouriteInnerContainer}>
               <MeasurementIcons
-                type={fav.measureType}
+                type={fav.measureType[0][0]}
                 mainColour={theme.gray1}
                 secondaryColour={theme.gray1}
               />
               <View>
                 <Text style={[styles.favouriteText, { color: theme.gray1 }]}>
-                  {handleFavouriteText(fav.from, [fav.from, fav.to])}
+                  {handleFavouriteText(fav.from[0], [fav.from[0], fav.to])}
                 </Text>
                 <Text style={[styles.favouriteText, { color: theme.gray1 }]}>
-                  {handleFavouriteText(fav.to, [fav.from, fav.to])}
+                  {handleFavouriteText(fav.to, [fav.from[0], fav.to])}
                 </Text>
               </View>
             </Pressable>

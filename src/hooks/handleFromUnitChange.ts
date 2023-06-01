@@ -4,6 +4,7 @@ import { ActionType } from "../../types";
 import {revertVerbosity} from "./handleVerbosity";
 
 const handleFromUnitChange = (
+  componentKey: number,
   dispatch: Dispatch<ActionType>,
   option: string,
   iterator: number,
@@ -14,7 +15,10 @@ const handleFromUnitChange = (
 
   dispatch({
     type: "change_FROM_unit",
-    payload: { value: optionForDispatch, iterator },
+    payload: { 
+      componentKey,
+      value: optionForDispatch, 
+      iterator },
   });
 };
 

@@ -62,7 +62,7 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
 
   const handleLongPress = () => {
     if (fromUnit.length > 1) {
-      dispatch({ type: `remove_${type.toUpperCase()}_value`, payload: i });
+      dispatch({ type: `remove_${type.toUpperCase()}_value`, payload: [0, i] });
     }
   };
 

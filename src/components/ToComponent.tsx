@@ -26,13 +26,15 @@ import { DescriptionType } from "../data/unitDescription";
 const ToComponent = () => {
   const { state: {toUnit, fromUnit, fromValue, measureType, settings, addition} } = useAppContext();
 
+  const workingMeasureType = measureType[0].toString() 
+
   const elements = toUnit.map((unit: string, i: number) => {
     const allOptions = convert()
       .from(toUnit[toUnit.length - 1])
       .possibilities();
     let nextOption = getNextUnit(
       toUnit[toUnit.length - 1],
-      (description as DescriptionType)[measureType]
+      (description as DescriptionType)[measureType[0].toString()]
     );
 
     platform === "android" ? (nextOption = allOptions) : nextOption;
@@ -46,9 +48,9 @@ const ToComponent = () => {
 
     const result = converter(
       addition,
-      fromValue,
-      fromUnit,
+      fromValue[0],
       fromUnit[0],
+      fromUnit[0][0],
       toUnit
     );
 
@@ -67,9 +69,9 @@ const ToComponent = () => {
             <ToPicker
               onChange={handleToUnitChange}
               options={optionsToDisplay}
-              unit={getPickerUnit(toUnit[0], measureType)}
+              unit={getPickerUnit(toUnit[0], workingMeasureType)}
               i={i}
-              measureType={measureType}
+              measureType={workingMeasureType}
               verbosity={settings.verbose}
             />
           )}

@@ -21,14 +21,19 @@ import displaySwitchedValues from "../lib/displaySwitchedValues"
 import {handleVerbosity, revertVerbosity} from "../hooks/handleVerbosity";
 import getPickerUnit from "../hooks/getPickerUnit";
 
-const FromComponent = ({ measureType }: { measureType: string }) => {
+type FromComponentProps = {
+  measureType: string,
+  componentKey: number,
+}
+
+const FromComponent = ({ measureType, componentKey }: FromComponentProps) => {
   const {
     state: { fromUnit, fromValue, settings },
     dispatch,
   } = useAppContext();
 
 
-  const elements = fromUnit.map((unit: string, i: number) => {
+  const elements = fromUnit[componentKey].map((unit: string, i: number) => {
 
     const options = convert().possibilities(measureType);
 
@@ -40,22 +45,24 @@ const FromComponent = ({ measureType }: { measureType: string }) => {
       <React.Fragment key={i}>
         <View style={styles.container}>
           <Input
+          componentKey={componentKey}
             handleInputChange={(input: string) =>
-              handleInputChange(dispatch, input, i)
+              handleInputChange(componentKey, dispatch, input, i)
             }
             i={i}
             // value={i === 0 ? "1" : "0"}
             value={displaySwitchedValues(
-              fromValue[i] as number,
+              fromValue[componentKey][i] as number,
               settings.decimals
             ).toString()}
           />
 
           {platform !== "ios" && (
             <PickerComponent
+              componentKey={componentKey}
               onChange={handleFromUnitChange}
               options={optionsToDisplay}
-              unit={getPickerUnit(fromUnit[0], measureType)}
+              unit={getPickerUnit(fromUnit[componentKey][0], measureType)} //if it has value [1], at least it works when value is updated
               i={i}
               measureType={measureType}
               verbosity={settings.verbose}
@@ -66,7 +73,7 @@ const FromComponent = ({ measureType }: { measureType: string }) => {
             <UniversalPickerUnit unit={unit} i={i} type="from" />
           )}
 
-          <RemoveUnit i={i} type={"from"} />
+          <RemoveUnit componentKey={componentKey} i={i} type={"from"} />
         </View>
       </React.Fragment>
     );

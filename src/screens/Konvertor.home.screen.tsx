@@ -23,16 +23,14 @@ import Description from "../components/Description";
 
 import getTheme from "../context/theme";
 
-import convert from "convert-units";
-
-import description from "../data/unitDescription";
-
 const Konvertor = () => {
   const { state } = useAppContext();
 
   const toUnitadditions = platform === "android" ? 2 : 3;
 
   const theme = getTheme();
+
+  const defaultComponentKey = 0
 
   console.log(state);
 
@@ -45,16 +43,16 @@ const Konvertor = () => {
           <Switch />
         </View>
 
-        <Title title={state.measureName} />
+        <Title title={state.measureName[0].toString()} />
 
         <View style={styles.descriptionContainer}>
           <Description />
           <AddUnit type="from" />
         </View>
 
-        <FromComponent measureType={state.measureType} />
+        <FromComponent measureType={state.measureType[0].toString()} componentKey={defaultComponentKey}/>
 
-        <View style={styles.toOuterContainer}>
+         <View style={styles.toOuterContainer}>
           <View
             style={[
               styles.toContainer,
@@ -72,7 +70,7 @@ const Konvertor = () => {
 
         {platform === "ios" && state.universalPicker.type !== "" && (
           <View style={styles.universalPickerContainer}>
-            <UniversalPicker />
+            <UniversalPicker componentKey={defaultComponentKey}/>
           </View>
         )}
       </ScrollView>

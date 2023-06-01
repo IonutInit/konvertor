@@ -20,7 +20,7 @@ const Description = () => {
         style={[styles.innerContainer, { backgroundColor: theme.mainColour }]}
         onPress={() => addUnit(dispatch, state, "from")}>
         <Text style={{ color: theme.gray1 }}>
-          {handleDescriptionText(fromUnit, true, true)}
+          {handleDescriptionText(fromUnit[0], true, true)}
         </Text>
         <Text style={{ color: theme.gray1 }}>
           TO {handleDescriptionText(toUnit, true, false)}
