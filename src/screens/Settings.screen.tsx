@@ -1,4 +1,4 @@
-import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
+import { View, ScrollView, Text, Pressable, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { useState, useEffect, useLayoutEffect } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -8,6 +8,7 @@ import { settingsKey } from "../data/storageKeys";
 import SliderComponent from "../components/SliderComponent";
 import ToggleButton from "../components/ToggleButton";
 import { Picker } from "@react-native-picker/picker";
+import UniversalPicker from "../components/UniversalPicker";
 import Credentials from "../components/Credentials";
 
 import BackButton from "../components/svgs/BackButton";
@@ -30,48 +31,57 @@ const Settings = ({ navigation }: any) => {
   } = useAppContext();
 
   const [storedSettings, setStoredSettings] = useState<SettingsType>(settings);
+  const [themePicker, setThemePicker] = useState(false)
 
   const theme = getTheme();
 
-  //  useEffect(() => {
-  //   const fetchSettings = async () => {
-  //     const data = await getLocalData(settingsKey);
-  //     if (!data) {
-  //       setStoredSettings(settings);
-  //     }
+   useEffect(() => {
+    const fetchSettings = async () => {
+      const data = await getLocalData(settingsKey);
+      if (!data) {
+        setStoredSettings(settings);
+      }
 
-  //     if(data) {
-  //       dispatch({
-  //         type: "initialise_settings",
-  //         payload: data as SettingsType,
-  //       })
-  //     }
-  //   };
-  //   fetchSettings();
-  // }, []);
+      if(data) {
+        dispatch({
+          type: "initialise_settings",
+          payload: data as SettingsType,
+        })
+      }
+    };
+    fetchSettings();
+  }, []);
 
-  // useEffect(() => {
-  //   const saveSettings = async () => {
-  //     try {
-  //       const jsonValue = JSON.stringify(storedSettings);
-  //       await AsyncStorage.setItem(settingsKey, jsonValue);
-  //       dispatch({
-  //         type: "initialise_settings",
-  //         payload: storedSettings,
-  //       });
-  //     } catch (e) {}
-  //   };
-  //   saveSettings();
-  // }, [storedSettings, dispatch]);
+  useEffect(() => {
+    const saveSettings = async () => {
+      try {
+        const jsonValue = JSON.stringify(storedSettings);
+        await AsyncStorage.setItem(settingsKey, jsonValue);
+        dispatch({
+          type: "initialise_settings",
+          payload: storedSettings,
+        });
+      } catch (e) {}
+    };
+    saveSettings();
+  }, [storedSettings, dispatch]);
 
-  // useGetInFocus(navigation, dispatch, "Settings")
+  useGetInFocus(navigation, dispatch, "Settings")
 
   const themes = Object.values(getTheme().allThemes)
 
-  console.log(themes)
+    const handlePicker = () => {   
+    dispatch({
+      type: "change_decimals",
+      payload: "plus",
+    })
+    setThemePicker(false)
+  }
 
   return (
+    <TouchableWithoutFeedback onPress={() => setThemePicker(false)}>
     <ScrollView contentContainerStyle={styles.container}>
+      
       <View style={styles.header}>
         <Pressable onPress={() => navigation.jumpTo("Home")}>
           <BackButton />
@@ -113,12 +123,7 @@ const Settings = ({ navigation }: any) => {
         <Text style={styles.decimalsTextContainer}>{settings.decimals}</Text>
 
         <Pressable
-          onPress={() =>
-            dispatch({
-              type: "change_decimals",
-              payload: "plus",
-            })
-          }
+          onPress={handlePicker}
           disabled={settings.decimals === 4}>
           <AddButton disabled={settings.decimals === 4} />
         </Pressable>
@@ -126,58 +131,32 @@ const Settings = ({ navigation }: any) => {
 </View>
 
 <View style={styles.themesContainer}>
-  <Text style={styles.title}>Theme</Text>
-  <Pressable>
-    <Text>{themes[settings.theme]}</Text>
+  <Text style={[styles.title, {paddingBottom: 10}]}>Theme</Text>
+  <Pressable style={[styles.themesButton, {backgroundColor: theme.mainColour}]} onPress={() => setThemePicker(true)}>
+    <Text style={[styles.themeText, {color: theme.gray1}]}>{themes[settings.theme]}</Text>
   </Pressable>
-  
-          {/* <Picker 
+
+{ themePicker && <View style={styles.pickerContainer}>
+  <Picker 
+        style={styles.picker}
+        selectedValue={themes[settings.theme]}
             onValueChange={(value) => dispatch({
               type: "change_theme",
               payload: value as string,
             })}
           >
           {themes.map((theme) => (
-            <Picker.Item label={theme} />
+            <Picker.Item key={theme} label={theme} value={theme}/>
           ))}
-          </Picker> */}
+          </Picker>
+  </View>}
+        
 </View>
    
-
-      {/* <View style={styles.sliderContainer}>
-        <View style={{ paddingBottom: 20 }}>
-          <Text>Decimals: {settings.decimals}</Text>
-        </View>
-
-        <SliderComponent
-          settingType="decimals"
-          // settingValue={settings.decimals}
-        />
-        <View style={{ paddingTop: 20 }}>
-          <Text style={styles.title}>Accuracy</Text>
-        </View>
-
-        <View style={styles.divider}></View>
-        <View style={styles.divider}></View>
-      </View> */}
-
-      {/* <View style={styles.sliderContainer}>
-        <View style={{ paddingBottom: 20 }}>
-          <Text>{theme.name}</Text>
-        </View>
-
-        <SliderComponent settingType="theme" settingValue={settings.theme} />
-
-        <View style={{ paddingTop: 20 }}>
-          <Text style={styles.title}>Theme</Text>
-        </View>
-
-        <View style={styles.divider}></View>
-        <View style={styles.divider}></View>
-      </View> */}
-
       <Credentials />
+    
     </ScrollView>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -204,6 +183,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     paddingTop: 15,
+
   },
   decimalsContainer: {
     flexDirection: "row",
@@ -211,6 +191,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingTop: 10,
+    marginVertical: 5,
+    borderRadius: 8,
+    borderWidth: 0.5,
+    borderColor: "#ccc",
+    marginHorizontal: 10,
+    paddingVertical: 5,
     // backgroundColor: "red",
     // paddingVertical: 20,
   },
@@ -229,7 +215,47 @@ const styles = StyleSheet.create({
   },
   themesContainer: {
     paddingTop: 15,
+    zIndex: 1,
+    width: "100%",
+    alignItems: "center",
   },
+  themesButton: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 130,
+    height: 40,
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 10,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+    marginBottom: 5,
+  },
+  themeTitle: {
+    paddingBottom: 5,
+  },
+  themeText: {
+  },
+  pickerContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  picker: {
+    width: "80%",
+    zIndex: 1,
+    backgroundColor: "#fff", // white background
+    borderRadius: 10,
+    shadowColor: "#000", // shadow color
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+  }
   // divider: {
   //   height: 1,
   //   width: "80%",
