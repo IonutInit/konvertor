@@ -24,7 +24,7 @@ const name: Record<number, string> = {
   1: "Blue",
   2: "Autumn",
   3: "Third theme",
-  4: "Autumn",
+  4: "Autumn2",
   5: "Spring",
   6: "Summer",
   7: "one more",

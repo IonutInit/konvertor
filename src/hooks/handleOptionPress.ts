@@ -39,29 +39,29 @@ const handleOptionPress = (
 
   const dispatchToFrom = (konvertorType: string) => {
     if (!edgeCases.includes(targetUnit.name)) {
-      //   dispatch({
-      //     type: "add_FROM_unit",
-      //     payload: {
-      //       unit: targetUnit.default![defaultFrom],
-      //       componentKey: 0,
-      //     },
-      //   });
-      // if(konvertorType === "bmi") {
-      //   dispatch({
-      //     type: "add_FROM_unit",
-      //     payload: {
-      //       unit: "kg",
-      //       componentKey: 0,
-      //     },
-      //   });
-      //   dispatch({
-      //     type: "add_FROM_unit",
-      //     payload: {
-      //       unit: "m",
-      //       componentKey: 1,
-      //     },
-      //   });
-      // }
+        dispatch({
+          type: "add_FROM_unit",
+          payload: {
+            unit: targetUnit.default![defaultFrom],
+            componentKey: 0,
+          },
+        });
+      if(konvertorType === "bmi") {
+        dispatch({
+          type: "add_FROM_unit",
+          payload: {
+            unit: "kg",
+            componentKey: 0,
+          },
+        });
+        dispatch({
+          type: "add_FROM_unit",
+          payload: {
+            unit: "m",
+            componentKey: 1,
+          },
+        });
+      }
     }
   };
 
