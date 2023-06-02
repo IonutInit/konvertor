@@ -24,6 +24,11 @@ import ReactiveEvergy from "./measurement/ReactiveEnergy";
 import Bmi from "./measurement/Bmi";
 import WeightLoss from "./measurement/WeigthLoss";
 
+import AreaCalc from "./measurement/AreaCalc";
+import VolumeCalc from "./measurement/VolumeCalc";
+import SpeedCalc from "./measurement/SpeedCalc";
+import DensityCalculator from "./measurement/DensityCalculator";
+
 import getTheme from "../../context/theme";
 
 export type SvgProps = {
@@ -36,15 +41,17 @@ type Props = {
   type: string;
   mainColour?: string;
   secondaryColour?: string;
+  size?: number,
 };
 
 const MeasurementIcons = ({
   type,
   mainColour = getTheme().mainColour,
   secondaryColour = getTheme().secondaryColour,
+  size = 50,
 }: Props) => {
   const props = {
-    size: 50,
+    size,
     mainColour,
     secondaryColour,
   };
@@ -75,6 +82,10 @@ const MeasurementIcons = ({
       {type === "reactiveEnergy" && <ReactiveEvergy {...props} />}
       {type === "bmi" && <Bmi {...props} />}
       {type === "weightLoss" && <WeightLoss {...props} />}
+      {type === "areaCalc" && <AreaCalc {...props} />}
+      {/* {type === "volumeCalc" && <VolumeCalc {...props} />} */}
+      {type === "speedCalc" && <SpeedCalc {...props} />}
+      {type === "densityCalc" && <DensityCalculator {...props} />}
     </>
   );
 };

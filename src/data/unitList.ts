@@ -12,6 +12,14 @@ const unitList = [
     primary: true,
   },
   {
+    displayName: "Area Calculator",
+    name: "areaCalc",
+    extra: true,
+    measureType: [["length"], ["length"]],
+    measureName: [["Length"], ["Width"]],
+    primary: true,
+  },
+  {
     displayName: "Mass",
     name: "mass",
     default: ["kg", "lb"],
@@ -23,6 +31,21 @@ const unitList = [
     default: ["ml", "tsp"],
     primary: true,
   },
+  {
+    displayName: "Volume Calculator",
+    name: "volumeCalc",
+    extra: true,
+    measureType: [["length"], ["length"], ["length"]],
+    measureName: [["Length"], ["Width"], ["Height"]],
+  }, 
+  {
+    displayName: "Density Calculator",
+    name: "densityCalc",
+    extra: true,
+    measureType: [["mass"], ["volume"]],
+    measureName: [["Mass"], ["Volume"]],
+    primary: true,
+  }, 
   {
     displayName: "Volume Flow Rate",
     name: "volumeFlowRate",
@@ -51,6 +74,14 @@ const unitList = [
     displayName: "Speed",
     name: "speed",
     default: ["km/h", "m/h"],
+    primary: true,
+  },
+  {
+    displayName: "Speed Calculator",
+    name: "speedCalc",
+    extra: true,
+    measureType: [["length"], ["time"]],
+    measureName: [["Length"], ["Time"]],
     primary: true,
   },
   {
