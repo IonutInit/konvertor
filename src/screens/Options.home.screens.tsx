@@ -6,17 +6,19 @@ import {
   Image,
   StyleSheet,
 } from "react-native";
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
 
 import useAppContext from "../context/useAppContext";
 import handleOptionPress from "../hooks/handleOptionPress";
 import ToggleExtendedList from "../components/ToggleExtendedList";
 
 import handleFavouriteText from "../lib/handleFavouriteText";
+import handleFavouriteDispatch from "../lib/handleFavouriteDispatch";
 
 import unitList from "../data/unitList";
 import MeasurementIcons from "../components/svgs/MeasurementIcons";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import getLocalData from "../lib/getLocalData";
 import { favouritesKey } from "../data/storageKeys";
 
@@ -27,24 +29,67 @@ import { FavouriteType } from "../../types";
 import typing from "../lib/typing";
 
 const Options = () => {
-  const { state: {favourites, init, settings}, state, dispatch } = useAppContext();
+  const {
+    state: { favourites, init, settings },
+    state,
+    dispatch,
+  } = useAppContext();
   const theme = getTheme();
 
   const [favouritesFromStorage, setFavouritesFromStorage] = useState<
-  FavouriteType[]
->([]);
+    FavouriteType[]
+  >([]);
 
-useEffect(() => {
-  const fetchFavourites = async () => {
-    const data = await getLocalData(favouritesKey);
-    if (data) {
-      setFavouritesFromStorage(data as FavouriteType[]);
-    }
+  // useEffect(() => {
+  //   const fetchFavourites = async () => {
+  //     const data = await getLocalData(favouritesKey);
+  //     if (data) {
+  //       setFavouritesFromStorage(data as FavouriteType[]);
+  //     }
+  //   };
+  //   fetchFavourites();
+  // }, []);
+
+  useEffect(() => {
+    const retrieveData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem(favouritesKey);
+        const storedFavourites = JSON.parse(jsonValue!);
+
+        if (storedFavourites) {
+          dispatch({
+            type: "initialise_favourites",
+            payload: storedFavourites,
+          });
+        }
+      } catch (e) {}
+    };
+    retrieveData();
+  }, []);
+
+  const whatFavouritesToMap = init === 0 ? favouritesFromStorage : favourites;
+
+  const handleLaunchFavourite = (
+    measureType: string[],
+    measureName: string[],
+    fromUnit: string[][],
+    toUnit: string
+  ) => {
+    dispatch({
+      type: "change_konvertor",
+      payload: "konvertor",
+    });
+
+    handleFavouriteDispatch(
+      dispatch,
+      measureType,
+      measureName,
+      fromUnit,
+      toUnit
+    );
   };
-  fetchFavourites();
-}, []);
 
-const whatFavouritesToMap = init === 0 ? favouritesFromStorage : favourites;
+  console.log(state);
 
   // console.log(typing("gfgh 5 m 2 cm 5 in 3 zz inx 4"))
 
@@ -54,33 +99,55 @@ const whatFavouritesToMap = init === 0 ? favouritesFromStorage : favourites;
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+      <ScrollView
+        contentContainerStyle={styles.favScrollContainer}
+        horizontal
+        showsHorizontalScrollIndicator={false}>
+        {whatFavouritesToMap.map((fav, index) => {
+          const [findName] = unitList.filter(
+            (unit) => fav.measureType[0].toString() === unit.name
+          );
 
-<ScrollView contentContainerStyle={styles.favScrollContainer} horizontal showsHorizontalScrollIndicator={false}>
-  {whatFavouritesToMap.map((fav, index) => {
-
-    const [findIconType] = unitList.filter((unit) => fav.measureType[0].toString() === unit.name)
-    // console.log(findIconType.name)
-
-  return ( 
-    <View style={styles.favOuterContainer} key={index}>
-          <View  style={[styles.favContainer, {backgroundColor: theme.mainColour}]}>
-            <View style={styles.favIconContainer}>
-               <MeasurementIcons type={findIconType.name} mainColour={theme.gray1} size={30}/>
-               <View style={styles.favTextContainer}>
-                <Text style={[styles.favText, { color: theme.gray1 }]}>
-                  {handleFavouriteText(fav.from[0], [fav.from[0], fav.to])}
-                </Text>
-                <Text style={[styles.favText, { color: theme.gray1 }]}>
-                  {handleFavouriteText(fav.to, [fav.from[0], fav.to])}
-                </Text>
+          return (
+            <View style={styles.favOuterContainer} key={index}>
+              <View
+                style={[
+                  styles.favContainer,
+                  { backgroundColor: theme.mainColour },
+                ]}>
+                <Pressable
+                  onPress={() =>
+                    handleLaunchFavourite(
+                      fav.measureType[0],
+                      [findName.name],
+                      fav.from,
+                      fav.to[0]
+                    )
+                  }>
+                  <View style={styles.favIconContainer}>
+                    <MeasurementIcons
+                      type={findName.name}
+                      mainColour={theme.gray1}
+                      size={30}
+                    />
+                    <View style={styles.favTextContainer}>
+                      <Text style={[styles.favText, { color: theme.gray1 }]}>
+                        {handleFavouriteText(fav.from[0], [
+                          fav.from[0],
+                          fav.to,
+                        ])}
+                      </Text>
+                      <Text style={[styles.favText, { color: theme.gray1 }]}>
+                        {handleFavouriteText(fav.to, [fav.from[0], fav.to])}
+                      </Text>
+                    </View>
+                  </View>
+                </Pressable>
               </View>
-            </View>         
-
-  </View>
-    </View>     
-  );
-})}
-</ScrollView>
+            </View>
+          );
+        })}
+      </ScrollView>
 
       <View style={styles.outerPressableContainer}>
         {filteredUnitList.map((unit) => (
@@ -187,7 +254,7 @@ const styles = StyleSheet.create({
   favText: {
     fontSize: 10,
     fontWeight: "bold",
-  }
+  },
 });
 
 export default Options;

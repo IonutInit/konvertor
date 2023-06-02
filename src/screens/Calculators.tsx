@@ -44,7 +44,7 @@ const Calculators = () => {
     getCalculatorData(dispatch, konvertor);
   }, []);
 
-   // console.log(state);
+  // console.log(state);
   // const getResult = (calculatorType: string) => {
   //   if(calculatorType === "bmi") {
   //     return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])

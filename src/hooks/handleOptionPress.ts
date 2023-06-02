@@ -17,22 +17,28 @@ const handleOptionPress = (
     targetUnit.extra === undefined ? "konvertor" : targetUnit.name;
 
   // temporary variable
-    const edgeCases = ["bmi", "weightLoss", "areaCalc", "volumeCalc", "densityCalc"];
+  const edgeCases = [
+    "bmi",
+    "weightLoss",
+    "areaCalc",
+    "volumeCalc",
+    "densityCalc",
+  ];
 
   const dispatchToFrom = () => {
     if (!edgeCases.includes(targetUnit.name)) {
-        dispatch({
-          type: "add_FROM_unit",
-          payload: {
-            unit: targetUnit.default![defaultFrom],
-            componentKey: 0,
-          },
-        });
+      dispatch({
+        type: "add_FROM_unit",
+        payload: {
+          unit: targetUnit.default![defaultFrom],
+          componentKey: 0,
+        },
+      });
 
       dispatch({
         type: "add_TO_unit",
-        payload:targetUnit.default![defaultTo]
-      })
+        payload: targetUnit.default![defaultTo],
+      });
     }
   };
 
@@ -50,7 +56,6 @@ const handleOptionPress = (
   });
 
   dispatchToFrom();
-
 };
 
 export default handleOptionPress;

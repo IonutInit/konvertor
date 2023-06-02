@@ -41,7 +41,7 @@ type Props = {
   type: string;
   mainColour?: string;
   secondaryColour?: string;
-  size?: number,
+  size?: number;
 };
 
 const MeasurementIcons = ({

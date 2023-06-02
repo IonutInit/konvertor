@@ -24,7 +24,6 @@ const getCalculatorData = (
     fromUnit2 = "m";
   }
 
-  
   // if (calculatorType === "volumeCalc") {
   //   fromUnit1 = "m";
   //   fromUnit2 = "m";
@@ -60,7 +59,6 @@ const getCalculatorData = (
   //     },
   //   });
   // }
-  
 };
 
 export default getCalculatorData;

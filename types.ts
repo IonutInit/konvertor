@@ -122,6 +122,7 @@ export type ActionType =
       type: "launch_favourite";
       payload: {
         measureType: string[];
+        measureName: string[];
         fromUnit: string[][];
         toUnit: string;
       };

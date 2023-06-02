@@ -28,7 +28,8 @@ import getFromAddition from "../lib/getFromAddition_temp";
 
 const Calculators = () => {
   const {
-    state: { fromUnit, fromValue, konvertor, universalPicker }, state,
+    state: { fromUnit, fromValue, konvertor, universalPicker },
+    state,
     dispatch,
   } = useAppContext();
 
@@ -41,9 +42,7 @@ const Calculators = () => {
     getCalculatorData(dispatch, konvertor);
   }, []);
 
-
-  
-   //console.log(state);
+  //console.log(state);
   // const getResult = (calculatorType: string) => {
   //   if(calculatorType === "bmi") {
   //     return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])
@@ -69,7 +68,6 @@ const Calculators = () => {
 
       <View>
         {measureType?.map((fromUnit, i) => {
-
           return (
             <View key={i} style={styles.firstComponent}>
               <View style={styles.componentHeader}>
@@ -78,20 +76,18 @@ const Calculators = () => {
                     {unitData.measureName![i]}
                   </Text>
                 </View>
-                <AddUnit type="from" componentKey={i}/>
+                <AddUnit type="from" componentKey={i} />
               </View>
               <FromComponent
                 measureType={measureType![i][0]}
                 componentKey={i}
-               
               />
 
               <>
                 <View style={styles.universalPickerContainer}>
-                  {platform === "ios" &&
-                    universalPicker.type !== "" &&
-                     <UniversalPicker componentKey={i} 
-                    />}
+                  {platform === "ios" && universalPicker.type !== "" && (
+                    <UniversalPicker componentKey={i} />
+                  )}
                 </View>
               </>
             </View>
@@ -104,7 +100,6 @@ const Calculators = () => {
         <Text style={[styles.resultsTextBmi, {color: theme.gray1}]}>{result}</Text>
       </View>
 </View> */}
-
     </ScrollView>
   );
 };

@@ -223,7 +223,13 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
 
     case "change_theme":
       const themes = [
-        "Blue", "Autumn", "Third theme", "Autumn2", "Spring", "Summer", "one more",
+        "Blue",
+        "Autumn",
+        "Third theme",
+        "Autumn2",
+        "Spring",
+        "Summer",
+        "one more",
       ];
       const themeValue = themes.indexOf(action.payload);
       return {
@@ -254,6 +260,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       return {
         ...state,
         measureType: [action.payload.measureType],
+        measureName: [action.payload.measureName],
         fromUnit: action.payload.fromUnit,
         fromValue: createBlankArray(action.payload.fromUnit),
         toUnit: [action.payload.toUnit],

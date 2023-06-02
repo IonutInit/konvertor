@@ -37,7 +37,7 @@ const unitList = [
     extra: true,
     measureType: [["length"], ["length"], ["length"]],
     measureName: [["Length"], ["Width"], ["Height"]],
-  }, 
+  },
   {
     displayName: "Density Calculator",
     name: "densityCalc",
@@ -45,7 +45,7 @@ const unitList = [
     measureType: [["mass"], ["volume"]],
     measureName: [["Mass"], ["Volume"]],
     primary: true,
-  }, 
+  },
   {
     displayName: "Volume Flow Rate",
     name: "volumeFlowRate",
