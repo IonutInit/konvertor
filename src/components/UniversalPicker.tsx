@@ -24,7 +24,7 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
 
   const { type, position, index } = universalPicker;
 
-  const allOptions = convert().from(fromUnit[0][0]).possibilities();
+  const allOptions = convert().from(fromUnit[componentKey][0]).possibilities();
   // const nextOption = getNextUnit(
   //   toUnit[universalPicker.index!],
   //   description[measureType[0][0].toString()]
@@ -33,21 +33,26 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
 
   // const optionsToDisplay = handleVerbosity(options, settings.verbose);
 
-  const optionsToDisplay = allOptions
+  const optionsToDisplay = allOptions;
+
+  // searches for the position of the options array inside measureType
+  //  const pickerIndex = measureType.findIndex(function(item) {
+  //   return JSON.stringify(item) === JSON.stringify(["length"]);
+  // });
 
   const handleChange = (option: string | string[], type: string) => {
-    if(type === "from") {
-        dispatch({
-      type: "change_FROM_unit",
-      payload: {
-        componentKey,
-        value: option as string,
-        iterator: universalPicker.index!,
-      },
-    });
+    if (type === "from") {
+      dispatch({
+        type: "change_FROM_unit",
+        payload: {
+          componentKey,
+          value: option as string,
+          iterator: universalPicker.index!,
+        },
+      });
     }
-  
-    if(type === "to") {
+
+    if (type === "to") {
       dispatch({
         type: "change_TO_unit",
         payload: {

@@ -24,9 +24,14 @@ import getPickerUnit from "../hooks/getPickerUnit";
 type FromComponentProps = {
   measureType: string;
   componentKey: number;
+  filter?: string[];
 };
 
-const FromComponent = ({ measureType, componentKey }: FromComponentProps) => {
+const FromComponent = ({
+  measureType,
+  componentKey,
+  filter = [],
+}: FromComponentProps) => {
   const {
     state: { fromUnit, fromValue, settings },
     dispatch,
@@ -35,7 +40,9 @@ const FromComponent = ({ measureType, componentKey }: FromComponentProps) => {
   const elements = fromUnit[componentKey].map((unit: string, i: number) => {
     const options = convert().possibilities(measureType);
 
-    const optionsToDisplay = handleVerbosity(options, settings.verbose);
+    const filteredOptions = filter.length !== 0 ? filter : options;
+
+    const optionsToDisplay = handleVerbosity(filteredOptions, settings.verbose);
 
     return (
       <React.Fragment key={i}>

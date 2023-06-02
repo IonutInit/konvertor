@@ -136,6 +136,7 @@ const unitList = [
     name: "bmi",
     extra: true,
     measureType: [["mass"], ["length"]],
+    measureName: [["Weight"], ["Height"]],
     primary: true,
   },
   {
@@ -143,6 +144,7 @@ const unitList = [
     name: "weightLoss",
     extra: true,
     measureType: [["mass"], ["mass"]],
+    measureName: [["Initial Weight"], ["Current Weight"]],
     primary: true,
   },
 ];

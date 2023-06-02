@@ -62,15 +62,16 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     //-------------------------------
     //-------------------------------
 
-    case "add_FROM_unit":      
-      const fromPosition = action.payload.componentKey === undefined ? 0 : action.payload.componentKey
+    case "add_FROM_unit":
+      const fromPosition =
+        action.payload.componentKey === undefined
+          ? 0
+          : action.payload.componentKey;
       let value = !state.fromValue[fromPosition].length ? 1 : 0;
       return {
         ...state,
         fromUnit: state.fromUnit.map((unit, index) =>
-          index === fromPosition
-            ? [...unit, action.payload.unit]
-            : unit
+          index === fromPosition ? [...unit, action.payload.unit] : unit
         ),
         fromValue: state.fromValue.map((val, index) =>
           index === action.payload.componentKey ? [...val, value] : val

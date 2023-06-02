@@ -75,7 +75,7 @@ export default function App() {
     fetchSettings();
   }, []);
 
-   return (
+  return (
     <AppContextProvider state={state} dispatch={dispatch}>
       <View
         style={{

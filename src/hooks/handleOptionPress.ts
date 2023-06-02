@@ -16,57 +16,54 @@ const handleOptionPress = (
   const payload =
     targetUnit.extra === undefined ? "konvertor" : targetUnit.name;
 
-    //targetUnit.default = targetUnit.default === undefined ? ["m"] : targetUnit.default
+  //targetUnit.default = targetUnit.default === undefined ? ["m"] : targetUnit.default
 
-    // const getTargetUnit = (input) => {
-    //   if (input !== undefined) {
-    //     return input.default[defaultFrom]
-    //   }
+  // const getTargetUnit = (input) => {
+  //   if (input !== undefined) {
+  //     return input.default[defaultFrom]
+  //   }
 
-    //   if(state.konvertor === "bmi") {
-    //     dispatch({
-    //       type: "add_FROM_unit",
-    //       payload: {
-    //         unit: "kg",
-    //         componentKey: 0,
-    //       },
-    //     });
-    //   }
+  //   if(state.konvertor === "bmi") {
+  //     dispatch({
+  //       type: "add_FROM_unit",
+  //       payload: {
+  //         unit: "kg",
+  //         componentKey: 0,
+  //       },
+  //     });
+  //   }
 
-    // }
+  // }
 
-    const edgeCases = ["bmi"]
+  const edgeCases = ["bmi", "weightLoss"];
 
-    const dispatchToFrom = (konvertorType: string) => {
-      if(!edgeCases.includes(targetUnit.name)) {
-        dispatch({
-          type: "add_FROM_unit",
-          payload: {
-            unit: targetUnit.default![defaultFrom],
-            componentKey: 0,      
-          },
-        });
-        // if(konvertorType === "bmi") {
-        //   dispatch({
-        //     type: "add_FROM_unit",
-        //     payload: {
-        //       unit: "kg",
-        //       componentKey: 0,
-        //     },
-        //   });
-        //   dispatch({
-        //     type: "add_FROM_unit",
-        //     payload: {
-        //       unit: "m",
-        //       componentKey: 1,
-        //     },
-        //   });
-        // }
-      }
-
-
-
+  const dispatchToFrom = (konvertorType: string) => {
+    if (!edgeCases.includes(targetUnit.name)) {
+      //   dispatch({
+      //     type: "add_FROM_unit",
+      //     payload: {
+      //       unit: targetUnit.default![defaultFrom],
+      //       componentKey: 0,
+      //     },
+      //   });
+      // if(konvertorType === "bmi") {
+      //   dispatch({
+      //     type: "add_FROM_unit",
+      //     payload: {
+      //       unit: "kg",
+      //       componentKey: 0,
+      //     },
+      //   });
+      //   dispatch({
+      //     type: "add_FROM_unit",
+      //     payload: {
+      //       unit: "m",
+      //       componentKey: 1,
+      //     },
+      //   });
+      // }
     }
+  };
 
   dispatch({
     type: "change_konvertor",
@@ -81,7 +78,7 @@ const handleOptionPress = (
     },
   });
 
-  console.log(targetUnit)
+  console.log(targetUnit);
 
   // calculators don't have defaults, so they will be undefined
   // as a temporray measure they use useEffect
@@ -89,11 +86,11 @@ const handleOptionPress = (
   //   type: "add_FROM_unit",
   //   payload: {
   //     unit: targetUnit.default[defaultFrom],
-  //     componentKey: 0,      
+  //     componentKey: 0,
   //   },
   // });
 
-  dispatchToFrom(targetUnit.name)
+  dispatchToFrom(targetUnit.name);
 
   // dispatch({
   //   type: "add_TO_unit",
