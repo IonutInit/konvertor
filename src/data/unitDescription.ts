@@ -71,7 +71,7 @@ const description: DescriptionType = {
     short: ["mm2", "cm2", "in2", "ft2", "yd2", "m2", "ac", "ha", "km2", "mi2"],
     long: [
       "square millimeters",
-      "centimeters",
+      "square centimeters",
       "square inches",
       "square feet",
       "square yards",

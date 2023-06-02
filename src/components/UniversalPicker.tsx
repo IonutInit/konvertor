@@ -25,20 +25,15 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
   const { type, position, index } = universalPicker;
 
   const allOptions = convert().from(fromUnit[componentKey][0]).possibilities();
-  // const nextOption = getNextUnit(
-  //   toUnit[universalPicker.index!],
-  //   description[measureType[0][0].toString()]
-  // );
-  // const options = toUnit.length > 1 ? nextOption : allOptions;
+  const nextOption = getNextUnit(
+    toUnit[universalPicker.index!],
+    description[measureType[0][0].toString()]
+  );
+  const options = toUnit.length > 1 ? nextOption : allOptions;
 
-  // const optionsToDisplay = handleVerbosity(options, settings.verbose);
+  const optionsToDisplay = handleVerbosity(options, settings.verbose);
 
-  const optionsToDisplay = allOptions;
-
-  // searches for the position of the options array inside measureType
-  //  const pickerIndex = measureType.findIndex(function(item) {
-  //   return JSON.stringify(item) === JSON.stringify(["length"]);
-  // });
+  // const optionsToDisplay = allOptions;
 
   const handleChange = (option: string | string[], type: string) => {
     if (type === "from") {
