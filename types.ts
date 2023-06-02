@@ -53,9 +53,15 @@ export type ActionType =
         name: string;
       };
     }
-  // | { type: "add_FROM_unit"; payload: string }
-  // | { type: "add_TO_unit"; payload: string }
-  | { type: `add_${string}_unit`; payload: string }
+  | {
+      type: "add_FROM_unit";
+      payload: {
+        unit: string;
+        componentKey?: number;
+      };
+    }
+  | { type: "add_TO_unit"; payload: string }
+  // | { type: `add_${string}_unit`; payload: string }
   | {
       type: `change_${string}_unit`;
       payload: {
@@ -104,9 +110,9 @@ export type ActionType =
       type: "change_decimals";
       payload: "plus" | "minus";
     }
-    | {
-      type: "change_theme",
-      payload: string,
+  | {
+      type: "change_theme";
+      payload: string;
     }
   | {
       type: "add_to_favourites";

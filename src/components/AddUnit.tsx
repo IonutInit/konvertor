@@ -8,13 +8,14 @@ import AddButton from "./svgs/AddButton";
 
 type AddUnitProps = {
   type: "to" | "from";
+  componentKey?: number;
 };
 
-const AddUnit = ({ type }: AddUnitProps) => {
+const AddUnit = ({ type, componentKey = 0 }: AddUnitProps) => {
   const { state, dispatch } = useAppContext();
 
   return (
-    <Pressable onPress={() => addUnit(dispatch, state, type)}>
+    <Pressable onPress={() => addUnit(dispatch, state, type, componentKey)}>
       <AddButton />
     </Pressable>
   );

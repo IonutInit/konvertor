@@ -2,11 +2,11 @@ import { AppStateType } from "../../types";
 
 const appState: AppStateType = {
   konvertor: "",
-  measureType: [[], []],
-  measureName: [[], []],
+  measureType: [],
+  measureName: [],
   addition: true,
-  fromUnit: [[], []],
-  fromValue: [[], []],
+  fromUnit: [],
+  fromValue: [],
   toUnit: [],
   universalPicker: {
     type: "",

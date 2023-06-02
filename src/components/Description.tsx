@@ -18,11 +18,13 @@ const Description = () => {
     <View style={styles.outerContainer}>
       <Pressable
         style={[styles.innerContainer, { backgroundColor: theme.mainColour }]}
-        onPress={() => addUnit(dispatch, state, "from")}>
-        <Text style={[{ color: theme.gray1 }, {fontWeight: "bold"}]}>
+        onPress={() => addUnit(dispatch, state, "from", 0)}
+        disabled={fromUnit[1].length > 0}
+        >
+        <Text style={[{ color: theme.gray1 }, { fontWeight: "bold" }]}>
           {handleDescriptionText(fromUnit[0], true, true)}
         </Text>
-        <Text style={[{ color: theme.gray1 }, {fontWeight: "bold"}]}>
+        <Text style={[{ color: theme.gray1 }, { fontWeight: "bold" }]}>
           TO {handleDescriptionText(toUnit, true, false)}
         </Text>
       </Pressable>

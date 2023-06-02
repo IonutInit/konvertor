@@ -27,7 +27,7 @@ const name: Record<number, string> = {
   4: "Autumn",
   5: "Spring",
   6: "Summer",
-  7: "one more"
+  7: "one more",
 };
 
 const getTheme = () => {

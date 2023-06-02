@@ -25,23 +25,38 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
   const { type, position, index } = universalPicker;
 
   const allOptions = convert().from(fromUnit[0][0]).possibilities();
-  const nextOption = getNextUnit(
-    toUnit[universalPicker.index!],
-    description[measureType[0][0].toString()]
-  );
-  const options = toUnit.length > 1 ? nextOption : allOptions;
+  // const nextOption = getNextUnit(
+  //   toUnit[universalPicker.index!],
+  //   description[measureType[0][0].toString()]
+  // );
+  // const options = toUnit.length > 1 ? nextOption : allOptions;
 
-  const optionsToDisplay = handleVerbosity(options, settings.verbose);
+  // const optionsToDisplay = handleVerbosity(options, settings.verbose);
+
+  const optionsToDisplay = allOptions
 
   const handleChange = (option: string | string[], type: string) => {
-    dispatch({
-      type: `change_${type.toUpperCase()}_unit`,
+    if(type === "from") {
+        dispatch({
+      type: "change_FROM_unit",
       payload: {
         componentKey,
-        value: option,
+        value: option as string,
         iterator: universalPicker.index!,
       },
     });
+    }
+  
+    if(type === "to") {
+      dispatch({
+        type: "change_TO_unit",
+        payload: {
+          componentKey,
+          value: option as string,
+          iterator: universalPicker.index!,
+        },
+      });
+    }
 
     dispatch({
       type: "work_universal_picker",

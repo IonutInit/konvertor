@@ -4,7 +4,7 @@ import useAppContext from "../context/useAppContext";
 
 import Options from "./Options.home.screens";
 import Konvertor from "./Konvertor.home.screen";
-import BMI from "./BMI.screen";
+import BMI from "./BMI.screen_temp";
 import WeightLoss from "./WeightLoss.screen";
 
 import useGetInFocus from "../hooks/useGetInFocus";
@@ -21,8 +21,8 @@ const Home = ({ navigation }: any) => {
     <>
       {konvertor === "" && <Options />}
       {konvertor === "konvertor" && <Konvertor />}
-      {konvertor === "BMI" && <BMI />}
-      {konvertor === "Weight Loss" && <WeightLoss />}
+      {konvertor === "bmi" && <BMI />}
+      {konvertor === "weightLoss" && <WeightLoss />}
     </>
   );
 };

@@ -131,20 +131,20 @@ const unitList = [
     default: ["deg", "grad"],
     primary: true,
   },
-  // {
-  //   displayName: "BMI",
-  //   name: "bmi",
-  //   extra: true,
-  //   measureType: [["mass"], ["length"]],
-  //   primary: true,
-  // },
-  // {
-  //   displayName: "Weight Loss",
-  //   name: "weightLoss",
-  //   extra: true,
-  //   measureType: [["mass"], ["mass"]],
-  //   primary: true,
-  // },
+  {
+    displayName: "BMI",
+    name: "bmi",
+    extra: true,
+    measureType: [["mass"], ["length"]],
+    primary: true,
+  },
+  {
+    displayName: "Weight Loss",
+    name: "weightLoss",
+    extra: true,
+    measureType: [["mass"], ["mass"]],
+    primary: true,
+  },
 ];
 
 export default unitList;

@@ -23,7 +23,12 @@ const ToggleExtendedList = () => {
       <Pressable
         style={[styles.pressable, { backgroundColor: theme.mainColour }]}
         onPress={handleToggleExtendedList}>
-        <Text style={[{ color: theme.gray1 }, {fontWeight: "bold"}, {letterSpacing: 0.5}]}>
+        <Text
+          style={[
+            { color: theme.gray1 },
+            { fontWeight: "bold" },
+            { letterSpacing: 0.5 },
+          ]}>
           Show {settings.extendedList ? "less" : "more"}
         </Text>
       </Pressable>

@@ -62,15 +62,18 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     //-------------------------------
     //-------------------------------
 
-    case "add_FROM_unit":
-      let value = !state.fromValue[0].length ? 1 : 0;
+    case "add_FROM_unit":      
+      const fromPosition = action.payload.componentKey === undefined ? 0 : action.payload.componentKey
+      let value = !state.fromValue[fromPosition].length ? 1 : 0;
       return {
         ...state,
         fromUnit: state.fromUnit.map((unit, index) =>
-          index === 0 ? [...unit, action.payload] : unit
+          index === fromPosition
+            ? [...unit, action.payload.unit]
+            : unit
         ),
         fromValue: state.fromValue.map((val, index) =>
-          index === 0 ? [...val, value] : val
+          index === action.payload.componentKey ? [...val, value] : val
         ),
         // universalPicker: {
         //   ...state.universalPicker,
@@ -218,15 +221,23 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       };
 
     case "change_theme":
-      const themes = ['Blue', 'Second theme', 'Third theme', 'Autumn', "Spring", "Summer", "one more"]
-      const themeValue = themes.indexOf(action.payload)
+      const themes = [
+        "Blue",
+        "Second theme",
+        "Third theme",
+        "Autumn",
+        "Spring",
+        "Summer",
+        "one more",
+      ];
+      const themeValue = themes.indexOf(action.payload);
       return {
         ...state,
         settings: {
           ...state.settings,
           theme: themeValue,
-        }
-      }
+        },
+      };
 
     case "add_to_favourites":
       const updatedFavourites2 = {

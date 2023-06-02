@@ -1,4 +1,11 @@
-import { View, ScrollView, Text, Pressable, StyleSheet, TouchableWithoutFeedback } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  Pressable,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { useState, useEffect, useLayoutEffect } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -22,7 +29,6 @@ import getTheme from "../context/theme";
 
 import { SettingsType } from "../../types";
 
-
 const Settings = ({ navigation }: any) => {
   const {
     state: { settings },
@@ -31,22 +37,22 @@ const Settings = ({ navigation }: any) => {
   } = useAppContext();
 
   const [storedSettings, setStoredSettings] = useState<SettingsType>(settings);
-  const [themePicker, setThemePicker] = useState(false)
+  const [themePicker, setThemePicker] = useState(false);
 
   const theme = getTheme();
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchSettings = async () => {
       const data = await getLocalData(settingsKey);
       if (!data) {
         setStoredSettings(settings);
       }
 
-      if(data) {
+      if (data) {
         dispatch({
           type: "initialise_settings",
           payload: data as SettingsType,
-        })
+        });
       }
     };
     fetchSettings();
@@ -66,96 +72,101 @@ const Settings = ({ navigation }: any) => {
     saveSettings();
   }, [storedSettings, dispatch]);
 
-  useGetInFocus(navigation, dispatch, "Settings")
+  useGetInFocus(navigation, dispatch, "Settings");
 
-  const themes = Object.values(getTheme().allThemes)
+  const themes = Object.values(getTheme().allThemes);
 
-    const handlePicker = () => {   
+  const handlePicker = () => {
     dispatch({
       type: "change_decimals",
       payload: "plus",
-    })
-    setThemePicker(false)
-  }
+    });
+    setThemePicker(false);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => setThemePicker(false)}>
-    <ScrollView contentContainerStyle={styles.container}>
-      
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.jumpTo("Home")}>
-          <BackButton />
-        </Pressable>
-      </View>
-
-      <View style={styles.toogleButtonsOuterContainer}>
-        <View style={styles.ToggleButtonInnerContainer}>
-          <ToggleButton
-            title={"Default System"}
-            text={["metric", "imperial"]}
-            settingType="metric"
-            settingValue={settings.metric}
-          />
-          <ToggleButton
-            title={"Verbosity"}
-            text={["long", "short"]}
-            settingType="verbose"
-            settingValue={settings.verbose}
-          />
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.header}>
+          <Pressable onPress={() => navigation.jumpTo("Home")}>
+            <BackButton />
+          </Pressable>
         </View>
-      </View>
 
+        <View style={styles.toogleButtonsOuterContainer}>
+          <View style={styles.ToggleButtonInnerContainer}>
+            <ToggleButton
+              title={"Default System"}
+              text={["metric", "imperial"]}
+              settingType="metric"
+              settingValue={settings.metric}
+            />
+            <ToggleButton
+              title={"Verbosity"}
+              text={["long", "short"]}
+              settingType="verbose"
+              settingValue={settings.verbose}
+            />
+          </View>
+        </View>
 
-<View style={styles.decimalsOuterContainer}>
-   <Text style={styles.title}>Decimals</Text>
-      <View style={styles.decimalsContainer}>
-        <Pressable
-          onPress={() =>
-            dispatch({
-              type: "change_decimals",
-              payload: "minus",
-            })
-          }
-          disabled={settings.decimals === 0}>
-          <AddButton type="minus" disabled={settings.decimals === 0} />
-        </Pressable>
+        <View style={styles.decimalsOuterContainer}>
+          <Text style={styles.title}>Decimals</Text>
+          <View style={styles.decimalsContainer}>
+            <Pressable
+              onPress={() =>
+                dispatch({
+                  type: "change_decimals",
+                  payload: "minus",
+                })
+              }
+              disabled={settings.decimals === 0}>
+              <AddButton type="minus" disabled={settings.decimals === 0} />
+            </Pressable>
 
-        <Text style={styles.decimalsTextContainer}>{settings.decimals}</Text>
+            <Text style={styles.decimalsTextContainer}>
+              {settings.decimals}
+            </Text>
 
-        <Pressable
-          onPress={handlePicker}
-          disabled={settings.decimals === 4}>
-          <AddButton disabled={settings.decimals === 4} />
-        </Pressable>
-      </View>
-</View>
+            <Pressable
+              onPress={handlePicker}
+              disabled={settings.decimals === 4}>
+              <AddButton disabled={settings.decimals === 4} />
+            </Pressable>
+          </View>
+        </View>
 
-<View style={styles.themesContainer}>
-  <Text style={[styles.title, {paddingBottom: 10}]}>Theme</Text>
-  <Pressable style={[styles.themesButton, {backgroundColor: theme.mainColour}]} onPress={() => setThemePicker(true)}>
-    <Text style={[styles.themeText, {color: theme.gray1}]}>{themes[settings.theme]}</Text>
-  </Pressable>
+        <View style={styles.themesContainer}>
+          <Text style={[styles.title, { paddingBottom: 10 }]}>Theme</Text>
+          <Pressable
+            style={[styles.themesButton, { backgroundColor: theme.mainColour }]}
+            onPress={() => setThemePicker(true)}>
+            <Text style={[styles.themeText, { color: theme.gray1 }]}>
+              {themes[settings.theme]}
+            </Text>
+          </Pressable>
 
-{ themePicker && <View style={styles.pickerContainer}>
-  <Picker 
-        style={styles.picker}
-        selectedValue={themes[settings.theme]}
-            onValueChange={(value) => dispatch({
-              type: "change_theme",
-              payload: value as string,
-            })}
-          >
-          {themes.map((theme) => (
-            <Picker.Item key={theme} label={theme} value={theme}/>
-          ))}
-          </Picker>
-  </View>}
-        
-</View>
-   
-      <Credentials />
-    
-    </ScrollView>
+          {themePicker && (
+            <View style={styles.pickerContainer}>
+              <Picker
+                style={styles.picker}
+                selectedValue={themes[settings.theme]}
+                onValueChange={(value) =>
+                  dispatch({
+                    type: "change_theme",
+                    payload: value as string,
+                  })
+                }>
+                {themes.map((theme) => (
+                  <Picker.Item key={theme} label={theme} value={theme} />
+                ))}
+              </Picker>
+            </View>
+          )}
+        </View>
+
+        <Credentials />
+      </ScrollView>
     </TouchableWithoutFeedback>
   );
 };
@@ -183,7 +194,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     paddingTop: 15,
-
   },
   decimalsContainer: {
     flexDirection: "row",
@@ -235,8 +245,7 @@ const styles = StyleSheet.create({
   themeTitle: {
     paddingBottom: 5,
   },
-  themeText: {
-  },
+  themeText: {},
   pickerContainer: {
     position: "absolute",
     top: 0,
@@ -255,7 +264,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.4,
     shadowRadius: 2,
-  }
+  },
   // divider: {
   //   height: 1,
   //   width: "80%",
