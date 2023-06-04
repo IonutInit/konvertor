@@ -12,6 +12,7 @@ const appState: AppStateType = {
     type: "",
     index: -1,
     position: [],
+    activeFromComponent: 0,
   },
   settings: {
     extendedList: false,

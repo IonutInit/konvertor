@@ -24,6 +24,11 @@ const getCalculatorData = (
     fromUnit2 = "m";
   }
 
+  if (calculatorType === "speedCalc") {
+    fromUnit1 = "km";
+    fromUnit2 = "h";
+  }
+
   // if (calculatorType === "volumeCalc") {
   //   fromUnit1 = "m";
   //   fromUnit2 = "m";

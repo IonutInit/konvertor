@@ -23,6 +23,7 @@ const handleOptionPress = (
     "areaCalc",
     "volumeCalc",
     "densityCalc",
+    "speedCalc",
   ];
 
   const dispatchToFrom = () => {

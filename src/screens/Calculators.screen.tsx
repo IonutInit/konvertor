@@ -54,8 +54,12 @@ const Calculators = () => {
   // const height = getFromAddition(fromValue[1], fromUnit[1], "m");
   // const bmi = weigth / height ** 2;
 
-  const bmiHeigthFilter = ["cm", "in", "ft", "ft-us", "yd", "m"];
+  const bmiHeigthFilter = ["cm", "in", "ft", "ft-us", "yd", "m",];
   const bmiWeigthFilter = ["oz", "lb", "kg"];
+
+  const bmiFilter = ["cm", "in", "ft", "ft-us", "yd", "m", "oz", "lb", "kg"]
+
+  console.log(state)
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -65,56 +69,6 @@ const Calculators = () => {
           <Text style={styles.title}>{unitData.displayName}</Text>
         </View>
       </View>
-
-      {/* <View>
-      <View style={styles.firstComponent}>
-              <View style={styles.componentHeader}>
-                <View style={styles.measureNameComponent}>
-                  <Text style={styles.measureNameText}>
-                    {unitData.measureName![0]}
-                  </Text>
-                </View>
-                <AddUnit type="from" componentKey={0} />
-              </View>
-              <FromComponent
-                measureType={measureType![0][0]}
-                componentKey={0}
-              />
-
-              <>
-                <View style={styles.universalPickerContainer}>
-                  {platform === "ios" && universalPicker.type !== "" && (
-                    <UniversalPicker componentKey={0} />
-                  )}
-                </View>
-              </>
-            </View>
-      </View>
-
-      <View>
-      <View style={styles.firstComponent}>
-              <View style={styles.componentHeader}>
-                <View style={styles.measureNameComponent}>
-                  <Text style={styles.measureNameText}>
-                    {unitData.measureName![1]}
-                  </Text>
-                </View>
-                <AddUnit type="from" componentKey={1} />
-              </View>
-              <FromComponent
-                measureType={measureType![1][0]}
-                componentKey={1}
-              />
-
-              <>
-                <View style={styles.universalPickerContainer}>
-                  {platform === "ios" && universalPicker.type !== "" && (
-                    <UniversalPicker componentKey={1} />
-                  )}
-                </View>
-              </>
-            </View>
-      </View> */}
 
       <View>
         {

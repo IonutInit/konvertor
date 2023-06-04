@@ -60,7 +60,6 @@ const UniversalPickerUnit = ({ unit, i, type, componentKey }: UniversalPickerUni
         activeFromComponent: componentKey,
       },
     });
-    console.log(componentKey)
   };
 
   const handleLongPress = () => {

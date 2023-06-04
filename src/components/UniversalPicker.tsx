@@ -27,13 +27,13 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
   const allOptions = convert().from(fromUnit[componentKey][0]).possibilities();
   // const nextOption = getNextUnit(
   //   toUnit[universalPicker.index!],
-  //   description[measureType[0][0].toString()]
+  //   description[measureType[componentKey][0].toString()]
   // );
-  // const options = toUnit.length > 1 ? nextOption : allOptions;
+  const options = toUnit.length > 1 ? allOptions : allOptions;
 
-  // const optionsToDisplay = handleVerbosity(options, settings.verbose);
+  const optionsToDisplay = handleVerbosity(options, settings.verbose);
 
-  const optionsToDisplay = allOptions;
+  // const optionsToDisplay = allOptions;
 
   const handleChange = (option: string | string[], type: string) => {
     if (type === "from") {
@@ -87,12 +87,11 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
         <Picker.Item
           key={option}
           label={option}
-          value={option}
-          // value={revertVerbosity(
-          //   option,
-          //   settings.verbose,
-          //   convert().describe(optionsToDisplay[0]).measure
-          // )}
+          value={revertVerbosity(
+            option,
+            settings.verbose,
+            convert().describe(optionsToDisplay[0]).measure
+          )}
         />
       ))}
     </Picker>
