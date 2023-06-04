@@ -23,6 +23,7 @@ export const revertVerbosity = (
   if (verbose) {
     const index = description[measureType].long.indexOf(input as string);
     return description[measureType].short[index];
+    // return index
   }
   return input;
 };
