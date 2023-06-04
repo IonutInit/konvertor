@@ -4,7 +4,7 @@ import useAppContext from "../context/useAppContext";
 
 import Options from "./Options.home.screens";
 import Konvertor from "./Konvertor.home.screen";
-import Calculators from "./Calculators";
+import Calculators from "./Calculators.screen";
 
 import useGetInFocus from "../hooks/useGetInFocus";
 

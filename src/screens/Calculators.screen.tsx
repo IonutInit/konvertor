@@ -33,6 +33,8 @@ const Calculators = () => {
     dispatch,
   } = useAppContext();
 
+  console.log("Hello")
+
   const [unitData] = unitList.filter((unit) => unit.name === konvertor);
   const { measureType } = unitData;
 
@@ -42,7 +44,7 @@ const Calculators = () => {
     getCalculatorData(dispatch, konvertor);
   }, []);
 
-  //console.log(state);
+
   // const getResult = (calculatorType: string) => {
   //   if(calculatorType === "bmi") {
   //     return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])
@@ -67,9 +69,10 @@ const Calculators = () => {
       </View>
 
       <View>
-        {measureType?.map((fromUnit, i) => {
-          return (
-            <View key={i} style={styles.firstComponent}>
+        {
+          fromValue.map((from, i) => {
+            return(
+              <View key={i} style={styles.firstComponent}>
               <View style={styles.componentHeader}>
                 <View style={styles.measureNameComponent}>
                   <Text style={styles.measureNameText}>
@@ -91,8 +94,35 @@ const Calculators = () => {
                 </View>
               </>
             </View>
+            )
+          })
+        }
+        {/* {measureType?.map((fromUnit, i) => {
+          return (
+            <View key={i} style={styles.firstComponent}>
+              <View style={styles.componentHeader}>
+                <View style={styles.measureNameComponent}>
+                  <Text style={styles.measureNameText}>
+                    {unitData.measureName![i]}
+                  </Text>
+                </View>
+                <AddUnit type="from" componentKey={i} />
+              </View>
+              <FromComponent
+                measureType={measureType![i][0]}
+                componentKey={i}
+              />
+
+              <>
+                <View style={styles.universalPickerContainer}>
+                  {platform === "ios" && universalPicker.type !== "none" && (
+                    <UniversalPicker componentKey={i} />
+                  )}
+                </View>
+              </>
+            </View>
           );
-        })}
+        })} */}
       </View>
 
       {/* <View style={styles.resultOuterContainer}>
