@@ -89,7 +89,7 @@ const Options = () => {
     );
   };
 
-  console.log(state);
+  //console.log(state);
 
   // console.log(typing("gfgh 5 m 2 cm 5 in 3 zz inx 4"))
 

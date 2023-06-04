@@ -32,7 +32,7 @@ const Konvertor = () => {
 
   const defaultComponentKey = 0;
 
-  console.log(state);
+  // console.log(state);
 
   return (
     <View style={styles.container}>

@@ -25,15 +25,15 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
   const { type, position, index } = universalPicker;
 
   const allOptions = convert().from(fromUnit[componentKey][0]).possibilities();
-  const nextOption = getNextUnit(
-    toUnit[universalPicker.index!],
-    description[measureType[0][0].toString()]
-  );
-  const options = toUnit.length > 1 ? nextOption : allOptions;
+  // const nextOption = getNextUnit(
+  //   toUnit[universalPicker.index!],
+  //   description[measureType[0][0].toString()]
+  // );
+  // const options = toUnit.length > 1 ? nextOption : allOptions;
 
-  const optionsToDisplay = handleVerbosity(options, settings.verbose);
+  // const optionsToDisplay = handleVerbosity(options, settings.verbose);
 
-  // const optionsToDisplay = allOptions;
+  const optionsToDisplay = allOptions;
 
   const handleChange = (option: string | string[], type: string) => {
     if (type === "from") {
@@ -64,11 +64,12 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
         type: "",
         index: -1,
         position: [],
+        activeFromComponent: 0,
       },
     });
   };
 
-  return (
+   return (
     <Picker
       style={[
         styles.picker,
@@ -86,11 +87,12 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
         <Picker.Item
           key={option}
           label={option}
-          value={revertVerbosity(
-            option,
-            settings.verbose,
-            measureType[0].toString()
-          )}
+          value={option}
+          // value={revertVerbosity(
+          //   option,
+          //   settings.verbose,
+          //   convert().describe(optionsToDisplay[0]).measure
+          // )}
         />
       ))}
     </Picker>

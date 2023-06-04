@@ -15,9 +15,10 @@ type UniversalPickerUnitProps = {
   unit: string;
   i: number;
   type: "from" | "to";
+  componentKey: number,
 };
 
-const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
+const UniversalPickerUnit = ({ unit, i, type, componentKey }: UniversalPickerUnitProps) => {
   const {
     state: { universalPicker, fromUnit },
     dispatch,
@@ -56,8 +57,10 @@ const UniversalPickerUnit = ({ unit, i, type }: UniversalPickerUnitProps) => {
         type,
         index: i,
         position: position || [],
+        activeFromComponent: componentKey,
       },
     });
+    console.log(componentKey)
   };
 
   const handleLongPress = () => {

@@ -73,7 +73,7 @@ const FromComponent = ({
           )}
 
           {platform === "ios" && (
-            <UniversalPickerUnit unit={unit} i={i} type="from" />
+            <UniversalPickerUnit unit={unit} i={i} type="from" componentKey={componentKey}/>
           )}
 
           <RemoveUnit componentKey={componentKey} i={i} type={"from"} />

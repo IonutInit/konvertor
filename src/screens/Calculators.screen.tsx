@@ -33,9 +33,7 @@ const Calculators = () => {
     dispatch,
   } = useAppContext();
 
-  console.log("Hello")
-
-  const [unitData] = unitList.filter((unit) => unit.name === konvertor);
+   const [unitData] = unitList.filter((unit) => unit.name === konvertor);
   const { measureType } = unitData;
 
   const theme = getTheme();
@@ -68,6 +66,56 @@ const Calculators = () => {
         </View>
       </View>
 
+      {/* <View>
+      <View style={styles.firstComponent}>
+              <View style={styles.componentHeader}>
+                <View style={styles.measureNameComponent}>
+                  <Text style={styles.measureNameText}>
+                    {unitData.measureName![0]}
+                  </Text>
+                </View>
+                <AddUnit type="from" componentKey={0} />
+              </View>
+              <FromComponent
+                measureType={measureType![0][0]}
+                componentKey={0}
+              />
+
+              <>
+                <View style={styles.universalPickerContainer}>
+                  {platform === "ios" && universalPicker.type !== "" && (
+                    <UniversalPicker componentKey={0} />
+                  )}
+                </View>
+              </>
+            </View>
+      </View>
+
+      <View>
+      <View style={styles.firstComponent}>
+              <View style={styles.componentHeader}>
+                <View style={styles.measureNameComponent}>
+                  <Text style={styles.measureNameText}>
+                    {unitData.measureName![1]}
+                  </Text>
+                </View>
+                <AddUnit type="from" componentKey={1} />
+              </View>
+              <FromComponent
+                measureType={measureType![1][0]}
+                componentKey={1}
+              />
+
+              <>
+                <View style={styles.universalPickerContainer}>
+                  {platform === "ios" && universalPicker.type !== "" && (
+                    <UniversalPicker componentKey={1} />
+                  )}
+                </View>
+              </>
+            </View>
+      </View> */}
+
       <View>
         {
           fromValue.map((from, i) => {
@@ -88,7 +136,7 @@ const Calculators = () => {
 
               <>
                 <View style={styles.universalPickerContainer}>
-                  {platform === "ios" && universalPicker.type !== "" && (
+                  {platform === "ios" && universalPicker.type !== "" && universalPicker.activeFromComponent === i &&(
                     <UniversalPicker componentKey={i} />
                   )}
                 </View>
@@ -97,39 +145,7 @@ const Calculators = () => {
             )
           })
         }
-        {/* {measureType?.map((fromUnit, i) => {
-          return (
-            <View key={i} style={styles.firstComponent}>
-              <View style={styles.componentHeader}>
-                <View style={styles.measureNameComponent}>
-                  <Text style={styles.measureNameText}>
-                    {unitData.measureName![i]}
-                  </Text>
-                </View>
-                <AddUnit type="from" componentKey={i} />
-              </View>
-              <FromComponent
-                measureType={measureType![i][0]}
-                componentKey={i}
-              />
-
-              <>
-                <View style={styles.universalPickerContainer}>
-                  {platform === "ios" && universalPicker.type !== "none" && (
-                    <UniversalPicker componentKey={i} />
-                  )}
-                </View>
-              </>
-            </View>
-          );
-        })} */}
       </View>
-
-      {/* <View style={styles.resultOuterContainer}>
-        <View style={[styles.resultContainerBmi, {backgroundColor: theme.mainColour}]}>
-        <Text style={[styles.resultsTextBmi, {color: theme.gray1}]}>{result}</Text>
-      </View>
-</View> */}
     </ScrollView>
   );
 };
