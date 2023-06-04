@@ -6,6 +6,8 @@ import useAppContext from "../context/useAppContext";
 
 import convert from "convert-units";
 
+import { UnitDescription } from "../data/unitDescription";
+
 import getNextUnit from "../lib/getNextUnit";
 import description from "../data/unitDescription";
 import { handleVerbosity, revertVerbosity } from "../hooks/handleVerbosity";
@@ -13,11 +15,19 @@ import { handleVerbosity, revertVerbosity } from "../hooks/handleVerbosity";
 import getTheme from "../context/theme";
 
 import { ActionType } from "../../types";
+import { DescriptionType } from "../data/unitDescription";
 import Konvertor from "../screens/Konvertor.home.screen";
 
 const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
   const {
-    state: { konvertor, fromUnit, toUnit, universalPicker, measureType, settings },
+    state: {
+      konvertor,
+      fromUnit,
+      toUnit,
+      universalPicker,
+      measureType,
+      settings,
+    },
     dispatch,
   } = useAppContext();
 
@@ -25,14 +35,30 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
 
   const { type, position, index } = universalPicker;
 
-  const allOptions = convert().from(fromUnit[componentKey][0]).possibilities();
+  const optionsSource = universalPicker.type === "from" ? fromUnit[componentKey][0] : toUnit[0]
+
+  const findUnitKey = (x: string, description: DescriptionType) => {
+    for (const key of Object.keys(description)) {
+      const unitDescription = description[key];
+      if (unitDescription.short.includes(x)) {
+        return key;
+      }
+    }
+  };
+
+  const allOptions = description[findUnitKey(optionsSource, description)!].short
+
+   //const allOptions = convert().from(optionsSource).possibilities();
   // const nextOption = getNextUnit(
   //   toUnit[universalPicker.index!],
   //   description[measureType[componentKey][0].toString()]
   // );
+
   const options = toUnit.length > 1 ? allOptions : allOptions;
 
   const optionsToDisplay = handleVerbosity(options, settings.verbose);
+
+  // const optionsToDisplay = allOptions
 
   const handleChange = (option: string | string[], type: string) => {
     if (type === "from") {
@@ -68,7 +94,7 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
     });
   };
 
-   return (
+  return (
     <Picker
       style={[
         styles.picker,
@@ -90,7 +116,9 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
           value={revertVerbosity(
             option,
             settings.verbose,
-            (konvertor === "konvertor" ? measureType[0][0] : convert().describe(fromUnit[componentKey]).measure)
+            konvertor === "konvertor"
+              ? measureType[0][0]
+              : convert().describe(fromUnit[componentKey]).measure
             //because measureToe takes a different meaning with calculators....
           )}
         />

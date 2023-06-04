@@ -35,7 +35,7 @@ export type AppStateType = {
     type: UniversalPickerOptions;
     index: number;
     position: [number, number][];
-    activeFromComponent: number,
+    activeFromComponent: number;
   };
   settings: SettingsType;
   favourites: FavouriteType[];
@@ -135,7 +135,7 @@ export type ActionType =
         type: UniversalPickerOptions;
         index: number;
         position?: number[];
-        activeFromComponent: number,
+        activeFromComponent: number;
       };
     }
   | {

@@ -52,7 +52,7 @@ const PickerComponent = ({
     return option;
   };
 
-   return (
+  return (
     <Picker
       style={styles.picker}
       selectedValue={unit}

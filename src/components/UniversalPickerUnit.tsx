@@ -15,10 +15,15 @@ type UniversalPickerUnitProps = {
   unit: string;
   i: number;
   type: "from" | "to";
-  componentKey: number,
+  componentKey?: number;
 };
 
-const UniversalPickerUnit = ({ unit, i, type, componentKey }: UniversalPickerUnitProps) => {
+const UniversalPickerUnit = ({
+  unit,
+  i,
+  type,
+  componentKey = 0,
+}: UniversalPickerUnitProps) => {
   const {
     state: { universalPicker, fromUnit },
     dispatch,

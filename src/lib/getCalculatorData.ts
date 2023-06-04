@@ -1,6 +1,8 @@
 import { Dispatch } from "react";
 import { ActionType } from "../../types";
 
+
+
 const getCalculatorData = (
   dispatch: Dispatch<ActionType>,
   calculatorType: string
@@ -8,6 +10,8 @@ const getCalculatorData = (
   let fromUnit1 = "";
   let fromUnit2 = "";
   // let fromUnit3 = "";
+  let toUnit = "m";
+  //"m" is default for those that don't need a toUnit
 
   if (calculatorType === "bmi") {
     fromUnit1 = "kg";
@@ -22,11 +26,13 @@ const getCalculatorData = (
   if (calculatorType === "areaCalc") {
     fromUnit1 = "m";
     fromUnit2 = "m";
+    toUnit = "m2";
   }
 
   if (calculatorType === "speedCalc") {
     fromUnit1 = "km";
     fromUnit2 = "h";
+    toUnit = "km/h";
   }
 
   // if (calculatorType === "volumeCalc") {
@@ -38,6 +44,7 @@ const getCalculatorData = (
   if (calculatorType === "densityCalc") {
     fromUnit1 = "g";
     fromUnit2 = "cm3";
+    toUnit = "g/cm3"
   }
 
   dispatch({
@@ -53,6 +60,10 @@ const getCalculatorData = (
       unit: fromUnit2,
       componentKey: 1,
     },
+  });
+  dispatch({
+    type: "add_TO_unit",
+    payload: toUnit,
   });
 
   // if(fromUnit3 !== "") {

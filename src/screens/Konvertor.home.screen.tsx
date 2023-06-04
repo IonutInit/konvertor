@@ -23,6 +23,9 @@ import Description from "../components/Description";
 
 import getTheme from "../context/theme";
 
+
+import description from "../data/unitDescription";
+
 const Konvertor = () => {
   const { state } = useAppContext();
 
@@ -32,7 +35,17 @@ const Konvertor = () => {
 
   const defaultComponentKey = 0;
 
-  // console.log(state);
+  // const findKeyByShortValue = (x: string, description) => {
+  //   for (const key of Object.keys(description)) {
+  //     const unitDescription = description[key];
+  //     if (unitDescription.short.includes(x)) {
+  //       return key;
+  //     }
+  //   }
+  //   // return undefined; // If the value is not found
+  // };
+
+  console.log(description["area"].short)
 
   return (
     <View style={styles.container}>

@@ -1,6 +1,8 @@
 import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
 import { useEffect, useState } from "react";
 
+import { Picker } from "@react-native-picker/picker";
+
 import useAppContext from "../context/useAppContext";
 
 import BackFromKonverter from "../components/BackToOptions";
@@ -9,31 +11,30 @@ import unitList from "../data/unitList";
 
 import FromComponent from "../components/FromComponent";
 import UniversalPicker from "../components/UniversalPicker";
+import UniversalPickerUnit from "../components/UniversalPickerUnit";
 import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
 import AddToFavourites from "../components/AddToFavourites";
 
+import convert from "convert-units"
+
 import getCalculatorData from "../lib/getCalculatorData";
 
-import { calculateBmi } from "../lib/calculators";
+import { calculateBmi, calculateArea, calculateSpeed, calculateDensity, calculateWeightLoss } from "../lib/calculators";
 
 import PickerComponent from "../components/Picker";
 import getTheme from "../context/theme";
 
 import platform from "../data/platform";
-// import UniversalPicker from "../components/UniversalPicker";
-// import description from "../data/unitDescription";
-
-import getFromAddition from "../lib/getFromAddition_temp";
 
 const Calculators = () => {
   const {
-    state: { fromUnit, fromValue, konvertor, universalPicker },
+    state: { fromUnit, fromValue, toUnit, konvertor, universalPicker, settings },
     state,
     dispatch,
   } = useAppContext();
 
-   const [unitData] = unitList.filter((unit) => unit.name === konvertor);
+  const [unitData] = unitList.filter((unit) => unit.name === konvertor);
   const { measureType } = unitData;
 
   const theme = getTheme();
@@ -42,24 +43,34 @@ const Calculators = () => {
     getCalculatorData(dispatch, konvertor);
   }, []);
 
+  const getResult = (calculatorType: string) => {
+    if(calculatorType === "bmi") {
+      return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])
+    }
+    if(calculatorType === "areaCalc" && toUnit.length !== 0) {    
+          return calculateArea(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
+    }
 
-  // const getResult = (calculatorType: string) => {
-  //   if(calculatorType === "bmi") {
-  //     return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])
-  //   }
-  // }
-  // const result = getResult(konvertor)
+    if(calculatorType === "speedCalc" && toUnit.length !== 0) {    
+      return calculateSpeed(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
+}
 
-  // const weigth = getFromAddition(fromValue[0], fromUnit[0], "kg");
-  // const height = getFromAddition(fromValue[1], fromUnit[1], "m");
-  // const bmi = weigth / height ** 2;
+if(calculatorType === "densityCalc" && toUnit.length !== 0) {    
+  return calculateDensity(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
+}
+if(calculatorType === "weightLoss" && toUnit.length !== 0) {    
+  return calculateWeightLoss(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])   
+}
 
-  const bmiHeigthFilter = ["cm", "in", "ft", "ft-us", "yd", "m",];
+
+  }
+
+  const result = getResult(konvertor)
+
+  const bmiHeigthFilter = ["cm", "in", "ft", "ft-us", "yd", "m"];
   const bmiWeigthFilter = ["oz", "lb", "kg"];
 
-  const bmiFilter = ["cm", "in", "ft", "ft-us", "yd", "m", "oz", "lb", "kg"]
-
-  console.log(state)
+  const bmiFilter = ["cm", "in", "ft", "ft-us", "yd", "m", "oz", "lb", "kg"];
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -71,10 +82,9 @@ const Calculators = () => {
       </View>
 
       <View>
-        {
-          fromValue.map((from, i) => {
-            return(
-              <View key={i} style={styles.firstComponent}>
+        {fromValue.map((from, i) => {
+          return (
+            <View key={i} style={styles.firstComponent}>
               <View style={styles.componentHeader}>
                 <View style={styles.measureNameComponent}>
                   <Text style={styles.measureNameText}>
@@ -90,16 +100,30 @@ const Calculators = () => {
 
               <>
                 <View style={styles.universalPickerContainer}>
-                  {platform === "ios" && universalPicker.type !== "" && universalPicker.activeFromComponent === i &&(
-                    <UniversalPicker componentKey={i} />
-                  )}
+                  {platform === "ios" &&
+                    universalPicker.type !== "" &&
+                    universalPicker.activeFromComponent === i && (
+                      <UniversalPicker componentKey={i} />
+                    )}
                 </View>
               </>
             </View>
-            )
-          })
-        }
+          );
+        })}
       </View>
+
+
+      <View style={styles.toOuterContainer}>
+      {toUnit[0] !== "" && (
+        <View style={styles.toContainer}>
+          <Text style={styles.result}>{Number(result).toFixed(settings.decimals)}</Text>
+          <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />
+        </View>
+      )}      
+      </View>
+
+
+
     </ScrollView>
   );
 };
@@ -161,10 +185,36 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 250,
     position: "absolute",
-    top: "50%",
+    top: "30%",
     left: "50%",
     transform: [{ translateX: -125 }, { translateY: -200 }],
     zIndex: 1,
+  },
+  toOuterContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  toContainer: {
+    flexDirection: "row",
+    gap: 10,
+    paddingHorizontal: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 5,
+    width: "95%",
+    paddingTop: 15,
+    borderWidth: 1,
+    // borderColor: theme.gray1,
+    borderRadius: 10,
+    zIndex: 1,
+    // shadowColor: theme.gray3,
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.6,
+    // shadowRadius: 2,
+  },
+  result: {
+    fontSize: 32,
   },
 });
 

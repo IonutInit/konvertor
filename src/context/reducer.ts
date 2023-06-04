@@ -55,7 +55,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
                 ? (action.payload.position as [number, number])
                 : existingValues
           ),
-          activeFromComponent: action.payload.activeFromComponent
+          activeFromComponent: action.payload.activeFromComponent,
         },
       };
 

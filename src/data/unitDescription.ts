@@ -151,6 +151,10 @@ const description: DescriptionType = {
       "cubic kilometers",
     ],
   },
+  density: {
+    short: ["g/cm3", "kg/m3"],
+    long: ["grams per cu. cm", "kilograms per cu meter"],
+  },
   volumeFlowRate: {
     short: [
       "mm3/s",
