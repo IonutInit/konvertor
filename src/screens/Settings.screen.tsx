@@ -84,6 +84,14 @@ const Settings = ({ navigation }: any) => {
     setThemePicker(false);
   };
 
+  const handleThemePicker = (value: string) => {
+    dispatch({
+      type: "change_theme",
+      payload: value,
+    })
+    setThemePicker(false)
+  }
+
   return (
     <TouchableWithoutFeedback onPress={() => setThemePicker(false)}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -151,12 +159,7 @@ const Settings = ({ navigation }: any) => {
               <Picker
                 style={styles.picker}
                 selectedValue={themes[settings.theme]}
-                onValueChange={(value) =>
-                  dispatch({
-                    type: "change_theme",
-                    payload: value as string,
-                  })
-                }>
+                onValueChange={(value) => handleThemePicker(value)}>
                 {themes.map((theme) => (
                   <Picker.Item key={theme} label={theme} value={theme} />
                 ))}

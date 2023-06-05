@@ -95,7 +95,7 @@ const ToComponent = () => {
 const styles = StyleSheet.create({
   container: {
     // padding: 5,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
     alignItems: "center",
     // alignContent: "space-between"
   },

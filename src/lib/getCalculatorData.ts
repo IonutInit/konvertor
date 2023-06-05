@@ -10,8 +10,8 @@ const getCalculatorData = (
   let fromUnit1 = "";
   let fromUnit2 = "";
   // let fromUnit3 = "";
-  let toUnit = "m";
-  //"m" is default for those that don't need a toUnit
+  let toUnit = "mVA";
+  //"mVA" is default for those that don't need a toUnit, it isn't used in calculators
 
   if (calculatorType === "bmi") {
     fromUnit1 = "kg";

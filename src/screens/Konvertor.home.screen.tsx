@@ -35,17 +35,7 @@ const Konvertor = () => {
 
   const defaultComponentKey = 0;
 
-  // const findKeyByShortValue = (x: string, description) => {
-  //   for (const key of Object.keys(description)) {
-  //     const unitDescription = description[key];
-  //     if (unitDescription.short.includes(x)) {
-  //       return key;
-  //     }
-  //   }
-  //   // return undefined; // If the value is not found
-  // };
-
-   return (
+  return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.header}>
@@ -70,7 +60,7 @@ const Konvertor = () => {
           <View
             style={[
               styles.toContainer,
-              { borderColor: theme.gray1, shadowColor: theme.gray1 },
+              { borderColor: theme.gray2, shadowColor: theme.gray2 },
             ]}>
             <View style={styles.toPickerContainer}>
               <ToComponent />
@@ -121,12 +111,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     alignItems: "center",
     marginBottom: 5,
-    width: "95%",
+    width: "98%",
     paddingTop: 15,
     borderWidth: 1,
-    // borderColor: theme.gray1,
     borderRadius: 10,
-    // shadowColor: theme.gray3,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.6,
     shadowRadius: 2,

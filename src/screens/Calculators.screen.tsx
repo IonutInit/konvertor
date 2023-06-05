@@ -92,7 +92,7 @@ if(calculatorType === "weightLoss" && toUnit.length !== 0) {
         <Text style={[styles.descriptionText, {color: theme.gray1}]}>{handleDescriptionText(fromUnit[1], true, true)}</Text>
        { !["bmi", "weightLoss"].includes(unitData.name) &&
        <View>
-               <View style={[{height: 1}, {width: "100%"}, {backgroundColor: theme.gray1}]}></View>
+               <View style={[{height: 1}, {width: "100%"}, {backgroundColor: theme.gray1}, {marginVertical: 3}]}></View>
         <Text style={[styles.descriptionText, {color: theme.gray1}]}>{handleDescriptionText(toUnit, true, true)}</Text>
        </View>
 }
@@ -131,13 +131,11 @@ if(calculatorType === "weightLoss" && toUnit.length !== 0) {
       </View>
 
 
-      <View style={styles.toOuterContainer}>
-      {toUnit[0] !== "" && (
-        <View style={styles.toContainer}>
+      <View style={styles.toOuterContainer}>      
+        <View style={[styles.toContainer, { borderColor: theme.gray2, shadowColor: theme.gray2 }]}>
           <Text style={styles.result}>{Number(result).toFixed(settings.decimals)}</Text>
-          <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />
-        </View>
-      )}      
+         {toUnit[0] !== "mVA" && <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />}
+        </View>           
       </View>
 
 
@@ -203,20 +201,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
   },
-  resultContainerBmi: {
-    marginBottom: 40,
-    width: 200,
-    maxHeight: 50,
-    height: 50,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 6,
-  },
-  resultsTextBmi: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
   universalPickerContainer: {
     alignItems: "center",
     justifyContent: "center",
@@ -229,29 +213,26 @@ const styles = StyleSheet.create({
   },
   toOuterContainer: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
   },
   toContainer: {
-    flexDirection: "row",
-    gap: 10,
     paddingHorizontal: 10,
     alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 5,
-    width: "95%",
-    paddingTop: 15,
+    marginBottom: 20,
+    width: "80%",
+    paddingVertical: 15,
     borderWidth: 1,
-    // borderColor: theme.gray1,
     borderRadius: 10,
-    zIndex: 1,
-    // shadowColor: theme.gray3,
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowOpacity: 0.6,
-    // shadowRadius: 2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.6,
+    shadowRadius: 2,
   },
   result: {
-    fontSize: 32,
+    fontSize: 24,
+    paddingBottom: 5,
+    paddingTop: 5,
+    marginBottom: 5,
   },
 });
 
