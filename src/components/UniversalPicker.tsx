@@ -35,7 +35,8 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
 
   const { type, position, index } = universalPicker;
 
-  const optionsSource = universalPicker.type === "from" ? fromUnit[componentKey][0] : toUnit[0]
+  const optionsSource =
+    universalPicker.type === "from" ? fromUnit[componentKey][0] : toUnit[0];
 
   const findUnitKey = (x: string, description: DescriptionType) => {
     for (const key of Object.keys(description)) {
@@ -46,17 +47,18 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
     }
   };
 
- const allOptions = description[findUnitKey(optionsSource, description)!].short
+  const allOptions =
+    description[findUnitKey(optionsSource, description)!].short;
 
-   //const allOptions = convert().from(optionsSource).possibilities();
+  //const allOptions = convert().from(optionsSource).possibilities();
 
-  let nextOption = allOptions
+  let nextOption = allOptions;
 
-   if(konvertor === "konvertor") {
-        nextOption = getNextUnit(
-    toUnit[universalPicker.index!],
-    description[findUnitKey(optionsSource, description)!]
-  );
+  if (konvertor === "konvertor") {
+    nextOption = getNextUnit(
+      toUnit[universalPicker.index!],
+      description[findUnitKey(optionsSource, description)!]
+    );
   }
 
   const options = toUnit.length > 1 ? nextOption : allOptions;
@@ -99,12 +101,11 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
   };
 
   const calculatorToVerbosity = () => {
-    if(!universalPicker.calculatorTo) {
-      return convert().describe(fromUnit[componentKey][0]).measure
+    if (!universalPicker.calculatorTo) {
+      return convert().describe(fromUnit[componentKey][0]).measure;
     }
-  return convert().describe(toUnit[0]).measure
-
-  } 
+    return convert().describe(toUnit[0]).measure;
+  };
 
   return (
     <Picker

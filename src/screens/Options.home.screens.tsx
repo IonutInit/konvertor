@@ -5,6 +5,7 @@ import {
   Pressable,
   Image,
   StyleSheet,
+  LayoutAnimation,
 } from "react-native";
 import { useState, useEffect } from "react";
 
@@ -101,94 +102,130 @@ const Options = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-{  settings.favouritesOnHome &&    <ScrollView
-        contentContainerStyle={styles.favScrollContainer}
-        horizontal
-        showsHorizontalScrollIndicator={false}>
-        {whatFavouritesToMap.map((fav, index) => {
-          const [findName] = unitList.filter(
-            (unit) => fav.measureType[0].toString() === unit.name
-          );
+      {settings.favouritesOnHome && (
+        <ScrollView
+          contentContainerStyle={styles.favScrollContainer}
+          horizontal
+          showsHorizontalScrollIndicator={false}>
+          {whatFavouritesToMap.map((fav, index) => {
+            const [findName] = unitList.filter(
+              (unit) => fav.measureType[0].toString() === unit.name
+            );
 
-          return (
-            <View style={styles.favOuterContainer} key={index}>
-              <View
-                style={[
-                  styles.favContainer,
-                  { backgroundColor: theme.mainColour },
-                ]}>
-                <Pressable
-                  onPress={() =>
-                    handleLaunchFavourite(
-                      fav.measureType[0],
-                      [findName.name],
-                      fav.from,
-                      fav.to[0]
-                    )
-                  }>
-                  <View style={styles.favIconContainer}>
-                    <MeasurementIcons
-                      type={findName.name}
-                      mainColour={theme.gray1}
-                      size={30}
-                    />
-                    <View style={styles.favTextContainer}>
-                      <Text style={[styles.favText, { color: theme.gray1 }]}>
-                        {handleFavouriteText(fav.from[0], [
-                          fav.from[0],
-                          fav.to,
-                        ])}
-                      </Text>
-                      <Text style={[styles.favText, { color: theme.gray1 }]}>
-                        {handleFavouriteText(fav.to, [fav.from[0], fav.to])}
-                      </Text>
+            return (
+              <View style={styles.favOuterContainer} key={index}>
+                <View
+                  style={[
+                    styles.favContainer,
+                    { backgroundColor: theme.mainColour },
+                  ]}>
+                  <Pressable
+                    onPress={() =>
+                      handleLaunchFavourite(
+                        fav.measureType[0],
+                        [findName.name],
+                        fav.from,
+                        fav.to[0]
+                      )
+                    }>
+                    <View style={styles.favIconContainer}>
+                      <MeasurementIcons
+                        type={findName.name}
+                        mainColour={theme.gray1}
+                        size={30}
+                      />
+                      <View style={styles.favTextContainer}>
+                        <Text style={[styles.favText, { color: theme.gray1 }]}>
+                          {handleFavouriteText(fav.from[0], [
+                            fav.from[0],
+                            fav.to,
+                          ])}
+                        </Text>
+                        <Text style={[styles.favText, { color: theme.gray1 }]}>
+                          {handleFavouriteText(fav.to, [fav.from[0], fav.to])}
+                        </Text>
+                      </View>
                     </View>
-                  </View>
-                </Pressable>
+                  </Pressable>
+                </View>
               </View>
-            </View>
-          );
-        })}
-      </ScrollView>}
+            );
+          })}
+        </ScrollView>
+      )}
 
       <View style={styles.outerPressableContainer}>
         {filteredUnitList.map((unit, index) => (
           <View key={index}>
-                    {unit.name !== "favouritesButton" && <Pressable
-            key={unit.name}
-            onPress={() =>
-              handleOptionPress(dispatch, state, unit.name, unit.displayName)
-            }
-            style={[styles.pressableMeasure, { backgroundColor: theme.gray1 }]}>
-            <View style={styles.innerPressableContainer}>
-              <MeasurementIcons type={unit.name} />
+            {unit.name !== "favouritesButton" && (
+              <Pressable
+                key={unit.name}
+                onPress={() =>
+                  handleOptionPress(
+                    dispatch,
+                    state,
+                    unit.name,
+                    unit.displayName
+                  )
+                }
+                style={[
+                  styles.pressableMeasure,
+                  { backgroundColor: theme.gray1 },
+                ]}>
+                <View style={styles.innerPressableContainer}>
+                  <MeasurementIcons type={unit.name} />
 
-              <View style={styles.textContainer}>
-                <Text style={styles.text}>{unit.displayName}</Text>
-              </View>
-            </View>
-          </Pressable> }
+                  <View style={styles.textContainer}>
+                    <Text style={styles.text}>{unit.displayName}</Text>
+                  </View>
+                </View>
+              </Pressable>
+            )}
 
-
-          {unit.name === "favouritesButton" && <Pressable style={[styles.pressableMeasure, {backgroundColor: ( !settings.favouritesOnHome ? theme.mainColour : theme.gray1)}]}
-          onPress={() => dispatch({
-            type: "toggle_favourites_on_home"
-          })}
-          >
-            <View style={styles.innerPressableContainer}>
-                          <FavouritesIcon isFavourite mainColour={!settings.favouritesOnHome ? theme.gray1: theme.mainColour}/>
-            <View style={styles.textContainer}>
-            <Text style={[{color: !settings.favouritesOnHome ? theme.gray1 : theme.mainColour}, {textAlign: "center"}]}>
-  {`${!settings.favouritesOnHome ? "Show" : "Hide"} Favourites`}
-</Text>
-            </View>
-            </View>
-
-            
-            
-            </Pressable>}
+            {unit.name === "favouritesButton" && whatFavouritesToMap.length !== 0 && (
+              <Pressable
+                style={[
+                  styles.pressableMeasure,
+                  {
+                    backgroundColor: !settings.favouritesOnHome
+                      ? theme.mainColour
+                      : theme.gray1,
+                  },
+                ]}
+                onPress={() => {
+                  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+                  dispatch({
+                    type: "toggle_favourites_on_home",
+                  })}
+                }>
+                <View style={styles.innerPressableContainer}>
+                  <FavouritesIcon
+                    isFavourite
+                    mainColour={
+                      !settings.favouritesOnHome
+                        ? theme.gray1
+                        : theme.mainColour
+                    }
+                  />
+                  <View style={styles.textContainer}>
+                    <Text
+                      style={[
+                        {
+                          color: !settings.favouritesOnHome
+                            ? theme.gray1
+                            : theme.mainColour,
+                        },
+                        { textAlign: "center" },
+                      ]}>
+                      {`${
+                        !settings.favouritesOnHome ? "Show" : "Hide"
+                      } Favourites`}
+                    </Text>
+                  </View>
+                </View>
+              </Pressable>
+            )}
           </View>
-
         ))}
       </View>
 

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, LayoutAnimation } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -15,10 +15,13 @@ const RemoveFavourite = ({ i }: RemoveFavouriteType) => {
   const { dispatch } = useAppContext();
   const theme = getTheme();
 
+  const handlePress = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    handleRemoveFavourite(dispatch, i);
+  };
+
   return (
-    <Pressable
-      style={styles.closeButton}
-      onPress={() => handleRemoveFavourite(dispatch, i)}>
+    <Pressable style={styles.closeButton} onPress={handlePress}>
       <RemoveIcon
         size={28}
         background={theme.secondaryColour}

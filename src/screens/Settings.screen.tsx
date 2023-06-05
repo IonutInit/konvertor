@@ -88,9 +88,9 @@ const Settings = ({ navigation }: any) => {
     dispatch({
       type: "change_theme",
       payload: value,
-    })
-    setThemePicker(false)
-  }
+    });
+    setThemePicker(false);
+  };
 
   return (
     <TouchableWithoutFeedback onPress={() => setThemePicker(false)}>

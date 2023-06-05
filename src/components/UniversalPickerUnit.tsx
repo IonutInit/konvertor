@@ -49,18 +49,20 @@ const UniversalPickerUnit = ({
   }, []);
 
   const handlePresIn = () => {
-    // setLargeContainer(true);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setLargeContainer(true);
   };
 
   const handlePressOut = () => {
-    // setLargeContainer(false);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setLargeContainer(false);
   };
 
   const workUniversalPicker = () => {
-    let calculatorTo = false
+    let calculatorTo = false;
 
-    if(type === "to" && konvertor !== "konvertor") {
-      calculatorTo = true
+    if (type === "to" && konvertor !== "konvertor") {
+      calculatorTo = true;
     }
 
     dispatch({
@@ -76,6 +78,7 @@ const UniversalPickerUnit = ({
   };
 
   const handleLongPress = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     if (fromUnit[0].length > 1) {
       dispatch({ type: `remove_${type.toUpperCase()}_value`, payload: [0, i] });
     }
@@ -115,8 +118,8 @@ const styles = StyleSheet.create({
     height: 30,
   },
   containerLargeSize: {
-    width: 120,
-    height: 45,
+    width: 88,
+    height: 33,
   },
   container: {
     justifyContent: "center",

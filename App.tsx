@@ -38,6 +38,7 @@ export default function App() {
     decimals: 2,
     verbose: false,
     theme: 1,
+    favouritesOnHome: false,
   };
 
   const [state, dispatch] = useReducer(reducer, appState);

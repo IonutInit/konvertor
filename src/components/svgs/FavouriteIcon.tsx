@@ -4,13 +4,15 @@ import getTheme from "../../context/theme";
 
 type Props = {
   isFavourite?: boolean;
-  mainColour?: string,
-  strokeColour?: string,
+  mainColour?: string;
+  strokeColour?: string;
 };
 
-
-const FavouritesIcon = ({ isFavourite = false, mainColour = getTheme().mainColour, strokeColour = getTheme().gray3  }: Props) => {
-
+const FavouritesIcon = ({
+  isFavourite = false,
+  mainColour = getTheme().mainColour,
+  strokeColour = getTheme().gray3,
+}: Props) => {
   return (
     <Svg
       style={{

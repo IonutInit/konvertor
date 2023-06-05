@@ -1,8 +1,8 @@
 const unitList = [
   {
-   name: "favouritesButton",
+    name: "favouritesButton",
     primary: true,
-  },  
+  },
   {
     displayName: "Length",
     name: "length",

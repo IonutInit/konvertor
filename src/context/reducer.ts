@@ -56,7 +56,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
                 : existingValues
           ),
           activeFromComponent: action.payload.activeFromComponent,
-          calculatorTo: action.payload.calculatorTo
+          calculatorTo: action.payload.calculatorTo,
         },
       };
 
@@ -224,15 +224,14 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       };
 
     case "toggle_favourites_on_home":
-      const currentState = state.settings.favouritesOnHome
+      const currentState = state.settings.favouritesOnHome;
       return {
         ...state,
         settings: {
           ...state.settings,
-          favouritesOnHome: !currentState
-        }
-      }
-     
+          favouritesOnHome: !currentState,
+        },
+      };
 
     case "change_theme":
       const themes = [

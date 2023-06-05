@@ -11,17 +11,20 @@ type RemoveUnitProps = {
 };
 
 const RemoveUnit = ({ componentKey, type, i }: RemoveUnitProps) => {
-  const { state: {fromUnit, toUnit}, dispatch } = useAppContext();
+  const {
+    state: { fromUnit, toUnit },
+    dispatch,
+  } = useAppContext();
   const theme = getTheme();
 
-  let arrayLength = true
+  let arrayLength = true;
 
-  if(type === "from") {
-    arrayLength = fromUnit[componentKey!].length > 1
+  if (type === "from") {
+    arrayLength = fromUnit[componentKey!].length > 1;
   }
-  
-  if(type === "to") {
-    arrayLength = toUnit.length > 1
+
+  if (type === "to") {
+    arrayLength = toUnit.length > 1;
   }
 
   return (

@@ -21,7 +21,7 @@ export type SettingsType = {
   decimals: number;
   verbose: boolean;
   theme: number;
-  favouritesOnHome: boolean,
+  favouritesOnHome: boolean;
 };
 
 export type AppStateType = {
@@ -138,7 +138,7 @@ export type ActionType =
         index: number;
         position?: number[];
         activeFromComponent: number;
-        calculatorTo: boolean,
+        calculatorTo: boolean;
       };
     }
   | {
@@ -165,8 +165,8 @@ export type ActionType =
       payload: "Home" | "Favourites" | "Settings";
     }
   | {
-    type: "toggle_favourites_on_home"
-  }
+      type: "toggle_favourites_on_home";
+    };
 
 export type ThemeType = {
   mainColour: string;

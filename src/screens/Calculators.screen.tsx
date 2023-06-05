@@ -16,12 +16,18 @@ import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
 import AddToFavourites from "../components/AddToFavourites";
 
-import convert from "convert-units"
+import convert from "convert-units";
 
 import getCalculatorData from "../lib/getCalculatorData";
 import handleDescriptionText from "../lib/handleDescriptionText";
 
-import { calculateBmi, calculateArea, calculateSpeed, calculateDensity, calculateWeightLoss } from "../lib/calculators";
+import {
+  calculateBmi,
+  calculateArea,
+  calculateSpeed,
+  calculateDensity,
+  calculateWeightLoss,
+} from "../lib/calculators";
 
 import PickerComponent from "../components/Picker";
 import getTheme from "../context/theme";
@@ -30,7 +36,14 @@ import platform from "../data/platform";
 
 const Calculators = () => {
   const {
-    state: { fromUnit, fromValue, toUnit, konvertor, universalPicker, settings },
+    state: {
+      fromUnit,
+      fromValue,
+      toUnit,
+      konvertor,
+      universalPicker,
+      settings,
+    },
     state,
     dispatch,
   } = useAppContext();
@@ -41,40 +54,60 @@ const Calculators = () => {
   const theme = getTheme();
 
   useEffect(() => {
-    getCalculatorData(dispatch, konvertor);
+    getCalculatorData(dispatch, konvertor, settings.metric);
   }, []);
 
   const getResult = (calculatorType: string) => {
-    if(calculatorType === "bmi") {
-      return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])
+    if (calculatorType === "bmi") {
+      return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1]);
     }
-    if(calculatorType === "areaCalc" && toUnit.length !== 0) {    
-          return calculateArea(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
+    if (calculatorType === "areaCalc" && toUnit.length !== 0) {
+      return calculateArea(
+        fromValue[0],
+        fromUnit[0],
+        fromValue[1],
+        fromUnit[1],
+        toUnit[0]
+      );
     }
 
-    if(calculatorType === "speedCalc" && toUnit.length !== 0) {    
-      return calculateSpeed(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
-}
+    if (calculatorType === "speedCalc" && toUnit.length !== 0) {
+      return calculateSpeed(
+        fromValue[0],
+        fromUnit[0],
+        fromValue[1],
+        fromUnit[1],
+        toUnit[0]
+      );
+    }
 
-if(calculatorType === "densityCalc" && toUnit.length !== 0) {    
-  return calculateDensity(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
-}
-if(calculatorType === "weightLoss" && toUnit.length !== 0) {    
-  return calculateWeightLoss(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])   
-}
-  }
+    if (calculatorType === "densityCalc" && toUnit.length !== 0) {
+      return calculateDensity(
+        fromValue[0],
+        fromUnit[0],
+        fromValue[1],
+        fromUnit[1],
+        toUnit[0]
+      );
+    }
+    if (calculatorType === "weightLoss" && toUnit.length !== 0) {
+      return calculateWeightLoss(
+        fromValue[0],
+        fromUnit[0],
+        fromValue[1],
+        fromUnit[1]
+      );
+    }
+  };
 
-
-  const result = getResult(konvertor)
-
-
+  const result = getResult(konvertor);
 
   const bmiHeigthFilter = ["cm", "in", "ft", "ft-us", "yd", "m"];
   const bmiWeigthFilter = ["oz", "lb", "kg"];
 
   const bmiFilter = ["cm", "in", "ft", "ft-us", "yd", "m", "oz", "lb", "kg"];
 
-  console.log(state)
+  console.log(state);
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -85,20 +118,34 @@ if(calculatorType === "weightLoss" && toUnit.length !== 0) {
         </View>
       </View>
 
-      
       <View style={styles.descriptionOuterContainer}>
-              <View style={[styles.descriptionInnerContainer, {backgroundColor: theme.mainColour}]}>
-        <Text style={[styles.descriptionText, {color: theme.gray1}]}>{handleDescriptionText(fromUnit[0], true, true)}</Text>
-        <Text style={[styles.descriptionText, {color: theme.gray1}]}>{handleDescriptionText(fromUnit[1], true, true)}</Text>
-       { !["bmi", "weightLoss"].includes(unitData.name) &&
-       <View>
-               <View style={[{height: 1}, {width: "100%"}, {backgroundColor: theme.gray1}, {marginVertical: 3}]}></View>
-        <Text style={[styles.descriptionText, {color: theme.gray1}]}>{handleDescriptionText(toUnit, true, true)}</Text>
-       </View>
-}
+        <View
+          style={[
+            styles.descriptionInnerContainer,
+            { backgroundColor: theme.mainColour },
+          ]}>
+          <Text style={[styles.descriptionText, { color: theme.gray1 }]}>
+            {handleDescriptionText(fromUnit[0], true, true)}
+          </Text>
+          <Text style={[styles.descriptionText, { color: theme.gray1 }]}>
+            {handleDescriptionText(fromUnit[1], true, true)}
+          </Text>
+          {!["bmi", "weightLoss"].includes(unitData.name) && (
+            <View>
+              <View
+                style={[
+                  { height: 1 },
+                  { width: "100%" },
+                  { backgroundColor: theme.gray1 },
+                  { marginVertical: 3 },
+                ]}></View>
+              <Text style={[styles.descriptionText, { color: theme.gray1 }]}>
+                {handleDescriptionText(toUnit, true, true)}
+              </Text>
+            </View>
+          )}
+        </View>
       </View>
-      </View>
-
 
       <View>
         {fromValue.map((from, i) => {
@@ -110,40 +157,42 @@ if(calculatorType === "weightLoss" && toUnit.length !== 0) {
                     {unitData.measureName![i]}
                   </Text>
                 </View>
-                <AddUnit type="from" componentKey={i} />
+                {/* <AddUnit type="from" componentKey={i} /> */}
               </View>
               <FromComponent
                 measureType={measureType![i][0]}
                 componentKey={i}
               />
-               
-                  {platform === "ios" &&
-                    universalPicker.type !== "" &&
-                    universalPicker.activeFromComponent === i && (
-                       <View style={styles.universalPickerContainer}>
-                      <UniversalPicker componentKey={i} />
-                       </View>  
-                    )}             
-     
+
+              {platform === "ios" &&
+                universalPicker.type !== "" &&
+                universalPicker.activeFromComponent === i && (
+                  <View style={styles.universalPickerContainer}>
+                    <UniversalPicker componentKey={i} />
+                  </View>
+                )}
             </View>
           );
         })}
       </View>
 
-
-      <View style={styles.toOuterContainer}>      
-        <View style={[styles.toContainer, { borderColor: theme.gray2, shadowColor: theme.gray2 }]}>
-          <Text style={styles.result}>{Number(result).toFixed(settings.decimals)}</Text>
-         {toUnit[0] !== "mVA" && <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />}
-        </View>           
+      <View style={styles.toOuterContainer}>
+        <View
+          style={[
+            styles.toContainer,
+            { borderColor: theme.gray2, shadowColor: theme.gray2 },
+          ]}>
+          <Text style={styles.result}>
+            {Number(result).toFixed(settings.decimals)}
+          </Text>
+          {toUnit[0] !== "mVA" && (
+            <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />
+          )}
+        </View>
       </View>
-
-
     </ScrollView>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   scrollContainer: {

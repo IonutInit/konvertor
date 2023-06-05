@@ -37,18 +37,15 @@ const FromComponent = ({
     dispatch,
   } = useAppContext();
 
-
   const elements = fromUnit[componentKey].map((unit: string, i: number) => {
-
- 
     const options = convert().possibilities(measureType);
 
     const filteredOptions = filter.length !== 0 ? filter : options;
 
     const optionsToDisplay = handleVerbosity(filteredOptions, settings.verbose);
 
-        console.log(unit)
-       //DO NOT DELETE THIS
+    console.log(unit);
+    //DO NOT DELETE THIS
 
     return (
       <React.Fragment key={i}>

@@ -1,12 +1,12 @@
 import { Dispatch } from "react";
 import { ActionType } from "../../types";
 
-
-
 const getCalculatorData = (
   dispatch: Dispatch<ActionType>,
-  calculatorType: string
+  calculatorType: string,
+  metric: boolean,
 ) => {
+ 
   let fromUnit1 = "";
   let fromUnit2 = "";
   // let fromUnit3 = "";
@@ -14,25 +14,25 @@ const getCalculatorData = (
   //"mVA" is default for those that don't need a toUnit, it isn't used in calculators
 
   if (calculatorType === "bmi") {
-    fromUnit1 = "kg";
-    fromUnit2 = "m";
+    fromUnit1 = metric ? "kg" : "lb";
+    fromUnit2 = metric ? "m" : "ft";
   }
 
   if (calculatorType === "weightLoss") {
-    fromUnit1 = "kg";
-    fromUnit2 = "kg";
+    fromUnit1 = metric ? "kg" : "lb";
+    fromUnit2 = metric ? "kg" : "lb";
   }
 
   if (calculatorType === "areaCalc") {
-    fromUnit1 = "m";
-    fromUnit2 = "m";
-    toUnit = "m2";
+    fromUnit1 = metric ? "m" : "ft";
+    fromUnit2 = metric ? "m" : "ft";
+    toUnit = metric ? "m2" : "ft2";
   }
 
   if (calculatorType === "speedCalc") {
-    fromUnit1 = "km";
+    fromUnit1 = metric ? "km" : "mi";
     fromUnit2 = "h";
-    toUnit = "km/h";
+    toUnit = metric ? "km/h" : "mi/h";
   }
 
   // if (calculatorType === "volumeCalc") {
@@ -42,9 +42,9 @@ const getCalculatorData = (
   // }
 
   if (calculatorType === "densityCalc") {
-    fromUnit1 = "g";
-    fromUnit2 = "cm3";
-    toUnit = "g/cm3"
+    fromUnit1 = metric ? "g" : "lb";
+    fromUnit2 = metric ? "cm3" : "in3";
+    toUnit = metric ? "g/cm3" : "lb/in3";
   }
 
   dispatch({

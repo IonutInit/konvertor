@@ -1,4 +1,4 @@
-import { View, Pressable, Text, Image, StyleSheet } from "react-native";
+import { View, Pressable, Text, Image, StyleSheet, LayoutAnimation } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -13,6 +13,7 @@ const ToggleExtendedList = () => {
   const theme = getTheme();
 
   const handleToggleExtendedList = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
     dispatch({
       type: "toggle_extendedList",
     });
