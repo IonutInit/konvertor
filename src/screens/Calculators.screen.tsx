@@ -19,6 +19,7 @@ import AddToFavourites from "../components/AddToFavourites";
 import convert from "convert-units"
 
 import getCalculatorData from "../lib/getCalculatorData";
+import handleDescriptionText from "../lib/handleDescriptionText";
 
 import { calculateBmi, calculateArea, calculateSpeed, calculateDensity, calculateWeightLoss } from "../lib/calculators";
 
@@ -79,6 +80,10 @@ if(calculatorType === "weightLoss" && toUnit.length !== 0) {
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{unitData.displayName}</Text>
         </View>
+      </View>
+
+      <View>
+        <Text>{handleDescriptionText(fromUnit[0], true, true)}</Text>
       </View>
 
       <View>
