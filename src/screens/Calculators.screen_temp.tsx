@@ -15,6 +15,7 @@ import UniversalPickerUnit from "../components/UniversalPickerUnit";
 import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
 import AddToFavourites from "../components/AddToFavourites";
+import Divider from "../components/Divider";
 
 import convert from "convert-units";
 
@@ -215,6 +216,7 @@ const Calculators = () => {
             styles.toContainer,
             { borderColor: theme.gray2, shadowColor: theme.gray2 },
           ]}>
+            <Divider />
           <Text style={styles.result}>
             {Number(result).toFixed(settings.decimals)}
           </Text>

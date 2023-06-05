@@ -20,7 +20,7 @@ const appState: AppStateType = {
     metric: true,
     decimals: 2,
     verbose: false,
-    theme: 1,
+    theme: 4,
     favouritesOnHome: false,
   },
   favourites: [],

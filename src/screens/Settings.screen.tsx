@@ -5,7 +5,6 @@ import {
   Pressable,
   StyleSheet,
   TouchableWithoutFeedback,
-  Modal,
 } from "react-native";
 import { useState, useEffect, useLayoutEffect } from "react";
 
@@ -232,7 +231,7 @@ const styles = StyleSheet.create({
   themesButton: {
     justifyContent: "center",
     alignItems: "center",
-    width: 130,
+    width: 180,
     height: 40,
     borderWidth: 1,
     borderColor: "gray",
