@@ -11,10 +11,18 @@ type RemoveUnitProps = {
 };
 
 const RemoveUnit = ({ componentKey, type, i }: RemoveUnitProps) => {
-  const { state, dispatch } = useAppContext();
+  const { state: {fromUnit, toUnit}, dispatch } = useAppContext();
   const theme = getTheme();
 
-  const arrayLength = state[`${type}Unit`].length > 1;
+  let arrayLength = true
+
+  if(type === "from") {
+    arrayLength = fromUnit[componentKey!].length > 1
+  }
+  
+  if(type === "to") {
+    arrayLength = toUnit.length > 1
+  }
 
   return (
     <View style={styles.removeContainer}>

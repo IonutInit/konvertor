@@ -46,20 +46,24 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
     }
   };
 
-  const allOptions = description[findUnitKey(optionsSource, description)!].short
+  // const allOptions = description[findUnitKey(optionsSource, description)!].short
 
-   //const allOptions = convert().from(optionsSource).possibilities();
-  // const nextOption = getNextUnit(
-  //   toUnit[universalPicker.index!],
-  //   description[measureType[componentKey][0].toString()]
-  // );
+   const allOptions = convert().from(optionsSource).possibilities();
 
-  const options = toUnit.length > 1 ? allOptions : allOptions;
+  let nextOption = allOptions
+
+   if(konvertor === "konvertor") {
+        nextOption = getNextUnit(
+    toUnit[universalPicker.index!],
+    description[findUnitKey(optionsSource, description)!]
+  );
+  }
+
+  const options = toUnit.length > 1 ? nextOption : allOptions;
 
   const optionsToDisplay = handleVerbosity(options, settings.verbose);
 
-  // const optionsToDisplay = allOptions
-
+ 
   const handleChange = (option: string | string[], type: string) => {
     if (type === "from") {
       dispatch({
@@ -90,16 +94,20 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
         index: -1,
         position: [],
         activeFromComponent: 0,
+        calculatorTo: false,
       },
     });
   };
+
+  console.log(universalPicker.calculatorTo)
+  const calculatorToVerbosity = !universalPicker.calculatorTo ? convert().describe(fromUnit[componentKey]).measure : convert().describe(toUnit).measure
 
   return (
     <Picker
       style={[
         styles.picker,
-        { top: 150 },
-        { left: 0 },
+        // { top: 150 },
+        // { left: 0 },
         { backgroundColor: theme.gray1, shadowColor: theme.gray3 },
       ]}
       selectedValue={
@@ -118,8 +126,8 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
             settings.verbose,
             konvertor === "konvertor"
               ? measureType[0][0]
-              : convert().describe(fromUnit[componentKey]).measure
-            //because measureToe takes a different meaning with calculators....
+              : calculatorToVerbosity
+            // ooof
           )}
         />
       ))}
@@ -130,6 +138,9 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
 const styles = StyleSheet.create({
   picker: {
     width: "80%",
+    top: 150,
+    left: 0,
+    // zIndex: 1,
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 10,

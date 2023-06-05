@@ -13,6 +13,7 @@ const appState: AppStateType = {
     index: -1,
     position: [],
     activeFromComponent: 0,
+    calculatorTo: false,
   },
   settings: {
     extendedList: false,

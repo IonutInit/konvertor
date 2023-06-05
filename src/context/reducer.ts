@@ -56,6 +56,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
                 : existingValues
           ),
           activeFromComponent: action.payload.activeFromComponent,
+          calculatorTo: action.payload.calculatorTo
         },
       };
 

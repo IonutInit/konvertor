@@ -97,16 +97,15 @@ if(calculatorType === "weightLoss" && toUnit.length !== 0) {
                 measureType={measureType![i][0]}
                 componentKey={i}
               />
-
-              <>
-                <View style={styles.universalPickerContainer}>
+               
                   {platform === "ios" &&
                     universalPicker.type !== "" &&
                     universalPicker.activeFromComponent === i && (
+                       <View style={styles.universalPickerContainer}>
                       <UniversalPicker componentKey={i} />
-                    )}
-                </View>
-              </>
+                       </View>  
+                    )}             
+     
             </View>
           );
         })}
@@ -123,10 +122,11 @@ if(calculatorType === "weightLoss" && toUnit.length !== 0) {
       </View>
 
 
-
     </ScrollView>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   scrollContainer: {
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 250,
     position: "absolute",
-    top: "30%",
+    top: "50%",
     left: "50%",
     transform: [{ translateX: -125 }, { translateY: -200 }],
     zIndex: 1,

@@ -36,6 +36,7 @@ export type AppStateType = {
     index: number;
     position: [number, number][];
     activeFromComponent: number;
+    calculatorTo: boolean; // used only in verbosity for TO in calculators
   };
   settings: SettingsType;
   favourites: FavouriteType[];
@@ -136,6 +137,7 @@ export type ActionType =
         index: number;
         position?: number[];
         activeFromComponent: number;
+        calculatorTo: boolean,
       };
     }
   | {

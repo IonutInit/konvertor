@@ -10,6 +10,7 @@ import { useRef, useState, useEffect } from "react";
 import useAppContext from "../context/useAppContext";
 
 import getTheme from "../context/theme";
+import Konvertor from "../screens/Konvertor.home.screen";
 
 type UniversalPickerUnitProps = {
   unit: string;
@@ -25,7 +26,7 @@ const UniversalPickerUnit = ({
   componentKey = 0,
 }: UniversalPickerUnitProps) => {
   const {
-    state: { universalPicker, fromUnit },
+    state: { universalPicker, fromUnit, konvertor },
     dispatch,
   } = useAppContext();
 
@@ -48,14 +49,20 @@ const UniversalPickerUnit = ({
   }, []);
 
   const handlePresIn = () => {
-    setLargeContainer(true);
+    // setLargeContainer(true);
   };
 
   const handlePressOut = () => {
-    setLargeContainer(false);
+    // setLargeContainer(false);
   };
 
   const workUniversalPicker = () => {
+    let calculatorTo = false
+
+    if(type === "to" && konvertor !== "konvertor") {
+      calculatorTo = true
+    }
+
     dispatch({
       type: "work_universal_picker",
       payload: {
@@ -63,6 +70,7 @@ const UniversalPickerUnit = ({
         index: i,
         position: position || [],
         activeFromComponent: componentKey,
+        calculatorTo,
       },
     });
   };

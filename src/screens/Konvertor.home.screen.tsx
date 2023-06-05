@@ -45,9 +45,7 @@ const Konvertor = () => {
   //   // return undefined; // If the value is not found
   // };
 
-  console.log(description["area"].short)
-
-  return (
+   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.header}>
