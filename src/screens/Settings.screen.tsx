@@ -5,6 +5,7 @@ import {
   Pressable,
   StyleSheet,
   TouchableWithoutFeedback,
+  Modal,
 } from "react-native";
 import { useState, useEffect, useLayoutEffect } from "react";
 
@@ -93,7 +94,6 @@ const Settings = ({ navigation }: any) => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={() => setThemePicker(false)}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
           <Pressable onPress={() => navigation.jumpTo("Home")}>
@@ -155,6 +155,9 @@ const Settings = ({ navigation }: any) => {
           </Pressable>
 
           {themePicker && (
+                <TouchableWithoutFeedback onPress={() => setThemePicker(false)}
+                style={StyleSheet.absoluteFillObject}
+                >
             <View style={styles.pickerContainer}>
               <Picker
                 style={styles.picker}
@@ -165,12 +168,12 @@ const Settings = ({ navigation }: any) => {
                 ))}
               </Picker>
             </View>
+            </TouchableWithoutFeedback>
           )}
         </View>
 
         <Credentials />
       </ScrollView>
-    </TouchableWithoutFeedback>
   );
 };
 
@@ -215,11 +218,6 @@ const styles = StyleSheet.create({
   decimalsTextContainer: {
     paddingHorizontal: 30,
     fontSize: 32,
-  },
-  sliderContainer: {
-    width: "80%",
-    alignItems: "center",
-    paddingTop: 30,
   },
   title: {
     fontWeight: "bold",
@@ -267,12 +265,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 2,
   },
-  // divider: {
-  //   height: 1,
-  //   width: "80%",
-  //   backgroundColor: "grey",
-  //   marginTop: 5,
-  // },
 });
 
 export default Settings;

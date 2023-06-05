@@ -165,7 +165,7 @@ const Options = () => {
                     dispatch,
                     state,
                     unit.name,
-                    unit.displayName
+                    unit.displayName!
                   )
                 }
                 style={[

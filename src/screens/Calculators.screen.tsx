@@ -57,10 +57,25 @@ const Calculators = () => {
     getCalculatorData(dispatch, konvertor, settings.metric);
   }, []);
 
+  const calculatorData = {
+    from0: fromValue[0],
+    value0: fromUnit[0],
+    from1: fromValue[1],
+    value1:fromUnit[1],
+    to: toUnit[0]
+  }
+ 
+
   const getResult = (calculatorType: string) => {
-    if (calculatorType === "bmi") {
-      return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1]);
+    // if (calculatorType === "bmi") {
+    //   return calculateBmi(calculatorData);
+    // }
+
+    if(calculatorType === "bmi") {
+      return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])
     }
+
+
     if (calculatorType === "areaCalc" && toUnit.length !== 0) {
       return calculateArea(
         fromValue[0],
@@ -107,7 +122,7 @@ const Calculators = () => {
 
   const bmiFilter = ["cm", "in", "ft", "ft-us", "yd", "m", "oz", "lb", "kg"];
 
-  console.log(state);
+  // console.log(state);
 
   const getPickerPosition = (type: string, i: number) => {
     if (type === "from" && i === 1) {
@@ -156,7 +171,6 @@ const Calculators = () => {
 
       <View>
         {fromValue.map((from, i) => {
-          console.log(universalPicker)
           return (
             <View key={i} style={styles.firstComponent}>
               <View style={styles.componentHeader}>
