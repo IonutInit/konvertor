@@ -17,6 +17,7 @@ import handleFavouriteDispatch from "../lib/handleFavouriteDispatch";
 
 import unitList from "../data/unitList";
 import MeasurementIcons from "../components/svgs/MeasurementIcons";
+import FavouritesIcon from "../components/svgs/FavouriteIcon";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import getLocalData from "../lib/getLocalData";
@@ -27,6 +28,7 @@ import getTheme from "../context/theme";
 import { FavouriteType } from "../../types";
 
 import typing from "../lib/typing";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 const Options = () => {
   const {
@@ -99,7 +101,7 @@ const Options = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-      <ScrollView
+{  settings.favouritesOnHome &&    <ScrollView
         contentContainerStyle={styles.favScrollContainer}
         horizontal
         showsHorizontalScrollIndicator={false}>
@@ -147,11 +149,12 @@ const Options = () => {
             </View>
           );
         })}
-      </ScrollView>
+      </ScrollView>}
 
       <View style={styles.outerPressableContainer}>
-        {filteredUnitList.map((unit) => (
-          <Pressable
+        {filteredUnitList.map((unit, index) => (
+          <View key={index}>
+                    {unit.name !== "favouritesButton" && <Pressable
             key={unit.name}
             onPress={() =>
               handleOptionPress(dispatch, state, unit.name, unit.displayName)
@@ -164,7 +167,28 @@ const Options = () => {
                 <Text style={styles.text}>{unit.displayName}</Text>
               </View>
             </View>
-          </Pressable>
+          </Pressable> }
+
+
+          {unit.name === "favouritesButton" && <Pressable style={[styles.pressableMeasure, {backgroundColor: ( !settings.favouritesOnHome ? theme.mainColour : theme.gray1)}]}
+          onPress={() => dispatch({
+            type: "toggle_favourites_on_home"
+          })}
+          >
+            <View style={styles.innerPressableContainer}>
+                          <FavouritesIcon isFavourite mainColour={!settings.favouritesOnHome ? theme.gray1: theme.mainColour}/>
+            <View style={styles.textContainer}>
+            <Text style={[{color: !settings.favouritesOnHome ? theme.gray1 : theme.mainColour}, {textAlign: "center"}]}>
+  {`${!settings.favouritesOnHome ? "Show" : "Hide"} Favourites`}
+</Text>
+            </View>
+            </View>
+
+            
+            
+            </Pressable>}
+          </View>
+
         ))}
       </View>
 

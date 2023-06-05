@@ -21,6 +21,7 @@ const appState: AppStateType = {
     decimals: 2,
     verbose: false,
     theme: 1,
+    favouritesOnHome: false,
   },
   favourites: [],
   init: 0,

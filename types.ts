@@ -21,6 +21,7 @@ export type SettingsType = {
   decimals: number;
   verbose: boolean;
   theme: number;
+  favouritesOnHome: boolean,
 };
 
 export type AppStateType = {
@@ -162,7 +163,10 @@ export type ActionType =
   | {
       type: "change_tab";
       payload: "Home" | "Favourites" | "Settings";
-    };
+    }
+  | {
+    type: "toggle_favourites_on_home"
+  }
 
 export type ThemeType = {
   mainColour: string;

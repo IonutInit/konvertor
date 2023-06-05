@@ -223,6 +223,17 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         },
       };
 
+    case "toggle_favourites_on_home":
+      const currentState = state.settings.favouritesOnHome
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          favouritesOnHome: !currentState
+        }
+      }
+     
+
     case "change_theme":
       const themes = [
         "Blue",

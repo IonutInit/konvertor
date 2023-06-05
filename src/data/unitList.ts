@@ -1,5 +1,9 @@
 const unitList = [
   {
+   name: "favouritesButton",
+    primary: true,
+  },  
+  {
     displayName: "Length",
     name: "length",
     default: ["m", "ft"],
@@ -44,7 +48,7 @@ const unitList = [
     extra: true,
     measureType: [["mass"], ["volume"]],
     measureName: [["Mass"], ["Volume"]],
-    primary: true,
+    primary: false,
   },
   {
     displayName: "Volume Flow Rate",
