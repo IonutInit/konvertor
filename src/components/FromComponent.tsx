@@ -44,7 +44,7 @@ const FromComponent = ({
 
     const optionsToDisplay = handleVerbosity(filteredOptions, settings.verbose);
 
-    console.log(unit);
+    //console.log(unit);
     //DO NOT DELETE THIS
 
     return (

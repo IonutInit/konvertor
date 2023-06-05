@@ -18,7 +18,13 @@ import { ActionType } from "../../types";
 import { DescriptionType } from "../data/unitDescription";
 import Konvertor from "../screens/Konvertor.home.screen";
 
-const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
+type UniversalPickerProps = {
+  componentKey: number,
+  top?: number,
+  left?: number,
+}
+
+const UniversalPicker = ({ componentKey, top = 150, left = 0 }: UniversalPickerProps) => {
   const {
     state: {
       konvertor,
@@ -111,8 +117,8 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
     <Picker
       style={[
         styles.picker,
-        { top: 150 },
-        { left: 0 },
+        { top},
+        { left },
         { backgroundColor: theme.gray1, shadowColor: theme.gray3 },
       ]}
       selectedValue={
@@ -142,7 +148,7 @@ const UniversalPicker = ({ componentKey }: { componentKey: number }) => {
 
 const styles = StyleSheet.create({
   picker: {
-    width: "80%",
+   width: 250,
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 10,

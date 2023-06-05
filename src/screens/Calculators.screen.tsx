@@ -109,6 +109,13 @@ const Calculators = () => {
 
   console.log(state);
 
+  const getPickerPosition = (type: string, i: number) => {
+    if (type === "from" && i === 1) {
+      return -125
+    }
+    return 0
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.header}>
@@ -149,6 +156,7 @@ const Calculators = () => {
 
       <View>
         {fromValue.map((from, i) => {
+          console.log(universalPicker)
           return (
             <View key={i} style={styles.firstComponent}>
               <View style={styles.componentHeader}>
@@ -167,8 +175,19 @@ const Calculators = () => {
               {platform === "ios" &&
                 universalPicker.type !== "" &&
                 universalPicker.activeFromComponent === i && (
-                  <View style={styles.universalPickerContainer}>
-                    <UniversalPicker componentKey={i} />
+                  <View style={[
+                    {zIndex: universalPicker.calculatorTo ? 3 : 1}, //doesn't work
+                    {zIndex: universalPicker.activeFromComponent === 0 ? 2 : 1},
+                    styles.universalPickerContainer,
+                    {
+                      transform: [
+                        { translateX: -125 },
+                        { translateY: (universalPicker.type === "from" ? -125 : 0) },
+                      ],
+                    },
+                    
+                  ]}>
+                    <UniversalPicker componentKey={i} top={0}/>
                   </View>
                 )}
             </View>
@@ -251,14 +270,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   universalPickerContainer: {
+    // backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
     width: 250,
     position: "absolute",
     top: "50%",
     left: "50%",
-    transform: [{ translateX: -125 }, { translateY: -200 }],
     zIndex: 1,
+    flexDirection: "column",
   },
   toOuterContainer: {
     flex: 1,
