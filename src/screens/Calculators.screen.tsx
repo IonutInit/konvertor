@@ -44,28 +44,28 @@ const Calculators = () => {
     getCalculatorData(dispatch, konvertor);
   }, []);
 
-//   const getResult = (calculatorType: string) => {
-//     if(calculatorType === "bmi") {
-//       return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])
-//     }
-//     if(calculatorType === "areaCalc" && toUnit.length !== 0) {    
-//           return calculateArea(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
-//     }
+  const getResult = (calculatorType: string) => {
+    if(calculatorType === "bmi") {
+      return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])
+    }
+    if(calculatorType === "areaCalc" && toUnit.length !== 0) {    
+          return calculateArea(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
+    }
 
-//     if(calculatorType === "speedCalc" && toUnit.length !== 0) {    
-//       return calculateSpeed(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
-// }
+    if(calculatorType === "speedCalc" && toUnit.length !== 0) {    
+      return calculateSpeed(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
+}
 
-// if(calculatorType === "densityCalc" && toUnit.length !== 0) {    
-//   return calculateDensity(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
-// }
-// if(calculatorType === "weightLoss" && toUnit.length !== 0) {    
-//   return calculateWeightLoss(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])   
-// }
-//   }
+if(calculatorType === "densityCalc" && toUnit.length !== 0) {    
+  return calculateDensity(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1], toUnit[0])   
+}
+if(calculatorType === "weightLoss" && toUnit.length !== 0) {    
+  return calculateWeightLoss(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])   
+}
+  }
 
 
-//   const result = getResult(konvertor)
+  const result = getResult(konvertor)
 
 
 
@@ -73,6 +73,8 @@ const Calculators = () => {
   const bmiWeigthFilter = ["oz", "lb", "kg"];
 
   const bmiFilter = ["cm", "in", "ft", "ft-us", "yd", "m", "oz", "lb", "kg"];
+
+  console.log(state)
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -88,8 +90,12 @@ const Calculators = () => {
               <View style={[styles.descriptionInnerContainer, {backgroundColor: theme.mainColour}]}>
         <Text style={[styles.descriptionText, {color: theme.gray1}]}>{handleDescriptionText(fromUnit[0], true, true)}</Text>
         <Text style={[styles.descriptionText, {color: theme.gray1}]}>{handleDescriptionText(fromUnit[1], true, true)}</Text>
-        <View style={[{height: 1}, {width: "100%"}, {backgroundColor: theme.gray1}]}></View>
+       { !["bmi", "weightLoss"].includes(unitData.name) &&
+       <View>
+               <View style={[{height: 1}, {width: "100%"}, {backgroundColor: theme.gray1}]}></View>
         <Text style={[styles.descriptionText, {color: theme.gray1}]}>{handleDescriptionText(toUnit, true, true)}</Text>
+       </View>
+}
       </View>
       </View>
 
@@ -128,7 +134,7 @@ const Calculators = () => {
       <View style={styles.toOuterContainer}>
       {toUnit[0] !== "" && (
         <View style={styles.toContainer}>
-          {/* <Text style={styles.result}>{Number(result).toFixed(settings.decimals)}</Text> */}
+          <Text style={styles.result}>{Number(result).toFixed(settings.decimals)}</Text>
           <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />
         </View>
       )}      

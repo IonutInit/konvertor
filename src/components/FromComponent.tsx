@@ -1,6 +1,6 @@
 import { Text, StyleSheet, View, Pressable } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import useAppContext from "../context/useAppContext";
 
@@ -33,16 +33,22 @@ const FromComponent = ({
   filter = [],
 }: FromComponentProps) => {
   const {
-    state: { fromUnit, fromValue, settings },
+    state: { fromUnit, fromValue, settings, universalPicker },
     dispatch,
   } = useAppContext();
 
+
   const elements = fromUnit[componentKey].map((unit: string, i: number) => {
+
+ 
     const options = convert().possibilities(measureType);
 
     const filteredOptions = filter.length !== 0 ? filter : options;
 
     const optionsToDisplay = handleVerbosity(filteredOptions, settings.verbose);
+
+        // console.log(unit)
+       //DO NOT DELETE THIS
 
     return (
       <React.Fragment key={i}>
