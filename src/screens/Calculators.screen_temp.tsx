@@ -1,4 +1,4 @@
-import { View, ScrollView, Text, Pressable, StyleSheet } from "react-native";
+import { View, ScrollView, Text, Pressable, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { useEffect, useState } from "react";
 
 import { Picker } from "@react-native-picker/picker";
@@ -123,7 +123,7 @@ const Calculators = () => {
 
   const bmiFilter = ["cm", "in", "ft", "ft-us", "yd", "m", "oz", "lb", "kg"];
 
-  // console.log(state);
+  console.log(state);
 
   const getPickerPosition = (type: string, i: number) => {
     if (type === "from" && i === 1) {
@@ -133,7 +133,11 @@ const Calculators = () => {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <KeyboardAvoidingView 
+    behavior={platform === "ios" ? "padding" : "height"}    
+    contentContainerStyle={styles.scrollContainer}
+    keyboardVerticalOffset={100}
+    >
       <View style={styles.header}>
         <BackFromKonverter />
         <View style={styles.titleContainer}>
@@ -180,7 +184,7 @@ const Calculators = () => {
                     {unitData.measureName![i]}
                   </Text>
                 </View>
-                {/* <AddUnit type="from" componentKey={i} /> */}
+                <AddUnit type="from" componentKey={i} />
               </View>
               <FromComponent
                 measureType={measureType![i][0]}
@@ -225,7 +229,7 @@ const Calculators = () => {
           )}
         </View>
       </View>
-    </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -10,7 +10,7 @@ const addUnit = (
 ) => {
   const unit =
     type === "from"
-      ? state.fromUnit[0][state.fromUnit[0].length - 1]
+      ? state.fromUnit[componentKey!][state.fromUnit[0].length - 1]
       : state.toUnit[state.toUnit.length - 1];
   // dispatch({
   //   type: `add_${type.toUpperCase()}_unit` as const,

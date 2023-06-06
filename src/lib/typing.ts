@@ -35,7 +35,6 @@ const typing = (input: string) => {
 
   // all of the above have been returned as a string
   // now we are converting numbers into numbers
-
   for (let i = 0; i < purifiedArray.length; i++) {
     const element: string | number = purifiedArray[i];
     if (typeof element === "string" && !isNaN(parseInt(element))) {
@@ -49,8 +48,8 @@ const typing = (input: string) => {
   const fromRaw = purifiedArray.slice(0, toIndex);
   const toRaw = toIndex === -1 ? [] : purifiedArray.slice(toIndex + 1);
 
-  // first cleanup of FROM: removal of all strings not preceded by a number, and all numbers not having a string in front
 
+  // first cleanup of FROM: removal of all strings not preceded by a number, and all numbers not having a string in front
   function cleanUp(array: (number | string)[]) {
     for (let i = array.length - 1; i >= 0; i--) {
       const current = array[i];

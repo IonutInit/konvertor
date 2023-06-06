@@ -94,7 +94,7 @@ const Options = () => {
 
   //console.log(state);
 
-  console.log(typing("gfgh 5 kg 2 m  3 zz to in cm"))
+  // console.log(typing("gfgh 5 kg 2 m  3 zz to in cm"))
 
   const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary
