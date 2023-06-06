@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, LayoutAnimation } from "react-native";
 import FavouritesIcon from "./navigationIcons/Favourites.Nav.Icon";
 import HomeIcon from "./navigationIcons/Home.Nav.Icon";
 import SettingsIcon from "./navigationIcons/Settings.Nav.Icon";
@@ -29,6 +29,8 @@ const NavigationIcons = ({ type, size = 45, isActive }: Props) => {
     background: theme.mainColour,
     colour: isActive ? theme.secondaryColour : theme.gray1,
   };
+
+  // LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
 
   return (
     <View

@@ -1,4 +1,5 @@
 import { useLayoutEffect, Dispatch } from "react";
+import { LayoutAnimation } from "react-native";
 
 import { ActionType } from "../../types";
 
@@ -9,6 +10,7 @@ const useGetInFocus = (
 ) => {
   useLayoutEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
       dispatch({
         type: "change_tab",
         payload: tab,

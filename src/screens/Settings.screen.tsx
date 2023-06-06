@@ -12,7 +12,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import getLocalData from "../lib/getLocalData";
 import { settingsKey } from "../data/storageKeys";
 
-import SliderComponent from "../components/SliderComponent";
 import ToggleButton from "../components/ToggleButton";
 import { Picker } from "@react-native-picker/picker";
 import UniversalPicker from "../components/UniversalPicker";

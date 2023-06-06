@@ -49,12 +49,12 @@ const UniversalPickerUnit = ({
   }, []);
 
   const handlePresIn = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
     setLargeContainer(true);
   };
 
   const handlePressOut = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
     setLargeContainer(false);
   };
 
@@ -78,7 +78,7 @@ const UniversalPickerUnit = ({
   };
 
   const handleLongPress = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
     if (fromUnit[0].length > 1) {
       dispatch({ type: `remove_${type.toUpperCase()}_value`, payload: [0, i] });
     }
