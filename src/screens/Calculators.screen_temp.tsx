@@ -5,6 +5,8 @@ import {
   Pressable,
   StyleSheet,
   KeyboardAvoidingView,
+  PanResponder,
+  LayoutAnimation,
 } from "react-native";
 import { useEffect, useState } from "react";
 
@@ -55,6 +57,28 @@ const Calculators = () => {
     state,
     dispatch,
   } = useAppContext();
+
+// similar functionality as in other screens, make into a hook
+  const panResponder = PanResponder.create({
+    onMoveShouldSetPanResponderCapture: (_, gestureState) => {
+      const swipeThreshold = 50;
+
+      if (gestureState.dx > swipeThreshold) {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        dispatch({
+          type: "change_konvertor",
+          payload: "",
+        });
+        dispatch({
+          type: "change_tab",
+          payload: "Home",
+        });
+        return true;
+      }
+      return false;
+    },
+  });
+//------------------------
 
   const [unitData] = unitList.filter((unit) => unit.name === konvertor);
   const { measureType } = unitData;
@@ -138,7 +162,8 @@ const Calculators = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <ScrollView contentContainerStyle={styles.scrollContainer}
+    {...panResponder.panHandlers}>
       <View style={styles.header}>
         <BackFromKonverter />
         <View style={styles.titleContainer}>

@@ -132,7 +132,8 @@ const Options = () => {
     <ScrollView
       contentContainerStyle={styles.scrollViewContainer}
       ref={scrollViewRef}
-      onContentSizeChange={handleOnContentSizeChange}>
+      onContentSizeChange={handleOnContentSizeChange}
+      >
       {settings.favouritesOnHome && (
         <ScrollView
           contentContainerStyle={styles.favScrollContainer}
