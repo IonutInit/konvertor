@@ -189,6 +189,7 @@ const Calculators = () => {
               <FromComponent
                 measureType={measureType![i][0]}
                 componentKey={i}
+                filter={konvertor === "bmi" ? bmiFilter : []}
               />
 
               {platform === "ios" &&

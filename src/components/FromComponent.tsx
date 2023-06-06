@@ -20,6 +20,7 @@ import displaySwitchedValues from "../lib/displaySwitchedValues";
 
 import { handleVerbosity, revertVerbosity } from "../hooks/handleVerbosity";
 import getPickerUnit from "../hooks/getPickerUnit";
+import description from "../data/unitDescription";
 
 type FromComponentProps = {
   measureType: string;
@@ -36,16 +37,21 @@ const FromComponent = ({
     state: { fromUnit, fromValue, settings, universalPicker },
     dispatch,
   } = useAppContext();
+ 
 
   const elements = fromUnit[componentKey].map((unit: string, i: number) => {
-    const options = convert().possibilities(measureType);
 
-    const filteredOptions = filter.length !== 0 ? filter : options;
+    let options: string[] = []
+    
+    if(filter.length! === 0) {
+       options = convert().possibilities(measureType);
+    } else {
+         options = filter!.filter((op) =>
+        description[measureType].short.includes(op))
+    }
 
-    const optionsToDisplay = handleVerbosity(filteredOptions, settings.verbose);
+    const optionsToDisplay = handleVerbosity(options, settings.verbose);
 
-    //console.log(unit);
-    //DO NOT DELETE THIS
 
     return (
       <React.Fragment key={i}>
