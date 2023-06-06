@@ -7,7 +7,7 @@ import {
   StyleSheet,
   LayoutAnimation,
 } from "react-native";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import useAppContext from "../context/useAppContext";
 import handleOptionPress from "../hooks/handleOptionPress";
@@ -37,6 +37,33 @@ const Options = () => {
     state,
     dispatch,
   } = useAppContext();
+
+
+
+// automatic scrolling
+const scrollViewRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    if (scrollViewRef.current) {
+      if (settings.extendedList) {
+        scrollViewRef.current.scrollToEnd({ animated: true });
+      } else {
+        scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
+      }
+    }
+  }, [settings.extendedList])
+
+  const handleOnContentSizeChange = () => {
+    if (scrollViewRef.current) {
+      if (settings.extendedList) {
+        scrollViewRef.current.scrollToEnd({ animated: true });
+      } else {
+        scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
+      }
+    }
+  }
+//---------------------------------
+
   const theme = getTheme();
 
   const [favouritesFromStorage, setFavouritesFromStorage] = useState<
@@ -101,7 +128,7 @@ const Options = () => {
   );
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+    <ScrollView contentContainerStyle={styles.scrollViewContainer} ref={scrollViewRef} onContentSizeChange={handleOnContentSizeChange}>
       {settings.favouritesOnHome && (
         <ScrollView
           contentContainerStyle={styles.favScrollContainer}

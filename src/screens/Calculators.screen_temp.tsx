@@ -133,11 +133,7 @@ const Calculators = () => {
   }
 
   return (
-    <KeyboardAvoidingView 
-    behavior={platform === "ios" ? "padding" : "height"}    
-    contentContainerStyle={styles.scrollContainer}
-    keyboardVerticalOffset={100}
-    >
+    <ScrollView contentContainerStyle={styles.scrollContainer} >
       <View style={styles.header}>
         <BackFromKonverter />
         <View style={styles.titleContainer}>
@@ -230,7 +226,7 @@ const Calculators = () => {
           )}
         </View>
       </View>
-    </KeyboardAvoidingView>
+    </ScrollView>
   );
 };
 
