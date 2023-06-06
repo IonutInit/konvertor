@@ -23,9 +23,10 @@ type UniversalPickerProps = {
   componentKey: number,
   top?: number,
   left?: number,
+  filter?: string[],
 }
 
-const UniversalPicker = ({ componentKey, top = 150, left = 0 }: UniversalPickerProps) => {
+const UniversalPicker = ({ componentKey, top = 150, left = 0, filter = [] }: UniversalPickerProps) => {
   const {
     state: {
       konvertor,
@@ -66,7 +67,7 @@ const UniversalPicker = ({ componentKey, top = 150, left = 0 }: UniversalPickerP
           },
         });
         setDelayVisible(false);
-      }, 500);
+      }, 300);
     }
 
     return () => {
@@ -88,9 +89,16 @@ const UniversalPicker = ({ componentKey, top = 150, left = 0 }: UniversalPickerP
     }
   };
 
-  const allOptions =
-    description[findUnitKey(optionsSource, description)!].short;
+  console.log(findUnitKey(optionsSource, description))
 
+let allOptions: string[] = []
+
+  if(filter.length === 0) {
+allOptions = description[findUnitKey(optionsSource, description)!].short;
+  } else {
+    allOptions = filter!.filter((op) =>
+    description[findUnitKey(optionsSource, description)!].short.includes(op))
+  }
   //const allOptions = convert().from(optionsSource).possibilities();
 
   let nextOption = allOptions;
@@ -101,6 +109,7 @@ const UniversalPicker = ({ componentKey, top = 150, left = 0 }: UniversalPickerP
       description[findUnitKey(optionsSource, description)!]
     );
   }
+
 
   const options = toUnit.length > 1 ? nextOption : allOptions;
 

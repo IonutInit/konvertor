@@ -207,7 +207,7 @@ const Calculators = () => {
                     },
                     
                   ]}>
-                    <UniversalPicker componentKey={i} top={0}/>
+                    <UniversalPicker componentKey={i} top={0} filter={konvertor === "bmi" ? bmiFilter : []}/>
                   </View>
                 )}
             </View>

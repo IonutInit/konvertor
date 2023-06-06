@@ -5,6 +5,8 @@ import {
   Pressable,
   StyleSheet,
   KeyboardAvoidingView,
+  PanResponder,
+  LayoutAnimation,
 } from "react-native";
 
 import useAppContext from "../context/useAppContext";
@@ -26,7 +28,7 @@ import getTheme from "../context/theme";
 import description from "../data/unitDescription";
 
 const Konvertor = () => {
-  const { state } = useAppContext();
+  const { state, dispatch } = useAppContext();
 
   const toUnitadditions = platform === "android" ? 2 : 3;
 
@@ -34,13 +36,36 @@ const Konvertor = () => {
 
   const defaultComponentKey = 0;
 
+  const panResponder = PanResponder.create({
+    onMoveShouldSetPanResponderCapture: (_, gestureState) => {
+      const swipeThreshold = 50;
+  
+      if (gestureState.dx > swipeThreshold) {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        dispatch({
+          type: "change_konvertor",
+          payload: "",
+        });
+        dispatch({
+          type: "change_tab",
+          payload: "Home",
+        });
+        return true;
+      }
+      return false;
+    },
+  });
+
+
   return (
     <KeyboardAvoidingView 
     behavior={platform === "ios" ? "padding" : "height"}
     style={styles.container}
     keyboardVerticalOffset={100}
     >
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView contentContainerStyle={styles.scrollContainer}
+      {...panResponder.panHandlers}
+      >
         <View style={styles.header}>
           <BackToOptions />
           <ArithmeticOperator />
