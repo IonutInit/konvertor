@@ -1,6 +1,8 @@
 import { Text, View, TextInput, StyleSheet } from "react-native";
 import { useState, useEffect } from "react";
 
+import useAppContext from "../context/useAppContext";
+
 import typing from "../lib/typing";
 
 import getTheme from "../context/theme";
@@ -15,6 +17,8 @@ type TypingResult = {
 };
 
 const TypingInput = () => {
+  const {state, dispatch} = useAppContext()
+
   const theme = getTheme();
 
   const [typingMessage, setTypingMessage] = useState("");
@@ -24,12 +28,37 @@ const TypingInput = () => {
     if (typingTimer) {
       clearTimeout(typingTimer);
     }
+    
 
     typingTimer = setTimeout(() => {
       const result: TypingResult | "" = typing(input);
-      console.log(result);
 
-      setTypingMessage(() => result.message);
+      const success = result.success
+      
+      if(!success) {
+        setTypingMessage(() => result.message);
+      }
+
+      const fromUnit = [result.fromUnits!, []]
+      const fromValue = [result.fromValues!, []]
+      const measureType = [[result.measureType!], []]
+      const toUnit = [result.toUnits!]
+   
+    dispatch({
+      type: "dispatch_typing",
+      payload: {
+        fromUnit,
+        fromValue,
+        measureType,
+        toUnit,
+      }
+    })  
+
+    // dispatch({
+    //   type: "change_konvertor",
+    //   payload: "konvertor"
+    // })
+
     }, 1000);
   };
 

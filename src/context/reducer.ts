@@ -270,8 +270,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         "Voltage",
       ];
       const themeValue = themes.indexOf(action.payload);
-      console.log(themeValue);
-
+   
       const updatedTheme = {
         ...state.settings,
         theme: themeValue,
@@ -331,6 +330,15 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         ...state,
         activeTab: action.payload,
       };
+
+      case "dispatch_typing":
+        return {
+          ...state,
+          fromUnit: action.payload.fromUnit,
+          fromValue: action.payload.fromValue,
+          measureType: action.payload.measureType,
+          toUnit: action.payload.toUnit
+        }
 
     default:
       return state;

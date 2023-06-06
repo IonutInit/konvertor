@@ -166,7 +166,17 @@ export type ActionType =
     }
   | {
       type: "toggle_favourites_on_home";
-    };
+    }
+    | {
+      type: "dispatch_typing",
+      payload: {
+        fromUnit: string[][],
+        fromValue: (number | string)[][],
+        measureType: string[][],
+        toUnit: string[],
+        message?: string,
+      }
+    }
 
 export type ThemeType = {
   mainColour: string;
