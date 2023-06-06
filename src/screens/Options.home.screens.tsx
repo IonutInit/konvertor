@@ -121,7 +121,7 @@ const scrollViewRef = useRef<ScrollView>(null);
 
   //console.log(state);
 
-  // console.log(typing("gfgh 5 kg 2 m  3 zz to in cm"))
+  console.log(typing("gfgh  7 m2 5 g/cm3 2 m  3 zz "))
 
   const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary

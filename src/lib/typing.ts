@@ -1,6 +1,8 @@
 import unitCollection from "../data/unitCollection";
 import description from "../data/unitDescription"
 
+import { difficultUnits, difficultUnitsEdited } from "../data/unitCollection";
+
 import convert from "convert-units"
 
 type DescriptionType = {
@@ -11,17 +13,46 @@ type DescriptionType = {
 }
 
 const typing = (input: string) => {
+  let success = true
+
   // potential message to be displayed
   let message = ""
 
   // create array from the input string
   const inputArray = input.split(/\s+/).filter((str) => str.trim() !== "");
 
-  // separate letters from numbers
-  const purifiedArray = [];
 
-  for (let i = 0; i < inputArray.length; i++) {
-    const element = inputArray[i];
+  // difficult units names, such as m2 or cm3 are edited
+
+  function replaceDifficultUnits(input: string[], difficultCollection: string[], editedDifficultCollection: string[]): string[] {
+    const result: string[] = [];
+  
+    for (const str of input) {
+      const words = str.split(' ');
+  
+      const replacedWords = words.map((word) => {
+        const index = difficultCollection.indexOf(word);
+        if (index !== -1) {
+          return editedDifficultCollection[index];
+        } else {
+          return word;
+        }
+      });
+
+      result.push(replacedWords.join(' '));
+    }
+  
+    return result;
+  }
+
+  const madeLessDifficult = replaceDifficultUnits(inputArray, difficultUnits, difficultUnitsEdited)
+
+  // separate letters from numbers
+  function separateLettersFromNumber(input: string[]) {
+    const purifiedArray = []
+
+      for (let i = 0; i < input.length; i++) {
+    const element = input[i];
 
     if (element.match(/[a-zA-Z]+/) && element.match(/\d+/)) {
       const letters = (element.match(/[a-zA-Z]+/) ?? [])[0] as string;
@@ -32,24 +63,51 @@ const typing = (input: string) => {
       purifiedArray.push(element);
     }
   }
+  return purifiedArray
+  }
+
+  const purifiedArray = separateLettersFromNumber(madeLessDifficult);
+
+
+  // returning difficult unit names to their original value
+  function restoreDifficultUnits(input: (string | number)[], difficultCollection: string[], editedDifficultCollection: string[]): (string | number)[] {
+    const result: (string | number)[] = [];
+  
+    for (const element of input) {
+      if (typeof element === 'string') {
+        const index = editedDifficultCollection.indexOf(element);
+        if (index !== -1) {
+          result.push(difficultCollection[index]);
+          continue;
+        }
+      }
+      result.push(element);
+    }
+  
+    return result;
+  }
+  
+  const restored = restoreDifficultUnits(purifiedArray, difficultUnits, difficultUnitsEdited)
+
 
   // all of the above have been returned as a string
   // now we are converting numbers into numbers
-  for (let i = 0; i < purifiedArray.length; i++) {
+  for (let i = 0; i < restored.length; i++) {
     const element: string | number = purifiedArray[i];
     if (typeof element === "string" && !isNaN(parseInt(element))) {
-      purifiedArray[i] = parseInt(element);
+      restored[i] = parseInt(element);
     }
   }
 
+
   // separating into future FROM and TO components, divided by the string "to"
   // if "to" doesn't exist, TO will be empty
-  const toIndex = purifiedArray.indexOf("to");
-  const fromRaw = purifiedArray.slice(0, toIndex);
-  const toRaw = toIndex === -1 ? [] : purifiedArray.slice(toIndex + 1);
+  const toIndex = restored.indexOf("to");
+  const fromRaw = restored.slice(0, toIndex);
+  const toRaw = toIndex === -1 ? [] : restored.slice(toIndex + 1);
 
 
-  // first cleanup of FROM: removal of all strings not preceded by a number, and all numbers not having a string in front
+   // first cleanup of FROM: removal of all strings not preceded by a number, and all numbers not having a string in front
   function cleanUp(array: (number | string)[]) {
     for (let i = array.length - 1; i >= 0; i--) {
       const current = array[i];
@@ -66,7 +124,8 @@ const typing = (input: string) => {
 
   const rawFromCleaned = cleanUp(fromRaw);
 
-  // intersecting FROM with the unit collection, and eliminating all strings not pertaining to the collection
+
+   // intersecting FROM with the unit collection, and eliminating all strings not pertaining to the collection
   function removeNonUnits(input: (string | number)[], collection: string[]) {
     return input.filter((element) => {
       if (typeof element === "string") {
@@ -85,17 +144,18 @@ const typing = (input: string) => {
     return {strings, numbers}
   }
 
-  const fromUnits = separateElements(fromIntersected).strings as string[]
+  const fromUnits_All = separateElements(fromIntersected).strings as string[]
   const fromValuesRaw = separateElements(fromIntersected).numbers as number[]
 
   // finally, only those values which have a unit are kept in the values array 
-  const fromValues = fromValuesRaw.slice(0, fromUnits.length)
+  const fromValues_All = fromValuesRaw.slice(0, fromUnits_All.length)
 
 
   //if there are no available FROM values, a notifications is returned
-  if (fromValues.length === 0) {
+  if (fromValues_All.length === 0) {
     message = "I didn't get that. Please try again"
     return {
+      success: false,
       message,
     }
   }
@@ -117,7 +177,7 @@ const typing = (input: string) => {
     return fromTypes;
   }
 
-const fromTypes = findMeasureTypes(fromUnits, description)
+const fromTypes = findMeasureTypes(fromUnits_All, description)
 
 
 // if there is more than one type, looking for the most frequent FROM types
@@ -146,7 +206,7 @@ const getMeasureType = (input: string[]) => {
   let result: (string | null) = ""
   if(input.length > 1) {
     result = findMostFrequentType(input)
-    message = `I found a few measurement types in your query. I went for ${result}`
+    message = `There's more than one measurement type in your query. I went for ${result}.`
   }
   return findMostFrequentType(input)
 }
@@ -154,32 +214,65 @@ const getMeasureType = (input: string[]) => {
 const measureType = getMeasureType(fromTypes)
 
 
-// checking if TO is empty or not
+//now, the units and values in FROM are filtered according to the winning measure type
+function filterByMeasure(input: (string | number)[], measureArray: string[], measure: string): string[] {
+  const filtered: string[] = [];
+  
+  for (let i = 0; i < input.length; i++) {
+    if (measureArray[i] === measure && input[i] !== undefined) {
+      filtered.push(input[i] as string);
+    }
+  }  
+  return filtered;
+}
+
+const fromUnits = filterByMeasure(fromUnits_All, fromTypes, measureType!)
+const fromValues = filterByMeasure(fromValues_All, fromTypes, measureType!)
+
+
+//
 // if empty, it will be assigned a toBest() value for the largest FROM
-const largestFrom = (fromUnits[0]) //temporary
+const largestFrom = (fromUnits_All[0]) //temporary
+
+function findLargestFrom(input: string[], lookUp: string[]): string | null {
+  let highestIndex = -1;
+  let result: string | null = null;
+
+  for (const i of input) {
+    const index = lookUp.indexOf(i);
+    if (index > highestIndex) {
+      highestIndex = index;
+      result = i;
+    }
+  }
+  return result;
+}
 
 // if not empty...
 
 const handleTo = (input: (string | number)[]) => {
-  if(input.length === 0) {
-     const best = convert(1).from(largestFrom).toBest()
-     return separateElements(best).strings[0]
-  }
+  // let bestOption: string 
+
   // removing numbers from TO... 
   const toRawStrings = separateElements(input).strings as string[]
 
   // // ...then intersecting TO with the unit collection, and eliminating all strings not pertaining to the collection
-  // const toIntersectedOnce = removeNonUnits(toRawStrings, unitCollection); 
+  const toIntersectedOnce = removeNonUnits(toRawStrings, unitCollection); 
 
   // ...then intersecting the results with onlt the possible options of the already established measureType
   const toIntersected = removeNonUnits(toRawStrings, description[measureType!].short)
 
+  if(toIntersected.length === 0) {
+    const largestFrom = findLargestFrom(fromUnits, description[measureType!].short)
+    return convert(1).from(largestFrom).toBest().unit
+  }
   return toIntersected
 }
 
 const toUnits = handleTo(toRaw)
 
   return {
+    success,
     message,
     fromUnits,
     fromValues,
