@@ -29,7 +29,7 @@ const NavigationTabs = () => {
         },
         tabBarStyle: {
           backgroundColor: theme.mainColour,
-          height: 60,
+          height: 70,
         },
         headerTintColor: theme.gray1,
         //tabBarActiveBackgroundColor: theme.gray1Darker

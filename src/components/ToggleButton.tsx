@@ -59,8 +59,6 @@ const ToggleButton = ({
         //     <Image source={metric} style={{ height: 20, width: 17 }} />
         //   )
         // }
-        // leftComponent={ <ToggleButtonIcons type="metric" /> }
-        // rightComponent={ <ToggleButtonIcons type="imperial" />}
         leftTitle=""
         rightTitle=""
         trackBar={{

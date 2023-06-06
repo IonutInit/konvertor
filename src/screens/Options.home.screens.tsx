@@ -229,7 +229,7 @@ const Options = () => {
                   ]}
                   onPress={() => {
                     LayoutAnimation.configureNext(
-                      LayoutAnimation.Presets.easeInEaseOut
+                      LayoutAnimation.Presets.spring
                     );
                     dispatch({
                       type: "toggle_favourites_on_home",
