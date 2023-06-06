@@ -6,18 +6,20 @@ type Props = {
   isFavourite?: boolean;
   mainColour?: string;
   strokeColour?: string;
+  size?: number,
 };
 
 const FavouritesIcon = ({
   isFavourite = false,
   mainColour = getTheme().mainColour,
   strokeColour = getTheme().gray3,
+  size = 32,
 }: Props) => {
   return (
     <Svg
       style={{
-        width: 32,
-        height: 32,
+        width: size,
+        height: size,
       }}
       viewBox="0 0 50 50">
       <Path

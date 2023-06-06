@@ -106,12 +106,14 @@ const Settings = ({ navigation }: any) => {
             text={["metric", "imperial"]}
             settingType="metric"
             settingValue={settings.metric}
+            tinyExplanation={["Starts from metric to imperial", "Starts from imperial to metric"]}
           />
           <ToggleButton
             title={"Verbosity"}
             text={["long", "short"]}
             settingType="verbose"
             settingValue={settings.verbose}
+            tinyExplanation={["Units are not abbreviated", "Units are abbreviated"]}
           />
         </View>
       </View>

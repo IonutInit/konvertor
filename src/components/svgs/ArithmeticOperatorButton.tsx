@@ -4,11 +4,11 @@ import getTheme from "../../context/theme";
 
 type PropType = {
   isAddition: boolean;
+  size?: number,
 };
 
-const ArithmeticOperatorButton = ({ isAddition }: PropType) => {
+const ArithmeticOperatorButton = ({ isAddition, size = 40 }: PropType) => {
   const theme = getTheme();
-  const size = 40;
 
   return (
     <Svg

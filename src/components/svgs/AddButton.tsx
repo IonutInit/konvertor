@@ -2,7 +2,7 @@ import { Svg, Path, Circle } from "react-native-svg";
 
 import getTheme from "../../context/theme";
 
-const AddButton = ({ type = "plus", disabled = false }) => {
+const AddButton = ({ type = "plus", disabled = false, size = 32 }) => {
   const theme = getTheme();
 
   const fill = disabled ? theme.gray3 : theme.mainColour;
@@ -10,8 +10,8 @@ const AddButton = ({ type = "plus", disabled = false }) => {
   return (
     <Svg
       style={{
-        width: 32,
-        height: 32,
+        width: size,
+        height: size,
       }}
       viewBox="0 0 50 50">
       <Circle
