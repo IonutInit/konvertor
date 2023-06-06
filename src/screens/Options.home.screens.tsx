@@ -6,6 +6,7 @@ import {
   Image,
   StyleSheet,
   LayoutAnimation,
+  TextInput,
 } from "react-native";
 import { useState, useEffect, useRef } from "react";
 
@@ -19,6 +20,8 @@ import handleFavouriteDispatch from "../lib/handleFavouriteDispatch";
 import unitList from "../data/unitList";
 import MeasurementIcons from "../components/svgs/MeasurementIcons";
 import FavouritesIcon from "../components/svgs/FavouriteIcon";
+
+import TypingInput from "../components/TypingInput";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import getLocalData from "../lib/getLocalData";
@@ -38,10 +41,8 @@ const Options = () => {
     dispatch,
   } = useAppContext();
 
-
-
-// automatic scrolling
-const scrollViewRef = useRef<ScrollView>(null);
+  // automatic scrolling
+  const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
     if (scrollViewRef.current) {
@@ -51,7 +52,7 @@ const scrollViewRef = useRef<ScrollView>(null);
         scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
       }
     }
-  }, [settings.extendedList])
+  }, [settings.extendedList]);
 
   const handleOnContentSizeChange = () => {
     if (scrollViewRef.current) {
@@ -61,8 +62,8 @@ const scrollViewRef = useRef<ScrollView>(null);
         scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
       }
     }
-  }
-//---------------------------------
+  };
+  //---------------------------------
 
   const theme = getTheme();
 
@@ -121,14 +122,17 @@ const scrollViewRef = useRef<ScrollView>(null);
 
   //console.log(state);
 
-  console.log(typing("gfgh  7 m2 5 g/cm3 2 m  3 zz "))
+  console.log(typing("2 cm to m"));
 
   const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary
   );
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContainer} ref={scrollViewRef} onContentSizeChange={handleOnContentSizeChange}>
+    <ScrollView
+      contentContainerStyle={styles.scrollViewContainer}
+      ref={scrollViewRef}
+      onContentSizeChange={handleOnContentSizeChange}>
       {settings.favouritesOnHome && (
         <ScrollView
           contentContainerStyle={styles.favScrollContainer}
@@ -181,6 +185,8 @@ const scrollViewRef = useRef<ScrollView>(null);
         </ScrollView>
       )}
 
+      {!settings.favouritesOnHome && <TypingInput />}
+
       <View style={styles.outerPressableContainer}>
         {filteredUnitList.map((unit, index) => (
           <View key={index}>
@@ -209,49 +215,52 @@ const scrollViewRef = useRef<ScrollView>(null);
               </Pressable>
             )}
 
-            {unit.name === "favouritesButton" && whatFavouritesToMap.length !== 0 && (
-              <Pressable
-                style={[
-                  styles.pressableMeasure,
-                  {
-                    backgroundColor: !settings.favouritesOnHome
-                      ? theme.mainColour
-                      : theme.gray1,
-                  },
-                ]}
-                onPress={() => {
-                  LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-                  dispatch({
-                    type: "toggle_favourites_on_home",
-                  })}
-                }>
-                <View style={styles.innerPressableContainer}>
-                  <FavouritesIcon
-                    isFavourite
-                    mainColour={
-                      !settings.favouritesOnHome
-                        ? theme.gray1
-                        : theme.mainColour
-                    }
-                  />
-                  <View style={styles.textContainer}>
-                    <Text
-                      style={[
-                        {
-                          color: !settings.favouritesOnHome
-                            ? theme.gray1
-                            : theme.mainColour,
-                        },
-                        { textAlign: "center" },
-                      ]}>
-                      {`${
-                        !settings.favouritesOnHome ? "Show" : "Hide"
-                      } Favourites`}
-                    </Text>
+            {unit.name === "favouritesButton" &&
+              whatFavouritesToMap.length !== 0 && (
+                <Pressable
+                  style={[
+                    styles.pressableMeasure,
+                    {
+                      backgroundColor: !settings.favouritesOnHome
+                        ? theme.mainColour
+                        : theme.gray1,
+                    },
+                  ]}
+                  onPress={() => {
+                    LayoutAnimation.configureNext(
+                      LayoutAnimation.Presets.spring
+                    );
+                    dispatch({
+                      type: "toggle_favourites_on_home",
+                    });
+                  }}>
+                  <View style={styles.innerPressableContainer}>
+                    <FavouritesIcon
+                      isFavourite
+                      mainColour={
+                        !settings.favouritesOnHome
+                          ? theme.gray1
+                          : theme.mainColour
+                      }
+                    />
+                    <View style={styles.textContainer}>
+                      <Text
+                        style={[
+                          {
+                            color: !settings.favouritesOnHome
+                              ? theme.gray1
+                              : theme.mainColour,
+                          },
+                          { textAlign: "center" },
+                        ]}>
+                        {`${
+                          !settings.favouritesOnHome ? "Show" : "Hide"
+                        } Favourites`}
+                      </Text>
+                    </View>
                   </View>
-                </View>
-              </Pressable>
-            )}
+                </Pressable>
+              )}
           </View>
         ))}
       </View>
@@ -264,7 +273,10 @@ const scrollViewRef = useRef<ScrollView>(null);
 };
 
 const styles = StyleSheet.create({
-  scrollViewContainer: {},
+  scrollViewContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+  },
   outerPressableContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -320,7 +332,6 @@ const styles = StyleSheet.create({
   favContainer: {
     width: 85,
     height: 90,
-    backgroundColor: "red",
     borderRadius: 10,
     marginHorizontal: 5,
     borderColor: "gray",

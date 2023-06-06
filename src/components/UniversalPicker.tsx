@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
 
 import { Picker } from "@react-native-picker/picker";
 
@@ -20,13 +20,18 @@ import { DescriptionType } from "../data/unitDescription";
 import Konvertor from "../screens/Konvertor.home.screen";
 
 type UniversalPickerProps = {
-  componentKey: number,
-  top?: number,
-  left?: number,
-  filter?: string[],
-}
+  componentKey: number;
+  top?: number;
+  left?: number;
+  filter?: string[];
+};
 
-const UniversalPicker = ({ componentKey, top = 150, left = 0, filter = [] }: UniversalPickerProps) => {
+const UniversalPicker = ({
+  componentKey,
+  top = 150,
+  left = 0,
+  filter = [],
+}: UniversalPickerProps) => {
   const {
     state: {
       konvertor,
@@ -43,7 +48,7 @@ const UniversalPicker = ({ componentKey, top = 150, left = 0, filter = [] }: Uni
 
   const { type, position, index } = universalPicker;
 
-// creating delay
+  // creating delay
   const [delayVisible, setDelayVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
     type === "from"
@@ -75,7 +80,7 @@ const UniversalPicker = ({ componentKey, top = 150, left = 0, filter = [] }: Uni
     };
   }, [delayVisible, dispatch]);
 
-// ----------------------------------------
+  // ----------------------------------------
 
   const optionsSource =
     universalPicker.type === "from" ? fromUnit[componentKey][0] : toUnit[0];
@@ -89,15 +94,16 @@ const UniversalPicker = ({ componentKey, top = 150, left = 0, filter = [] }: Uni
     }
   };
 
-  console.log(findUnitKey(optionsSource, description))
+  console.log(findUnitKey(optionsSource, description));
 
-let allOptions: string[] = []
+  let allOptions: string[] = [];
 
-  if(filter.length === 0) {
-allOptions = description[findUnitKey(optionsSource, description)!].short;
+  if (filter.length === 0) {
+    allOptions = description[findUnitKey(optionsSource, description)!].short;
   } else {
     allOptions = filter!.filter((op) =>
-    description[findUnitKey(optionsSource, description)!].short.includes(op))
+      description[findUnitKey(optionsSource, description)!].short.includes(op)
+    );
   }
   //const allOptions = convert().from(optionsSource).possibilities();
 
@@ -109,7 +115,6 @@ allOptions = description[findUnitKey(optionsSource, description)!].short;
       description[findUnitKey(optionsSource, description)!]
     );
   }
-
 
   const options = toUnit.length > 1 ? nextOption : allOptions;
 
@@ -139,7 +144,7 @@ allOptions = description[findUnitKey(optionsSource, description)!].short;
     }
 
     setSelectedValue(option as string);
-    setDelayVisible(true)
+    setDelayVisible(true);
   };
 
   const calculatorToVerbosity = () => {
@@ -153,7 +158,7 @@ allOptions = description[findUnitKey(optionsSource, description)!].short;
     <Picker
       style={[
         styles.picker,
-        { top},
+        { top },
         { left },
         { backgroundColor: theme.gray1, shadowColor: theme.gray3 },
       ]}
@@ -180,7 +185,7 @@ allOptions = description[findUnitKey(optionsSource, description)!].short;
 
 const styles = StyleSheet.create({
   picker: {
-   width: 250,
+    width: 250,
     borderWidth: 1,
     borderColor: "gray",
     borderRadius: 10,

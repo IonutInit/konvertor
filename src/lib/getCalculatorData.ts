@@ -4,9 +4,8 @@ import { ActionType } from "../../types";
 const getCalculatorData = (
   dispatch: Dispatch<ActionType>,
   calculatorType: string,
-  metric: boolean,
+  metric: boolean
 ) => {
- 
   let fromUnit1 = "";
   let fromUnit2 = "";
   // let fromUnit3 = "";

@@ -11,7 +11,7 @@ type AddUnitProps = {
   componentKey?: number;
 };
 
-const AddUnit = ({ type, componentKey}: AddUnitProps) => {
+const AddUnit = ({ type, componentKey }: AddUnitProps) => {
   const { state, dispatch } = useAppContext();
 
   return (

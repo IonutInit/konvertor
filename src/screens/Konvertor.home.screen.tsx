@@ -39,7 +39,7 @@ const Konvertor = () => {
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponderCapture: (_, gestureState) => {
       const swipeThreshold = 50;
-  
+
       if (gestureState.dx > swipeThreshold) {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         dispatch({
@@ -56,16 +56,14 @@ const Konvertor = () => {
     },
   });
 
-
   return (
-    <KeyboardAvoidingView 
-    behavior={platform === "ios" ? "padding" : "height"}
-    style={styles.container}
-    keyboardVerticalOffset={100}
-    >
-      <ScrollView contentContainerStyle={styles.scrollContainer}
-      {...panResponder.panHandlers}
-      >
+    <KeyboardAvoidingView
+      behavior={platform === "ios" ? "padding" : "height"}
+      style={styles.container}
+      keyboardVerticalOffset={100}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        {...panResponder.panHandlers}>
         <View style={styles.header}>
           <BackToOptions />
           <ArithmeticOperator />

@@ -1,4 +1,11 @@
-import { View, ScrollView, Text, Pressable, StyleSheet, KeyboardAvoidingView } from "react-native";
+import {
+  View,
+  ScrollView,
+  Text,
+  Pressable,
+  StyleSheet,
+  KeyboardAvoidingView,
+} from "react-native";
 import { useEffect, useState } from "react";
 
 import { Picker } from "@react-native-picker/picker";
@@ -62,20 +69,18 @@ const Calculators = () => {
     from0: fromValue[0],
     value0: fromUnit[0],
     from1: fromValue[1],
-    value1:fromUnit[1],
-    to: toUnit[0]
-  }
- 
+    value1: fromUnit[1],
+    to: toUnit[0],
+  };
 
   const getResult = (calculatorType: string) => {
     // if (calculatorType === "bmi") {
     //   return calculateBmi(calculatorData);
     // }
 
-    if(calculatorType === "bmi") {
-      return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1])
+    if (calculatorType === "bmi") {
+      return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1]);
     }
-
 
     if (calculatorType === "areaCalc" && toUnit.length !== 0) {
       return calculateArea(
@@ -127,13 +132,13 @@ const Calculators = () => {
 
   const getPickerPosition = (type: string, i: number) => {
     if (type === "from" && i === 1) {
-      return -125
+      return -125;
     }
-    return 0
-  }
+    return 0;
+  };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer} >
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.header}>
         <BackFromKonverter />
         <View style={styles.titleContainer}>
@@ -191,19 +196,29 @@ const Calculators = () => {
               {platform === "ios" &&
                 universalPicker.type !== "" &&
                 universalPicker.activeFromComponent === i && (
-                  <View style={[
-                    {zIndex: universalPicker.calculatorTo ? 3 : 1}, //doesn't work
-                    {zIndex: universalPicker.activeFromComponent === 0 ? 2 : 1},
-                    styles.universalPickerContainer,
-                    {
-                      transform: [
-                        { translateX: -125 },
-                        { translateY: (universalPicker.type === "from" ? -125 : 0) },
-                      ],
-                    },
-                    
-                  ]}>
-                    <UniversalPicker componentKey={i} top={0} filter={konvertor === "bmi" ? bmiFilter : []}/>
+                  <View
+                    style={[
+                      { zIndex: universalPicker.calculatorTo ? 3 : 1 }, //doesn't work
+                      {
+                        zIndex:
+                          universalPicker.activeFromComponent === 0 ? 2 : 1,
+                      },
+                      styles.universalPickerContainer,
+                      {
+                        transform: [
+                          { translateX: -125 },
+                          {
+                            translateY:
+                              universalPicker.type === "from" ? -125 : 0,
+                          },
+                        ],
+                      },
+                    ]}>
+                    <UniversalPicker
+                      componentKey={i}
+                      top={0}
+                      filter={konvertor === "bmi" ? bmiFilter : []}
+                    />
                   </View>
                 )}
             </View>
@@ -217,7 +232,7 @@ const Calculators = () => {
             styles.toContainer,
             { borderColor: theme.gray2, shadowColor: theme.gray2 },
           ]}>
-            <Divider />
+          <Divider />
           <Text style={styles.result}>
             {Number(result).toFixed(settings.decimals)}
           </Text>

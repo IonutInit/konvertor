@@ -37,21 +37,19 @@ const FromComponent = ({
     state: { fromUnit, fromValue, settings, universalPicker },
     dispatch,
   } = useAppContext();
- 
 
   const elements = fromUnit[componentKey].map((unit: string, i: number) => {
+    let options: string[] = [];
 
-    let options: string[] = []
-    
-    if(filter.length! === 0) {
-       options = convert().possibilities(measureType);
+    if (filter.length! === 0) {
+      options = convert().possibilities(measureType);
     } else {
-         options = filter!.filter((op) =>
-        description[measureType].short.includes(op))
+      options = filter!.filter((op) =>
+        description[measureType].short.includes(op)
+      );
     }
 
     const optionsToDisplay = handleVerbosity(options, settings.verbose);
-
 
     return (
       <React.Fragment key={i}>

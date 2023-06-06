@@ -1,5 +1,5 @@
 import { TextInput, StyleSheet, Keyboard } from "react-native";
-import React, {useRef} from "react"
+import React, { useRef } from "react";
 
 type InputProps = {
   componentKey: number;
@@ -32,8 +32,8 @@ const Input = ({ componentKey, handleInputChange, value, i }: InputProps) => {
   };
   //--------------------------------------
 
-// Hide the keyboard when the "return" key is pressed
-  const handleInputSubmitEditing = () => {    
+  // Hide the keyboard when the "return" key is pressed
+  const handleInputSubmitEditing = () => {
     Keyboard.dismiss();
   };
 

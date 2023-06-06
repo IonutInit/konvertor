@@ -3,10 +3,10 @@ import { Svg, Path } from "react-native-svg";
 import getTheme from "../../context/theme";
 
 type Props = {
-  isActive?: boolean,
-}
+  isActive?: boolean;
+};
 
-const SwitchButton = ({isActive = true}: Props) => {
+const SwitchButton = ({ isActive = true }: Props) => {
   const theme = getTheme();
 
   return (

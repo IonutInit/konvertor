@@ -1,4 +1,11 @@
-import { View, Pressable, Text, Image, StyleSheet, LayoutAnimation } from "react-native";
+import {
+  View,
+  Pressable,
+  Text,
+  Image,
+  StyleSheet,
+  LayoutAnimation,
+} from "react-native";
 
 import useAppContext from "../context/useAppContext";
 

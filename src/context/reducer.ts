@@ -215,49 +215,76 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     case "change_decimals":
       const i = action.payload === "plus" ? 1 : -1;
       const decimals = state.settings.decimals + i;
+
+      const updatedDecimals = {
+        ...state.settings,
+        decimals,
+      };
+
+      try {
+        const jsonValue = JSON.stringify(updatedDecimals);
+        AsyncStorage.setItem(settingsKey, jsonValue);
+      } catch (e) {}
+
       return {
         ...state,
-        settings: {
-          ...state.settings,
-          decimals,
-        },
+        settings: updatedDecimals,
       };
 
     case "toggle_favourites_on_home":
       const currentState = state.settings.favouritesOnHome;
-      return {
-        ...state,
-        settings: {
+      const updatedFavouritesOnHome = !currentState;
+
+      try {
+        const updatedSettings = {
           ...state.settings,
-          favouritesOnHome: !currentState,
-        },
-      };
+          favouritesOnHome: updatedFavouritesOnHome,
+        };
+        const jsonValue = JSON.stringify(updatedSettings);
+        AsyncStorage.setItem(settingsKey, jsonValue);
+        return {
+          ...state,
+          settings: updatedSettings,
+        };
+      } catch (e) {}
+
+      return state;
+    //this one returns the initial state if the async fails
+    //maybe I should do the same for all asyncs
 
     case "change_theme":
       const themes = [
         "Almost All the Reds",
-       "A Tablespoon of Black",
-         "Mauve Squared",
+        "A Tablespoon of Black",
+        "Mauve Squared",
         "A Yard of Sienna",
         "An Inch Madder",
         "Slightly Orange",
         "A Lot of Green",
         "A Cubic Meter of Flowers",
-       "Weeks to Seconds",
-      "Degrees of Rosolanc",
-       "The Yellows",
-       "A Bite of Orange",
-       "Kind of Darkish",
-      "Voltage",
+        "Weeks to Seconds",
+        "Degrees of Rosolanc",
+        "The Yellows",
+        "A Bite of Orange",
+        "Kind of Darkish",
+        "Voltage",
       ];
       const themeValue = themes.indexOf(action.payload);
-      console.log(themeValue)
+      console.log(themeValue);
+
+      const updatedTheme = {
+        ...state.settings,
+        theme: themeValue,
+      };
+
+      try {
+        const jsonValue = JSON.stringify(updatedTheme);
+        AsyncStorage.setItem(settingsKey, jsonValue);
+      } catch (e) {}
+
       return {
         ...state,
-        settings: {
-          ...state.settings,
-          theme: themeValue,
-        },
+        settings: updatedTheme,
       };
 
     case "add_to_favourites":

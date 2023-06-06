@@ -17,7 +17,7 @@ const Switch = () => {
 
   return (
     <Pressable onPress={handleSwitch} disabled={state.fromUnit[0].length <= 3}>
-      <SwitchButton isActive={state.fromUnit[0].length <= 3}/>
+      <SwitchButton isActive={state.fromUnit[0].length <= 3} />
     </Pressable>
   );
 };
