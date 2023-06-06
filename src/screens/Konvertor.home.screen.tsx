@@ -35,7 +35,11 @@ const Konvertor = () => {
   const defaultComponentKey = 0;
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView 
+    behavior={platform === "ios" ? "padding" : "height"}
+    style={styles.container}
+    keyboardVerticalOffset={100}
+    >
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.header}>
           <BackToOptions />
@@ -77,7 +81,7 @@ const Konvertor = () => {
           </View>
         )}
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import {useState, useEffect} from "react"
 
 import { Picker } from "@react-native-picker/picker";
 
@@ -40,6 +41,40 @@ const UniversalPicker = ({ componentKey, top = 150, left = 0 }: UniversalPickerP
   const theme = getTheme();
 
   const { type, position, index } = universalPicker;
+
+// creating delay
+  const [delayVisible, setDelayVisible] = useState(false);
+  const [selectedValue, setSelectedValue] = useState(
+    type === "from"
+      ? fromUnit[universalPicker.index!]
+      : toUnit[universalPicker.index!]
+  );
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (delayVisible) {
+      timeoutId = setTimeout(() => {
+        dispatch({
+          type: "work_universal_picker",
+          payload: {
+            type: "",
+            index: -1,
+            position: [],
+            activeFromComponent: 0,
+            calculatorTo: true,
+          },
+        });
+        setDelayVisible(false);
+      }, 500);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [delayVisible, dispatch]);
+
+// ----------------------------------------
 
   const optionsSource =
     universalPicker.type === "from" ? fromUnit[componentKey][0] : toUnit[0];
@@ -94,16 +129,8 @@ const UniversalPicker = ({ componentKey, top = 150, left = 0 }: UniversalPickerP
       });
     }
 
-    dispatch({
-      type: "work_universal_picker",
-      payload: {
-        type: "",
-        index: -1,
-        position: [],
-        activeFromComponent: 0,
-        calculatorTo: true,
-      },
-    });
+    setSelectedValue(option as string);
+    setDelayVisible(true)
   };
 
   const calculatorToVerbosity = () => {
@@ -121,11 +148,7 @@ const UniversalPicker = ({ componentKey, top = 150, left = 0 }: UniversalPickerP
         { left },
         { backgroundColor: theme.gray1, shadowColor: theme.gray3 },
       ]}
-      selectedValue={
-        type === "from"
-          ? fromUnit[universalPicker.index!]
-          : toUnit[universalPicker.index!]
-      }
+      selectedValue={selectedValue}
       onValueChange={(option) => handleChange(option, type)}>
       {optionsToDisplay.map((option: string) => (
         <Picker.Item
