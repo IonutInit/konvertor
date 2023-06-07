@@ -1,4 +1,4 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet, LayoutAnimation } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -14,11 +14,16 @@ const Description = () => {
 
   const theme = getTheme();
 
+  const handlePress = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
+    addUnit(dispatch, state, "from", 0)
+  }
+
   return (
     <View style={styles.outerContainer}>
       <Pressable
         style={[styles.innerContainer, { backgroundColor: theme.mainColour }]}
-        onPress={() => addUnit(dispatch, state, "from", 0)}
+        onPress={handlePress}
         disabled={fromUnit[1].length > 0}>
         <Text style={[{ color: theme.gray1 }, { fontWeight: "bold" }]}>
           {handleDescriptionText(fromUnit[0], true, true)}

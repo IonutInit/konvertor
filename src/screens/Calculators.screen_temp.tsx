@@ -152,7 +152,7 @@ const Calculators = () => {
 
   const bmiFilter = ["cm", "in", "ft", "ft-us", "yd", "m", "oz", "lb", "kg"];
 
-  console.log(state);
+  // console.log(state);
 
   const getPickerPosition = (type: string, i: number) => {
     if (type === "from" && i === 1) {

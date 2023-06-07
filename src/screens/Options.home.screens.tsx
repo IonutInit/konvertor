@@ -112,7 +112,7 @@ const Options = () => {
 
   // console.log(state);
 
-  console.log(typing("zdf 2 cm2 5 cm2 m"));
+  // console.log(typing("zdf 2 cm2 5 cm2 m"));
 
   const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary

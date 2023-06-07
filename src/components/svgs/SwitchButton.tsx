@@ -4,16 +4,17 @@ import getTheme from "../../context/theme";
 
 type Props = {
   isActive?: boolean;
+  size?: number,
 };
 
-const SwitchButton = ({ isActive = true }: Props) => {
+const SwitchButton = ({ isActive = true, size = 32 }: Props) => {
   const theme = getTheme();
 
   return (
     <Svg
       style={{
-        width: 32,
-        height: 32,
+        width: size,
+        height: size,
       }}
       viewBox="0 0 50 50">
       <Path
