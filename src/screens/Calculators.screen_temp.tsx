@@ -161,6 +161,22 @@ const Calculators = () => {
     return 0;
   };
 
+  const resultToDisplay = () => {
+    if(konvertor === "bmi") {
+      return Number(result).toFixed(1)
+    }
+    if(konvertor === "weightLoss") {
+      const value = Number(result).toFixed(1)
+      if(Number(value) === 0) {
+        return "No change"
+      }
+      const description = Number(value) > 0 ? "lost" : "gained"
+      return `${Math.abs(Number(value))}% ${description}`
+    }
+
+    return Number(result).toFixed(settings.decimals)
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}
     {...panResponder.panHandlers}>
@@ -259,7 +275,7 @@ const Calculators = () => {
           ]}>
           <Divider />
           <Text style={styles.result}>
-            {Number(result).toFixed(settings.decimals)}
+            {resultToDisplay()}
           </Text>
           {toUnit[0] !== "mVA" && (
             <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />

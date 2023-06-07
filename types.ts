@@ -170,6 +170,7 @@ export type ActionType =
     | {
       type: "dispatch_typing",
       payload: {
+        konvertor: string,
         fromUnit: string[][],
         fromValue: (number | string)[][],
         measureType: string[][],

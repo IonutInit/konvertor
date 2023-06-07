@@ -79,8 +79,8 @@ const UniversalPickerUnit = ({
 
   const handleLongPress = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-    if (fromUnit[0].length > 1) {
-      dispatch({ type: `remove_${type.toUpperCase()}_value`, payload: [0, i] });
+    if (fromUnit[componentKey].length > 1) {
+      dispatch({ type: `remove_${type.toUpperCase()}_value`, payload: [componentKey, i] });
     }
   };
 

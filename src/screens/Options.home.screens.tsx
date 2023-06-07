@@ -71,16 +71,6 @@ const Options = () => {
     FavouriteType[]
   >([]);
 
-  // useEffect(() => {
-  //   const fetchFavourites = async () => {
-  //     const data = await getLocalData(favouritesKey);
-  //     if (data) {
-  //       setFavouritesFromStorage(data as FavouriteType[]);
-  //     }
-  //   };
-  //   fetchFavourites();
-  // }, []);
-
   useEffect(() => {
     const retrieveData = async () => {
       try {
@@ -122,7 +112,7 @@ const Options = () => {
 
   // console.log(state);
 
-  // console.log(typing("zdf 2 cm2  m"));
+  console.log(typing("zdf 2 cm2 5 cm2 m"));
 
   const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary

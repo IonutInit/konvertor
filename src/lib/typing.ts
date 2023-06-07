@@ -292,12 +292,15 @@ const typing = (input: string) => {
 
   const toUnits = handleTo(toRaw);
 
+  const measureName = measureType!.replace(/^\w/, (c) => c.toUpperCase())
+
   return {
     success,
     message,
     fromUnits,
     fromValues,
     measureType,
+    measureName,
     toUnits,
   };
 };

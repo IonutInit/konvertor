@@ -43,7 +43,6 @@ const RemoveUnit = ({ componentKey, type, i }: RemoveUnitProps) => {
             background={theme.gray2}
             symbolColour={theme.mainColour}
           />
-          // <RemoveIcon size={30} background={theme.gray2} symbolColour={theme.gray1}/>
         )}
       </Pressable>
     </View>

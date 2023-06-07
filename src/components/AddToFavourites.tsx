@@ -1,4 +1,4 @@
-import { View, Pressable, Image, StyleSheet } from "react-native";
+import { View, Pressable, Image, StyleSheet, LayoutAnimation } from "react-native";
 import { useEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -9,18 +9,33 @@ import useAppContext from "../context/useAppContext";
 import handleAddToFavourites from "../hooks/handleAddToFavourites";
 import handleRemoveFavourite from "../hooks/handleRemoveFavourite";
 
-import functionalIcons from "../iconMaps/functionalIconsMap";
-
 import FavouritesIcon from "./svgs/FavouriteIcon";
 
 const AddToFavourites = () => {
   const { state, dispatch } = useAppContext();
+
+  const [size, setSize] = useState(32)
 
   const favoriteIndex = state.favourites.findIndex(
     (favorite) =>
       favorite.from.toString() === state.fromUnit.toString() &&
       favorite.to.toString() === state.toUnit.toString()
   );
+
+  const handlePresIn = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    if(favoriteIndex === - 1) {
+       setSize(48);
+    } else {
+       setSize(64);
+    }
+   
+  };
+
+  const handlePressOut = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    setSize(32);
+  };
 
   // to prevent addition of duplicates
   const handleOnPress = (i: number) => {
@@ -48,12 +63,14 @@ const AddToFavourites = () => {
 
   return (
     <View style={styles.iconContainer}>
-      <Pressable
+      <Pressable      
         onPress={() => handleOnPress(favoriteIndex)}
         onLongPress={() => handleRemoveFavourite(dispatch, favoriteIndex)}
-        // disabled={favoriteIndex !== -1}
+        onPressIn={handlePresIn}
+        onPressOut={handlePressOut}
+        //disabled={favoriteIndex !== -1}
       >
-        <FavouritesIcon isFavourite={favoriteIndex !== -1} />
+        <FavouritesIcon isFavourite={favoriteIndex !== -1} size={size}/>
       </Pressable>
     </View>
   );

@@ -334,6 +334,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       case "dispatch_typing":
         return {
           ...state,
+          konvertor: action.payload.konvertor,
           fromUnit: action.payload.fromUnit,
           fromValue: action.payload.fromValue,
           measureType: action.payload.measureType,

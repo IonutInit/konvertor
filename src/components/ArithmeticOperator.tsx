@@ -1,8 +1,7 @@
-import { Pressable, Image } from "react-native";
+import { Pressable } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
-import functionalIcons from "../iconMaps/functionalIconsMap";
 import ArithmeticOperatorButton from "./svgs/ArithmeticOperatorButton";
 
 const ArithmeticOperator = () => {
@@ -16,13 +15,6 @@ const ArithmeticOperator = () => {
         })
       }>
       <ArithmeticOperatorButton isAddition={state.addition} />
-      {/* <Image
-        source={
-          state.addition
-            ? functionalIcons.additionButton
-            : functionalIcons.subtractionButton
-        }
-      /> */}
     </Pressable>
   );
 };

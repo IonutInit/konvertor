@@ -5,6 +5,8 @@ import {
   Pressable,
   StyleSheet,
   TouchableWithoutFeedback,
+  LayoutAnimation,
+  PanResponder
 } from "react-native";
 import { useState, useEffect, useLayoutEffect } from "react";
 
@@ -39,6 +41,29 @@ const Settings = ({ navigation }: any) => {
   const [themePicker, setThemePicker] = useState(false);
 
   const theme = getTheme();
+
+
+  const panResponder = PanResponder.create({
+    onMoveShouldSetPanResponderCapture: (_, gestureState) => {
+      const swipeThreshold = 50;
+
+      if (gestureState.dx > swipeThreshold) {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        dispatch({
+          type: "change_konvertor",
+          payload: "",
+        });
+        dispatch({
+          type: "change_tab",
+          payload: "Home",
+        });
+        navigation.jumpTo("Home")
+        return true;
+      }
+      return false;
+    },
+  });
+
 
   useEffect(() => {
     const fetchSettings = async () => {
@@ -92,7 +117,9 @@ const Settings = ({ navigation }: any) => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}
+    {...panResponder.panHandlers}
+    >
       <View style={styles.header}>
         <Pressable onPress={() => navigation.jumpTo("Home")}>
           <BackButton />
