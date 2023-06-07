@@ -20,7 +20,7 @@ const typing = (input: string) => {
 
   // create array from the input string
   const inputArray = input.split(/\s+/).filter((str) => str.trim() !== "");
- 
+
   // difficult units names, such as m2 or cm3 are edited
 
   function replaceDifficultUnits(
@@ -48,14 +48,13 @@ const typing = (input: string) => {
     return result;
   }
 
-  
   const madeLessDifficult = replaceDifficultUnits(
     inputArray,
     difficultUnits,
     difficultUnitsEdited
   );
 
-   // separate letters from numbers
+  // separate letters from numbers
   function separateLettersFromNumber(input: string[]) {
     const purifiedArray = [];
 
@@ -75,7 +74,6 @@ const typing = (input: string) => {
   }
 
   const purifiedArray = separateLettersFromNumber(madeLessDifficult);
-
 
   // returning difficult unit names to their original value
   function restoreDifficultUnits(
@@ -105,7 +103,7 @@ const typing = (input: string) => {
     difficultUnitsEdited
   );
 
-   // all of the above have been returned as a string
+  // all of the above have been returned as a string
   // now we are converting numbers into numbers
   for (let i = 0; i < restored.length; i++) {
     const element: string | number = purifiedArray[i];
@@ -292,7 +290,7 @@ const typing = (input: string) => {
 
   const toUnits = handleTo(toRaw);
 
-  const measureName = measureType!.replace(/^\w/, (c) => c.toUpperCase())
+  const measureName = measureType!.replace(/^\w/, (c) => c.toUpperCase());
 
   return {
     success,

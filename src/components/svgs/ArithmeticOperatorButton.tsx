@@ -4,7 +4,7 @@ import getTheme from "../../context/theme";
 
 type PropType = {
   isAddition: boolean;
-  size?: number,
+  size?: number;
 };
 
 const ArithmeticOperatorButton = ({ isAddition, size = 40 }: PropType) => {

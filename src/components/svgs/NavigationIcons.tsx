@@ -21,7 +21,7 @@ export type SvgProps = {
 
 const activePadding = platform === "ios" ? 10 : 20;
 
-const NavigationIcons = ({ type, size = 45, isActive }: Props) => {
+const NavigationIcons = ({ type, size, isActive }: Props) => {
   const theme = getTheme();
 
   const props = {

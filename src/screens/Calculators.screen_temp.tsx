@@ -58,7 +58,7 @@ const Calculators = () => {
     dispatch,
   } = useAppContext();
 
-// similar functionality as in other screens, make into a hook
+  // similar functionality as in other screens, make into a hook
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponderCapture: (_, gestureState) => {
       const swipeThreshold = 50;
@@ -78,7 +78,7 @@ const Calculators = () => {
       return false;
     },
   });
-//------------------------
+  //------------------------
 
   const [unitData] = unitList.filter((unit) => unit.name === konvertor);
   const { measureType } = unitData;
@@ -162,24 +162,25 @@ const Calculators = () => {
   };
 
   const resultToDisplay = () => {
-    if(konvertor === "bmi") {
-      return Number(result).toFixed(1)
+    if (konvertor === "bmi") {
+      return Number(result).toFixed(1);
     }
-    if(konvertor === "weightLoss") {
-      const value = Number(result).toFixed(1)
-      if(Number(value) === 0) {
-        return "No change"
+    if (konvertor === "weightLoss") {
+      const value = Number(result).toFixed(1);
+      if (Number(value) === 0) {
+        return "No change";
       }
-      const description = Number(value) > 0 ? "lost" : "gained"
-      return `${Math.abs(Number(value))}% ${description}`
+      const description = Number(value) > 0 ? "lost" : "gained";
+      return `${Math.abs(Number(value))}% ${description}`;
     }
 
-    return Number(result).toFixed(settings.decimals)
-  }
+    return Number(result).toFixed(settings.decimals);
+  };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}
-    {...panResponder.panHandlers}>
+    <ScrollView
+      contentContainerStyle={styles.scrollContainer}
+      {...panResponder.panHandlers}>
       <View style={styles.header}>
         <BackFromKonverter />
         <View style={styles.titleContainer}>
@@ -274,9 +275,7 @@ const Calculators = () => {
             { borderColor: theme.gray2, shadowColor: theme.gray2 },
           ]}>
           <Divider />
-          <Text style={styles.result}>
-            {resultToDisplay()}
-          </Text>
+          <Text style={styles.result}>{resultToDisplay()}</Text>
           {toUnit[0] !== "mVA" && (
             <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />
           )}

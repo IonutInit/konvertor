@@ -47,8 +47,6 @@ const TypingInput = () => {
       let measureName = [result.measureName!];
       const toUnit = [result.toUnits!];
 
-
-
       dispatch({
         type: "dispatch_typing",
         payload: {
@@ -68,7 +66,7 @@ const TypingInput = () => {
       <TextInput
         style={[styles.typingInput, { borderColor: theme.gray2 }]}
         onChangeText={(input) => handleTextChange(input)}
-        onBlur={handleBlur} 
+        onBlur={handleBlur}
         placeholder="2 ft 3 in to m"
         returnKeyType="done"
       />

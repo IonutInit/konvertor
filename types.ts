@@ -167,18 +167,18 @@ export type ActionType =
   | {
       type: "toggle_favourites_on_home";
     }
-    | {
-      type: "dispatch_typing",
+  | {
+      type: "dispatch_typing";
       payload: {
-        konvertor: string,
-        fromUnit: string[][],
-        fromValue: (number | string)[][],
-        measureType: string[][],
-        measureName: string[],
-        toUnit: string[],
-        message?: string,
-      }
-    }
+        konvertor: string;
+        fromUnit: string[][];
+        fromValue: (number | string)[][];
+        measureType: string[][];
+        measureName: string[];
+        toUnit: string[];
+        message?: string;
+      };
+    };
 
 export type ThemeType = {
   mainColour: string;

@@ -6,7 +6,7 @@ type Props = {
   isFavourite?: boolean;
   mainColour?: string;
   strokeColour?: string;
-  size?: number,
+  size?: number;
 };
 
 const FavouritesIcon = ({

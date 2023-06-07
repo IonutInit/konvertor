@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   LayoutAnimation,
-  PanResponder
+  PanResponder,
 } from "react-native";
 import { useState, useEffect, useLayoutEffect } from "react";
 
@@ -42,7 +42,6 @@ const Settings = ({ navigation }: any) => {
 
   const theme = getTheme();
 
-
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponderCapture: (_, gestureState) => {
       const swipeThreshold = 50;
@@ -57,13 +56,12 @@ const Settings = ({ navigation }: any) => {
           type: "change_tab",
           payload: "Home",
         });
-        navigation.jumpTo("Home")
+        navigation.jumpTo("Home");
         return true;
       }
       return false;
     },
   });
-
 
   useEffect(() => {
     const fetchSettings = async () => {
@@ -114,12 +112,15 @@ const Settings = ({ navigation }: any) => {
       payload: value,
     });
     setThemePicker(false);
+    // setTimeout(() => {
+    //    setThemePicker(false);
+    // }, 500)
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}
-    {...panResponder.panHandlers}
-    >
+    <ScrollView
+      contentContainerStyle={styles.container}
+      {...panResponder.panHandlers}>
       <View style={styles.header}>
         <Pressable onPress={() => navigation.jumpTo("Home")}>
           <BackButton />
@@ -133,14 +134,20 @@ const Settings = ({ navigation }: any) => {
             text={["metric", "imperial"]}
             settingType="metric"
             settingValue={settings.metric}
-            tinyExplanation={["Starts from metric to imperial", "Starts from imperial to metric"]}
+            tinyExplanation={[
+              "Starts from metric to imperial",
+              "Starts from imperial to metric",
+            ]}
           />
           <ToggleButton
             title={"Verbosity"}
             text={["long", "short"]}
             settingType="verbose"
             settingValue={settings.verbose}
-            tinyExplanation={["Units are not abbreviated", "Units are abbreviated"]}
+            tinyExplanation={[
+              "Units are not abbreviated",
+              "Units are abbreviated",
+            ]}
           />
         </View>
       </View>
@@ -178,24 +185,22 @@ const Settings = ({ navigation }: any) => {
         </Pressable>
 
         {themePicker && (
-          <TouchableWithoutFeedback
-            onPress={() => setThemePicker(false)}
-            style={StyleSheet.absoluteFillObject}>
-            <View style={styles.pickerContainer}>
-              <Picker
-                style={styles.picker}
-                selectedValue={themes[settings.theme]}
-                onValueChange={(value) => handleThemePicker(value)}>
-                {themes.map((theme) => (
-                  <Picker.Item key={theme} label={theme} value={theme} />
-                ))}
-              </Picker>
-            </View>
-          </TouchableWithoutFeedback>
+          <View style={styles.pickerContainer}>
+            <Picker
+              style={styles.picker}
+              selectedValue={themes[settings.theme]}
+              onValueChange={(value) => handleThemePicker(value)}>
+              {themes.map((theme) => (
+                <Picker.Item key={theme} label={theme} value={theme} />
+              ))}
+            </Picker>
+          </View>
         )}
       </View>
 
-      <Credentials />
+      <View>
+        <Credentials />
+      </View>
     </ScrollView>
   );
 };

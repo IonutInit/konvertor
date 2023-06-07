@@ -1,4 +1,10 @@
-import { View, Pressable, Image, StyleSheet, LayoutAnimation } from "react-native";
+import {
+  View,
+  Pressable,
+  Image,
+  StyleSheet,
+  LayoutAnimation,
+} from "react-native";
 import { useEffect, useState } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -14,7 +20,7 @@ import FavouritesIcon from "./svgs/FavouriteIcon";
 const AddToFavourites = () => {
   const { state, dispatch } = useAppContext();
 
-  const [size, setSize] = useState(32)
+  const [size, setSize] = useState(32);
 
   const favoriteIndex = state.favourites.findIndex(
     (favorite) =>
@@ -24,12 +30,11 @@ const AddToFavourites = () => {
 
   const handlePresIn = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-    if(favoriteIndex === - 1) {
-       setSize(48);
+    if (favoriteIndex === -1) {
+      setSize(48);
     } else {
-       setSize(64);
+      setSize(64);
     }
-   
   };
 
   const handlePressOut = () => {
@@ -63,14 +68,14 @@ const AddToFavourites = () => {
 
   return (
     <View style={styles.iconContainer}>
-      <Pressable      
+      <Pressable
         onPress={() => handleOnPress(favoriteIndex)}
         onLongPress={() => handleRemoveFavourite(dispatch, favoriteIndex)}
         onPressIn={handlePresIn}
         onPressOut={handlePressOut}
         //disabled={favoriteIndex !== -1}
       >
-        <FavouritesIcon isFavourite={favoriteIndex !== -1} size={size}/>
+        <FavouritesIcon isFavourite={favoriteIndex !== -1} size={size} />
       </Pressable>
     </View>
   );

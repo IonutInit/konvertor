@@ -1,5 +1,7 @@
 import useAppContext from "./useAppContext";
 
+import workColour from "../lib/workColour";
+
 const mainColour: Record<number, string> = {
   0: "#0057ba",
   1: "#000831",
@@ -53,23 +55,6 @@ const name: Record<number, string> = {
 
 //left at combination 60
 
-function workColour(input: string, opacity: number): string {
-  // Remove any leading "#" from the hex color string
-  const color = input.replace("#", "");
-
-  // Convert the hex color to RGB values
-  const red = parseInt(color.substr(0, 2), 16);
-  const green = parseInt(color.substr(2, 2), 16);
-  const blue = parseInt(color.substr(4, 2), 16);
-
-  // Calculate the opacity value
- const hexOpacity = Math.round(255 * opacity);
-
-  // Convert the RGB and opacity values to the hex format
-  return `#${red.toString(16)}${green.toString(16)}${blue.toString(16)}${opacity.toString(16)}`;
-
-}
-
 const getTheme = () => {
   const {
     state: { settings },
@@ -80,8 +65,8 @@ const getTheme = () => {
     mainColour: mainColour[theme],
     gray1: "#F2F2F2",
     gray1Darker: "#E6E6E6",
-    // gray2: workColour(mainColour[theme], 0.5),
-    // gray3: workColour(mainColour[theme], 0.75),
+    // gray2: workColour(mainColour[theme]),
+    // gray3: workColour(mainColour[theme]),
     gray2: "#C2C2C2",
     gray3: "#929292",
     secondaryColour: secondaryColour[theme],

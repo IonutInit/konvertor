@@ -19,7 +19,7 @@ type ToggleButtonPropsType = {
   text: string[];
   settingType: string;
   settingValue: boolean;
-  tinyExplanation: string[],
+  tinyExplanation: string[];
 };
 
 const ToggleButton = ({
@@ -73,7 +73,9 @@ const ToggleButton = ({
         }}
       />
       <Text style={styles.text}>{settingValue ? text[0] : text[1]}</Text>
-      <Text style={styles.tinyExplanation}>{settingValue ? tinyExplanation[0] : tinyExplanation[1]}</Text>
+      <Text style={styles.tinyExplanation}>
+        {settingValue ? tinyExplanation[0] : tinyExplanation[1]}
+      </Text>
     </View>
   );
 };
@@ -106,8 +108,8 @@ const styles = StyleSheet.create({
   tinyExplanation: {
     marginTop: 2,
     fontSize: 10,
-    fontStyle: "italic"
-  }
+    fontStyle: "italic",
+  },
 });
 
 export default ToggleButton;
