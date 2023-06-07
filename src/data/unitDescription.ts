@@ -1,26 +1,5 @@
 //a one-time calculation returning all units arranged in ascending order, for the purpose of toUnit additions returning options smaller than the active unit
 
-// import convert from "convert-units";
-
-// type ArrayElementType = {
-//   name: string;
-//   value: number;
-// };
-
-// function getData(unit: string) {
-//   const conversion = convert()
-//     .from(unit)
-//     .possibilities()
-//     .map((i: string) => ({
-//       name: i,
-//       value: convert(10).from(unit).to(i),
-//     }));
-
-//   return conversion
-//     .sort((a: ArrayElementType, b: ArrayElementType) => b.value - a.value)
-//     .map((obj: ArrayElementType) => obj.name);
-// }
-
 export type UnitDescription = {
   short: string[];
   long: string[];
@@ -83,7 +62,7 @@ const description: DescriptionType = {
     ],
   },
   mass: {
-    short: ["mcg", "mg", "g", "oz", "lb", "kg", "t", "mt"],
+    short: ["mcg", "mg", "g", "oz", "lb", "kg", "stone", "t", "mt"],
     long: [
       "micrograms",
       "milligrams",
@@ -91,6 +70,7 @@ const description: DescriptionType = {
       "ounces",
       "pounds",
       "kilograms",
+      "stones",
       "tons",
       "metric tonnes",
     ],
@@ -100,22 +80,22 @@ const description: DescriptionType = {
       "mm3",
       "cm3",
       "ml",
-      "krm",
+      // "krm",
       "tsp",
-      "tsk",
+      // "tsk",
       "cl",
       "Tbs",
-      "msk",
+      // "msk",
       "in3",
       "fl-oz",
       "dl",
-      "kkp",
+      // "kkp",
       "glas",
       "cup",
       "pnt",
       "qt",
       "l",
-      "kanna",
+      // "kanna",
       "gal",
       "ft3",
       "yd3",
@@ -127,22 +107,22 @@ const description: DescriptionType = {
       "cubic millimeters",
       "cubic centimeters",
       "millilitres",
-      "matskedar",
+      // "matskedar",
       "teaspoons",
-      "teskedar",
+      // "teskedar",
       "centilitres",
       "tablespoons",
-      "matskedar",
+      // "matskedar",
       "cubic inches",
       "fluid ounces",
       "decilitres",
-      "kaffekoppar",
+      // "kaffekoppar",
       "glas",
       "cups",
       "pints",
       "quarts",
       "litres",
-      "kannor",
+      // "kannor",
       "gallons",
       "cubic feet",
       "cubic yards",
@@ -238,10 +218,10 @@ const description: DescriptionType = {
   temperature: {
     short: ["R", "K", "F", "C"],
     long: [
-      "degrees Rankine",
-      "degrees Kelvin",
-      "degrees Fahrenheit",
-      "degrees Celsius",
+      "Rankine",
+      "Kelvin",
+      "Fahrenheit",
+      "Celsius",
     ],
   },
   time: {

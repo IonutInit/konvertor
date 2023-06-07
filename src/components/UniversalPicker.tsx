@@ -1,13 +1,13 @@
+import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
-import { useState, useEffect } from "react";
 
 import { Picker } from "@react-native-picker/picker";
 
 import useAppContext from "../context/useAppContext";
 
-import convert from "convert-units";
-
-import { UnitDescription } from "../data/unitDescription";
+// import convert from "convert-units";
+import convert from "../lib/converter-library/lib";
+import "../lib/converter-library/convert.d.ts"
 
 import getNextUnit from "../lib/getNextUnit";
 import description from "../data/unitDescription";
@@ -94,7 +94,7 @@ const UniversalPicker = ({
     }
   };
 
-  console.log(findUnitKey(optionsSource, description));
+  // console.log(findUnitKey(optionsSource, description));
 
   let allOptions: string[] = [];
 

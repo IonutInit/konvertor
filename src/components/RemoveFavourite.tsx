@@ -1,3 +1,5 @@
+import * as React from "react";
+
 import { Pressable, StyleSheet, LayoutAnimation } from "react-native";
 
 import useAppContext from "../context/useAppContext";

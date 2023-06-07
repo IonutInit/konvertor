@@ -15,6 +15,8 @@ import useAppContext from "../context/useAppContext";
 import handleAddToFavourites from "../hooks/handleAddToFavourites";
 import handleRemoveFavourite from "../hooks/handleRemoveFavourite";
 
+import * as React from 'react';
+
 import FavouritesIcon from "./svgs/FavouriteIcon";
 
 const AddToFavourites = () => {

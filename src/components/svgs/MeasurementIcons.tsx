@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import Length from "./measurement/Length";
 import Area from "./measurement/Area";
 import Mass from "./measurement/Mass";

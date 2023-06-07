@@ -1,6 +1,7 @@
+import React, {Dispatch} from 'react';
+
 import { Picker } from "@react-native-picker/picker";
 import { StyleSheet } from "react-native";
-import { Dispatch } from "react";
 
 import useAppContext from "../context/useAppContext";
 

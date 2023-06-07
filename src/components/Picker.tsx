@@ -1,12 +1,11 @@
+import React, { Dispatch } from "react";
+
 import { Picker } from "@react-native-picker/picker";
 import { StyleSheet } from "react-native";
-import { Dispatch } from "react";
-
 import useAppContext from "../context/useAppContext";
 
 import { ActionType } from "../../types";
 
-import convert from "convert-units";
 import platform from "../data/platform";
 import { revertVerbosity } from "../hooks/handleVerbosity";
 

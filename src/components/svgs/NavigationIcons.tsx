@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import { View, LayoutAnimation } from "react-native";
 import FavouritesIcon from "./navigationIcons/Favourites.Nav.Icon";
 import HomeIcon from "./navigationIcons/Home.Nav.Icon";

@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import MetricIcon from "./toggleButtonIcons/MetricIcon";
 import ImperialIcon from "./toggleButtonIcons/ImperialIcon";
 

@@ -1,9 +1,13 @@
+//@ts-nocheck
+
 import unitCollection from "../data/unitCollection";
 import description from "../data/unitDescription";
 
 import { difficultUnits, difficultUnitsEdited } from "../data/unitCollection";
 
-import convert from "convert-units";
+// import convert from "convert-units";
+import convert from "../lib/converter-library/lib";
+import "../lib/converter-library/convert.d.ts"
 
 type DescriptionType = {
   [key: string]: {

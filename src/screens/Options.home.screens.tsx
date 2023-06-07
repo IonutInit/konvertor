@@ -1,3 +1,4 @@
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   ScrollView,
@@ -8,7 +9,6 @@ import {
   LayoutAnimation,
   TextInput,
 } from "react-native";
-import { useState, useEffect, useRef } from "react";
 
 import useAppContext from "../context/useAppContext";
 import handleOptionPress from "../hooks/handleOptionPress";

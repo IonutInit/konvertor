@@ -1,6 +1,7 @@
+import React, { useState, useEffect } from "react";
+
 import { Text, StyleSheet, View, Pressable } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import React, { useState, useEffect } from "react";
 
 import useAppContext from "../context/useAppContext";
 
@@ -13,7 +14,9 @@ import UniversalPickerUnit from "./UniversalPickerUnit";
 import handleInputChange from "../hooks/handleInputChange";
 import handleFromUnitChange from "../hooks/handleFromUnitChange";
 
-import convert from "convert-units";
+// import convert from "convert-units";
+import convert from "../lib/converter-library/lib";
+import "../lib/converter-library/convert.d.ts"
 import platform from "../data/platform";
 
 import displaySwitchedValues from "../lib/displaySwitchedValues";

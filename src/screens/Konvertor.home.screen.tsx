@@ -1,3 +1,5 @@
+
+import * as React from 'react';
 import {
   View,
   ScrollView,
@@ -24,6 +26,9 @@ import UniversalPicker from "../components/UniversalPicker";
 import Description from "../components/Description";
 
 import getTheme from "../context/theme";
+
+import convert from "../lib/converter-library/lib";
+import "../lib/converter-library/convert.d.ts"
 
 const Konvertor = () => {
   const { state, dispatch } = useAppContext();
@@ -54,7 +59,9 @@ const Konvertor = () => {
     },
   });
 
-  console.log(state);
+  // console.log(state);
+
+  console.log(convert(2).from("stone").to("kg"))
 
   return (
     <KeyboardAvoidingView

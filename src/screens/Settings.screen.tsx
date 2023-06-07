@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   View,
   ScrollView,
@@ -8,7 +9,6 @@ import {
   LayoutAnimation,
   PanResponder,
 } from "react-native";
-import { useState, useEffect, useLayoutEffect } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import getLocalData from "../lib/getLocalData";

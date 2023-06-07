@@ -1,3 +1,4 @@
+import React, { useRef, useState, useEffect } from "react";
 import {
   View,
   Pressable,
@@ -5,7 +6,6 @@ import {
   StyleSheet,
   LayoutAnimation,
 } from "react-native";
-import { useRef, useState, useEffect } from "react";
 
 import useAppContext from "../context/useAppContext";
 

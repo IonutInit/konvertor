@@ -1,16 +1,9 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import { useState } from "react";
+import * as React from 'react';
+
+import { View, Text, StyleSheet } from "react-native";
 import Toggle from "react-native-toggle-element";
 
 import useAppContext from "../context/useAppContext";
-
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { settingsKey } from "../data/storageKeys";
-
-// import ToggleButtonIcons from "./svgs/ToggleButtonIcons";
-
-import metric from "../assets/functionalIcons/metricSystem.png";
-import imperial from "../assets/functionalIcons/imperialSystem.png";
 
 import getTheme from "../context/theme";
 

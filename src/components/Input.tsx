@@ -1,5 +1,5 @@
-import { TextInput, StyleSheet, Keyboard } from "react-native";
 import React, { useRef } from "react";
+import { TextInput, StyleSheet, Keyboard } from "react-native";
 
 type InputProps = {
   componentKey: number;

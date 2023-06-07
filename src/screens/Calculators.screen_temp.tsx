@@ -1,3 +1,6 @@
+
+import * as React from 'react';
+
 import {
   View,
   ScrollView,
@@ -244,11 +247,12 @@ const Calculators = () => {
                 universalPicker.activeFromComponent === i && (
                   <View
                     style={[
-                      { zIndex: universalPicker.calculatorTo ? 3 : 1 }, //doesn't work
-                      {
-                        zIndex:
-                          universalPicker.activeFromComponent === 0 ? 2 : 1,
-                      },
+                      // {backgroundColor: universalPicker.calculatorTo ? "red" : "blue" },
+                    //  {zIndex: universalPicker.calculatorTo ? 3 : 2 }, //code here
+                      // {
+                      //   zIndex:
+                      //     universalPicker.activeFromComponent === 0 ? 2 : 1,
+                      // },
                       styles.universalPickerContainer,
                       {
                         transform: [
@@ -258,6 +262,7 @@ const Calculators = () => {
                               universalPicker.type === "from" ? -125 : 0,
                           },
                         ],
+                        zIndex: universalPicker.calculatorTo ? 3 : 1,
                       },
                     ]}>
                     <UniversalPicker
@@ -350,14 +355,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   universalPickerContainer: {
-    // backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
     width: 250,
     position: "absolute",
     top: "50%",
     left: "50%",
-    zIndex: 1,
+    // zIndex: 1,
     flexDirection: "column",
   },
   toOuterContainer: {

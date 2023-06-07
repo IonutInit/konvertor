@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import { Pressable, LayoutAnimation } from "react-native";
 import {useState} from "react"
 

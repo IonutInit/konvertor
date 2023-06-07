@@ -1,5 +1,6 @@
+import React, {useState} from "react";
+
 import { Pressable, LayoutAnimation } from "react-native";
-import {useState} from "react";
 import useAppContext from "../context/useAppContext";
 import SwitchButton from "./svgs/SwitchButton";
 

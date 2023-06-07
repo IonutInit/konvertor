@@ -1,4 +1,8 @@
-import convert from "convert-units";
+//@ts-nocheck
+
+// import convert from "convert-units";
+import convert from "../lib/converter-library/lib";
+import "../lib/converter-library/convert.d.ts"
 
 const handleDescriptionText = (
   input: string[],

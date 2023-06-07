@@ -1,6 +1,10 @@
+//@ts-nocheck
+
 // duplicate of first part of conversion function, to be used in the temporary calculator components
 
-import convert from "convert-units";
+// import convert from "convert-units";
+import convert from "../lib/converter-library/lib";
+import "../lib/converter-library/convert.d.ts"
 
 const getFromAddition = (
   value: (string | number)[],
