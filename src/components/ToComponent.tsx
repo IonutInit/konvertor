@@ -103,9 +103,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   result: {
-    fontSize: 24,
-    paddingBottom: 5,
-    paddingTop: 5,
+ 
   },
   removeUnitContainer: {
     height: 30,

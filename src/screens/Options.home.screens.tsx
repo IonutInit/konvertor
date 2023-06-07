@@ -120,7 +120,7 @@ const Options = () => {
     );
   };
 
-  //console.log(state);
+  // console.log(state);
 
   // console.log(typing("zdf 2 cm2  m"));
 

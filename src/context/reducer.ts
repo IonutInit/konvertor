@@ -337,6 +337,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
           fromUnit: action.payload.fromUnit,
           fromValue: action.payload.fromValue,
           measureType: action.payload.measureType,
+          measureName: [action.payload.measureName],
           toUnit: action.payload.toUnit
         }
 

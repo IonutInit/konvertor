@@ -42,6 +42,7 @@ const TypingInput = () => {
       const fromUnit = [result.fromUnits!, []]
       const fromValue = [result.fromValues!, []]
       const measureType = [[result.measureType!], []]
+      const measureName = [measureType[0][0].replace(/^\w/, (c) => c.toUpperCase())]
       const toUnit = [result.toUnits!]
    
     dispatch({
@@ -50,6 +51,7 @@ const TypingInput = () => {
         fromUnit,
         fromValue,
         measureType,
+        measureName,
         toUnit,
       }
     })  
@@ -58,7 +60,6 @@ const TypingInput = () => {
     //   type: "change_konvertor",
     //   payload: "konvertor"
     // })
-
     }, 1000);
   };
 
