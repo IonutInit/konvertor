@@ -64,9 +64,12 @@ const ToComponent = () => {
         <Divider />
 
         <View style={styles.pickerContainer}>
-          <Text style={styles.result}>
+          <View style={styles.resultContainer}>
+            <Text style={styles.result}>
             {displaySwitchedValues(result[i], settings.decimals)}
           </Text>
+          </View>
+          
 
           {platform !== "ios" && (
             <ToPicker
@@ -103,6 +106,9 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     alignItems: "center",
+  },
+  resultContainer: {
+
   },
   result: {
     fontSize: 24,

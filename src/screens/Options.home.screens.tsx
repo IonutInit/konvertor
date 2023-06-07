@@ -23,6 +23,9 @@ import FavouritesIcon from "../components/svgs/FavouriteIcon";
 
 import TypingInput from "../components/TypingInput";
 
+import { hexToRgb } from "../lib/workColour";
+import { applyOpacity } from "../lib/workColour";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import getLocalData from "../lib/getLocalData";
 import { favouritesKey } from "../data/storageKeys";
@@ -32,7 +35,7 @@ import getTheme from "../context/theme";
 import { FavouriteType } from "../../types";
 
 import typing from "../lib/typing";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import workColour from "../lib/workColour";
 
 const Options = () => {
   const {
@@ -175,7 +178,7 @@ const Options = () => {
         </ScrollView>
       )}
 
-      {!settings.favouritesOnHome && <TypingInput />}
+      {/* {!settings.favouritesOnHome && <TypingInput />} */}
 
       <View style={styles.outerPressableContainer}>
         {filteredUnitList.map((unit, index) => (

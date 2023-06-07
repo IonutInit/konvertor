@@ -254,19 +254,15 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
 
     case "change_theme":
       const themes = [
-        "Almost All the Reds",
         "A Tablespoon of Black",
-        "Mauve Squared",
         "A Yard of Sienna",
         "An Inch Madder",
         "Slightly Orange",
-        "A Lot of Green",
         "A Cubic Meter of Flowers",
         "Weeks to Seconds",
         "Degrees of Rosolanc",
         "The Yellows",
         "A Bite of Orange",
-        "Kind of Darkish",
         "Voltage",
       ];
       const themeValue = themes.indexOf(action.payload);
