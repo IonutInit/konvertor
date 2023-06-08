@@ -62,7 +62,9 @@ const description: DescriptionType = {
     ],
   },
   mass: {
-    short: ["mcg", "mg", "g", "oz", "lb", "kg", "stone", "t", "mt"],
+    short: ["mcg", "mg", "g", "oz", "lb", "kg", 
+    // "stone", 
+    "t", "mt"],
     long: [
       "micrograms",
       "milligrams",
@@ -70,7 +72,7 @@ const description: DescriptionType = {
       "ounces",
       "pounds",
       "kilograms",
-      "stones",
+      // "stones",
       "tons",
       "metric tonnes",
     ],

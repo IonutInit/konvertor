@@ -61,7 +61,7 @@ const Konvertor = () => {
 
   // console.log(state);
 
-  console.log(convert(2).from("stone").to("kg"))
+  //console.log(convert(2).from("stone").to("kg"))
 
   return (
     <KeyboardAvoidingView

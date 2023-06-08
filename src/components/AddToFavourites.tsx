@@ -32,11 +32,7 @@ const AddToFavourites = () => {
 
   const handlePresIn = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-    if (favoriteIndex === -1) {
-      setSize(48);
-    } else {
-      setSize(64);
-    }
+    setSize(48);
   };
 
   const handlePressOut = () => {
@@ -49,6 +45,7 @@ const AddToFavourites = () => {
     if (i === -1) {
       handleAddToFavourites(dispatch, state);
     }
+    handleRemoveFavourite(dispatch, favoriteIndex)
   };
 
   useEffect(() => {
@@ -72,7 +69,7 @@ const AddToFavourites = () => {
     <View style={styles.iconContainer}>
       <Pressable
         onPress={() => handleOnPress(favoriteIndex)}
-        onLongPress={() => handleRemoveFavourite(dispatch, favoriteIndex)}
+        // onLongPress={() => handleRemoveFavourite(dispatch, favoriteIndex)}
         onPressIn={handlePresIn}
         onPressOut={handlePressOut}
         //disabled={favoriteIndex !== -1}

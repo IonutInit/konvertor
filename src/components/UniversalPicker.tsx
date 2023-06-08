@@ -94,8 +94,6 @@ const UniversalPicker = ({
     }
   };
 
-  // console.log(findUnitKey(optionsSource, description));
-
   let allOptions: string[] = [];
 
   if (filter.length === 0) {
