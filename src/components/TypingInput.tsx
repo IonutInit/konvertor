@@ -30,7 +30,8 @@ const examples = [
   "Ex: 3 kg 245 gr to lb", 
   "Press on the icon button if you want to make these messages disappear",
   "Convert your day into a good day!",
-  "Check out the setting page for more instruction on the available features."
+  "Check out the setting page for more instruction on the available features.",
+  "This is an experimental feature, so expect some misses :)"
 ];
 
 const TypingInput = () => {

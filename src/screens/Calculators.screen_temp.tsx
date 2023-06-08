@@ -155,7 +155,7 @@ const Calculators = () => {
   const bmiHeigthFilter = ["cm", "in", "ft", "ft-us", "yd", "m"];
   const bmiWeigthFilter = ["oz", "lb", "kg"];
 
-  const bmiFilter = ["cm", "in", "ft", "ft-us", "yd", "m", "oz", "lb", "kg"];
+  const bmiFilter = ["cm", "in", "ft", "ft-us", "yd", "m", "m", "oz", "lb", "kg", "kg", "kg", "kg"];
 
   // console.log(state);
 

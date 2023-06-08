@@ -26,7 +26,7 @@ const UniversalPickerUnit = ({
   componentKey = 0,
 }: UniversalPickerUnitProps) => {
   const {
-    state: { universalPicker, fromUnit, konvertor },
+    state: { universalPicker, fromUnit, toUnit, konvertor },
     dispatch,
   } = useAppContext();
 
@@ -79,7 +79,7 @@ const UniversalPickerUnit = ({
 
   const handleLongPress = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-    if (fromUnit[componentKey].length > 1) {
+    if (fromUnit[componentKey].length > 1 || toUnit.length > 1) {
       dispatch({
         type: `remove_${type.toUpperCase()}_value`,
         payload: [componentKey, i],

@@ -1,6 +1,7 @@
+import React, { useReducer, useState, useEffect } from "react";
+
 import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { useReducer, useState, useEffect } from "react";
 
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
@@ -39,6 +40,7 @@ export default function App() {
     verbose: false,
     theme: 1,
     favouritesOnHome: false,
+    typingInputMessages: true,
   };
 
   const [state, dispatch] = useReducer(reducer, appState);
@@ -78,6 +80,7 @@ export default function App() {
 
   return (
     <AppContextProvider state={state} dispatch={dispatch}>
+      <StatusBar style="light"/>
       <View
         style={{
           flex: 1,
@@ -90,9 +93,9 @@ export default function App() {
             flex: 1,
             alignSelf: "center",
             width: platform === "web" ? 600 : "101%",
-            borderWidth: 1,
-            borderColor: theme.gray1,
-            borderRadius: 10,
+            // borderWidth: 1,
+            // borderColor: theme.gray1,
+            // borderRadius: 10,
             shadowColor: theme.gray3,
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.6,
