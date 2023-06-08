@@ -14,7 +14,7 @@ import platform from "../data/platform";
 
 // import convert from "convert-units";
 import convert from "../lib/converter-library/lib";
-import "../lib/converter-library/convert.d.ts"
+import "../lib/converter-library/convert.d.ts";
 import converter from "../lib/converter";
 
 import getNextUnit from "../lib/getNextUnit";
@@ -66,10 +66,9 @@ const ToComponent = () => {
         <View style={styles.pickerContainer}>
           <View style={styles.resultContainer}>
             <Text style={styles.result}>
-            {displaySwitchedValues(result[i], settings.decimals)}
-          </Text>
+              {displaySwitchedValues(result[i], settings.decimals)}
+            </Text>
           </View>
-          
 
           {platform !== "ios" && (
             <ToPicker
@@ -107,9 +106,7 @@ const styles = StyleSheet.create({
   pickerContainer: {
     alignItems: "center",
   },
-  resultContainer: {
-
-  },
+  resultContainer: {},
   result: {
     fontSize: 24,
     paddingBottom: 5,

@@ -47,6 +47,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       return {
         ...state,
         universalPicker: {
+          ...state.universalPicker,
           type: action.payload.type,
           index: action.payload.index,
           position: state.universalPicker.position.map(
@@ -59,6 +60,24 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
           calculatorTo: action.payload.calculatorTo,
         },
       };
+
+    case "toggle_universal_picker_TO":
+      return {
+        ...state,
+        universalPicker: {
+          ...state.universalPicker,
+          calculatorTo: action.payload
+        }
+      }
+
+      case "toggle_universal_picker_TO_modal":
+        return {
+          ...state,
+          universalPicker: {
+            ...state.universalPicker,
+            calculatorToModal: action.payload
+          }
+        }
 
     //-------------------------------
     //-------------------------------

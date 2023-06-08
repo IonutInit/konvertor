@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 import { Pressable, LayoutAnimation } from "react-native";
 import useAppContext from "../context/useAppContext";
@@ -7,7 +7,7 @@ import SwitchButton from "./svgs/SwitchButton";
 const Switch = () => {
   const { state, dispatch } = useAppContext();
 
-  const [size, setSize] = useState(32)
+  const [size, setSize] = useState(32);
 
   const handleSwitch = () => {
     dispatch({
@@ -29,14 +29,13 @@ const Switch = () => {
     setSize(32);
   };
 
-
   return (
-    <Pressable 
-    onPress={handleSwitch} disabled={state.fromUnit[0].length > 3}
-    onPressIn={handlePressIn}
-    onPressOut={handlePressOut}
-    >
-      <SwitchButton isActive={state.fromUnit[0].length <= 3} size={size}/>
+    <Pressable
+      onPress={handleSwitch}
+      disabled={state.fromUnit[0].length > 3}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}>
+      <SwitchButton isActive={state.fromUnit[0].length <= 3} size={size} />
     </Pressable>
   );
 };

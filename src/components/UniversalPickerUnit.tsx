@@ -59,11 +59,11 @@ const UniversalPickerUnit = ({
   };
 
   const workUniversalPicker = () => {
-    let calculatorTo = false;
+    // let calculatorTo = false;
 
-    if (type === "to" && konvertor !== "konvertor") {
-      calculatorTo = true;
-    }
+    // if (type === "to" && konvertor !== "konvertor" && universalPicker.calculatorTo) {
+    //   calculatorTo = true;
+    // }
 
     dispatch({
       type: "work_universal_picker",
@@ -72,7 +72,7 @@ const UniversalPickerUnit = ({
         index: i,
         position: position || [],
         activeFromComponent: componentKey,
-        calculatorTo,
+        calculatorTo: false,
       },
     });
   };
@@ -100,7 +100,9 @@ const UniversalPickerUnit = ({
         onPress={() => workUniversalPicker()}
         onLongPress={handleLongPress}
         onPressIn={handlePresIn}
-        onPressOut={handlePressOut}>
+        onPressOut={handlePressOut}
+        disabled={universalPicker.calculatorTo && konvertor !== "konvertor"}
+        >
         <Text
           style={
             universalPicker.type === ""

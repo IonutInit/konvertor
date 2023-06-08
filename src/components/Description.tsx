@@ -1,6 +1,12 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { View, Text, Pressable, StyleSheet, LayoutAnimation } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  LayoutAnimation,
+} from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
@@ -17,9 +23,9 @@ const Description = () => {
   const theme = getTheme();
 
   const handlePress = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring)
-    addUnit(dispatch, state, "from", 0)
-  }
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    addUnit(dispatch, state, "from", 0);
+  };
 
   return (
     <View style={styles.outerContainer}>

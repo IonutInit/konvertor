@@ -1,4 +1,4 @@
-declare module 'convert' {
+declare module "convert" {
   interface ConvertFunction {
     (value?: number): ConvertChain;
     measures(): string[];
@@ -8,7 +8,7 @@ declare module 'convert' {
   interface ConvertChain {
     from(unit: string): ConvertChain;
     to(unit: string): number;
-    toBest(options?: { exclude?: string[], cutOffNumber?: number }): number;
+    toBest(options?: { exclude?: string[]; cutOffNumber?: number }): number;
     possibilities(measure?: string): string[];
     describe(unit: string): ConversionDescription;
     list(measure?: string): ConversionDescription[];

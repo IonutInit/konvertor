@@ -1,4 +1,4 @@
-import React, {Dispatch} from 'react';
+import React, { Dispatch } from "react";
 
 import { Picker } from "@react-native-picker/picker";
 import { StyleSheet } from "react-native";

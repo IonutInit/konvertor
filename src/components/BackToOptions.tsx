@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 import { View, Pressable, Image, StyleSheet } from "react-native";
 

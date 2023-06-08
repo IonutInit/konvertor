@@ -1,7 +1,7 @@
-import * as React from 'react';
+import * as React from "react";
 
 import { Pressable, LayoutAnimation } from "react-native";
-import {useState} from "react"
+import { useState } from "react";
 
 import useAppContext from "../context/useAppContext";
 
@@ -10,7 +10,7 @@ import ArithmeticOperatorButton from "./svgs/ArithmeticOperatorButton";
 const ArithmeticOperator = () => {
   const { state, dispatch } = useAppContext();
 
-  const [size, setSize] = useState(40)
+  const [size, setSize] = useState(40);
 
   const handlePressIn = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
@@ -30,9 +30,8 @@ const ArithmeticOperator = () => {
         })
       }
       onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
-      >
-      <ArithmeticOperatorButton isAddition={state.addition} size={size}/>
+      onPressOut={handlePressOut}>
+      <ArithmeticOperatorButton isAddition={state.addition} size={size} />
     </Pressable>
   );
 };

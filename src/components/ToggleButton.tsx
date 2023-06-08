@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 import { View, Text, StyleSheet } from "react-native";
 import Toggle from "react-native-toggle-element";

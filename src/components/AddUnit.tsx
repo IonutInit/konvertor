@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 import { Pressable, LayoutAnimation } from "react-native";
 
@@ -13,14 +13,13 @@ type AddUnitProps = {
   componentKey?: number;
 };
 
-
 const AddUnit = ({ type, componentKey = 0 }: AddUnitProps) => {
   const { state, dispatch } = useAppContext();
 
   const handlePress = () => {
     // LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
     addUnit(dispatch, state, type, componentKey);
-  }
+  };
 
   return (
     <Pressable onPress={handlePress}>

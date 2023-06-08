@@ -4,7 +4,7 @@
 
 // import convert from "convert-units";
 import convert from "../lib/converter-library/lib";
-import "../lib/converter-library/convert.d.ts"
+import "../lib/converter-library/convert.d.ts";
 
 const getFromAddition = (
   value: (string | number)[],

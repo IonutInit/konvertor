@@ -62,9 +62,17 @@ const description: DescriptionType = {
     ],
   },
   mass: {
-    short: ["mcg", "mg", "g", "oz", "lb", "kg", 
-    // "stone", 
-    "t", "mt"],
+    short: [
+      "mcg",
+      "mg",
+      "g",
+      "oz",
+      "lb",
+      "kg",
+      // "stone",
+      "t",
+      "mt",
+    ],
     long: [
       "micrograms",
       "milligrams",
@@ -219,12 +227,7 @@ const description: DescriptionType = {
   },
   temperature: {
     short: ["R", "K", "F", "C"],
-    long: [
-      "Rankine",
-      "Kelvin",
-      "Fahrenheit",
-      "Celsius",
-    ],
+    long: ["Rankine", "Kelvin", "Fahrenheit", "Celsius"],
   },
   time: {
     short: ["ns", "mu", "ms", "s", "min", "h", "d", "week", "month", "year"],

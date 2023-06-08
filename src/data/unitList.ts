@@ -80,14 +80,14 @@ const unitList = [
     default: ["km/h", "m/h"],
     primary: true,
   },
-  // {
-  //   displayName: "Speed Calculator",
-  //   name: "speedCalc",
-  //   extra: true,
-  //   measureType: [["length"], ["time"]],
-  //   measureName: [["Length"], ["Time"]],
-  //   primary: true,
-  // },
+  {
+    displayName: "Speed Calculator",
+    name: "speedCalc",
+    extra: true,
+    measureType: [["length"], ["time"]],
+    measureName: [["Length"], ["Time"]],
+    primary: true,
+  },
   {
     displayName: "Pace",
     name: "pace",

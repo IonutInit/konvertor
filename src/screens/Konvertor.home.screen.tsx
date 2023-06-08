@@ -1,5 +1,4 @@
-
-import * as React from 'react';
+import * as React from "react";
 import {
   View,
   ScrollView,
@@ -28,7 +27,7 @@ import Description from "../components/Description";
 import getTheme from "../context/theme";
 
 import convert from "../lib/converter-library/lib";
-import "../lib/converter-library/convert.d.ts"
+import "../lib/converter-library/convert.d.ts";
 
 const Konvertor = () => {
   const { state, dispatch } = useAppContext();

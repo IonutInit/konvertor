@@ -15,7 +15,7 @@ import useAppContext from "../context/useAppContext";
 import handleAddToFavourites from "../hooks/handleAddToFavourites";
 import handleRemoveFavourite from "../hooks/handleRemoveFavourite";
 
-import * as React from 'react';
+import * as React from "react";
 
 import FavouritesIcon from "./svgs/FavouriteIcon";
 
@@ -45,7 +45,7 @@ const AddToFavourites = () => {
     if (i === -1) {
       handleAddToFavourites(dispatch, state);
     }
-    handleRemoveFavourite(dispatch, favoriteIndex)
+    handleRemoveFavourite(dispatch, favoriteIndex);
   };
 
   useEffect(() => {

@@ -1,5 +1,4 @@
-
-import * as React from 'react';
+import * as React from "react";
 import { Svg, Path, Circle } from "react-native-svg";
 
 import { SvgProps } from "../NavigationIcons";

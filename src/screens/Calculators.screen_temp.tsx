@@ -1,5 +1,4 @@
-
-import * as React from 'react';
+import * as React from "react";
 
 import {
   View,
@@ -10,6 +9,7 @@ import {
   KeyboardAvoidingView,
   PanResponder,
   LayoutAnimation,
+  Modal,
 } from "react-native";
 import { useEffect, useState } from "react";
 
@@ -60,6 +60,8 @@ const Calculators = () => {
     state,
     dispatch,
   } = useAppContext();
+
+  const [isToPicker, setIsToPicker] = useState(false);
 
   // similar functionality as in other screens, make into a hook
   const panResponder = PanResponder.create({
@@ -180,121 +182,133 @@ const Calculators = () => {
     return Number(result).toFixed(settings.decimals);
   };
 
+
+  console.log(universalPicker.calculatorTo)
+
   return (
     <KeyboardAvoidingView
-    behavior={platform === "ios" ? "padding" : "height"}
-    keyboardVerticalOffset={100}
-    >
+      behavior={platform === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={100}>
       <ScrollView
-      contentContainerStyle={styles.scrollContainer}
-      {...panResponder.panHandlers}>
-      <View style={styles.header}>
-        <BackFromKonverter />
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{unitData.displayName}</Text>
+        contentContainerStyle={styles.scrollContainer}
+        {...panResponder.panHandlers}>
+        <View style={styles.header}>
+          <BackFromKonverter />
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{unitData.displayName}</Text>
+          </View>
         </View>
-      </View>
 
-      <View style={styles.descriptionOuterContainer}>
-        <View
-          style={[
-            styles.descriptionInnerContainer,
-            { backgroundColor: theme.mainColour },
-          ]}>
-          <Text style={[styles.descriptionText, { color: theme.gray1 }]}>
-            {handleDescriptionText(fromUnit[0], true, true)}
-          </Text>
-          <Text style={[styles.descriptionText, { color: theme.gray1 }]}>
-            {handleDescriptionText(fromUnit[1], true, true)}
-          </Text>
-          {!["bmi", "weightLoss"].includes(unitData.name) && (
-            <View>
-              <View
-                style={[
-                  { height: 1 },
-                  { width: "100%" },
-                  { backgroundColor: theme.gray1 },
-                  { marginVertical: 3 },
-                ]}></View>
-              <Text style={[styles.descriptionText, { color: theme.gray1 }]}>
-                {handleDescriptionText(toUnit, true, true)}
-              </Text>
-            </View>
-          )}
-        </View>
-      </View>
-
-      <View>
-        {fromValue.map((from, i) => {
-          return (
-            <View key={i} style={styles.firstComponent}>
-              <View style={styles.componentHeader}>
-                <View style={styles.measureNameComponent}>
-                  <Text style={styles.measureNameText}>
-                    {unitData.measureName![i]}
-                  </Text>
-                </View>
-                <AddUnit type="from" componentKey={i} />
+        <View style={styles.descriptionOuterContainer}>
+          <View
+            style={[
+              styles.descriptionInnerContainer,
+              { backgroundColor: theme.mainColour },
+            ]}>
+            <Text style={[styles.descriptionText, { color: theme.gray1 }]}>
+              {handleDescriptionText(fromUnit[0], true, true)}
+            </Text>
+            <Text style={[styles.descriptionText, { color: theme.gray1 }]}>
+              {handleDescriptionText(fromUnit[1], true, true)}
+            </Text>
+            {!["bmi", "weightLoss"].includes(unitData.name) && (
+              <View>
+                <View
+                  style={[
+                    { height: 1 },
+                    { width: "100%" },
+                    { backgroundColor: theme.gray1 },
+                    { marginVertical: 3 },
+                  ]}></View>
+                <Text style={[styles.descriptionText, { color: theme.gray1 }]}>
+                  {handleDescriptionText(toUnit, true, true)}
+                </Text>
               </View>
-              <FromComponent
-                measureType={measureType![i][0]}
-                componentKey={i}
-                filter={konvertor === "bmi" ? bmiFilter : []}
-              />
-
-              {platform === "ios" &&
-                universalPicker.type !== "" &&
-                universalPicker.activeFromComponent === i && (
-                  <View
-                    style={[
-                      // {backgroundColor: universalPicker.calculatorTo ? "red" : "blue" },
-                    //  {zIndex: universalPicker.calculatorTo ? 3 : 2 }, //code here
-                      // {
-                      //   zIndex:
-                      //     universalPicker.activeFromComponent === 0 ? 2 : 1,
-                      // },
-                      styles.universalPickerContainer,
-                      {
-                        transform: [
-                          { translateX: -125 },
-                          {
-                            translateY:
-                              universalPicker.type === "from" ? -125 : 0,
-                          },
-                        ],
-                        zIndex: universalPicker.calculatorTo ? 3 : 1,
-                      },
-                    ]}>
-                    <UniversalPicker
-                      componentKey={i}
-                      top={0}
-                      filter={konvertor === "bmi" ? bmiFilter : []}
-                    />
-                  </View>
-                )}
-            </View>
-          );
-        })}
-      </View>
-
-      <View style={styles.toOuterContainer}>
-        <View
-          style={[
-            styles.toContainer,
-            { borderColor: theme.gray2, shadowColor: theme.gray2 },
-          ]}>
-          <Divider />
-          <Text style={styles.result}>{resultToDisplay()}</Text>
-          {toUnit[0] !== "mVA" && (
-            <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />
-          )}
+            )}
+          </View>
         </View>
-      </View>
-    </ScrollView>
+
+        <View>
+          {fromValue.map((from, i) => {
+            return (
+              <View key={i} style={styles.firstComponent}>
+                <View style={styles.componentHeader}>
+                  <View style={styles.measureNameComponent}>
+                    <Text style={styles.measureNameText}>
+                      {unitData.measureName![i]}
+                    </Text>
+                  </View>
+                  <AddUnit type="from" componentKey={i} />
+                </View>
+                <FromComponent
+                  measureType={measureType![i][0]}
+                  componentKey={i}
+                  filter={konvertor === "bmi" ? bmiFilter : []}
+                />
+
+                {platform === "ios" &&
+                  universalPicker.type !== "" &&
+                  universalPicker.activeFromComponent === i &&
+                  !universalPicker.calculatorTo && (
+                    <View
+                      style={[
+                        styles.universalPickerContainer,
+                        {
+                          transform: [
+                            { translateX: -125 },
+                            {
+                              translateY:
+                                universalPicker.type === "from" ? -125 : 0,
+                            },
+                          ],
+                          zIndex: universalPicker.calculatorTo ? 3 : 1,
+                        },
+                      ]}>
+                      <UniversalPicker
+                        componentKey={i}
+                        top={0}
+                        filter={konvertor === "bmi" ? bmiFilter : []}
+                      />
+                    </View>
+                  )}
+              </View>
+            );
+          })}
+        </View>
+
+  {  universalPicker.calculatorTo && <Modal visible={isToPicker} transparent>
+          <View style={styles.modalContainer}>
+            <UniversalPicker
+              componentKey={0}
+              top={0}
+              filter={konvertor === "bmi" ? bmiFilter : []}
+            />
+            {/* <Pressable
+              style={styles.closeButton}
+              onPress={() => setIsToPicker(false)}>
+              <Text style={styles.closeButtonText}>Close</Text>
+            </Pressable> */}
+          </View>
+        </Modal>}
+
+        <View style={styles.toOuterContainer}>
+          <View
+            style={[
+              styles.toContainer,
+              { borderColor: theme.gray2, shadowColor: theme.gray2 },
+            ]}>
+            <Divider />
+            <Text style={styles.result}>{resultToDisplay()}</Text>
+            {toUnit[0] !== "mVA" && (
+              <Pressable onPress={() => setIsToPicker(true)}>
+                 <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />
+              </Pressable>
+             
+            )}
+          </View>
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
-
-
-    
   );
 };
 
@@ -386,6 +400,23 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     paddingTop: 5,
     marginBottom: 5,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "red",
+    zIndex: 5,
+  },
+  closeButton: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: "white",
+    borderRadius: 8,
+  },
+  closeButtonText: {
+    color: "black",
+    fontWeight: "bold",
   },
 });
 

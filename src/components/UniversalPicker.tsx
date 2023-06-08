@@ -7,7 +7,7 @@ import useAppContext from "../context/useAppContext";
 
 // import convert from "convert-units";
 import convert from "../lib/converter-library/lib";
-import "../lib/converter-library/convert.d.ts"
+import "../lib/converter-library/convert.d.ts";
 
 import getNextUnit from "../lib/getNextUnit";
 import description from "../data/unitDescription";
@@ -139,6 +139,13 @@ const UniversalPicker = ({
           iterator: universalPicker.index!,
         },
       });
+      
+      // if(universalPicker.calculatorTo) {
+      //   dispatch({
+      //     type: "toggle_universal_picker_TO",
+      //     payload: false,
+      //   })
+      // }
     }
 
     setSelectedValue(option as string);
@@ -153,7 +160,7 @@ const UniversalPicker = ({
   };
 
   return (
-    <Picker
+     <Picker
       style={[
         styles.picker,
         { top },

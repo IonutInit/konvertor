@@ -38,6 +38,7 @@ export type AppStateType = {
     position: [number, number][];
     activeFromComponent: number;
     calculatorTo: boolean; // used only in verbosity for TO in calculators
+    calculatorToModal: boolean;
   };
   settings: SettingsType;
   favourites: FavouriteType[];
@@ -178,7 +179,15 @@ export type ActionType =
         toUnit: string[];
         message?: string;
       };
-    };
+    }
+    | {
+      type: "toggle_universal_picker_TO",
+      payload: boolean,
+    }
+    | {
+      type: "toggle_universal_picker_TO_modal",
+      payload: boolean,
+    }
 
 export type ThemeType = {
   mainColour: string;

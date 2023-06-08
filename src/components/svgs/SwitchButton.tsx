@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 import { Svg, Path } from "react-native-svg";
 
@@ -6,7 +6,7 @@ import getTheme from "../../context/theme";
 
 type Props = {
   isActive?: boolean;
-  size?: number,
+  size?: number;
 };
 
 const SwitchButton = ({ isActive = true, size = 32 }: Props) => {

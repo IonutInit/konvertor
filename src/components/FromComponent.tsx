@@ -16,7 +16,7 @@ import handleFromUnitChange from "../hooks/handleFromUnitChange";
 
 // import convert from "convert-units";
 import convert from "../lib/converter-library/lib";
-import "../lib/converter-library/convert.d.ts"
+import "../lib/converter-library/convert.d.ts";
 import platform from "../data/platform";
 
 import displaySwitchedValues from "../lib/displaySwitchedValues";
