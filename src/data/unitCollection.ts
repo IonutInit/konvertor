@@ -4,11 +4,11 @@ import description from "./unitDescription";
 
 import { DescriptionType } from "./unitDescription";
 
-const getCollection = (description: DescriptionType) => {
+const getCollection = (description: DescriptionType, type: string) => {
   const collection: string[] = [];
   for (const key in description) {
     const unitDescription = description[key];
-    collection.push(...unitDescription.short);
+    collection.push(...unitDescription[type]);
   }
   return collection;
 };
@@ -46,7 +46,9 @@ const editDifficultUnits = (input: string[]): string[] => {
   return result;
 };
 
-const unitCollection = getCollection(description);
+const unitCollection = getCollection(description, "short");
+
+export const unitCollectionLong = getCollection(description, "long");
 
 export const difficultUnits = getDifficultUnits(unitCollection);
 export const difficultUnitsEdited = editDifficultUnits(difficultUnits);

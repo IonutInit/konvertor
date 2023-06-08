@@ -12,8 +12,6 @@ const KeyboardIcon = ({
   size = 32,
   mainColour = getTheme().mainColour,
 }: Props) => {
-  const theme = getTheme();
-
   return (
     <Svg
       style={{

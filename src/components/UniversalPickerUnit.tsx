@@ -101,8 +101,7 @@ const UniversalPickerUnit = ({
         onLongPress={handleLongPress}
         onPressIn={handlePresIn}
         onPressOut={handlePressOut}
-        disabled={universalPicker.calculatorTo && konvertor !== "konvertor"}
-        >
+        disabled={universalPicker.calculatorTo && konvertor !== "konvertor"}>
         <Text
           style={
             universalPicker.type === ""

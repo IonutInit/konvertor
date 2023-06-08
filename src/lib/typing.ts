@@ -3,7 +3,11 @@
 import unitCollection from "../data/unitCollection";
 import description from "../data/unitDescription";
 
-import { difficultUnits, difficultUnitsEdited } from "../data/unitCollection";
+import {
+  difficultUnits,
+  difficultUnitsEdited,
+  unitCollectionLong,
+} from "../data/unitCollection";
 
 // import convert from "convert-units";
 import convert from "../lib/converter-library/lib";
@@ -22,14 +26,13 @@ const typing = (input: string) => {
   // potential message to be displayed
   let message = "";
 
-  input = "fff " + input + "0 fff"
+  input = ("fff " + input + "0 fff").toLowerCase();
   // this is to help further down the line, when the order of strings and numbers is taken into conideration
 
   // create array from the input string
   const inputArray = input.split(/\s+/).filter((str) => str.trim() !== "");
 
-
-    // difficult units names, such as m2 or cm3 are edited
+  // difficult units names, such as m2 or cm3 are edited
 
   function replaceDifficultUnits(
     input: string[],
@@ -83,7 +86,7 @@ const typing = (input: string) => {
 
   const purifiedArray = separateLettersFromNumber(madeLessDifficult);
 
-   // returning difficult unit names to their original value
+  // returning difficult unit names to their original value
   function restoreDifficultUnits(
     input: (string | number)[],
     difficultCollection: string[],
@@ -111,7 +114,7 @@ const typing = (input: string) => {
     difficultUnitsEdited
   );
 
-    // all of the above have been returned as a string
+  // all of the above have been returned as a string
   // now we are converting numbers into numbers
   for (let i = 0; i < restored.length; i++) {
     const element: string | number = restored[i];
@@ -126,7 +129,6 @@ const typing = (input: string) => {
   const fromRaw = restored.slice(0, toIndex);
   const toRaw = toIndex === -1 ? [] : purifiedArray.slice(toIndex + 1);
 
-   
   // first cleanup of FROM: removal of all strings not preceded by a number, and all numbers not having a string in front
   function cleanUp(array: (number | string)[]) {
     for (let i = array.length - 1; i >= 0; i--) {
@@ -144,7 +146,61 @@ const typing = (input: string) => {
 
   const rawFromCleaned = cleanUp(fromRaw);
 
-    // intersecting FROM with the unit collection, and eliminating all strings not pertaining to the collection
+  // looking for long or singular units as they might have been spoken and turning them into compatible, short units
+  function optimiseStep(
+    input: string[],
+    lookupArray: string[],
+    returnShortened: string[]
+  ): string[] {
+    return input.map((item, index) => {
+      const lookupIndex = lookupArray.indexOf(item);
+      if (lookupIndex !== -1) {
+        return returnShortened[lookupIndex];
+      }
+      return item;
+    });
+  }
+
+  function optimise(a: string[], b: string[], c: string[]) {
+    let result = optimiseStep(a, b, c);
+
+    const additionalCases = [
+      [["kilometres"], ["km",]],
+      // [["kilometre"], ["km"]]
+      //ft ' & in '' !!!
+    ];
+
+    let i = 0;
+    while (i < additionalCases.length) {
+      result = optimiseStep(
+        result,
+        additionalCases[i][0],
+        additionalCases[i][1]
+      );
+      i++;
+    }
+
+    return result;
+  }
+
+  const optimisedFrom = optimise(
+    rawFromCleaned,
+    unitCollectionLong,
+    unitCollection
+  );
+
+  //  let shortenedFrom = shorten(rawFromCleaned, unitCollectionLong, unitCollection)
+  //  shortenedFrom = shorten(shortenedFrom, ["kilometres"], ["km"])
+
+  // function replaceQuotes(str: string): string {
+  //   const replacedSingleQuotes = str.replace(/'/g, 'ft');
+  //   const replacedDoubleQuotes = replacedSingleQuotes.replace(/"/g, 'in');
+  //   return replacedDoubleQuotes;
+  // }
+
+  // const shortened2 = replaceQuotes(shortened)
+
+  // intersecting FROM with the unit collection, and eliminating all strings not pertaining to the collection
   function removeNonUnits(input: (string | number)[], collection: string[]) {
     return input.filter((element) => {
       if (typeof element === "string") {
@@ -153,7 +209,7 @@ const typing = (input: string) => {
       return true;
     });
   }
-  const fromIntersected = removeNonUnits(rawFromCleaned, unitCollection);
+  const fromIntersected = removeNonUnits(optimisedFrom, unitCollection);
 
   // separating the intersected FROM into strings and numbers
 
@@ -167,10 +223,12 @@ const typing = (input: string) => {
   const fromValuesRaw = separateElements(fromIntersected).numbers as number[];
 
   // finally, only those values which have a unit are kept in the values array
-  const fromValues_All = fromValuesRaw.slice(0, fromUnits_All.length);
+  let fromValues_All = fromValuesRaw.slice(0, fromUnits_All.length);
+  
 
   //if there are no available FROM values, a notifications is returned
   if (fromValues_All.length === 0) {
+    // fromValues_All = [...fromValues_All, 1]
     message = "Hm... Something doesn't feel right. Please try again";
     return {
       success: false,
@@ -178,8 +236,9 @@ const typing = (input: string) => {
     };
   }
 
-  // searching for the descriptions of FROM units
+  console.log(fromValues_All)
 
+  // searching for the descriptions of FROM units
   function findMeasureTypes(
     input: string[],
     description: DescriptionType
@@ -252,14 +311,9 @@ const typing = (input: string) => {
   const fromUnits = filterByMeasure(fromUnits_All, fromTypes, measureType!);
   let fromValues = filterByMeasure(fromValues_All, fromTypes, measureType!);
 
-  if (fromValues.length === 0) {
-    fromValues = 1
-  }
-
-  console.log(fromValues.length)
 
   //Moving on to TO
-  // if empty, it will be assigned a toBest() value for the largest FROM 
+  // if empty, it will be assigned a toBest() value for the largest FROM
   function findLargestFrom(input: string[], lookUp: string[]): string | null {
     let highestIndex = -1;
     let result: string | null = null;
@@ -274,27 +328,41 @@ const typing = (input: string) => {
     return result;
   }
 
-  
-
   const handleTo = (input: (string | number)[]) => {
-      if(input.length === 0) {
-      const largestFrom = findLargestFrom(fromUnits, description[measureType].short)
-      return [convert(fromValues[fromUnits.indexOf(largestFrom)]).from(largestFrom).toBest().unit]
+    if (input.length === 0) {
+      const largestFrom = findLargestFrom(
+        fromUnits,
+        description[measureType].short
+      );
+      return [
+        convert(fromValues[fromUnits.indexOf(largestFrom)])
+          .from(largestFrom)
+          .toBest().unit,
+      ];
       // in order for toBest() to work properly, it also needs the value
       // x in fromValue(x) looks for the index of the largestFrom in fromValues and returns the value
     }
 
-
     // if not empty...
     // removing numbers from TO...
     const toRawStrings = separateElements(input).strings as string[];
-    
-    // // ...then intersecting TO with the unit collection, and eliminating all strings not pertaining to the collection
-    const toIntersectedOnce = removeNonUnits(toRawStrings, unitCollection);
+
+    // getting the compatible, short spelling
+    const optmisedTo = optimise(
+      toRawStrings,
+      unitCollectionLong,
+      unitCollection
+    );
+
+    // let shortenedTo = shorten(toRawStrings, unitCollectionLong, unitCollection)
+    // shortenedTo = shorten(shortenedTo, ["kilometres"], ["km"])
+
+    // ...then intersecting TO with the unit collection, and eliminating all strings not pertaining to the collection
+    const toIntersectedOnce = removeNonUnits(optmisedTo, unitCollection);
 
     // ...then intersecting the results with onlt the possible options of the already established measureType
     const toIntersected = removeNonUnits(
-      toRawStrings,
+      optmisedTo,
       description[measureType!].short
     );
 
@@ -312,7 +380,7 @@ const typing = (input: string) => {
 
   const measureName = measureType!.replace(/^\w/, (c) => c.toUpperCase());
 
-   return {
+  return {
     success,
     message,
     fromUnits,

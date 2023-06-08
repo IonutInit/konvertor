@@ -23,9 +23,6 @@ import FavouritesIcon from "../components/svgs/FavouriteIcon";
 
 import TypingInput from "../components/TypingInput";
 
-import { hexToRgb } from "../lib/workColour";
-import { applyOpacity } from "../lib/workColour";
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import getLocalData from "../lib/getLocalData";
 import { favouritesKey } from "../data/storageKeys";
@@ -34,8 +31,15 @@ import getTheme from "../context/theme";
 
 import { FavouriteType } from "../../types";
 
+import convert from "../lib/converter-library/lib";
+import "../lib/converter-library/convert.d.ts";
+
 import typing from "../lib/typing";
-import workColour from "../lib/workColour";
+
+type ArrayElementType = {
+  name: string;
+  value: number;
+};
 
 const Options = () => {
   const {
@@ -115,7 +119,8 @@ const Options = () => {
 
   // console.log(state);
 
-  console.log(typing("ft to m"));
+  // console.log(typing("1 km/s to ft/min"));
+   console.log(typing("1 km to ft in"))
 
   const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary

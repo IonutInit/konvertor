@@ -182,8 +182,7 @@ const Calculators = () => {
     return Number(result).toFixed(settings.decimals);
   };
 
-
-  console.log(universalPicker.calculatorTo)
+  console.log(universalPicker.calculatorTo);
 
   return (
     <KeyboardAvoidingView
@@ -276,20 +275,22 @@ const Calculators = () => {
           })}
         </View>
 
-  {  universalPicker.calculatorTo && <Modal visible={isToPicker} transparent>
-          <View style={styles.modalContainer}>
-            <UniversalPicker
-              componentKey={0}
-              top={0}
-              filter={konvertor === "bmi" ? bmiFilter : []}
-            />
-            {/* <Pressable
+        {universalPicker.calculatorTo && (
+          <Modal visible={isToPicker} transparent>
+            <View style={styles.modalContainer}>
+              <UniversalPicker
+                componentKey={0}
+                top={0}
+                filter={konvertor === "bmi" ? bmiFilter : []}
+              />
+              {/* <Pressable
               style={styles.closeButton}
               onPress={() => setIsToPicker(false)}>
               <Text style={styles.closeButtonText}>Close</Text>
             </Pressable> */}
-          </View>
-        </Modal>}
+            </View>
+          </Modal>
+        )}
 
         <View style={styles.toOuterContainer}>
           <View
@@ -301,9 +302,8 @@ const Calculators = () => {
             <Text style={styles.result}>{resultToDisplay()}</Text>
             {toUnit[0] !== "mVA" && (
               <Pressable onPress={() => setIsToPicker(true)}>
-                 <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />
+                <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />
               </Pressable>
-             
             )}
           </View>
         </View>

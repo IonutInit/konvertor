@@ -139,7 +139,7 @@ const UniversalPicker = ({
           iterator: universalPicker.index!,
         },
       });
-      
+
       // if(universalPicker.calculatorTo) {
       //   dispatch({
       //     type: "toggle_universal_picker_TO",
@@ -160,7 +160,7 @@ const UniversalPicker = ({
   };
 
   return (
-     <Picker
+    <Picker
       style={[
         styles.picker,
         { top },

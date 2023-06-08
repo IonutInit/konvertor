@@ -66,18 +66,18 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         ...state,
         universalPicker: {
           ...state.universalPicker,
-          calculatorTo: action.payload
-        }
-      }
+          calculatorTo: action.payload,
+        },
+      };
 
-      case "toggle_universal_picker_TO_modal":
-        return {
-          ...state,
-          universalPicker: {
-            ...state.universalPicker,
-            calculatorToModal: action.payload
-          }
-        }
+    case "toggle_universal_picker_TO_modal":
+      return {
+        ...state,
+        universalPicker: {
+          ...state.universalPicker,
+          calculatorToModal: action.payload,
+        },
+      };
 
     //-------------------------------
     //-------------------------------

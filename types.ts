@@ -180,14 +180,14 @@ export type ActionType =
         message?: string;
       };
     }
-    | {
-      type: "toggle_universal_picker_TO",
-      payload: boolean,
+  | {
+      type: "toggle_universal_picker_TO";
+      payload: boolean;
     }
-    | {
-      type: "toggle_universal_picker_TO_modal",
-      payload: boolean,
-    }
+  | {
+      type: "toggle_universal_picker_TO_modal";
+      payload: boolean;
+    };
 
 export type ThemeType = {
   mainColour: string;
