@@ -35,7 +35,7 @@ metric = {
       plural: 'Metric Tonnes'
     },
     to_anchor: 1000000
-  }
+  },
 };
 
 imperial = {
@@ -60,13 +60,13 @@ imperial = {
     },
     to_anchor: 2000
   },
-  stone: {
-    name: {
-      singular: 'Stone',
-      plural: 'Stones'
-    },
-    to_anchor: 14
-  }
+  // st: {
+  //   name: {
+  //     singular: 'Stone',
+  //     plural: 'Stones'
+  //   },
+  //   to_anchor: 14
+  // }
 };
 
 module.exports = {

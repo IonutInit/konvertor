@@ -357,6 +357,25 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         toUnit: action.payload.toUnit,
       };
 
+      case "toggle_typing_input_messages":
+        const initialSetting = state.settings.typingInputMessages
+
+        const updatedSetting = {
+          ...state.settings,
+          typingInputMessages: !initialSetting
+        }
+
+        try {
+          const jsonValue = JSON.stringify(updatedSetting);
+          AsyncStorage.setItem(settingsKey, jsonValue);
+        } catch (e) {}
+
+        return {
+          ...state,
+          settings: updatedSetting,
+        }
+
+
     default:
       return state;
   }

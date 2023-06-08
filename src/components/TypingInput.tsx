@@ -25,10 +25,16 @@ type TypingResult = {
   toUnits?: string;
 };
 
-const examples = ["1 m ft", "3 kg 245 gr to lb"];
+const examples = [
+  "Ex: 1 m to ft", 
+  "Ex: 3 kg 245 gr to lb", 
+  "Press on the icon button if you want to make these messages disappear",
+  "Convert your day into a good day!",
+  "Check out the setting page for more instruction on the available features."
+];
 
 const TypingInput = () => {
-  const { state, dispatch } = useAppContext();
+  const { state: {settings}, dispatch } = useAppContext();
 
   const theme = getTheme();
 
@@ -80,14 +86,19 @@ const TypingInput = () => {
       });
 
       setKeyboardSize(32);
-    }, 100);
+    }, 0);
   };
 
   return (
     <View style={styles.typingContainer}>
       <View style={styles.inputContainer}>
         <View style={styles.keyboardIconContainer}>
-          <KeyboardIcon size={keyboardSize} mainColour={theme.gray2} />
+          <Pressable onPress={() => dispatch({
+            type: "toggle_typing_input_messages"
+          })}>
+             <KeyboardIcon size={keyboardSize} mainColour={settings.typingInputMessages? "#D1D1D1" : "#C8C8C8"} />
+          </Pressable>
+         
         </View>
 
         <View style={styles.clearTextIconContainer}>
@@ -120,15 +131,18 @@ const TypingInput = () => {
         />
       </View>
 
-      {!homeTypingMessage && (
+      {!homeTypingMessage && settings.typingInputMessages && (
+
+       <View style={styles.exampleTextContainer}>
         <Text
           style={[
-            { marginTop: 5 },
+           styles.exampleText,
             { color: theme.gray2 },
-            { fontStyle: "italic" },
           ]}>
-          Ex: {examples[Math.floor(Math.random() * examples.length)]}
+          {examples[Math.floor(Math.random() * examples.length)]}
         </Text>
+       </View>
+
       )}
 
       {homeTypingMessage && (
@@ -158,7 +172,7 @@ const TypingInput = () => {
 const styles = StyleSheet.create({
   typingContainer: {
     paddingTop: 20,
-    marginBottom: 10,
+    marginBottom: 20,
     width: "100%",
     height: 50,
     alignContent: "center",
@@ -191,6 +205,7 @@ const styles = StyleSheet.create({
   keyboardIconContainer: {
     position: "absolute",
     left: "7%",
+    zIndex: 1,
   },
   clearTextIconContainer: {
     position: "absolute",
@@ -201,6 +216,18 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: "bold",
   },
+  exampleTextContainer: {
+    flexWrap: "wrap",
+    flexDirection: "row",
+    width: "80%",
+    textAlign: "center",
+    justifyContent: "center"
+  },
+  exampleText: {
+    marginTop: 5,
+    fontStyle: "italic",
+    textAlign: "center"
+  }
 });
 
 export default TypingInput;

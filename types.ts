@@ -22,6 +22,7 @@ export type SettingsType = {
   verbose: boolean;
   theme: number;
   favouritesOnHome: boolean;
+  typingInputMessages: boolean,
 };
 
 export type AppStateType = {
@@ -187,7 +188,8 @@ export type ActionType =
   | {
       type: "toggle_universal_picker_TO_modal";
       payload: boolean;
-    };
+    }
+    | { type: "toggle_typing_input_messages"}
 
 export type ThemeType = {
   mainColour: string;

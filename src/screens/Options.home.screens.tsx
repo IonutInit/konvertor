@@ -34,6 +34,8 @@ import { FavouriteType } from "../../types";
 import convert from "../lib/converter-library/lib";
 import "../lib/converter-library/convert.d.ts";
 
+import description from "../data/unitDescription";
+
 import typing from "../lib/typing";
 
 type ArrayElementType = {
@@ -120,7 +122,10 @@ const Options = () => {
   // console.log(state);
 
   // console.log(typing("1 km/s to ft/min"));
-   console.log(typing("1 km to ft in"))
+  //  console.log(typing("1 km to ft in"))
+  //  console.log(typing("h")) //and then if you press on to it gives an error
+
+  console.log(description)
 
   const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary
@@ -280,6 +285,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     paddingHorizontal: 15,
     paddingTop: 30,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   pressableMeasure: {
     width: 85,
