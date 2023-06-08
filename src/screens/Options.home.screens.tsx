@@ -115,7 +115,7 @@ const Options = () => {
 
   // console.log(state);
 
-  // console.log(typing("zdf 2 cm2 5 cm2 m"));
+  console.log(typing("ft to m"));
 
   const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary
@@ -178,7 +178,7 @@ const Options = () => {
         </ScrollView>
       )}
 
-      {/* {!settings.favouritesOnHome && <TypingInput />} */}
+      {!settings.favouritesOnHome && <TypingInput />}
 
       <View style={styles.outerPressableContainer}>
         {filteredUnitList.map((unit, index) => (

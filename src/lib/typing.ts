@@ -22,10 +22,14 @@ const typing = (input: string) => {
   // potential message to be displayed
   let message = "";
 
+  input = "fff " + input + "0 fff"
+  // this is to help further down the line, when the order of strings and numbers is taken into conideration
+
   // create array from the input string
   const inputArray = input.split(/\s+/).filter((str) => str.trim() !== "");
 
-  // difficult units names, such as m2 or cm3 are edited
+
+    // difficult units names, such as m2 or cm3 are edited
 
   function replaceDifficultUnits(
     input: string[],
@@ -79,7 +83,7 @@ const typing = (input: string) => {
 
   const purifiedArray = separateLettersFromNumber(madeLessDifficult);
 
-  // returning difficult unit names to their original value
+   // returning difficult unit names to their original value
   function restoreDifficultUnits(
     input: (string | number)[],
     difficultCollection: string[],
@@ -107,10 +111,10 @@ const typing = (input: string) => {
     difficultUnitsEdited
   );
 
-  // all of the above have been returned as a string
+    // all of the above have been returned as a string
   // now we are converting numbers into numbers
   for (let i = 0; i < restored.length; i++) {
-    const element: string | number = purifiedArray[i];
+    const element: string | number = restored[i];
     if (typeof element === "string" && !isNaN(parseInt(element))) {
       restored[i] = parseInt(element);
     }
@@ -120,8 +124,9 @@ const typing = (input: string) => {
   // if "to" doesn't exist, TO will be empty
   const toIndex = restored.indexOf("to");
   const fromRaw = restored.slice(0, toIndex);
-  const toRaw = toIndex === -1 ? [] : restored.slice(toIndex + 1);
+  const toRaw = toIndex === -1 ? [] : purifiedArray.slice(toIndex + 1);
 
+   
   // first cleanup of FROM: removal of all strings not preceded by a number, and all numbers not having a string in front
   function cleanUp(array: (number | string)[]) {
     for (let i = array.length - 1; i >= 0; i--) {
@@ -139,7 +144,7 @@ const typing = (input: string) => {
 
   const rawFromCleaned = cleanUp(fromRaw);
 
-  // intersecting FROM with the unit collection, and eliminating all strings not pertaining to the collection
+    // intersecting FROM with the unit collection, and eliminating all strings not pertaining to the collection
   function removeNonUnits(input: (string | number)[], collection: string[]) {
     return input.filter((element) => {
       if (typeof element === "string") {
@@ -166,7 +171,7 @@ const typing = (input: string) => {
 
   //if there are no available FROM values, a notifications is returned
   if (fromValues_All.length === 0) {
-    message = "I didn't get that. Please try again";
+    message = "Hm... Something doesn't feel right. Please try again";
     return {
       success: false,
       message,
@@ -245,12 +250,16 @@ const typing = (input: string) => {
   }
 
   const fromUnits = filterByMeasure(fromUnits_All, fromTypes, measureType!);
-  const fromValues = filterByMeasure(fromValues_All, fromTypes, measureType!);
+  let fromValues = filterByMeasure(fromValues_All, fromTypes, measureType!);
 
-  //
-  // if empty, it will be assigned a toBest() value for the largest FROM
-  const largestFrom = fromUnits_All[0]; //temporary
+  if (fromValues.length === 0) {
+    fromValues = 1
+  }
 
+  console.log(fromValues.length)
+
+  //Moving on to TO
+  // if empty, it will be assigned a toBest() value for the largest FROM 
   function findLargestFrom(input: string[], lookUp: string[]): string | null {
     let highestIndex = -1;
     let result: string | null = null;
@@ -265,14 +274,21 @@ const typing = (input: string) => {
     return result;
   }
 
-  // if not empty...
+  
 
   const handleTo = (input: (string | number)[]) => {
-    // let bestOption: string
+      if(input.length === 0) {
+      const largestFrom = findLargestFrom(fromUnits, description[measureType].short)
+      return [convert(fromValues[fromUnits.indexOf(largestFrom)]).from(largestFrom).toBest().unit]
+      // in order for toBest() to work properly, it also needs the value
+      // x in fromValue(x) looks for the index of the largestFrom in fromValues and returns the value
+    }
 
+
+    // if not empty...
     // removing numbers from TO...
     const toRawStrings = separateElements(input).strings as string[];
-
+    
     // // ...then intersecting TO with the unit collection, and eliminating all strings not pertaining to the collection
     const toIntersectedOnce = removeNonUnits(toRawStrings, unitCollection);
 
@@ -296,7 +312,7 @@ const typing = (input: string) => {
 
   const measureName = measureType!.replace(/^\w/, (c) => c.toUpperCase());
 
-  return {
+   return {
     success,
     message,
     fromUnits,

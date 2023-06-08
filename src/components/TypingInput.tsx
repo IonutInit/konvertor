@@ -20,6 +20,7 @@ const TypingInput = () => {
 
   const theme = getTheme();
 
+  const [typingInput, setTypingInput] = useState("")
   const [typingMessage, setTypingMessage] = useState("");
   let typingTimer: NodeJS.Timeout | null = null;
 
@@ -27,38 +28,32 @@ const TypingInput = () => {
     if (typingTimer) {
       clearTimeout(typingTimer);
     }
-
-    setTypingMessage("");
+    setTypingInput(input);
   };
 
   const handleBlur = () => {
     typingTimer = setTimeout(() => {
-      const result: TypingResult | "" = typing(typingMessage);
+      const result: TypingResult | "" = typing(typingInput);
 
       const success = result.success;
 
       if (!success) {
         setTypingMessage(result.message);
-      }
+        return null
+      } 
 
-      const fromUnit = [result.fromUnits!, []];
-      const fromValue = [result.fromValues!, []];
-      const measureType = [[result.measureType!], []];
-      let measureName = [result.measureName!];
-      const toUnit = [result.toUnits!];
-
-      dispatch({
+       dispatch({
         type: "dispatch_typing",
         payload: {
           konvertor: "konvertor",
-          fromUnit,
-          fromValue,
-          measureType,
-          measureName,
-          toUnit,
+          fromUnit: [result.fromUnits!, []]
+,          fromValue: [result.fromValues!, []],
+          measureType: [[result.measureType!], []]
+,          measureName: [result.measureName!],
+          toUnit: [result.toUnits!],
         },
       });
-    }, 1000);
+    }, 100);
   };
 
   return (
