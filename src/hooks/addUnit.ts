@@ -12,10 +12,6 @@ const addUnit = (
     type === "from"
       ? state.fromUnit[componentKey!][state.fromUnit[0].length - 1]
       : state.toUnit[state.toUnit.length - 1];
-  // dispatch({
-  //   type: `add_${type.toUpperCase()}_unit` as const,
-  //   payload,
-  // });
   if (type === "from") {
     dispatch({
       type: "add_FROM_unit",

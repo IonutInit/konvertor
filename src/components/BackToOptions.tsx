@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { View, Pressable, Image, StyleSheet } from "react-native";
+import { View, Pressable } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 

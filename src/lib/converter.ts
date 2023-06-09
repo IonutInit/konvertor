@@ -1,4 +1,6 @@
-import convert from "convert-units";
+//@ts-nocheck
+
+import convert from "./converter-library/lib";
 
 const getFrom_Addition = (value: (string | number)[], from: string[]) => {
   let result = 0;

@@ -1,4 +1,4 @@
-//all available units, for use in typing feature
+// for use in typing feature
 
 import description from "./unitDescription";
 

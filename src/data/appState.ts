@@ -14,7 +14,6 @@ const appState: AppStateType = {
     position: [],
     activeFromComponent: 0,
     calculatorTo: false,
-    calculatorToModal: false,
   },
   settings: {
     extendedList: false,

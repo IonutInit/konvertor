@@ -12,7 +12,6 @@ import handleToUnitChange from "../hooks/handleToUnitChange";
 
 import platform from "../data/platform";
 
-// import convert from "convert-units";
 import convert from "../lib/converter-library/lib";
 import "../lib/converter-library/convert.d.ts";
 import converter from "../lib/converter";
@@ -20,7 +19,7 @@ import converter from "../lib/converter";
 import getNextUnit from "../lib/getNextUnit";
 import displaySwitchedValues from "../lib/displaySwitchedValues";
 import { handleVerbosity } from "../hooks/handleVerbosity";
-import getPickerUnit from "../hooks/getPickerUnit";
+import getPickerUnit from "../lib/getPickerUnit";
 import description from "../data/unitDescription";
 
 import { DescriptionType } from "../data/unitDescription";
@@ -31,8 +30,6 @@ const ToComponent = () => {
   } = useAppContext();
 
   const workingMeasureType = measureType[0].toString();
-
-  // console.log(toUnit);
 
   const elements = toUnit.map((unit: string, i: number) => {
     const allOptions = convert()
@@ -100,10 +97,8 @@ const ToComponent = () => {
 
 const styles = StyleSheet.create({
   container: {
-    // padding: 5,
     marginHorizontal: 5,
     alignItems: "center",
-    // alignContent: "space-between"
   },
   pickerContainer: {
     alignItems: "center",
@@ -111,6 +106,7 @@ const styles = StyleSheet.create({
   resultContainer: {},
   result: {
     fontSize: 24,
+    fontFamily: "Museo",
     paddingBottom: 5,
     paddingTop: 5,
   },

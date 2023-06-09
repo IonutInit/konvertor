@@ -5,18 +5,16 @@ import {
   Text,
   Pressable,
   StyleSheet,
-  TouchableWithoutFeedback,
   LayoutAnimation,
   PanResponder,
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import getLocalData from "../lib/getLocalData";
+import getLocalData from "../hooks/getLocalData";
 import { settingsKey } from "../data/storageKeys";
 
 import ToggleButton from "../components/ToggleButton";
 import { Picker } from "@react-native-picker/picker";
-import UniversalPicker from "../components/UniversalPicker";
 import Credentials from "../components/Credentials";
 
 import BackButton from "../components/svgs/BackButton";
@@ -34,7 +32,6 @@ import { SettingsType } from "../../types";
 const Settings = ({ navigation }: any) => {
   const {
     state: { settings },
-    state,
     dispatch,
   } = useAppContext();
 
@@ -113,9 +110,6 @@ const Settings = ({ navigation }: any) => {
       payload: value,
     });
     setThemePicker(false);
-    // setTimeout(() => {
-    //    setThemePicker(false);
-    // }, 500)
   };
 
   return (
@@ -188,7 +182,7 @@ const Settings = ({ navigation }: any) => {
         {themePicker && (
           <View style={styles.pickerContainer}>
             <Picker
-              style={styles.picker}
+              style={[styles.picker, { backgroundColor: theme.gray1 }]}
               selectedValue={themes[settings.theme]}
               onValueChange={(value) => handleThemePicker(value)}>
               {themes.map((theme) => (
@@ -241,8 +235,6 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     marginHorizontal: 10,
     paddingVertical: 5,
-    // backgroundColor: "red",
-    // paddingVertical: 20,
   },
   decimalsTextContainer: {
     paddingHorizontal: 30,
@@ -287,9 +279,8 @@ const styles = StyleSheet.create({
   picker: {
     width: "80%",
     zIndex: 1,
-    backgroundColor: "#fff", // white background
     borderRadius: 10,
-    shadowColor: "#000", // shadow color
+    shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.4,
     shadowRadius: 2,

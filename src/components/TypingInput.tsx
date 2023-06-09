@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Text,
   View,
@@ -47,8 +47,6 @@ const TypingInput = () => {
   const [typingInput, setTypingInput] = useState("");
   const [homeTypingMessage, setHomeTypingMessage] = useState(false);
   const [keyboardSize, setKeyboardSize] = useState(32);
-
-  const [showExamples, setShowExamples] = useState(true);
 
   let typingTimer: NodeJS.Timeout | null = null;
 
@@ -182,17 +180,12 @@ const styles = StyleSheet.create({
     height: 50,
     alignContent: "center",
     alignItems: "center",
-    // backgroundColor: "red"
   },
   inputContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     width: "90%",
-    // height: 40,
-    // borderRadius: 8,
-    // borderWidth: 1,
-    // paddingHorizontal: 10,
   },
   typingInput: {
     width: "90%",
@@ -210,7 +203,6 @@ const styles = StyleSheet.create({
   keyboardIconContainer: {
     position: "absolute",
     left: isPad ? "6%" : "7%",
-    // left: isPad ? "6%" : "6%",
     zIndex: 1,
   },
   clearTextIconContainer: {

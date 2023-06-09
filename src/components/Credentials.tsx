@@ -2,7 +2,6 @@ import * as React from "react";
 
 import {
   View,
-  ScrollView,
   Text,
   StyleSheet,
   Pressable,
@@ -363,14 +362,12 @@ const styles = StyleSheet.create({
   },
   featureInnerContainer: {
     width: "80%",
-    // flexDirection: "row",
     gap: 15,
     alignItems: "center",
     justifyContent: "center",
     paddingBottom: 5,
   },
   featureTitle: {
-    // fontSize: 16,
     fontWeight: "bold",
   },
   featureText: {},

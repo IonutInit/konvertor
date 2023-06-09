@@ -1,4 +1,4 @@
-export function hexToRgb(hex: string): { r: number; g: number; b: number } {
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
   hex = hex.slice(1);
 
   const r = parseInt(hex.substring(0, 2), 16);
@@ -8,7 +8,7 @@ export function hexToRgb(hex: string): { r: number; g: number; b: number } {
   return { r, g, b };
 }
 
-export function applyOpacity(
+function applyOpacity(
   red: number,
   green: number,
   blue: number,

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import {
   View,
   Pressable,
@@ -10,7 +10,6 @@ import {
 import useAppContext from "../context/useAppContext";
 
 import getTheme from "../context/theme";
-import Konvertor from "../screens/Konvertor.home.screen";
 
 type UniversalPickerUnitProps = {
   unit: string;
@@ -28,27 +27,14 @@ const UniversalPickerUnit = ({
   calculatorTo = false,
 }: UniversalPickerUnitProps) => {
   const {
-    state: { universalPicker, fromUnit, toUnit, konvertor },
+    state: { universalPicker, fromUnit, toUnit },
     dispatch,
   } = useAppContext();
 
   const theme = getTheme();
 
   const pickerUnitRef = useRef<Text>(null);
-  const [position, setPosition] = useState<[number, number]>([0, 0]);
   const [largeContainer, setLargeContainer] = useState(false);
-
-  useEffect(() => {
-    const getPosition = () => {
-      if (pickerUnitRef.current) {
-        pickerUnitRef.current.measure((x, y, width, height, pageX, pageY) => {
-          setPosition([pageX, pageY]);
-        });
-      }
-    };
-
-    getPosition();
-  }, []);
 
   const handlePresIn = () => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
@@ -61,18 +47,11 @@ const UniversalPickerUnit = ({
   };
 
   const workUniversalPicker = () => {
-    // let calculatorTo = false;
-
-    // if (type === "to" && konvertor !== "konvertor" && universalPicker.calculatorTo) {
-    //   calculatorTo = true;
-    // }
-
     dispatch({
       type: "work_universal_picker",
       payload: {
         type,
         index: i,
-        position: position || [],
         activeFromComponent: componentKey,
         calculatorTo,
       },

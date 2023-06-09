@@ -13,8 +13,6 @@ import {
 } from "react-native";
 import { useEffect, useState } from "react";
 
-import { Picker } from "@react-native-picker/picker";
-
 import useAppContext from "../context/useAppContext";
 
 import BackFromKonverter from "../components/BackToOptions";
@@ -24,17 +22,11 @@ import unitList from "../data/unitList";
 import FromComponent from "../components/FromComponent";
 import UniversalPicker from "../components/UniversalPicker";
 import UniversalPickerUnit from "../components/UniversalPickerUnit";
-import ToComponent from "../components/ToComponent";
 import AddUnit from "../components/AddUnit";
-import AddToFavourites from "../components/AddToFavourites";
 import Divider from "../components/Divider";
-
-import convert from "convert-units";
 
 import getCalculatorData from "../lib/getCalculatorData";
 import handleDescriptionText from "../lib/handleDescriptionText";
-
-import { isPad } from "../data/platform";
 
 import {
   calculateBmi,
@@ -44,7 +36,6 @@ import {
   calculateWeightLoss,
 } from "../lib/calculators";
 
-import PickerComponent from "../components/Picker";
 import getTheme from "../context/theme";
 
 import platform from "../data/platform";
@@ -105,10 +96,6 @@ const Calculators = () => {
   };
 
   const getResult = (calculatorType: string) => {
-    // if (calculatorType === "bmi") {
-    //   return calculateBmi(calculatorData);
-    // }
-
     if (calculatorType === "bmi") {
       return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1]);
     }
@@ -156,15 +143,6 @@ const Calculators = () => {
 
   const bmiFilter = ["cm", "in", "ft", "ft-us", "m", "oz", "lb", "kg"];
 
-  // console.log(state);
-
-  const getPickerPosition = (type: string, i: number) => {
-    if (type === "from" && i === 1) {
-      return -125;
-    }
-    return 0;
-  };
-
   const resultToDisplay = () => {
     if (konvertor === "bmi") {
       return Number(result).toFixed(1);
@@ -180,8 +158,6 @@ const Calculators = () => {
 
     return Number(result).toFixed(settings.decimals);
   };
-
-  // console.log(universalPicker.calculatorTo);
 
   return (
     <KeyboardAvoidingView
@@ -229,7 +205,7 @@ const Calculators = () => {
           </View>
 
           <View>
-            {fromValue.map((from, i) => {
+            {fromValue.map((_, i) => {
               return (
                 <View key={i} style={styles.firstComponent}>
                   <View style={styles.componentHeader}>
@@ -278,16 +254,7 @@ const Calculators = () => {
 
           <Modal visible={universalPicker.calculatorTo} transparent>
             <View style={styles.modalContainer}>
-              <UniversalPicker
-                componentKey={0}
-                top={0}
-                // filter={konvertor === "bmi" ? bmiFilter : []}
-              />
-              {/* <Pressable
-              style={styles.closeButton}
-              onPress={() => setIsToPicker(false)}>
-              <Text style={styles.closeButtonText}>Close</Text>
-            </Pressable> */}
+              <UniversalPicker componentKey={0} top={0} />
             </View>
           </Modal>
         </View>
@@ -297,7 +264,6 @@ const Calculators = () => {
             style={[
               styles.toContainer,
               { borderColor: theme.gray2, shadowColor: theme.gray2 },
-              // { alignSelf: konvertor !== "bmi" ? "center" : "auto"}
             ]}>
             <Divider />
             <Text style={styles.result}>{resultToDisplay()}</Text>
@@ -319,9 +285,7 @@ const Calculators = () => {
 };
 
 const styles = StyleSheet.create({
-  scrollContainer: {
-    // flexGrow: 1,
-  },
+  scrollContainer: {},
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -381,7 +345,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "50%",
     left: "50%",
-    // zIndex: 1,
     flexDirection: "column",
   },
   toOuterContainer: {
@@ -402,6 +365,7 @@ const styles = StyleSheet.create({
   },
   result: {
     fontSize: 24,
+    fontFamily: "Museo",
     paddingBottom: 5,
     paddingTop: 5,
     marginBottom: 5,
@@ -410,7 +374,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: "red",
     zIndex: 5,
   },
   closeButton: {

@@ -35,9 +35,7 @@ const PickerComponent = ({
   measureType,
   verbosity,
 }: PickerComponentProps) => {
-  const { state, dispatch } = useAppContext();
-
-  //const options = convert().from(state.toUnit[0]).possibilities();
+  const { dispatch } = useAppContext();
 
   const handleValueChange = (option: string) => {
     onChange(componentKey, dispatch, option, i!, measureType, verbosity);

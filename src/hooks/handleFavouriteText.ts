@@ -1,4 +1,4 @@
-import handleDescriptionText from "./handleDescriptionText";
+import handleDescriptionText from "../lib/handleDescriptionText";
 
 const handleFavouriteText = (favourite: string[], toAndFrom: string[][]) => {
   const describedFrom = handleDescriptionText(toAndFrom[0], true, true);

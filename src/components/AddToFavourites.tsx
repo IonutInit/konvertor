@@ -69,11 +69,8 @@ const AddToFavourites = () => {
     <View style={styles.iconContainer}>
       <Pressable
         onPress={() => handleOnPress(favoriteIndex)}
-        // onLongPress={() => handleRemoveFavourite(dispatch, favoriteIndex)}
         onPressIn={handlePresIn}
-        onPressOut={handlePressOut}
-        //disabled={favoriteIndex !== -1}
-      >
+        onPressOut={handlePressOut}>
         <FavouritesIcon isFavourite={favoriteIndex !== -1} size={size} />
       </Pressable>
     </View>

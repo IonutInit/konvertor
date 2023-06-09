@@ -42,16 +42,6 @@ const ToggleButton = ({
       <Toggle
         value={settingValue}
         onPress={() => handlePress(settingType)}
-        // leftComponent={
-        //   settingValue && (
-        //     <Image source={imperial} style={{ height: 20, width: 17 }} />
-        //   )
-        // }
-        // rightComponent={
-        //   !settingValue && (
-        //     <Image source={metric} style={{ height: 20, width: 17 }} />
-        //   )
-        // }
         leftTitle=""
         rightTitle=""
         trackBar={{
@@ -75,7 +65,6 @@ const ToggleButton = ({
 
 const styles = StyleSheet.create({
   container: {
-    // paddingTop: 30,
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",

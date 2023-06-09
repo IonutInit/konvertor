@@ -33,14 +33,13 @@ const NavigationTabs = () => {
           height: 70,
         },
         headerTintColor: theme.gray1,
-        //tabBarActiveBackgroundColor: theme.gray1Darker
       }}>
       <Navigation.Screen
         name="Home"
         component={Home}
         options={{
           title: "Konvertor",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: () => (
             <NavigationIcons type="home" isActive={activeTab === "Home"} />
           ),
         }}
@@ -50,14 +49,11 @@ const NavigationTabs = () => {
         name="Favourites"
         component={Favourites}
         options={{
-          tabBarIcon: ({ color, size }) => {
+          tabBarIcon: () => {
             return (
-              <View
-              // style={{ paddingBottom: 20 }}
-              >
+              <View>
                 <NavigationIcons
                   type="favourites"
-                  // size={55}
                   isActive={activeTab === "Favourites"}
                 />
               </View>
@@ -70,7 +66,7 @@ const NavigationTabs = () => {
         name="Settings"
         component={Settings}
         options={{
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: () => (
             <NavigationIcons
               type="settings"
               isActive={activeTab === "Settings"}

@@ -5,7 +5,6 @@ import { Picker } from "@react-native-picker/picker";
 
 import useAppContext from "../context/useAppContext";
 
-// import convert from "convert-units";
 import convert from "../lib/converter-library/lib";
 import "../lib/converter-library/convert.d.ts";
 
@@ -15,9 +14,7 @@ import { handleVerbosity, revertVerbosity } from "../hooks/handleVerbosity";
 
 import getTheme from "../context/theme";
 
-import { ActionType } from "../../types";
 import { DescriptionType } from "../data/unitDescription";
-import Konvertor from "../screens/Konvertor.home.screen";
 
 type UniversalPickerProps = {
   componentKey: number;
@@ -41,13 +38,12 @@ const UniversalPicker = ({
       measureType,
       settings,
     },
-    state,
     dispatch,
   } = useAppContext();
 
   const theme = getTheme();
 
-  const { type, position, index } = universalPicker;
+  const { type } = universalPicker;
 
   // creating delay
   const [delayVisible, setDelayVisible] = useState(false);
@@ -67,7 +63,6 @@ const UniversalPicker = ({
           payload: {
             type: "",
             index: -1,
-            position: [],
             activeFromComponent: 0,
             calculatorTo: false,
           },
@@ -104,7 +99,6 @@ const UniversalPicker = ({
       description[findUnitKey(optionsSource, description)!].short.includes(op)
     );
   }
-  //const allOptions = convert().from(optionsSource).possibilities();
 
   let nextOption = allOptions;
 
@@ -140,13 +134,6 @@ const UniversalPicker = ({
           iterator: universalPicker.index!,
         },
       });
-
-      // if(universalPicker.calculatorTo) {
-      //   dispatch({
-      //     type: "toggle_universal_picker_TO",
-      //     payload: false,
-      //   })
-      // }
     }
 
     setSelectedValue(option as string);

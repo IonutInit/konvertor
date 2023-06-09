@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import * as React from "react";
 
-import { Text, StyleSheet, View, Pressable } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+import { StyleSheet, View } from "react-native";
 
 import useAppContext from "../context/useAppContext";
 
 import Input from "./Input";
-// import FromPicker from "./FromPicker";
 import PickerComponent from "./Picker";
 import RemoveUnit from "./RemoveUnit";
 import UniversalPickerUnit from "./UniversalPickerUnit";
@@ -14,15 +12,14 @@ import UniversalPickerUnit from "./UniversalPickerUnit";
 import handleInputChange from "../hooks/handleInputChange";
 import handleFromUnitChange from "../hooks/handleFromUnitChange";
 
-// import convert from "convert-units";
 import convert from "../lib/converter-library/lib";
 import "../lib/converter-library/convert.d.ts";
 import platform from "../data/platform";
 
 import displaySwitchedValues from "../lib/displaySwitchedValues";
 
-import { handleVerbosity, revertVerbosity } from "../hooks/handleVerbosity";
-import getPickerUnit from "../hooks/getPickerUnit";
+import { handleVerbosity } from "../hooks/handleVerbosity";
+import getPickerUnit from "../lib/getPickerUnit";
 import description from "../data/unitDescription";
 
 type FromComponentProps = {
@@ -37,7 +34,7 @@ const FromComponent = ({
   filter = [],
 }: FromComponentProps) => {
   const {
-    state: { fromUnit, fromValue, settings, universalPicker },
+    state: { fromUnit, fromValue, settings },
     dispatch,
   } = useAppContext();
 
@@ -63,7 +60,6 @@ const FromComponent = ({
               handleInputChange(componentKey, dispatch, input, i)
             }
             i={i}
-            // value={i === 0 ? "1" : "0"}
             value={displaySwitchedValues(
               fromValue[componentKey][i] as number,
               settings.decimals
@@ -99,8 +95,6 @@ const FromComponent = ({
 
   return <>{elements}</>;
 };
-
-const marginVertical = platform === "android" ? 5 : 13;
 
 const styles = StyleSheet.create({
   container: {

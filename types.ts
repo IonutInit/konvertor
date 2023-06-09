@@ -1,11 +1,3 @@
-import { ImageSourcePropType } from "react-native";
-
-import { DescriptionType, UnitDescription } from "./src/data/unitDescription";
-
-// export type IconMapType = {
-//   [key: string]: ImageSourcePropType;
-// };
-
 export type UniversalPickerOptions = "to" | "from" | "";
 
 export type FavouriteType = {
@@ -38,8 +30,7 @@ export type AppStateType = {
     index: number;
     position: [number, number][];
     activeFromComponent: number;
-    calculatorTo: boolean; // used only in verbosity for TO in calculators
-    calculatorToModal: boolean;
+    calculatorTo: boolean;
   };
   settings: SettingsType;
   favourites: FavouriteType[];
@@ -66,7 +57,6 @@ export type ActionType =
       };
     }
   | { type: "add_TO_unit"; payload: string }
-  // | { type: `add_${string}_unit`; payload: string }
   | {
       type: `change_${string}_unit`;
       payload: {
@@ -75,7 +65,6 @@ export type ActionType =
         iterator: number;
       };
     }
-  | { type: "change_options_state"; payload: UniversalPickerOptions }
   | {
       type: "change_FROM_value";
       payload: {
@@ -138,7 +127,6 @@ export type ActionType =
       payload: {
         type: UniversalPickerOptions;
         index: number;
-        position?: number[];
         activeFromComponent: number;
         calculatorTo: boolean;
       };
@@ -183,10 +171,6 @@ export type ActionType =
     }
   | {
       type: "toggle_universal_picker_TO";
-      payload: boolean;
-    }
-  | {
-      type: "toggle_universal_picker_TO_modal";
       payload: boolean;
     }
   | { type: "toggle_typing_input_messages" };

@@ -4,7 +4,6 @@ import {
   View,
   Pressable,
   Text,
-  Image,
   StyleSheet,
   LayoutAnimation,
 } from "react-native";

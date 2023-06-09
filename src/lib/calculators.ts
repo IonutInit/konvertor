@@ -1,5 +1,7 @@
+//@ts-nocheck
+
 import getFromAddition from "./getFromAddition_temp";
-import convert from "convert-units";
+import convert from "./converter-library/lib";
 
 export const calculateBmi = (
   value0: (string | number)[],

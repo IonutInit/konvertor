@@ -35,13 +35,11 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         measureType,
         measureName,
         fromUnit: [[], []],
-        fromValue: [[], []], ///why did I need to add it?
+        fromValue: [[], []],
         toUnit: [],
       };
 
-    //-------------------------------
-    //-------------------------------
-    //-------------------------------
+    // PICKER
 
     case "work_universal_picker":
       return {
@@ -50,12 +48,6 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
           ...state.universalPicker,
           type: action.payload.type,
           index: action.payload.index,
-          position: state.universalPicker.position.map(
-            (existingValues, index) =>
-              index === action.payload.index
-                ? (action.payload.position as [number, number])
-                : existingValues
-          ),
           activeFromComponent: action.payload.activeFromComponent,
           calculatorTo: action.payload.calculatorTo,
         },
@@ -70,18 +62,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         },
       };
 
-    case "toggle_universal_picker_TO_modal":
-      return {
-        ...state,
-        universalPicker: {
-          ...state.universalPicker,
-          calculatorToModal: action.payload,
-        },
-      };
-
-    //-------------------------------
-    //-------------------------------
-    //-------------------------------
+    // CHANGE UNITS AND VALUES
 
     case "add_FROM_unit":
       const fromPosition =
@@ -97,20 +78,10 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         fromValue: state.fromValue.map((val, index) =>
           index === action.payload.componentKey ? [...val, value] : val
         ),
-        // universalPicker: {
-        //   ...state.universalPicker,
-        //   position: [...state.universalPicker.position!, [0, 0]],
-        // },
       };
 
     case "add_TO_unit":
       return { ...state, toUnit: [...state.toUnit, action.payload] };
-
-    case "change_TO_unit":
-      const updatedFromUnit2 = state.toUnit.map((unit, index) =>
-        index === action.payload.iterator ? action.payload.value : unit
-      );
-      return { ...state, toUnit: updatedFromUnit2 };
 
     case "change_FROM_unit":
       const updatedFromUnit = state.fromUnit.map((subArray, index) => {
@@ -123,6 +94,12 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         return subArray;
       });
       return { ...state, fromUnit: updatedFromUnit };
+
+    case "change_TO_unit":
+      const updatedToUnit = state.toUnit.map((unit, index) =>
+        index === action.payload.iterator ? action.payload.value : unit
+      );
+      return { ...state, toUnit: updatedToUnit };
 
     case "change_FROM_value":
       const updatedFromValue = state.fromValue.map((subArray, index) => {
@@ -163,16 +140,12 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
       };
 
     case "remove_TO_value":
-      const updatedFromUnit4 = state.toUnit.filter(
+      const toUnitRemovedValue = state.toUnit.filter(
         (unit, index) => index !== action.payload[1]
       );
-      // const updatedFromValue4 = state.toValue.filter((value, index) =>
-      //   index !== action.payload
-      // );
       return {
         ...state,
-        toUnit: updatedFromUnit4,
-        // fromValue: updatedFromValue4
+        toUnit: toUnitRemovedValue,
       };
 
     case "switch":
@@ -197,6 +170,40 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         toUnit: action.payload.sourceFromUnit,
       };
 
+    // FAVOURITES
+    case "add_to_favourites":
+      const updatedFavourites2 = {
+        ...state,
+        favourites: [action.payload, ...state.favourites],
+      };
+
+      try {
+        const jsonValue = JSON.stringify(updatedFavourites2.favourites);
+        AsyncStorage.setItem(favouritesKey, jsonValue);
+      } catch (e) {}
+
+      return updatedFavourites2;
+
+    case "launch_favourite":
+      function createBlankArray(arr: string[][]) {
+        return arr.map((subArray) => Array(subArray.length).fill(0));
+      }
+      return {
+        ...state,
+        measureType: [action.payload.measureType],
+        measureName: [action.payload.measureName],
+        fromUnit: action.payload.fromUnit,
+        fromValue: createBlankArray(action.payload.fromUnit),
+        toUnit: [action.payload.toUnit],
+      };
+
+    case "initialise_favourites":
+      return {
+        ...state,
+        favourites: action.payload as FavouriteType[],
+        init: 1,
+      };
+
     case "remove_favourite":
       const updatedFavourites = state.favourites.filter(
         (fav, i) => i !== action.payload
@@ -212,6 +219,8 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         favourites: updatedFavourites,
         init: 1,
       };
+
+    // SETTINGS
 
     case "change_settings":
       const { settingType, settingValue } = action.payload;
@@ -291,39 +300,6 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         settings: updatedTheme,
       };
 
-    case "add_to_favourites":
-      const updatedFavourites2 = {
-        ...state,
-        favourites: [action.payload, ...state.favourites],
-      };
-
-      try {
-        const jsonValue = JSON.stringify(updatedFavourites2.favourites);
-        AsyncStorage.setItem(favouritesKey, jsonValue);
-      } catch (e) {}
-
-      return updatedFavourites2;
-
-    case "launch_favourite":
-      function createBlankArray(arr: string[][]) {
-        return arr.map((subArray) => Array(subArray.length).fill(0));
-      }
-      return {
-        ...state,
-        measureType: [action.payload.measureType],
-        measureName: [action.payload.measureName],
-        fromUnit: action.payload.fromUnit,
-        fromValue: createBlankArray(action.payload.fromUnit),
-        toUnit: [action.payload.toUnit],
-      };
-
-    case "initialise_favourites":
-      return {
-        ...state,
-        favourites: action.payload as FavouriteType[],
-        init: 1,
-      };
-
     case "initialise_settings":
       return {
         ...state,
@@ -336,6 +312,7 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         activeTab: action.payload,
       };
 
+    // TYPING
     case "dispatch_typing":
       return {
         ...state,

@@ -1,4 +1,7 @@
-import convert from "convert-units";
+//@ts-nocheck
+
+import convert from "../lib/converter-library/lib";
+
 import description from "../data/unitDescription";
 
 export const handleVerbosity = (input: string[], verbose: boolean) => {
@@ -6,8 +9,6 @@ export const handleVerbosity = (input: string[], verbose: boolean) => {
   const measureType = convert().describe(input[0]).measure;
   if (verbose) {
     for (let i = 0; i < input.length; i++) {
-      // verboseResult.push(convert().describe(input[i]).plural.toLowerCase());
-      //switched to local description
       verboseResult.push(description[measureType].long[i]);
     }
     return verboseResult;

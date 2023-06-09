@@ -17,7 +17,6 @@ const AddUnit = ({ type, componentKey = 0 }: AddUnitProps) => {
   const { state, dispatch } = useAppContext();
 
   const handlePress = () => {
-    // LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
     addUnit(dispatch, state, type, componentKey);
   };
 

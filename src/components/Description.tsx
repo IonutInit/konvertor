@@ -36,7 +36,7 @@ const Description = () => {
         <Text style={[{ color: theme.gray1 }, { fontWeight: "bold" }]}>
           {handleDescriptionText(fromUnit[0], true, true)}
         </Text>
-        <Text style={[{ color: theme.gray1 }, { fontWeight: "bold" }]}>
+        <Text style={[{ color: theme.gray1 }, { fontWeight: "bold"}]}>
           TO {handleDescriptionText(toUnit, true, false)}
         </Text>
       </Pressable>
@@ -56,15 +56,8 @@ const styles = StyleSheet.create({
     minHeight: 50,
     alignContent: "center",
     justifyContent: "center",
-    // borderColor: theme.mainColour,
-    // borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 10,
-    // shadowColor: theme.mainColour,
-    // shadowOffset: { width: -1, height: -2 },
-    // shadowOpacity: 0.4,
-    // shadowRadius: 2,
-    // marginBottom: 5,
   },
 });
 
