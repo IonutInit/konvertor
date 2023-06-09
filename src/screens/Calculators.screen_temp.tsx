@@ -275,8 +275,8 @@ const Calculators = () => {
           })}
         </View>
 
-        {universalPicker.calculatorTo && (
-          <Modal visible={isToPicker} transparent>
+   
+          <Modal visible={universalPicker.calculatorTo} transparent>
             <View style={styles.modalContainer}>
               <UniversalPicker
                 componentKey={0}
@@ -290,7 +290,7 @@ const Calculators = () => {
             </Pressable> */}
             </View>
           </Modal>
-        )}
+    
 
         <View style={styles.toOuterContainer}>
           <View
@@ -302,7 +302,7 @@ const Calculators = () => {
             <Text style={styles.result}>{resultToDisplay()}</Text>
             {toUnit[0] !== "mVA" && (
               <Pressable onPress={() => setIsToPicker(true)}>
-                <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} />
+                <UniversalPickerUnit unit={toUnit[0]} i={0} type={"to"} calculatorTo={true}/>
               </Pressable>
             )}
           </View>

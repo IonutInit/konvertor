@@ -69,7 +69,7 @@ const UniversalPicker = ({
             index: -1,
             position: [],
             activeFromComponent: 0,
-            calculatorTo: true,
+            calculatorTo: false,
           },
         });
         setDelayVisible(false);

@@ -17,6 +17,7 @@ type UniversalPickerUnitProps = {
   i: number;
   type: "from" | "to";
   componentKey?: number;
+  calculatorTo: boolean,
 };
 
 const UniversalPickerUnit = ({
@@ -24,6 +25,7 @@ const UniversalPickerUnit = ({
   i,
   type,
   componentKey = 0,
+  calculatorTo = false,
 }: UniversalPickerUnitProps) => {
   const {
     state: { universalPicker, fromUnit, toUnit, konvertor },
@@ -72,7 +74,7 @@ const UniversalPickerUnit = ({
         index: i,
         position: position || [],
         activeFromComponent: componentKey,
-        calculatorTo: false,
+        calculatorTo,
       },
     });
   };
