@@ -114,7 +114,7 @@ const Options = () => {
         />
       )}
 
-      {!settings.favouritesOnHome && <TypingInput />}
+      {(!settings.favouritesOnHome || favourites.length === 0) && <TypingInput />}
 
       <View style={styles.outerPressableContainer}>
         {filteredUnitList.map((unit, index) => (

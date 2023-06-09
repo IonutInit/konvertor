@@ -7,7 +7,7 @@ export type FavouriteType = {
 };
 
 export type SettingsType = {
-  [key: string]: boolean | number;
+[key: string]: boolean | number;
   extendedList: boolean;
   metric: boolean;
   decimals: number;
