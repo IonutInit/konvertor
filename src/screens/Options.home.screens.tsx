@@ -125,9 +125,7 @@ const Options = () => {
   //  console.log(typing("1 km to ft in"))
   //  console.log(typing("h")) //and then if you press on to it gives an error
 
-  console.log(description)
-
-  const filteredUnitList = unitList.filter(
+   const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary
   );
 

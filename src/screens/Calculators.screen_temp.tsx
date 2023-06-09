@@ -182,7 +182,7 @@ const Calculators = () => {
     return Number(result).toFixed(settings.decimals);
   };
 
-  console.log(universalPicker.calculatorTo);
+  // console.log(universalPicker.calculatorTo);
 
   return (
     <KeyboardAvoidingView
@@ -281,7 +281,7 @@ const Calculators = () => {
               <UniversalPicker
                 componentKey={0}
                 top={0}
-                filter={konvertor === "bmi" ? bmiFilter : []}
+                // filter={konvertor === "bmi" ? bmiFilter : []}
               />
               {/* <Pressable
               style={styles.closeButton}
