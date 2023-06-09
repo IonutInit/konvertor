@@ -28,13 +28,15 @@ import Divider from "../components/Divider";
 import getCalculatorData from "../lib/getCalculatorData";
 import handleDescriptionText from "../lib/handleDescriptionText";
 
+// import calculatorWork from "../lib/calculatorWork"
+
 import {
   calculateBmi,
   calculateArea,
   calculateSpeed,
   calculateDensity,
   calculateWeightLoss,
-} from "../lib/calculators";
+} from "../lib/calculatorWork";
 
 import getTheme from "../context/theme";
 
@@ -55,6 +57,7 @@ const Calculators = () => {
   } = useAppContext();
 
   const [isToPicker, setIsToPicker] = useState(false);
+  const [calculatorData, setCalculatorData] = useState(null)
 
   // similar functionality as in other screens, make into a hook
   const panResponder = PanResponder.create({
@@ -84,18 +87,22 @@ const Calculators = () => {
   const theme = getTheme();
 
   useEffect(() => {
-    getCalculatorData(dispatch, konvertor, settings.metric);
+    getCalculatorData(dispatch, konvertor, settings.metric)
   }, []);
 
-  const calculatorData = {
-    from0: fromValue[0],
-    value0: fromUnit[0],
-    from1: fromValue[1],
-    value1: fromUnit[1],
-    to: toUnit[0],
-  };
+  // const calculatorData = {
+  //   from0: fromValue[0],
+  //   unit0: fromUnit[0],
+  //   from1: fromValue[1],
+  //   unit1: fromUnit[1],
+  //   to: toUnit[0],
+  // };
 
-  const getResult = (calculatorType: string) => {
+  const calculatorWork = (calculatorType: string) => {
+    // if (calculatorType === "bmi") {
+    //   return calculateBmi(calculatorData);
+    // }
+
     if (calculatorType === "bmi") {
       return calculateBmi(fromValue[0], fromUnit[0], fromValue[1], fromUnit[1]);
     }
@@ -139,7 +146,8 @@ const Calculators = () => {
     }
   };
 
-  const result = getResult(konvertor);
+  // const result = calculatorWork(calculatorData, konvertor);
+  const result = calculatorWork(konvertor)
 
   const bmiFilter = ["cm", "in", "ft", "ft-us", "m", "oz", "lb", "kg"];
 
