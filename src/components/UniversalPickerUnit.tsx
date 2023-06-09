@@ -17,7 +17,7 @@ type UniversalPickerUnitProps = {
   i: number;
   type: "from" | "to";
   componentKey?: number;
-  calculatorTo: boolean,
+  calculatorTo?: boolean,
 };
 
 const UniversalPickerUnit = ({
@@ -103,10 +103,6 @@ const UniversalPickerUnit = ({
         onLongPress={handleLongPress}
         onPressIn={handlePresIn}
         onPressOut={handlePressOut}
-        // disabled={universalPicker.calculatorTo && konvertor !== "konvertor"}
-
-        // if this is activated, after a press of from, you can open the modal in calculators. 
-        //However, it doesn't pass data into state
         >
         <Text
           style={

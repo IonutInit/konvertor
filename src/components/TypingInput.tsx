@@ -22,7 +22,7 @@ type TypingResult = {
   fromValues?: string[];
   measureType?: string | null;
   measureName?: string;
-  toUnits?: string;
+  toUnits?: string[];
 };
 
 const examples = [
@@ -82,10 +82,11 @@ const TypingInput = () => {
           fromValue: [result.fromValues!, []],
           measureType: [[result.measureType!], []],
           measureName: [result.measureName!],
-          toUnit: [result.toUnits!],
+          toUnit: result.toUnits!,
         },
       });
 
+      console.log([result.toUnits!])
       setKeyboardSize(32);
     }, 0);
   };

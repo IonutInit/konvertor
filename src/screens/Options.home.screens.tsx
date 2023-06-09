@@ -121,9 +121,9 @@ const Options = () => {
 
   // console.log(state);
 
-  // console.log(typing("1 km/s to ft/min"));
-  //  console.log(typing("1 km to ft in"))
-  //  console.log(typing("h")) //and then if you press on to it gives an error
+  // console.log(typing("1 km/s to m/s")); -- there is not km/s
+  //  console.log(typing("1 km to ft in")) -- FIXED!
+  //  console.log(typing("h")) //and then if you press on to it gives an error -- WORKS?
 
    const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary
