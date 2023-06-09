@@ -50,7 +50,7 @@ const MeasurementIcons = ({
   type,
   mainColour = getTheme().mainColour,
   secondaryColour = getTheme().secondaryColour,
-  size = 50,
+  size = 45,
 }: Props) => {
   const props = {
     size,
