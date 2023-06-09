@@ -16,7 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.konvertor"
+      "bundleIdentifier": "IONUT-MIHAI-COJOCARU.com.konvertor"
     },
     "android": {
       "adaptiveIcon": {
