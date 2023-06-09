@@ -17,7 +17,7 @@ type UniversalPickerUnitProps = {
   i: number;
   type: "from" | "to";
   componentKey?: number;
-  calculatorTo?: boolean,
+  calculatorTo?: boolean;
 };
 
 const UniversalPickerUnit = ({
@@ -102,8 +102,7 @@ const UniversalPickerUnit = ({
         onPress={() => workUniversalPicker()}
         onLongPress={handleLongPress}
         onPressIn={handlePresIn}
-        onPressOut={handlePressOut}
-        >
+        onPressOut={handlePressOut}>
         <Text
           style={
             universalPicker.type === ""

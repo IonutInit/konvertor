@@ -26,7 +26,23 @@ const typing = (input: string) => {
   // potential message to be displayed
   let message = "";
 
-  input = ("fff " + input +" 0 fff").toLowerCase();
+  //remove non-alphanumeric characters at the end
+  //this way, potential errors are avoided if the string ends in ".", etc (as might be the case with voice recording)
+  function removeNonAlphanumericAtEnd(str: string): string {
+    const regex = /[^\w\d]$/; // Matches any non-alphanumeric character at the end
+    const match = str.match(regex);
+
+    if (match) {
+      const lastIndex = match.index;
+      return str.slice(0, lastIndex);
+    }
+
+    return str;
+  }
+
+  input = removeNonAlphanumericAtEnd(input);
+
+  input = ("fff " + input + " 0 fff").toLowerCase();
   // this is to help further down the line, when the order of strings and numbers is taken into conideration
 
   // create array from the input string
@@ -65,7 +81,7 @@ const typing = (input: string) => {
     difficultUnitsEdited
   );
 
-    // separate letters from numbers
+  // separate letters from numbers
   function separateLettersFromNumber(input: string[]) {
     const purifiedArray = [];
 
@@ -86,7 +102,6 @@ const typing = (input: string) => {
 
   const purifiedArray = separateLettersFromNumber(madeLessDifficult);
 
-  
   // returning difficult unit names to their original value
   function restoreDifficultUnits(
     input: (string | number)[],
@@ -115,7 +130,7 @@ const typing = (input: string) => {
     difficultUnitsEdited
   );
 
-   // all of the above have been returned as a string
+  // all of the above have been returned as a string
   // now we are converting numbers into numbers
   for (let i = 0; i < restored.length; i++) {
     const element: string | number = restored[i];
@@ -130,7 +145,6 @@ const typing = (input: string) => {
   const fromRaw = restored.slice(0, toIndex);
   const toRaw = toIndex === -1 ? [] : purifiedArray.slice(toIndex + 1);
 
-  
   // first cleanup of FROM: removal of all strings not preceded by a number, and all numbers not having a string in front
   function cleanUp(array: (number | string)[]) {
     for (let i = array.length - 1; i >= 0; i--) {
@@ -147,7 +161,6 @@ const typing = (input: string) => {
   }
 
   const rawFromCleaned = cleanUp(fromRaw);
-
 
   // looking for long or singular units as they might have been spoken and turning them into compatible, short units
   function optimiseStep(
@@ -168,7 +181,10 @@ const typing = (input: string) => {
     let result = optimiseStep(a, b, c);
 
     const additionalCases = [
-      [["kilometres"], ["km",]],
+      [
+        ["kilometres", "centimetres", "milimetres"],
+        ["km", "cm", "mm"],
+      ],
       // [["kilometre"], ["km"]]
       //ft ' & in '' !!!
     ];
@@ -192,7 +208,6 @@ const typing = (input: string) => {
     unitCollection
   );
 
- 
   //  let shortenedFrom = shorten(rawFromCleaned, unitCollectionLong, unitCollection)
   //  shortenedFrom = shorten(shortenedFrom, ["kilometres"], ["km"])
 
@@ -215,7 +230,7 @@ const typing = (input: string) => {
   }
   const fromIntersected = removeNonUnits(optimisedFrom, unitCollection);
 
-   // separating the intersected FROM into strings and numbers
+  // separating the intersected FROM into strings and numbers
 
   function separateElements(input: (string | number)[]) {
     const strings = input.filter((element) => typeof element === "string");
@@ -228,7 +243,6 @@ const typing = (input: string) => {
 
   // finally, only those values which have a unit are kept in the values array
   let fromValues_All = fromValuesRaw.slice(0, fromUnits_All.length);
-  
 
   //if there are no available FROM values, a notifications is returned
   if (fromValues_All.length === 0) {
@@ -313,7 +327,6 @@ const typing = (input: string) => {
   const fromUnits = filterByMeasure(fromUnits_All, fromTypes, measureType!);
   let fromValues = filterByMeasure(fromValues_All, fromTypes, measureType!);
 
-
   //Moving on to TO
   // if empty, it will be assigned a toBest() value for the largest FROM
   function findLargestFrom(input: string[], lookUp: string[]): string | null {
@@ -360,7 +373,7 @@ const typing = (input: string) => {
     // shortenedTo = shorten(shortenedTo, ["kilometres"], ["km"])
 
     // ...then intersecting TO with the unit collection, and eliminating all strings not pertaining to the collection
-    const toIntersectedOnce = removeNonUnits(optmisedTo, unitCollection);
+    const toIntersreducectedOnce = removeNonUnits(optmisedTo, unitCollection);
 
     // ...then intersecting the results with onlt the possible options of the already established measureType
     const toIntersected = removeNonUnits(
@@ -368,6 +381,7 @@ const typing = (input: string) => {
       description[measureType!].short
     );
 
+    // !!! something wrong here, check Options and TypingInput for more info
     if (toIntersected.length === 0) {
       const largestFrom = findLargestFrom(
         fromUnits,
@@ -380,7 +394,7 @@ const typing = (input: string) => {
 
   const toUnits = handleTo(toRaw);
 
-   const measureName = measureType!.replace(/^\w/, (c) => c.toUpperCase());
+  const measureName = measureType!.replace(/^\w/, (c) => c.toUpperCase());
 
   return {
     success,

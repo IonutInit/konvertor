@@ -1,5 +1,7 @@
 import useAppContext from "./useAppContext";
 
+import themeNames from "./themeNames";
+
 import workColour from "../lib/workColour";
 
 const mainColour: Record<number, string> = {
@@ -28,19 +30,6 @@ const secondaryColour: Record<number, string> = {
   9: "#000000",
 };
 
-const name: Record<number, string> = {
-  0: "A Tablespoon of Black",
-  1: "A Yard of Sienna",
-  2: "An Inch Madder",
-  3: "Slightly Orange",
-  4: "A Cubic Meter of Flowers",
-  5: "Weeks to Seconds",
-  6: "Degrees of Rosolanc",
-  7: "The Yellows",
-  8: "A Bite of Orange",
-  9: "Voltage",
-};
-
 //left at combination 60
 
 const getTheme = () => {
@@ -58,8 +47,8 @@ const getTheme = () => {
     // gray2: "#C2C2C2",
     // gray3: "#929292",
     secondaryColour: secondaryColour[theme],
-    name: name[theme],
-    allThemes: name,
+    name: themeNames[theme],
+    allThemes: themeNames,
   };
 };
 

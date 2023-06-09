@@ -22,6 +22,7 @@ import { settingsKey } from "./src/data/storageKeys";
 // import { settingsKey } from "../data/storageKeys";
 
 import platform from "./src/data/platform";
+import { isPad } from "./src/data/platform";
 
 import useThemeContext from "./src/context/useThemeContext";
 
@@ -80,19 +81,20 @@ export default function App() {
 
   return (
     <AppContextProvider state={state} dispatch={dispatch}>
-      <StatusBar style="light"/>
+      <StatusBar style="light" />
       <View
         style={{
           flex: 1,
           width: "100%",
-          backgroundColor: theme.gray2,
+          backgroundColor: theme.gray1,
           paddingVertical: platform === "web" ? 2 : 0,
         }}>
         <View
           style={{
             flex: 1,
             alignSelf: "center",
-            width: platform === "web" ? 600 : "101%",
+            //width: 600,
+            width: platform === "web" || isPad ? 600 : "101%",
             // borderWidth: 1,
             // borderColor: theme.gray1,
             // borderRadius: 10,

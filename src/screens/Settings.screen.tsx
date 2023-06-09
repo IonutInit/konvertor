@@ -27,6 +27,7 @@ import useAppContext from "../context/useAppContext";
 import useGetInFocus from "../hooks/useGetInFocus";
 
 import getTheme from "../context/theme";
+import themeNames from "../context/themeNames";
 
 import { SettingsType } from "../../types";
 
@@ -96,7 +97,7 @@ const Settings = ({ navigation }: any) => {
 
   useGetInFocus(navigation, dispatch, "Settings");
 
-  const themes = Object.values(getTheme().allThemes);
+  const themes = Object.values(themeNames);
 
   const handlePicker = () => {
     dispatch({

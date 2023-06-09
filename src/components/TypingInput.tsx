@@ -15,6 +15,8 @@ import getTheme from "../context/theme";
 import KeyboardIcon from "../components/svgs/KeyboardIcon";
 import RemoveIcon from "./svgs/RemoveIcon";
 
+import { isPad } from "../data/platform";
+
 type TypingResult = {
   success: boolean;
   message: string;
@@ -22,20 +24,23 @@ type TypingResult = {
   fromValues?: string[];
   measureType?: string | null;
   measureName?: string;
-  toUnits?: string[];
+  toUnits?: any; //!!!
 };
 
 const examples = [
-  "Ex: 1 m to ft", 
-  "Ex: 3 kg 245 gr to lb", 
+  "Ex: 1 m to ft",
+  "Ex: 3 kg 245 gr to lb",
   "Press on the icon button if you want to make these messages disappear",
   "Convert your day into a good day!",
   "Check out the setting page for more instruction on the available features.",
-  "This is an experimental feature, so expect some misses :)"
+  "This is an experimental feature, so expect some misses :)",
 ];
 
 const TypingInput = () => {
-  const { state: {settings}, dispatch } = useAppContext();
+  const {
+    state: { settings },
+    dispatch,
+  } = useAppContext();
 
   const theme = getTheme();
 
@@ -82,11 +87,10 @@ const TypingInput = () => {
           fromValue: [result.fromValues!, []],
           measureType: [[result.measureType!], []],
           measureName: [result.measureName!],
-          toUnit: result.toUnits!,
+          toUnit:
+            result.toUnits!.length > 1 ? result.toUnits! : [result.toUnits!],
         },
       });
-
-      console.log([result.toUnits!])
       setKeyboardSize(32);
     }, 0);
   };
@@ -95,12 +99,17 @@ const TypingInput = () => {
     <View style={styles.typingContainer}>
       <View style={styles.inputContainer}>
         <View style={styles.keyboardIconContainer}>
-          <Pressable onPress={() => dispatch({
-            type: "toggle_typing_input_messages"
-          })}>
-             <KeyboardIcon size={keyboardSize} mainColour={settings.typingInputMessages? "#D1D1D1" : "#C8C8C8"} />
+          <Pressable
+            onPress={() =>
+              dispatch({
+                type: "toggle_typing_input_messages",
+              })
+            }>
+            <KeyboardIcon
+              size={keyboardSize}
+              mainColour={settings.typingInputMessages ? "#D1D1D1" : "#C8C8C8"}
+            />
           </Pressable>
-         
         </View>
 
         <View style={styles.clearTextIconContainer}>
@@ -134,17 +143,11 @@ const TypingInput = () => {
       </View>
 
       {!homeTypingMessage && settings.typingInputMessages && (
-
-       <View style={styles.exampleTextContainer}>
-        <Text
-          style={[
-           styles.exampleText,
-            { color: theme.gray2 },
-          ]}>
-          {examples[Math.floor(Math.random() * examples.length)]}
-        </Text>
-       </View>
-
+        <View style={styles.exampleTextContainer}>
+          <Text style={[styles.exampleText, { color: theme.gray2 }]}>
+            {examples[Math.floor(Math.random() * examples.length)]}
+          </Text>
+        </View>
       )}
 
       {homeTypingMessage && (
@@ -206,12 +209,13 @@ const styles = StyleSheet.create({
   },
   keyboardIconContainer: {
     position: "absolute",
-    left: "7%",
+    left: isPad ? "6%" : "7%",
+    // left: isPad ? "6%" : "6%",
     zIndex: 1,
   },
   clearTextIconContainer: {
     position: "absolute",
-    left: "85%",
+    left: isPad ? "90%" : "85%",
     zIndex: 1,
   },
   typingMessage: {
@@ -223,13 +227,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "80%",
     textAlign: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   exampleText: {
     marginTop: 5,
     fontStyle: "italic",
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
 });
 
 export default TypingInput;

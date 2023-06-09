@@ -23,7 +23,7 @@ const appState: AppStateType = {
     verbose: false,
     theme: 4,
     favouritesOnHome: false,
-    typingInputMessages: true,    
+    typingInputMessages: true,
   },
   favourites: [],
   init: 0,

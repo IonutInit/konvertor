@@ -69,6 +69,7 @@ const Konvertor = () => {
       keyboardVerticalOffset={100}>
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
         {...panResponder.panHandlers}>
         <View style={styles.header}>
           <BackToOptions />

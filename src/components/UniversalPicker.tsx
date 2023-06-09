@@ -141,7 +141,7 @@ const UniversalPicker = ({
         },
       });
 
-       // if(universalPicker.calculatorTo) {
+      // if(universalPicker.calculatorTo) {
       //   dispatch({
       //     type: "toggle_universal_picker_TO",
       //     payload: false,
@@ -160,7 +160,7 @@ const UniversalPicker = ({
     return convert().describe(toUnit[0]).measure;
   };
 
-   return (
+  return (
     <Picker
       style={[
         styles.picker,

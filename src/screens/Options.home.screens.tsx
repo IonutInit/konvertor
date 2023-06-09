@@ -121,11 +121,13 @@ const Options = () => {
 
   // console.log(state);
 
+  console.log(typing("5 cm to ft."));
+
   // console.log(typing("1 km/s to m/s")); -- there is not km/s
   //  console.log(typing("1 km to ft in")) -- FIXED!
   //  console.log(typing("h")) //and then if you press on to it gives an error -- WORKS?
 
-   const filteredUnitList = unitList.filter(
+  const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary
   );
 
@@ -133,6 +135,7 @@ const Options = () => {
     <ScrollView
       contentContainerStyle={styles.scrollViewContainer}
       ref={scrollViewRef}
+      showsVerticalScrollIndicator={false}
       onContentSizeChange={handleOnContentSizeChange}>
       {settings.favouritesOnHome && (
         <ScrollView
@@ -207,7 +210,9 @@ const Options = () => {
                   { backgroundColor: theme.gray1 },
                 ]}>
                 <View style={styles.innerPressableContainer}>
-                  <MeasurementIcons type={unit.name} />
+                  <View style={styles.iconPlacement}>
+                    <MeasurementIcons type={unit.name} />
+                  </View>
 
                   <View style={styles.textContainer}>
                     <Text style={styles.text}>{unit.displayName}</Text>
@@ -283,8 +288,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     paddingHorizontal: 15,
     paddingTop: 30,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center",
   },
   pressableMeasure: {
     width: 85,
@@ -301,16 +306,20 @@ const styles = StyleSheet.create({
   },
   innerPressableContainer: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
   },
   textContainer: {
-    marginTop: 3,
+    marginBottom: 3,
   },
   text: {
     textAlign: "center",
     fontSize: 14,
     marginTop: 3,
+  },
+  iconPlacement: {
+    position: "absolute",
+    top: 5,
   },
   icon: {
     width: 45,

@@ -219,7 +219,8 @@ const Credentials = () => {
           automatically converted to the best option.
         </Text>
         <Text style={[styles.example, { fontWeight: "bold" }]}>
-          As this is still an experimental feature, make sure to expect some misses :)
+          As this is still an experimental feature, make sure to expect some
+          misses :)
         </Text>
       </View>
 
@@ -269,21 +270,20 @@ const Credentials = () => {
         <Divider />
       </View>
 
-      
-
       <View style={{ marginTop: 10 }}>
-      <View style={[styles.littleCredentials, { flexDirection: "row" }]}>
+        <View style={[styles.littleCredentials, { flexDirection: "row" }]}>
           <Text style={styles.smallFont}>This app uses the </Text>
           <Text
             style={[styles.smallFont, { fontWeight: "bold" }]}
             onPress={() => {
-              Linking.openURL("https://www.npmjs.com/package/convert-units?activeTab=readme");
+              Linking.openURL(
+                "https://www.npmjs.com/package/convert-units?activeTab=readme"
+              );
             }}>
             convert-units
           </Text>
           <Text style={styles.smallFont}> library.</Text>
         </View>
-
 
         <View style={[styles.littleCredentials, { flexDirection: "row" }]}>
           <Text style={styles.smallFont}>Colours by </Text>

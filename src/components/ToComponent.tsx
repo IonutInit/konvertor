@@ -32,7 +32,7 @@ const ToComponent = () => {
 
   const workingMeasureType = measureType[0].toString();
 
-  console.log(toUnit)
+  // console.log(toUnit);
 
   const elements = toUnit.map((unit: string, i: number) => {
     const allOptions = convert()

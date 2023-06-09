@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { favouritesKey, settingsKey } from "../data/storageKeys";
 
 import converter from "../lib/converter";
-import getTheme from "./theme";
+import themeNames from "./themeNames";
 
 import { AppStateType, ActionType, FavouriteType } from "../../types";
 
@@ -272,18 +272,8 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
     //maybe I should do the same for all asyncs
 
     case "change_theme":
-      const themes = [
-        "A Tablespoon of Black",
-        "A Yard of Sienna",
-        "An Inch Madder",
-        "Slightly Orange",
-        "A Cubic Meter of Flowers",
-        "Weeks to Seconds",
-        "Degrees of Rosolanc",
-        "The Yellows",
-        "A Bite of Orange",
-        "Voltage",
-      ];
+      const themes = Object.values(themeNames);
+
       const themeValue = themes.indexOf(action.payload);
 
       const updatedTheme = {
@@ -357,24 +347,23 @@ const reducer = (state: AppStateType, action: ActionType): AppStateType => {
         toUnit: action.payload.toUnit,
       };
 
-      case "toggle_typing_input_messages":
-        const initialSetting = state.settings.typingInputMessages
+    case "toggle_typing_input_messages":
+      const initialSetting = state.settings.typingInputMessages;
 
-        const updatedSetting = {
-          ...state.settings,
-          typingInputMessages: !initialSetting
-        }
+      const updatedSetting = {
+        ...state.settings,
+        typingInputMessages: !initialSetting,
+      };
 
-        try {
-          const jsonValue = JSON.stringify(updatedSetting);
-          AsyncStorage.setItem(settingsKey, jsonValue);
-        } catch (e) {}
+      try {
+        const jsonValue = JSON.stringify(updatedSetting);
+        AsyncStorage.setItem(settingsKey, jsonValue);
+      } catch (e) {}
 
-        return {
-          ...state,
-          settings: updatedSetting,
-        }
-
+      return {
+        ...state,
+        settings: updatedSetting,
+      };
 
     default:
       return state;

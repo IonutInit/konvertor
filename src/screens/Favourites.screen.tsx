@@ -72,7 +72,9 @@ const Favourites = ({ navigation }: any) => {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Pressable onPress={() => navigation.jumpTo("Home")}>
           <BackButton />
