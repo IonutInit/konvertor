@@ -47,6 +47,7 @@ const TypingInput = () => {
   const [typingInput, setTypingInput] = useState("");
   const [homeTypingMessage, setHomeTypingMessage] = useState(false);
   const [keyboardSize, setKeyboardSize] = useState(32);
+  const [showMe, setShowMw] = useState("");
 
   let typingTimer: NodeJS.Timeout | null = null;
 
@@ -55,6 +56,7 @@ const TypingInput = () => {
       clearTimeout(typingTimer);
     }
     setTypingInput(input);
+    setShowMw(input)
   };
 
   const handleClearText = () => {
@@ -85,8 +87,7 @@ const TypingInput = () => {
           fromValue: [result.fromValues!, []],
           measureType: [[result.measureType!], []],
           measureName: [result.measureName!],
-          toUnit:
-            result.toUnits!.length > 1 ? result.toUnits! : [result.toUnits!],
+          toUnit: result.toUnits!,
         },
       });
       setKeyboardSize(32);
@@ -168,6 +169,9 @@ const TypingInput = () => {
           </Text>
         </View>
       )}
+
+      <Text>
+        {showMe}</Text>
     </View>
   );
 };

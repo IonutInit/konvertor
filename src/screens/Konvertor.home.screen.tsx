@@ -53,6 +53,8 @@ const Konvertor = () => {
     },
   });
 
+  console.log(state)
+
   return (
     <KeyboardAvoidingView
       behavior={platform === "ios" ? "padding" : "height"}

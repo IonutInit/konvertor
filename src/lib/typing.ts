@@ -45,6 +45,14 @@ const typing = (input: string) => {
   input = ("fff " + input + " 0 fff").toLowerCase();
   // this is to help further down the line, when the order of strings and numbers is taken into conideration
 
+  // look for ' and '' as feet and inches, respectively
+  // and it's still not working
+  function inFt(input: string): string {
+    input = input.replace(/‘/g, ' ft ');
+    return input.replace(/“/g, ' in ');
+  }
+  input = inFt(input)
+
   // create array from the input string
   const inputArray = input.split(/\s+/).filter((str) => str.trim() !== "");
 
@@ -182,11 +190,16 @@ const typing = (input: string) => {
 
     const additionalCases = [
       [
+        // laternative spellings
         ["kilometres", "centimetres", "milimetres"],
         ["km", "cm", "mm"],
       ],
+      // and it's still not working
+      [
+        ["‘", "“"],
+        ["ft", "in"]
+      ]
       // [["kilometre"], ["km"]]
-      //ft ' & in '' !!!
     ];
 
     let i = 0;
@@ -362,7 +375,9 @@ const typing = (input: string) => {
     // removing numbers from TO...
     const toRawStrings = separateElements(input).strings as string[];
 
-    // getting the compatible, short spelling
+    console.log(toRawStrings)
+
+      // getting the compatible, short spelling
     const optmisedTo = optimise(
       toRawStrings,
       unitCollectionLong,

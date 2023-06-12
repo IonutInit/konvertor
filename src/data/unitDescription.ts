@@ -45,6 +45,8 @@ function getUnitDescription(units: string[]) {
     result[measureType] = { short, long, singular };
   });
 
+  console.log(result)
+
   return result;
 }
 
@@ -94,8 +96,9 @@ const description: DescriptionType = getUnitDescription([
   "b",
   "lx",
   "ppm",
+  "W",
   "V",
-  "A",
+  "mA",
   "VA",
   "VAR",
   "Wh",

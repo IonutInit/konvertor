@@ -13,8 +13,12 @@ const mainColour: Record<number, string> = {
   5: "#c9303e",
   6: "#0057ba",
   7: "#2d0060",
-  8: "#2d0060",
+  8: "#6e66d4",
   9: "#0d2b52",
+  10: "#340059",
+  11: "#000000",
+  12: "#58771e",
+  13: "#000000",
 };
 
 const secondaryColour: Record<number, string> = {
@@ -26,8 +30,12 @@ const secondaryColour: Record<number, string> = {
   5: "#bfabcc",
   6: "#b319ab",
   7: "#ebd999",
-  8: "#ff8c00",
+  8: "#888d2a",
   9: "#000000",
+  10: "#bdf226",
+  11: "#29bdad",
+  12: "#baa600",
+  13: "#b85e00",
 };
 
 //left at combination 60

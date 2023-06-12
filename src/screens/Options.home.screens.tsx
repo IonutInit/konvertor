@@ -20,6 +20,8 @@ import { favouritesKey } from "../data/storageKeys";
 
 import { FavouriteType } from "../../types";
 
+import typing from "../lib/typing";
+
 const commonStyles = {
   pressableMeasure: {
     width: 85,
@@ -100,6 +102,8 @@ const Options = () => {
   const filteredUnitList = unitList.filter(
     (unit) => settings.extendedList || unit.primary
   );
+
+  console.log(typing("5 m 5 km to cm in"))
 
   return (
     <ScrollView

@@ -133,7 +133,7 @@ const unitList = [
   {
     displayName: "Power",
     name: "power",
-    default: ["A", "mA"],
+    default: ["kW", "W"],
     primary: false,
   },
   {
