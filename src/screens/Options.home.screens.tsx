@@ -103,7 +103,7 @@ const Options = () => {
     (unit) => settings.extendedList || unit.primary
   );
 
-  console.log(typing("5 m 5 km to cm in"))
+  // console.log(typing("5 km2 to ft2"))
 
   return (
     <ScrollView

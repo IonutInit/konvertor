@@ -45,7 +45,7 @@ function getUnitDescription(units: string[]) {
     result[measureType] = { short, long, singular };
   });
 
-  console.log(result)
+  // console.log(result)
 
   return result;
 }

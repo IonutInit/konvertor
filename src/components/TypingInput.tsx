@@ -47,7 +47,6 @@ const TypingInput = () => {
   const [typingInput, setTypingInput] = useState("");
   const [homeTypingMessage, setHomeTypingMessage] = useState(false);
   const [keyboardSize, setKeyboardSize] = useState(32);
-  const [showMe, setShowMw] = useState("");
 
   let typingTimer: NodeJS.Timeout | null = null;
 
@@ -56,7 +55,6 @@ const TypingInput = () => {
       clearTimeout(typingTimer);
     }
     setTypingInput(input);
-    setShowMw(input)
   };
 
   const handleClearText = () => {
@@ -79,6 +77,9 @@ const TypingInput = () => {
         return false;
       }
 
+      // temporary measure: it will not return the proper units, but at least won't crash
+      const toUnit = result.toUnits!.includes("km2", "m2", "mm2", "km3", "m3", "mm3") ? [result.toUnits!] : result.toUnits!
+
       dispatch({
         type: "dispatch_typing",
         payload: {
@@ -87,10 +88,13 @@ const TypingInput = () => {
           fromValue: [result.fromValues!, []],
           measureType: [[result.measureType!], []],
           measureName: [result.measureName!],
-          toUnit: result.toUnits!,
+          toUnit,
+          // toUnit: result.toUnits!,
+          // toUnit: result.toUnits!.length > 1 ? [result.toUnits!] : result.toUnits!
         },
       });
       setKeyboardSize(32);
+      console.log(result)
     }, 0);
   };
 
@@ -169,9 +173,6 @@ const TypingInput = () => {
           </Text>
         </View>
       )}
-
-      <Text>
-        {showMe}</Text>
     </View>
   );
 };

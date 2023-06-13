@@ -39,7 +39,7 @@ const FavOptionOnHome = ({ commonStyles }) => {
       <View style={commonStyles.innerPressableContainer}>
         <FavouritesIcon
           isFavourite
-          mainColour={
+          secondaryColour={
             !settings.favouritesOnHome ? theme.gray1 : theme.mainColour
           }
         />

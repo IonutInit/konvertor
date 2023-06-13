@@ -26,6 +26,17 @@ const typing = (input: string) => {
   // potential message to be displayed
   let message = "";
 
+  // works on the browser, doesn't work on iOS
+  input = input.replace(/'/g, " ft")
+  input.replace(/‘/g, " in");
+
+
+  // function lookForAbbreviations(input: string): string {
+  //   input = input.replace(/'/g, " ft")
+  //   return input.replace(/''/g, " in");
+  // }
+  // lookForAbbreviations(input)
+
   //remove non-alphanumeric characters at the end
   //this way, potential errors are avoided if the string ends in ".", etc (as might be the case with voice recording)
   function removeNonAlphanumericAtEnd(str: string): string {

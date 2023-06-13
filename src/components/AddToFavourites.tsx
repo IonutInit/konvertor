@@ -71,7 +71,7 @@ const AddToFavourites = () => {
         onPress={() => handleOnPress(favoriteIndex)}
         onPressIn={handlePresIn}
         onPressOut={handlePressOut}>
-        <FavouritesIcon isFavourite={favoriteIndex !== -1} size={size} />
+        <FavouritesIcon isFavourite={favoriteIndex !== -1} size={size}/>
       </Pressable>
     </View>
   );
