@@ -84,7 +84,7 @@ export default function App() {
 
   return (
     <AppContextProvider state={state} dispatch={dispatch}>
-      <StatusBar style="light" />
+      <StatusBar style={isPad ? "auto" : "light"} />
       <View
         style={{
           flex: 1,

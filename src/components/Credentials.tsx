@@ -200,8 +200,8 @@ const Credentials = () => {
         </View>
 
         <Text style={styles.featureText}>
-          No more inputting at all... almost. Just type in your desired
-          conversion and get the results.
+          No more inputting at all... almost. Just type in (or use your microphone to speak) your desired
+          conversion and get the results. 
         </Text>
         <TypingInput placeholderText="5 ft to m" />
         <Text style={styles.example}>

@@ -94,7 +94,6 @@ const TypingInput = () => {
         },
       });
       setKeyboardSize(32);
-      console.log(result)
     }, 0);
   };
 
@@ -199,7 +198,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     paddingHorizontal: 10,
-    color: "black",
+    color: "grey",
   },
   typingMessageContainer: {
     justifyContent: "center",

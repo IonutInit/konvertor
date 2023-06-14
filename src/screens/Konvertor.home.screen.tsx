@@ -53,7 +53,7 @@ const Konvertor = () => {
     },
   });
 
-  console.log(state)
+  // console.log(state)
 
   return (
     <KeyboardAvoidingView
