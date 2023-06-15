@@ -44,6 +44,6 @@ No more inputting at all... almost. Just type in (or use your microphone to spea
 
 ---
 
-Coming soon on the App Store
+[See it in the App Store](https://apps.apple.com/gb/app/konvertor/id6450120315)
 
 ---
