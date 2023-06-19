@@ -13,7 +13,7 @@ import {
 import convert from "../lib/converter-library/lib";
 import "../lib/converter-library/convert.d.ts";
 
-type DescriptionType = {
+export type DescriptionType = {
   [key: string]: {
     short: string[];
     long: string[];
@@ -386,7 +386,7 @@ const typing = (input: string) => {
     // removing numbers from TO...
     const toRawStrings = separateElements(input).strings as string[];
 
-    console.log(toRawStrings)
+    // console.log(toRawStrings)
 
       // getting the compatible, short spelling
     const optmisedTo = optimise(
@@ -401,7 +401,7 @@ const typing = (input: string) => {
     // ...then intersecting TO with the unit collection, and eliminating all strings not pertaining to the collection
     const toIntersreducectedOnce = removeNonUnits(optmisedTo, unitCollection);
 
-    // ...then intersecting the results with onlt the possible options of the already established measureType
+    // ...then intersecting the results with only the possible options of the already established measureType
     const toIntersected = removeNonUnits(
       optmisedTo,
       description[measureType!].short
@@ -418,7 +418,13 @@ const typing = (input: string) => {
     return toIntersected;
   };
 
-  const toUnits = handleTo(toRaw);
+  let toUnits = handleTo(toRaw);
+  
+  // the same confusion regarding toUnits / [toUnits] as in TypingInput
+  // here I am mitigating the format for when the input units differ, so a toUnit is assigned according to fromUnit, but not in an array
+  // if(findMeasureTypes(fromUnits[0], description[0])[0] === findMeasureTypes(toUnits, description))
+  //   toUnits = [toUnits]
+  // }
 
   const measureName = measureType!.replace(/^\w/, (c) => c.toUpperCase());
 

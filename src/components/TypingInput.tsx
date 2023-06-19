@@ -8,6 +8,8 @@ import {
   Pressable,
 } from "react-native";
 
+import description from "../data/unitDescription";
+
 import useAppContext from "../context/useAppContext";
 import typing from "../lib/typing";
 import getTheme from "../context/theme";
@@ -35,6 +37,29 @@ const examples = [
   "Check out the setting page for more instruction on the available features.",
   "This is an experimental feature, so expect some misses :)",
 ];
+
+// patching up
+import { DescriptionType } from "../data/unitDescription";
+
+ function findMeasureTypes(
+    input: string[],
+    description: DescriptionType
+  ): string[] {
+    const fromTypes: string[] = [];
+
+    for (const element of input) {
+      for (const key in description) {
+        const shortDescription = description[key].short;
+        if (shortDescription.includes(element)) {
+          fromTypes.push(key);
+          break; // Stop searching in other keys once a match is found
+        }
+      }
+    }
+    return fromTypes;
+  }
+
+// ---------------------------------
 
 const TypingInput = () => {
   const {
@@ -78,7 +103,14 @@ const TypingInput = () => {
       }
 
       // temporary measure: it will not return the proper units, but at least won't crash
-      const toUnit = result.toUnits!.includes("km2", "m2", "mm2", "km3", "m3", "mm3") ? [result.toUnits!] : result.toUnits!
+      let toUnit = result.toUnits!.includes("km2", "m2", "mm2", "km3", "m3", "mm3") ? [result.toUnits!] : result.toUnits!
+
+  // the same confusion regarding toUnits / [toUnits] as in TypingInput
+  // here I am mitigating the format for when the input units differ, so a toUnit is assigned according to fromUnit, but not in an array
+  if (findMeasureTypes(result.fromUnits!, description)[0] === findMeasureTypes(result.toUnits[0], description)[0]) {
+    toUnit = [toUnit]
+  }
+
 
       dispatch({
         type: "dispatch_typing",
